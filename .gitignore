@@ -216,3 +216,6 @@ nbdist/
 .nb-gradle/
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,maven,java,intellij+all,netbeans
+docs/Sprint1/US101-SSD.vpp.bak_000f
+docs/Sprint1/.US102-SSD.vpp.lck
+docs/Sprint1/US102-SSD.vpp.bak_000f
