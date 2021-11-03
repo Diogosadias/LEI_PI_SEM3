@@ -71,7 +71,9 @@ To identify domain conceptual classes, start by making a list of candidate conce
 |Cargo Manifest | is owned by | Truck|
 |Cargo Manifest | is given to | Warehouse Manager|
 |Cargo Manifest | is given to | Port Manager|
-
+|Cargo Manifest | registers | Loading/Unloading|
+|US Coast Guard | receives | Message|
+|...|...|...
 
 
 
