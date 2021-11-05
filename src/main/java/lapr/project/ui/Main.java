@@ -31,11 +31,18 @@ class Main {
      */
     public static void main(String[] args) throws IOException, SQLException {
         CalculatorExample calculatorExample = new CalculatorExample();
-        int value = calculatorExample.sum(3, 5);
+        int value = calculatorExample.sum(3, 1);
+        System.out.println(value);
 
+        
+
+
+        /*
         if (LOGGER.isLoggable(Level.INFO)) {
             LOGGER.log(Level.INFO, String.valueOf(value));
         }
+
+         */
     }
 }
 
