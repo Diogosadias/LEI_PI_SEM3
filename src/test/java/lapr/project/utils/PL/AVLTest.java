@@ -5,10 +5,11 @@
  */
 package lapr.project.utils.PL;
 
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
