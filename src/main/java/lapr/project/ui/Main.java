@@ -1,5 +1,7 @@
 package lapr.project.ui;
 
+import lapr.project.controller.PositionOrganizedController;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
