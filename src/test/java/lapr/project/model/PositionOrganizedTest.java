@@ -151,9 +151,24 @@ public class PositionOrganizedTest {
      */
     @Test
     public void ensureShipmovementinfoisorganized(){
+        /*
         //Arrange
+        List<ShipMovements> list=new ArrayList<>();
+        ShipMovements expectedResult = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        list.add(expectedResult);
+        expectedResult = new ShipMovements("01/01/2021 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        list.add(expectedResult);
+        expectedResult = new ShipMovements("02/01/2021 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        list.add(expectedResult);
+        System.out.println(list);
         //Act
-        //Assert
+        Ship ship =new Ship("210950000","31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355,"VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA","B");
+        ship =new Ship("210950000","31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355,"VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA","B");
+        ship =new Ship("210950000","31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355,"VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA","B");
 
+        List<ShipMovements> result = ship.movements.getMoveByDateFrame("31/12/2020","01/01/2021");
+        //Assert
+        assertEquals(result,list);
+        */
     }
 }
