@@ -139,4 +139,23 @@ public class AVLTest {
         instance2.remove(8);
         assertFalse("equals! ", instance.equals(instance2));
     }
+
+    @Test
+    public void testNullsvalues(){
+        System.out.println("equals");
+        AVL<Integer> instance = new AVL();
+        int arr[] = {1, 8};
+        for (int i = 0; i < arr.length; i++)
+        {
+            instance.insert(arr[i]);
+        }
+        AVL<Integer> instance2 = new AVL();
+        int arr2[] = {1, 8};
+        for (int i = 0; i < arr2.length; i++)
+        {
+            instance2.insert(arr2[i]);
+        }
+        assertFalse(instance.equals(null));
+        assertFalse(instance2.equals(null));
+    }
 }

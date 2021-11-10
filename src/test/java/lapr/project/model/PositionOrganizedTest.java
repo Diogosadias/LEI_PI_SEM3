@@ -61,7 +61,7 @@ public class PositionOrganizedTest {
         List<ShipMovements> result = ship.movements.getMoveByDateFrame("31/12/2020","01/01/2021");
         //Assert
         assertEquals(list,result);
-        
+
          */
     }
 
