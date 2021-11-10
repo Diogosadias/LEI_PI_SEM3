@@ -21,8 +21,10 @@ public class BSTTest {
     Integer[] posorderT = {7, 8, 13, 10, 17, 15, 30, 50, 40, 20};
     
     BST<Integer> instance;    
-    
-    public BSTTest() {
+    @Test
+    public void testBSTTest() {
+        BST arvore = new BST();
+        assertNull(arvore.root);
     }
     
     @Before
