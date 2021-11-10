@@ -14,8 +14,9 @@ import java.util.List;
 
 
 import static lapr.project.model.Import.*;
-import static lapr.project.model.ShipMovements.*;
+import lapr.project.model.ShipMovements.*;
 import static lapr.project.model.MovementsTree.*;
+import static lapr.project.model.ShipMovements.getDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

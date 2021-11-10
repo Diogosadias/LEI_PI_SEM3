@@ -1,10 +1,11 @@
 package lapr.project.model;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-public class ShipMovements {
+public class ShipMovements implements Comparable<ShipMovements>{
     private LocalDateTime baseDateTime;
     private double latitude;
     private double longitude;
@@ -34,4 +35,12 @@ public class ShipMovements {
     }
 
 
+    public int compareTo(ShipMovements element) { return baseDateTime.compareTo(element.getDateTime());
+    }
+
+    private LocalDateTime getDateTime() { return baseDateTime;
+    }
+
+    public void incOcorrences() {
+    }
 }
