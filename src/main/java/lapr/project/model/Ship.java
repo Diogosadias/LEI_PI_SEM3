@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import java.io.IOException;
+import java.util.List;
+
 /**
  * Ship Class
  *
@@ -16,8 +19,9 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     private Width Width;
     private Draft Draft;
     private Cargo Cargo;
+    private MovementsTree movements;
 
-    public Ship(){
+    public Ship() {
         MMSI = (MMSI) "too bad";
     }
 
@@ -93,6 +97,20 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
         this.Cargo = Cargo;
     }
 
+    public MovementsTree getMovements() {
+        return movements;
+    }
+
+    public void setMovements(MovementsTree movements) {
+        this.movements = movements;
+    }
+
+    public List<ShipMovements> getMoveByDateFrame(Object s, Object s1) throws IOException {
+        return this.movements.searchDateFrame(s, s1);
+
+    }
+
+
     @Override
     public int compareTo(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -102,5 +120,6 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     public String toString() {
         return "Ship{" + "MMSI=" + MMSI + ", VesselName=" + VesselName + ", IMO=" + IMO + ", CallSign=" + CallSign + ", VesselType=" + VesselType + ", Length=" + Length + ", Width=" + Width + ", Draft=" + Draft + ", Cargo=" + Cargo + '}';
     }
-    
+
+
 }

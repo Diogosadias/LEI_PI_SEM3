@@ -1,16 +1,16 @@
 package lapr.project.model;
 
 import lapr.project.utils.PL.AVL;
+import lapr.project.utils.PL.BST;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import static java.time.temporal.ChronoUnit.HOURS;
 import static lapr.project.model.ShipMovements.*;
 
-public class MovementsTree extends AVL<ShipMovements> {
+public class MovementsTree <E extends Comparable<E>> extends AVL<ShipMovements> {
+    private List<ShipMovements> list;
 
     /***
      * Creates Movements Tree  for Ship - Used only once per Ship
@@ -25,7 +25,7 @@ public class MovementsTree extends AVL<ShipMovements> {
         return null;
     }
 
-    public static List<ShipMovements> searchDateFrame(String s, String s1) throws IOException {
+    public  List<ShipMovements> searchDateFrame(Object s, Object s1) throws IOException {
         if(getDate(s).isAfter(getDate(s1))) throw new IOException("Input Date is invalid!");
         else{
             return find(getDate(s),getDate(s1));
@@ -33,9 +33,6 @@ public class MovementsTree extends AVL<ShipMovements> {
     }
 
 
-    public List<ShipMovements> getMoveByDateFrame(String s, String s1) {
-        return null;
-    }
 
 
     @Override
@@ -60,10 +57,22 @@ public class MovementsTree extends AVL<ShipMovements> {
         return node;
     }
 
-    private static List<ShipMovements> find(LocalDateTime date, LocalDateTime date1) {
 
-
-        return null;
+    private  List<ShipMovements> find(LocalDateTime date, LocalDateTime date1) {
+        return find(date,date1,root());
     }
+
+    private List<ShipMovements> find(LocalDateTime date, LocalDateTime date1, Node<ShipMovements> root) {
+        if(root==null) return list;
+        if (root.getElement().getBaseDateTime().compareTo(date)<0) {
+            find(date,date1,root.getLeft());
+        }
+        if (date.compareTo(root.getElement().getBaseDateTime()) <= 0 && date1.compareTo(root.getElement().getBaseDateTime()) >= 0) {
+            list.add(root.getElement());
+        }
+        find(date,date1,root.getRight());
+        return list;
+    }
+
 
 }

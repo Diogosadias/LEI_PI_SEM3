@@ -1,11 +1,11 @@
 package lapr.project.model;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
 public class ShipMovements implements Comparable<ShipMovements>{
+
+
     private LocalDateTime baseDateTime;
     private double latitude;
     private double longitude;
@@ -27,13 +27,75 @@ public class ShipMovements implements Comparable<ShipMovements>{
 
     }
 
-    public static LocalDateTime getDate(String s) {
+    public static LocalDateTime getDate(Object s) {
         if(s == null) return null;
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime date = LocalDateTime.parse(s, format);
+        LocalDateTime date = LocalDateTime.parse((CharSequence) s, format);
         return date;
     }
+    public LocalDateTime getBaseDateTime() {
+        return baseDateTime;
+    }
 
+    public void setBaseDateTime(LocalDateTime baseDateTime) {
+        this.baseDateTime = baseDateTime;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getSog() {
+        return sog;
+    }
+
+    public void setSog(double sog) {
+        this.sog = sog;
+    }
+
+    public double getCog() {
+        return cog;
+    }
+
+    public void setCog(double cog) {
+        this.cog = cog;
+    }
+
+    public double getHeading() {
+        return heading;
+    }
+
+    public void setHeading(double heading) {
+        this.heading = heading;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getTransceiverClass() {
+        return transceiverClass;
+    }
+
+    public void setTransceiverClass(String transceiverClass) {
+        this.transceiverClass = transceiverClass;
+    }
 
     public int compareTo(ShipMovements element) { return baseDateTime.compareTo(element.getDateTime());
     }
@@ -41,6 +103,5 @@ public class ShipMovements implements Comparable<ShipMovements>{
     private LocalDateTime getDateTime() { return baseDateTime;
     }
 
-    public void incOcorrences() {
-    }
+
 }
