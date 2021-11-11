@@ -27,7 +27,7 @@ class ShipMovementsTest {
     }
 
     /**
-     * Ensure get is working
+     * Ensure BaseDateTime is Working
      */
     @Test
     void testGetBaseDateTime(){
@@ -40,6 +40,12 @@ class ShipMovementsTest {
         //Assert
         assertEquals(expectedResult,result);
         assertEquals(expectedResult,shipmov.getBaseDateTime());
+
+        //Act
+        expectedResult = LocalDateTime.parse("01/01/2021 17:19",format);
+        shipmov.setBaseDateTime(expectedResult);
+        //Assert
+        assertEquals(expectedResult,shipmov.getBaseDateTime());
     }
-    
+
 }
