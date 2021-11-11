@@ -28,7 +28,13 @@ public class PairsCalculator {
     private String order(TreeMap<Ship, Ship> map) {
         for(Ship s:map.keySet()){
             List<Ship> values = (List<Ship>) map.get(s);
-            for(Ship t :values){
+            TreeMap <Double,Ship> map1 = new TreeMap<>();
+            for(Ship t:values){
+                map1.put(t.getKm((Collection<List<TemporalMessages>>) t.getMovements()),t);
+            }
+            List<Ship> values1 =(List<Ship>) map.values();
+            Collections.reverse(values1);
+            for(Ship t :values1){
                 System.out.print(print(s,t));
             }
         }
