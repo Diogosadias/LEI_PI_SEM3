@@ -2,6 +2,8 @@ package lapr.project.ui;
 
 import lapr.project.controller.*;
 
+import java.io.IOException;
+
 public class MainUI {
 
 
@@ -12,7 +14,7 @@ public class MainUI {
     private String date2="30/01/2021 17:19";
     private int n=5;
 
-    public void run() {
+    public void run() throws IOException {
 
         MainController mainController = new MainController();
         //Pedro

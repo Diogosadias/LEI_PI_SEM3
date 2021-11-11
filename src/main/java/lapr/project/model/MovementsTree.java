@@ -4,6 +4,7 @@ import lapr.project.utils.PL.AVL;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 
 import static lapr.project.model.TemporalMessages.*;
@@ -15,16 +16,19 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
 
     /***
      * Creates Movements Tree  for Ship - Used only once per Ship
-     * @param elem - First ShipMovement
+     * @param elem - First of TemporalMessages
      */
     public void createTree(TemporalMessages elem){
         insert(elem);
     }
 
     public  List<TemporalMessages> getMoveByDate(Object s) {
-        //implementar
-        return null;
+        if(s==null) return null;
+        return find(s);
     }
+
+
+
     public List<TemporalMessages> getList() {
         return list;
     }
@@ -91,5 +95,18 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
     }
 
 
+    private List<TemporalMessages> find(Object s) { return find(s,root());
+    }
+
+    private List<TemporalMessages> find(Object s, Node<TemporalMessages> root) {
+        if (root==null || root.getElement().getBaseDateTime()==s)
+            return list;
+
+        if (root.getElement().getBaseDateTime().compareTo((LocalDateTime) s)<0)
+            return find(s,root.getRight());
+
+        // Key is smaller than root's key
+        return find(s,root.getLeft());
+    }
 
 }

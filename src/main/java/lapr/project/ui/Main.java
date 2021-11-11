@@ -29,7 +29,6 @@ class Main {
     public static void main(String[] args) throws IOException, SQLException {
 
 
-        //Import File
         MainUI mainUI = new MainUI();
         mainUI.run();
 
