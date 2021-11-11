@@ -14,4 +14,31 @@ class MainControllerTest {
 
     }
 
+    @Test
+    void testimportFile() {
+    }
+
+    @Test
+    void testsearchDetails() {
+    }
+
+    @Test
+    void testsearchDate() {
+    }
+
+    @Test
+    void testSearchDate() {
+    }
+
+    @Test
+    void testsummary() {
+    }
+
+    @Test
+    void testgetTopN() {
+    }
+
+    @Test
+    void testpairsofShips() {
+    }
 }

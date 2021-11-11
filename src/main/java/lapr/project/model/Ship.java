@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-
+import oracle.ucp.util.Pair;
 import lapr.project.utils.PL.BST;
 
 import java.io.IOException;
@@ -159,5 +159,38 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
 
     public String print(Double first) {
         return  "\t"+MMSI + "\t" + CallSign + "\t" + IMO + "\t" + meanSOG + "\t\t" + first+"\r\n";
+    }
+
+    public boolean checkproximity(Ship t) {
+        if(MMSI.equals(t.getMMSI())) return false;
+        if(dist(getdeparture(),t.getdeparture()) && dist(getArrival(),t.getArrival())){
+            if(getKm((Collection<List<TemporalMessages>>) t.getMovements())>10 && getKm((Collection<List<TemporalMessages>>) getMovements())>10){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean dist(Object getdeparture, Object getdeparture1) {
+        return dist(getdeparture,getdeparture1);
+    }
+
+    protected Object getArrival() {
+        Pair<Double,Double> value = getMovements().getmin();
+        return value;
+    }
+
+    private boolean dist(Pair d, Pair a) {
+        if(dist(d.get1st(),d.get2nd(),a.get1st(),a.get2nd())<5) return true;
+        return false;
+    }
+
+    protected Double dist(Object x1, Object y1, Object x2, Object y2) {
+        return Math.sqrt(((Double)y2 - (Double)y1) * ((Double)y2 - (Double)y1) + ((Double)x2 - (Double)x1) * ((Double)x2 - (Double)x1));
+    }
+
+    protected Object getdeparture() {
+        Pair<Double,Double> value = getMovements().getmax();
+        return value;
     }
 }

@@ -1,10 +1,10 @@
 package lapr.project.model;
 
+import oracle.ucp.util.Pair;
 import lapr.project.utils.PL.AVL;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 
 import static lapr.project.model.TemporalMessages.*;
@@ -111,5 +111,29 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
 
     public String getSummary(Object code) {
         return null;
+    }
+
+
+    public Pair<Double,Double> getmin() {return getmin(root());
+    }
+
+    private Pair<Double, Double> getmin(Node<TemporalMessages> root) {
+        if(root==null) return null;
+        if(root.getLeft()==null){
+            Pair<Double,Double> value = new Pair<>(root.getElement().getLatitude(),root.getElement().getLongitude());
+            return value;
+        } else  return getmin(root.getLeft());
+
+    }
+
+    public Pair<Double, Double> getmax() { return getmax(root());
+    }
+
+    private Pair<Double, Double> getmax(Node<TemporalMessages> root) {
+        if(root==null) return null;
+        if(root.getRight()==null){
+            Pair<Double,Double> value = new Pair<>(root.getElement().getLatitude(),root.getElement().getLongitude());
+            return value;
+        } else  return getmin(root.getRight());
     }
 }
