@@ -6,6 +6,10 @@ public class MainUI {
 
 
     private Object code;
+    private Object date;
+    private Object date1;
+    private Object date2;
+    private Object n;
 
     public void run() {
 
