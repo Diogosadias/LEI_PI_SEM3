@@ -15,7 +15,7 @@ public class ImportUI {
         PairShipsController pairShipsController = new PairShipsController();
         importController.importFile();
 
-        importController.search();
+        //importController.search();
 
 
     }
