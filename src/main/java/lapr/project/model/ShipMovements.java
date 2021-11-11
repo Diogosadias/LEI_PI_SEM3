@@ -30,8 +30,7 @@ public class ShipMovements implements Comparable<ShipMovements>{
     public static LocalDateTime getDate(Object s) {
         if(s == null) return null;
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime date = LocalDateTime.parse((CharSequence) s, format);
-        return date;
+        return LocalDateTime.parse((CharSequence) s, format);
     }
     public LocalDateTime getBaseDateTime() {
         return baseDateTime;
@@ -97,10 +96,13 @@ public class ShipMovements implements Comparable<ShipMovements>{
         this.transceiverClass = transceiverClass;
     }
 
+    @Override
     public int compareTo(ShipMovements element) { return baseDateTime.compareTo(element.getDateTime());
     }
 
-    private LocalDateTime getDateTime() { return baseDateTime;
+    private LocalDateTime getDateTime() {
+        if(baseDateTime!=null) return baseDateTime;
+        return null;
     }
 
 
