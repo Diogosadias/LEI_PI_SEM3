@@ -39,5 +39,7 @@ class ShipMovementsTest {
         LocalDateTime result =shipmov.getBaseDateTime();
         //Assert
         assertEquals(expectedResult,result);
+        assertEquals(expectedResult,shipmov.getBaseDateTime());
     }
+    
 }
