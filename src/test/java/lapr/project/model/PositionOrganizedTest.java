@@ -206,7 +206,8 @@ public class PositionOrganizedTest {
         list.add(shipmov);
         moves.printMoves(list);
         //Assert
-        assertTrue(expectedresult.equals(result.toString()));
+        boolean flag =expectedresult.equals(result.toString());
+        assertTrue(flag);
 
     }
 
@@ -233,7 +234,8 @@ public class PositionOrganizedTest {
         list.add(shipmov);
         moves.printMoves(list);
         //Assert
-        assertTrue(expectedresult.equals(result.toString()));
+        boolean flag =expectedresult.equals(result.toString());
+        assertTrue(flag);
 
     }
 }
