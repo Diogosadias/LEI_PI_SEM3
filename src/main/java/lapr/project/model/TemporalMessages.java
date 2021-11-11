@@ -1,4 +1,5 @@
 package lapr.project.model;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,16 +16,37 @@ public class TemporalMessages implements Comparable<TemporalMessages>{
     private String position;
     private String transceiverClass;
 
-    public TemporalMessages(String s, double v, double v1, double v2, double v3, double i, String a, String b) {
+    public TemporalMessages(String s, double v, double v1, double v2, double v3, double i, String a, String b) throws IOException {
         this.baseDateTime=getDate(s);
-        this.latitude=v;
-        this.longitude=v1;
+        this.latitude=checkLatitude(v);
+        this.longitude=checklongitude(v1);
         this.sog=v2;
-        this.cog=v3;
-        this.heading=i;
+        this.cog=checkCog(v3);
+        this.heading=checkHeading(i);
         this.position=a;
         this.transceiverClass=b;
 
+    }
+
+    private double checkHeading(double i) throws IOException {
+        if(i<0 && i>359) throw new IOException("not Available!");
+        return i;
+    }
+
+    private double checkCog(double v3) throws IOException {
+        if(v3<0 && v3>359) throw new IOException("not Available!");
+        return v3;
+    }
+
+
+    private double checklongitude(double v1) throws IOException {
+        if(v1<-180 && v1>180) throw new IOException("not Available!");
+        return v1;
+    }
+
+    private double checkLatitude(double v) throws IOException {
+        if(v<-90 && v>90) throw new IOException("not Available!");
+        return v;
     }
 
     public static LocalDateTime getDate(Object s) {

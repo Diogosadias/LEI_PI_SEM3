@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -30,7 +31,7 @@ class TemporalMessagesTest {
      * Ensure BaseDateTime is Working
      */
     @Test
-    void testBaseDateTime(){
+    void testBaseDateTime() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
@@ -52,7 +53,7 @@ class TemporalMessagesTest {
      * Ensure latitude is Working
      */
     @Test
-    void testLatitude(){
+    void testLatitude() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
@@ -71,7 +72,7 @@ class TemporalMessagesTest {
      * Ensure longitude is Working
      */
     @Test
-    void testLongitude(){
+    void testLongitude() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
@@ -90,7 +91,7 @@ class TemporalMessagesTest {
      * Ensure sog is Working
      */
     @Test
-    void testsog(){
+    void testsog() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
@@ -109,7 +110,7 @@ class TemporalMessagesTest {
      * Ensure cog is Working
      */
     @Test
-    void testcog(){
+    void testcog() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
@@ -128,7 +129,7 @@ class TemporalMessagesTest {
      * Ensure Heading is Working
      */
     @Test
-    void testheading(){
+    void testheading() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
@@ -147,7 +148,7 @@ class TemporalMessagesTest {
      * Ensure Position is Working
      */
     @Test
-    void testPosition(){
+    void testPosition() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
@@ -166,7 +167,7 @@ class TemporalMessagesTest {
      * Ensure TransceiverClass is Working
      */
     @Test
-    void testTrasnceiverClass(){
+    void testTrasnceiverClass() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
@@ -185,7 +186,7 @@ class TemporalMessagesTest {
      * Ensure Compare to is Working
      */
     @Test
-    void testCompareto(){
+    void testCompareto() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         TemporalMessages shipmov1 = new TemporalMessages("01/01/2021 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
