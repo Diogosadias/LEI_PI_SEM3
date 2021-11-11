@@ -1,7 +1,11 @@
 package lapr.project.model;
 
+
+import lapr.project.utils.PL.BST;
+
 import java.io.IOException;
 import java.util.List;
+
 
 /**
  * Ship Class
@@ -19,11 +23,30 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     private Width Width;
     private Draft Draft;
     private Cargo Cargo;
-    private MovementsTree movements;
+    private MovementsTree movements = new MovementsTree();
+    
 
     public Ship() {
+
         MMSI = (MMSI) "too bad";
     }
+
+    public Ship(MMSI MMSI, VesselName VesselName, IMO IMO, CallSign CallSign, VesselType VesselType, Length Length, Width Width, Draft Draft, Cargo Cargo) {
+        this.MMSI = MMSI;
+        this.VesselName = VesselName;
+        this.IMO = IMO;
+        this.CallSign = CallSign;
+        this.VesselType = VesselType;
+        this.Length = Length;
+        this.Width = Width;
+        this.Draft = Draft;
+        this.Cargo = Cargo;
+        
+        
+    }
+    
+
+    
 
     public MMSI getMMSI() {
         return MMSI;
