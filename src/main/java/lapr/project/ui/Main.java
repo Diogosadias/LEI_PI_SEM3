@@ -1,6 +1,8 @@
 package lapr.project.ui;
 
 import lapr.project.controller.PositionOrganizedController;
+import lapr.project.model.Import;
+import lapr.project.model.ShipTree;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,7 +32,12 @@ class Main {
      */
     public static void main(String[] args) throws IOException, SQLException {
 
-        
+
+        //Import File
+        ImportUI importUI = new ImportUI();
+        importUI.run();
+
+
 
 
         /*
