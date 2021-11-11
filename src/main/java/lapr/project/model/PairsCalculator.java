@@ -26,6 +26,7 @@ public class PairsCalculator {
     }
 
     private String order(TreeMap<Ship, Ship> map) {
+        System.out.println("Ship1 MMSI \tShip2 MMSI \tdistOrig \tdistDest \tMovs \tTravelDist \tMovs \tTravelDist");
         for(Ship s:map.keySet()){
             List<Ship> values = (List<Ship>) map.get(s);
             TreeMap <Double,Ship> map1 = new TreeMap<>();
