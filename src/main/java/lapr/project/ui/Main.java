@@ -1,9 +1,5 @@
 package lapr.project.ui;
 
-import lapr.project.controller.PositionOrganizedController;
-import lapr.project.model.Import;
-import lapr.project.model.ShipTree;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
@@ -34,8 +30,8 @@ class Main {
 
 
         //Import File
-        ImportUI importUI = new ImportUI();
-        importUI.run();
+        MainUI mainUI = new MainUI();
+        mainUI.run();
 
 
 
