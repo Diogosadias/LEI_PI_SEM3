@@ -175,18 +175,21 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
         return dist(getdeparture,getdeparture1);
     }
 
-    private Object getArrival() {
+    protected Object getArrival() {
         Pair<Double,Double> value = getMovements().getmin();
         return value;
     }
 
     private boolean dist(Pair d, Pair a) {
-        if(Math.sqrt(((Double)a.get2nd() - (Double)d.get2nd()) * ((Double)a.get2nd() - (Double)d.get2nd()) + ((Double)a.get1st() - (Double)d.get1st()) * ((Double)a.get1st() - (Double)d.get1st()))<5) return true;
+        if(dist(d.get1st(),d.get2nd(),a.get1st(),a.get2nd())<5) return true;
         return false;
-
     }
 
-    private Object getdeparture() {
+    protected Double dist(Object x1, Object y1, Object x2, Object y2) {
+        return Math.sqrt(((Double)y2 - (Double)y1) * ((Double)y2 - (Double)y1) + ((Double)x2 - (Double)x1) * ((Double)x2 - (Double)x1));
+    }
+
+    protected Object getdeparture() {
         Pair<Double,Double> value = getMovements().getmax();
         return value;
     }
