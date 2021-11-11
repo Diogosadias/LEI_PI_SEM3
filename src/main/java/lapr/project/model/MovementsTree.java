@@ -10,6 +10,8 @@ import java.util.List;
 import static lapr.project.model.ShipMovements.*;
 
 public class MovementsTree <E extends Comparable<E>> extends AVL<ShipMovements> {
+
+
     private List<ShipMovements> list;
 
     /***
@@ -23,6 +25,13 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<ShipMovements> 
     public static List<ShipMovements> getMoveByDate(String s) {
 
         return null;
+    }
+    public List<ShipMovements> getList() {
+        return list;
+    }
+
+    public void setList(List<ShipMovements> list) {
+        this.list = list;
     }
 
     public  List<ShipMovements> searchDateFrame(Object s, Object s1) throws IOException {

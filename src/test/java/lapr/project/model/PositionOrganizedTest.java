@@ -6,7 +6,9 @@ import org.junit.platform.commons.function.Try;
 
 import javax.print.attribute.standard.MediaSize;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -190,5 +192,26 @@ public class PositionOrganizedTest {
         //Assert
         assertEquals(result,list);
         */
+    }
+
+    /***
+     * Ensure information printed is correct
+     */
+    @Test
+    public void ensurePrinted() throws Exception {
+        /*
+        //Arrange
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(result));
+        String expectedresult  = "210950000 \t31/12/2020 17:19 \t42.98 \t-66.97 \t12.9 \t13.1 \t355 \tNA \tB" ;
+
+        //Act
+        List<ShipMovements> list=new ArrayList<>();
+        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        list.add(shipmov);
+        list.print();
+        //Assert
+        assertEquals(expectedresult, result.toString());
+*/
     }
 }
