@@ -196,7 +196,7 @@ public class PositionOrganizedTest {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         System.setOut(new PrintStream(result));
         String expectedresult  = "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass " +
-                "\r\n31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\r\n" ;
+                "\r\n31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB" ;
 
 
         //Act
@@ -221,7 +221,7 @@ public class PositionOrganizedTest {
         System.setOut(new PrintStream(result));
         String expectedresult  = "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass " +
                 "\r\n31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\r\n" +
-                "01/01/2021 17:19\t42.97874\t-66.97002\t12.8\t\t13.2\t\t354.0\t\t\tNA\t\t\tB\r\n";
+                "01/01/2021 17:19\t42.97874\t-66.97002\t12.8\t\t13.2\t\t354.0\t\t\tNA\t\t\tB";
 
 
         //Act
