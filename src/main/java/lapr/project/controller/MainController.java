@@ -98,6 +98,7 @@ public class MainController {
     }
 
     public void pairsofShips() {
-        System.out.println(mmsiTree.pairs());
+        PairsCalculator pc = new PairsCalculator(mmsiTree);
+        System.out.println(pc.pairs());
     }
 }
