@@ -26,7 +26,7 @@ public class ShipMovements {
 
     }
 
-    public static LocalDateTime getDate(String s) {
+    public static LocalDateTime getDate(Object s) {
         if(s == null) return null;
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime date = LocalDateTime.parse(s, format);

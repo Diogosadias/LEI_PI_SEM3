@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.utils.PL.BST;
+
 /**
  * Ship Class
  *
@@ -16,11 +18,36 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     private Width Width;
     private Draft Draft;
     private Cargo Cargo;
-
+    private BST<> TemporalMsg = new BST();
     public Ship(){
         MMSI = (MMSI) "too bad";
     }
 
+    public Ship(MMSI MMSI, VesselName VesselName, IMO IMO, CallSign CallSign, VesselType VesselType, Length Length, Width Width, Draft Draft, Cargo Cargo) {
+        this.MMSI = MMSI;
+        this.VesselName = VesselName;
+        this.IMO = IMO;
+        this.CallSign = CallSign;
+        this.VesselType = VesselType;
+        this.Length = Length;
+        this.Width = Width;
+        this.Draft = Draft;
+        this.Cargo = Cargo;
+        
+        
+    }
+    
+    public void InsertTemporalMsg(Object o){
+        
+        this.TemporalMsg.insert((Comparable) o);
+        
+    }
+    
+    public void FindTemporalMsg(){
+        
+       this.TemporalMsg.;
+        
+    }
     public MMSI getMMSI() {
         return MMSI;
     }
