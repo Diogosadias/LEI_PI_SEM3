@@ -2,6 +2,10 @@ package lapr.project.model;
 
 import lapr.project.utils.PL.AVL;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.TreeMap;
+
 public class ShipTree <E extends Comparable<E>> extends AVL<E> {
     public void ShipTree(){
 
@@ -27,5 +31,15 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
         return false;
     }
 
-    
+
+    public String getTop(Object n, Object date1, Object date2) {
+        TreeMap<String , List<Ship>> map = new TreeMap<>();
+        //Figure out later
+
+        return null;
+    }
+
+    public String pairs() {
+        return null;
+    }
 }

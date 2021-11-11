@@ -17,6 +17,21 @@ public class MainController {
     }
 
     public void searchDetails(Object code) {
+        if(mmsiTree.isMMSI(code)) {
+            if(mmsiTree.find(code)){
+                System.out.print(mmsiTree.getShip(code).toString());
+            }
+        } else if(isoTree.isISO(code)){
+            if(isoTree.find(code)){
+                System.out.print(isoTree.getShip(code).toString());
+            }
+        } else if(csTree.isCS(code)){
+            if(csTree.find(code)){
+                System.out.print(csTree.getShip(code).toString());
+            }
+        } else {
+            System.out.println("Ship Code was not according regulations!");
+        }
     }
 
     public void searchDate(Object code, Object date) {
@@ -56,11 +71,29 @@ public class MainController {
     }
 
     public void summary(Object code) {
+        if(mmsiTree.isMMSI(code)) {
+            if(mmsiTree.find(code)){
+                System.out.print(mmsiTree.getShip(code).getMovements().getSummary(code));
+            }
+        } else if(isoTree.isISO(code)){
+            if(isoTree.find(code)){
+                System.out.print(isoTree.getShip(code).getMovements().getSummary(code));
+            }
+        } else if(csTree.isCS(code)){
+            if(csTree.find(code)){
+                System.out.print(csTree.getShip(code).getMovements().getSummary(code));
+            }
+        } else {
+            System.out.println("Ship Code was not according regulations!");
+        }
     }
 
     public void getTopN(Object n, Object date1, Object date2) {
+        if((int)n>mmsiTree.size()) throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
+        System.out.println(mmsiTree.getTop(n,date1,date2));
     }
 
     public void pairsofShips() {
+        System.out.println(mmsiTree.pairs());
     }
 }

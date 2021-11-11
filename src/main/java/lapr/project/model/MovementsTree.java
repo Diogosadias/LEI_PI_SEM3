@@ -109,4 +109,7 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
         return find(s,root.getLeft());
     }
 
+    public String getSummary(Object code) {
+        return null;
+    }
 }
