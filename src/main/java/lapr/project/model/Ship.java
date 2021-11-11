@@ -41,8 +41,6 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
         this.Width = Width;
         this.Draft = Draft;
         this.Cargo = Cargo;
-        
-        
     }
     
 
