@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static lapr.project.model.ShipMovements.getDate;
+import static lapr.project.model.TemporalMessages.getDate;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ShipMovementsTest {
+class TemporalMessagesTest {
 
 
     /***
@@ -32,7 +32,7 @@ class ShipMovementsTest {
     @Test
     void testBaseDateTime(){
         //Arrange
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime expectedResult = LocalDateTime.parse("31/12/2020 17:19",format);
@@ -54,7 +54,7 @@ class ShipMovementsTest {
     @Test
     void testLatitude(){
         //Arrange
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
         double expectedResult = 42.97875;
         //Assert
@@ -73,7 +73,7 @@ class ShipMovementsTest {
     @Test
     void testLongitude(){
         //Arrange
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
         double expectedResult = -66.97001;
         //Assert
@@ -92,7 +92,7 @@ class ShipMovementsTest {
     @Test
     void testsog(){
         //Arrange
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
         double expectedResult = 12.9;
         //Assert
@@ -111,7 +111,7 @@ class ShipMovementsTest {
     @Test
     void testcog(){
         //Arrange
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
         double expectedResult = 13.1;
         //Assert
@@ -130,7 +130,7 @@ class ShipMovementsTest {
     @Test
     void testheading(){
         //Arrange
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
         double expectedResult = 355;
         //Assert
@@ -149,7 +149,7 @@ class ShipMovementsTest {
     @Test
     void testPosition(){
         //Arrange
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
         String expectedResult = "NA";
         //Assert
@@ -168,7 +168,7 @@ class ShipMovementsTest {
     @Test
     void testTrasnceiverClass(){
         //Arrange
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
         String expectedResult = "B";
         //Assert
@@ -187,8 +187,8 @@ class ShipMovementsTest {
     @Test
     void testCompareto(){
         //Arrange
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
-        ShipMovements shipmov1 = new ShipMovements("01/01/2021 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov1 = new TemporalMessages("01/01/2021 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         //Act
         int expectedResult = shipmov.getBaseDateTime().compareTo(shipmov1.getBaseDateTime());
         //Assert

@@ -1,23 +1,15 @@
 package lapr.project.model;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.function.Try;
-
-import javax.print.attribute.standard.MediaSize;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 
-import  lapr.project.model.Import.*;
-import lapr.project.model.ShipMovements.*;
-import lapr.project.model.MovementsTree.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -101,7 +93,7 @@ public class PositionOrganizedTest {
     public void ensureDateisNotNull(){
         //Arrange
         //Act
-        LocalDateTime result = ShipMovements.getDate(null);
+        LocalDateTime result = TemporalMessages.getDate(null);
         //Assert
         assertNull(result);
     }
@@ -121,7 +113,7 @@ public class PositionOrganizedTest {
         //Act
         Ship ship =new Ship("210950000","31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355,"VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA","B");
 
-        List<ShipMovements> result = ship.movements.getMoveByDate("31/12/2020");
+        List<ShipMovements> result = ship.getMoveByDate("31/12/2020");
 
         //Assert
         assertEquals(list,result);
@@ -199,19 +191,49 @@ public class PositionOrganizedTest {
      */
     @Test
     public void ensurePrinted() throws Exception {
-        /*
+
         //Arrange
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         System.setOut(new PrintStream(result));
-        String expectedresult  = "210950000 \t31/12/2020 17:19 \t42.98 \t-66.97 \t12.9 \t13.1 \t355 \tNA \tB" ;
+        String expectedresult  = "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass " +
+                "\r\n31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\r\n" ;
+
 
         //Act
-        List<ShipMovements> list=new ArrayList<>();
-        ShipMovements shipmov = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        List<TemporalMessages> list=new ArrayList<>();
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        MovementsTree moves = new MovementsTree();
         list.add(shipmov);
-        list.print();
+        moves.printMoves(list);
         //Assert
         assertEquals(expectedresult, result.toString());
-*/
+
+    }
+
+    /***
+     * Ensure printed works for different moves
+     */
+    @Test
+    public void ensurePrintseveral() throws Exception {
+
+        //Arrange
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(result));
+        String expectedresult  = "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass " +
+                "\r\n31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\r\n" +
+                "01/01/2021 17:19\t42.97874\t-66.97002\t12.8\t\t13.2\t\t354.0\t\t\tNA\t\t\tB\r\n";
+
+
+        //Act
+        List<TemporalMessages> list=new ArrayList<>();
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        MovementsTree moves = new MovementsTree();
+        list.add(shipmov);
+        shipmov = new TemporalMessages("01/01/2021 17:19",42.97874,-66.97002,12.8,13.2,354, "NA","B");
+        list.add(shipmov);
+        moves.printMoves(list);
+        //Assert
+        assertEquals(expectedresult, result.toString());
+
     }
 }

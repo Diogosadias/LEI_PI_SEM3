@@ -105,11 +105,19 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
         this.movements = movements;
     }
 
-    public List<ShipMovements> getMoveByDateFrame(Object s, Object s1) throws IOException {
+    public List<TemporalMessages> getMoveByDateFrame(Object s, Object s1) throws IOException {
         return this.movements.searchDateFrame(s, s1);
 
     }
 
+    public List<TemporalMessages> getMoveByDate(Object s) {
+        return this.movements.getMoveByDate(s);
+    }
+
+    public void print(Object code,List<TemporalMessages> list){
+        System.out.println(code);
+        movements.printMoves(list);
+    }
 
     @Override
     public int compareTo(Object o) {
@@ -120,6 +128,7 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     public String toString() {
         return "Ship{" + "MMSI=" + MMSI + ", VesselName=" + VesselName + ", IMO=" + IMO + ", CallSign=" + CallSign + ", VesselType=" + VesselType + ", Length=" + Length + ", Width=" + Width + ", Draft=" + Draft + ", Cargo=" + Cargo + '}';
     }
+
 
 
 }

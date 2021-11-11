@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-public class ShipMovements implements Comparable<ShipMovements>{
+public class TemporalMessages implements Comparable<TemporalMessages>{
 
 
     private LocalDateTime baseDateTime;
@@ -15,7 +15,7 @@ public class ShipMovements implements Comparable<ShipMovements>{
     private String position;
     private String transceiverClass;
 
-    public ShipMovements(String s, double v, double v1, double v2, double v3, double i, String a, String b) {
+    public TemporalMessages(String s, double v, double v1, double v2, double v3, double i, String a, String b) {
         this.baseDateTime=getDate(s);
         this.latitude=v;
         this.longitude=v1;
@@ -96,11 +96,17 @@ public class ShipMovements implements Comparable<ShipMovements>{
         this.transceiverClass = transceiverClass;
     }
 
+    public String printMessage() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm");
+        return  baseDateTime.format(formatter) + "\t" + latitude + "\t" + longitude + "\t" + sog + "\t\t" + cog +"\t\t" + heading +"\t\t\t"+ position + "\t\t\t" +transceiverClass;
 
-    @Override
-    public int compareTo(ShipMovements element) { return baseDateTime.compareTo(element.getBaseDateTime());
     }
 
+
+
+    @Override
+    public int compareTo(TemporalMessages element) { return baseDateTime.compareTo(element.getBaseDateTime());
+    }
 
 
 
