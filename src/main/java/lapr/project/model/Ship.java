@@ -23,8 +23,7 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     private Width Width;
     private Draft Draft;
     private Cargo Cargo;
-
-    //private BST<> TemporalMsg = new BST();
+    private MovementsTree movements = new MovementsTree();
     
 
     public Ship() {
@@ -46,17 +45,9 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
         
     }
     
-//    public void InsertTemporalMsg(Object o){
-//        
-//        this.TemporalMsg.insert((Comparable) o);
-//        
-//    }
-//    
-//    public void FindTemporalMsg(){
-//        
-//       this.TemporalMsg.;
-//        
-//    }
+
+    
+
     public MMSI getMMSI() {
         return MMSI;
     }
