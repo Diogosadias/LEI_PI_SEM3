@@ -35,14 +35,14 @@
 
 ####Test Description
 By the description provided by the client they will want to have this implemented:
-* Access position of ship given period of time or date 
+* Access position Messages of ship given period of time or date 
     * Information Structure need to be well organized - Test!
     * Period must be valid - Test!
     * Date must be valid - Test!
     * If Ship has not moved - information must be provided - Test!
-    * Output must be in order - Test!
+    * Output must be well-designed and in order - Test!
     * Messages need to be translated to position effectively - Test!
-* Access to Ship
+* Access to Ship Information
     * Assured by US101 Tests
 
 ---

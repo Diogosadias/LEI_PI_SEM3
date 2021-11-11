@@ -1,6 +1,11 @@
 package lapr.project.model;
 
+<<<<<<< HEAD
 import lapr.project.utils.PL.BST;
+=======
+import java.io.IOException;
+import java.util.List;
+>>>>>>> b08898cee98cc8efbf5a5d46b8d745c237a93a42
 
 /**
  * Ship Class
@@ -18,8 +23,14 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     private Width Width;
     private Draft Draft;
     private Cargo Cargo;
+<<<<<<< HEAD
     private BST<> TemporalMsg = new BST();
     public Ship(){
+=======
+    private MovementsTree movements;
+
+    public Ship() {
+>>>>>>> b08898cee98cc8efbf5a5d46b8d745c237a93a42
         MMSI = (MMSI) "too bad";
     }
 
@@ -120,6 +131,28 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
         this.Cargo = Cargo;
     }
 
+    public MovementsTree getMovements() {
+        return movements;
+    }
+
+    public void setMovements(MovementsTree movements) {
+        this.movements = movements;
+    }
+
+    public List<TemporalMessages> getMoveByDateFrame(Object s, Object s1) throws IOException {
+        return this.movements.searchDateFrame(s, s1);
+
+    }
+
+    public List<TemporalMessages> getMoveByDate(Object s) {
+        return this.movements.getMoveByDate(s);
+    }
+
+    public void print(Object code,List<TemporalMessages> list){
+        System.out.println(code);
+        movements.printMoves(list);
+    }
+
     @Override
     public int compareTo(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -129,5 +162,7 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     public String toString() {
         return "Ship{" + "MMSI=" + MMSI + ", VesselName=" + VesselName + ", IMO=" + IMO + ", CallSign=" + CallSign + ", VesselType=" + VesselType + ", Length=" + Length + ", Width=" + Width + ", Draft=" + Draft + ", Cargo=" + Cargo + '}';
     }
-    
+
+
+
 }

@@ -78,19 +78,19 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
      * subclasses avoiding recoding.
      * So its access level is protected
      */
-   protected Node<E> find(Node<E> node, E element) {
-         if (node ==null){
-             return null;
-         }
+    protected Node<E> find(Node<E> node, E element) {
+        if (node ==null){
+            return null;
+        }
 
-            if (node.getElement().compareTo(element)>0) {
-                return find(node.getLeft(),element) ;
+        if (node.getElement().compareTo(element)>0) {
+            return find(node.getLeft(),element) ;
 
-            }
-            if (node.getElement().compareTo(element)<0) {
-                return find(node.getRight(),element) ;
+        }
+        if (node.getElement().compareTo(element)<0) {
+            return find(node.getRight(),element) ;
 
-            }
+        }
         return node;
     }
     
@@ -295,23 +295,11 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
         if(node.getRight()!=null) processBstByLevel(node.getRight(),result,level+1);
 
 
-        /*
 
-
-        if(node.getLeft()!=null && node.getRight()!=null){
-            processBstByLevel(node.getLeft(),result,level+1);
-            processBstByLevel(node.getRight(),result,level+1);
-
-        }
-        if(node.getRight()!=null){
-            processBstByLevel(node.getRight(),result,level+1);
-            }
-        if(node.getLeft()!=null){
-            processBstByLevel(node.getLeft(),result,level+1);
-        }
-*/
 
     }
+
+
 
 //#########################################################################
   
