@@ -13,7 +13,10 @@ public class MainController {
     */
 
     public void importFile() {
-
+        Import importer = new Import();
+        mmsiTree = importer.importMMSI();
+        isoTree = importer.importISO();
+        csTree = importer.importCS();
     }
 
     public void searchDetails(Object code) {
@@ -90,7 +93,8 @@ public class MainController {
 
     public void getTopN(Object n, Object date1, Object date2) {
         if((int)n>mmsiTree.size()) throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
-        System.out.println(mmsiTree.getTop(n,date1,date2));
+        TopN topsum = new TopN();
+        System.out.println(topsum.getTop(n,date1,date2));
     }
 
     public void pairsofShips() {

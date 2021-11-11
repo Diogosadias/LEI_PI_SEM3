@@ -32,12 +32,7 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
     }
 
 
-    public String getTop(Object n, Object date1, Object date2) {
-        TreeMap<String , List<Ship>> map = new TreeMap<>();
-        //Figure out later
 
-        return null;
-    }
 
     public String pairs() {
         return null;
