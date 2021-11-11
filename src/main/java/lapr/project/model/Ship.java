@@ -1,11 +1,11 @@
 package lapr.project.model;
 
-<<<<<<< HEAD
+
 import lapr.project.utils.PL.BST;
-=======
+
 import java.io.IOException;
 import java.util.List;
->>>>>>> b08898cee98cc8efbf5a5d46b8d745c237a93a42
+
 
 /**
  * Ship Class
@@ -23,14 +23,12 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     private Width Width;
     private Draft Draft;
     private Cargo Cargo;
-<<<<<<< HEAD
-    private BST<> TemporalMsg = new BST();
-    public Ship(){
-=======
-    private MovementsTree movements;
+
+    //private BST<> TemporalMsg = new BST();
+    
 
     public Ship() {
->>>>>>> b08898cee98cc8efbf5a5d46b8d745c237a93a42
+
         MMSI = (MMSI) "too bad";
     }
 
@@ -48,17 +46,17 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
         
     }
     
-    public void InsertTemporalMsg(Object o){
-        
-        this.TemporalMsg.insert((Comparable) o);
-        
-    }
-    
-    public void FindTemporalMsg(){
-        
-       this.TemporalMsg.;
-        
-    }
+//    public void InsertTemporalMsg(Object o){
+//        
+//        this.TemporalMsg.insert((Comparable) o);
+//        
+//    }
+//    
+//    public void FindTemporalMsg(){
+//        
+//       this.TemporalMsg.;
+//        
+//    }
     public MMSI getMMSI() {
         return MMSI;
     }
