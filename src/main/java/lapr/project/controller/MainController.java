@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class MainController {
     private ShipTree mmsiTree;
-    private ShipTree isoTree;
+    private ShipTree imoTree;
     private ShipTree csTree;
     /*
     Mais tarde criar classe Software/APP para armazenar tudo o que é importante
@@ -15,7 +15,7 @@ public class MainController {
     public void importFile() {
         Import importer = new Import();
         mmsiTree = importer.importMMSI();
-        isoTree = importer.importISO();
+        imoTree = importer.importISO();
         csTree = importer.importCS();
     }
 
@@ -24,9 +24,9 @@ public class MainController {
             if(mmsiTree.find(code)){
                 System.out.print(mmsiTree.getShip(code).toString());
             }
-        } else if(isoTree.isISO(code)){
-            if(isoTree.find(code)){
-                System.out.print(isoTree.getShip(code).toString());
+        } else if(imoTree.isISO(code)){
+            if(imoTree.find(code)){
+                System.out.print(imoTree.getShip(code).toString());
             }
         } else if(csTree.isCS(code)){
             if(csTree.find(code)){
@@ -42,9 +42,9 @@ public class MainController {
             if(mmsiTree.find(code)){
                 System.out.print(mmsiTree.getShip(code).getMovements().getMoveByDate(date));
             }
-        } else if(isoTree.isISO(code)){
-            if(isoTree.find(code)){
-                System.out.print(isoTree.getShip(code).getMovements().getMoveByDate(date));
+        } else if(imoTree.isISO(code)){
+            if(imoTree.find(code)){
+                System.out.print(imoTree.getShip(code).getMovements().getMoveByDate(date));
             }
         } else if(csTree.isCS(code)){
             if(csTree.find(code)){
@@ -60,9 +60,9 @@ public class MainController {
             if(mmsiTree.find(code)){
                 System.out.print(mmsiTree.getShip(code).getMovements().searchDateFrame(date1,date2));
             }
-        } else if(isoTree.isISO(code)){
-            if(isoTree.find(code)){
-                System.out.print(isoTree.getShip(code).getMovements().searchDateFrame(date1,date2));
+        } else if(imoTree.isISO(code)){
+            if(imoTree.find(code)){
+                System.out.print(imoTree.getShip(code).getMovements().searchDateFrame(date1,date2));
             }
         } else if(csTree.isCS(code)){
             if(csTree.find(code)){
@@ -78,9 +78,9 @@ public class MainController {
             if(mmsiTree.find(code)){
                 System.out.print(mmsiTree.getShip(code).getMovements().getSummary(code));
             }
-        } else if(isoTree.isISO(code)){
-            if(isoTree.find(code)){
-                System.out.print(isoTree.getShip(code).getMovements().getSummary(code));
+        } else if(imoTree.isISO(code)){
+            if(imoTree.find(code)){
+                System.out.print(imoTree.getShip(code).getMovements().getSummary(code));
             }
         } else if(csTree.isCS(code)){
             if(csTree.find(code)){
@@ -91,9 +91,9 @@ public class MainController {
         }
     }
 
-    public void getTopN(Object n, Object date1, Object date2) {
+    public void getTopN(Object n, Object date1, Object date2) throws IOException {
         if((int)n>mmsiTree.size()) throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
-        TopN topsum = new TopN();
+        TopN topsum = new TopN(mmsiTree);
         System.out.println(topsum.getTop(n,date1,date2));
     }
 

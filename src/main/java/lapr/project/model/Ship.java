@@ -4,6 +4,7 @@ package lapr.project.model;
 import lapr.project.utils.PL.BST;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -24,7 +25,8 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     private Draft Draft;
     private Cargo Cargo;
     private MovementsTree movements = new MovementsTree();
-    
+    private String meanSOG;
+
 
     public Ship() {
 
@@ -151,5 +153,11 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     }
 
 
+    public Double getKm(Collection<List<TemporalMessages>> values) {
+        return null;
+    }
 
+    public String print(Double first) {
+        return  "\t"+MMSI + "\t" + CallSign + "\t" + IMO + "\t" + meanSOG + "\t\t" + first+"\r\n";
+    }
 }
