@@ -7,11 +7,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Ship Class
- *
- * @author Diogo Dias {@literal <1161605@isep.ipp.pt>} on 10/11/2021.
- */
+
 public class Ship implements Comparable<Ship> {
 
     private int MMSI;
@@ -46,7 +42,6 @@ public class Ship implements Comparable<Ship> {
         this.meanSOG = meanSOG;
     }
 
-    
     public int getMMSI() {
         return MMSI;
     }
