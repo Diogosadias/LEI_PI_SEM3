@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Diogo Dias {@literal <1161605@isep.ipp.pt>} on 10/11/2021.
  */
-public class Ship implements Comparable {
+public class Ship implements Comparable<Ship> {
 
     private int MMSI;
     private String VesselName;
@@ -137,10 +137,8 @@ public class Ship implements Comparable {
         movements.printMoves(list);
     }
 
-    @Override
-    public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
+    
 
     @Override
     public String toString() {
@@ -187,5 +185,10 @@ public class Ship implements Comparable {
     protected Object getdeparture() {
         Pair<Double,Double> value = getMovements().getmax();
         return value;
+    }
+
+    @Override
+    public int compareTo(Ship o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
