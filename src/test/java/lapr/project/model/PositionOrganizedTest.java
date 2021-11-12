@@ -6,10 +6,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 
+import static lapr.project.model.TemporalMessages.getDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -72,18 +74,21 @@ public class PositionOrganizedTest {
      *  Ensure correct info if Ship has not moved
      */
     @Test
-    public void ensureShiphasnomovefortimeframe(){
-        /* Missing Constructor Ship - And Print
+    public void ensureShiphasnomovefortimeframe() throws IOException {
         //Arrange
-        List<ShipMovements> list=new ArrayList<>();
+        List<TemporalMessages> list=new ArrayList<>();
         //Act
-        Ship ship =new Ship("210950000","30/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355,"VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA","B");
-
-        List<ShipMovements> result = ship.movements.getMoveByDateFrame("31/12/2020","01/01/2021");
+        Ship ship =new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
+        MovementsTree movs = new MovementsTree();
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        movs.insert(shipmov);
+        ship.setMovements(movs);
+        list.add(shipmov);
+        List<TemporalMessages> result = ship.getMovements().searchDateFrame("31/12/2020 10:00","01/01/2021 10:00");
         //Assert
         assertEquals(list,result);
 
-         */
+
     }
 
     /**
@@ -95,7 +100,7 @@ public class PositionOrganizedTest {
         //Act
         //Assert
         try{
-            LocalDateTime result = TemporalMessages.getDate(null);
+            LocalDateTime result = getDate(null);
         }catch (IOException ex){
             System.out.println("Input is Invalid!");
         }
@@ -105,23 +110,23 @@ public class PositionOrganizedTest {
      *  Ensure Ship has movements for date
      */
     @Test
-    public void ensureShipmovefordate(){
-        /* Missing Ship Constructor
+    public void ensureShipmovefordate() throws IOException {
 
         //Arrange
-        List<ShipMovements> list=new ArrayList<>();
-        ShipMovements expectedResult = new ShipMovements("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
-        list.add(expectedResult);
-
+        List<TemporalMessages> list=new ArrayList<>();
         //Act
-        Ship ship =new Ship("210950000","31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355,"VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA","B");
-
-        List<ShipMovements> result = ship.getMoveByDate("31/12/2020");
+        Ship ship =new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
+        MovementsTree movs = new MovementsTree();
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        movs.insert(shipmov);
+        ship.setMovements(movs);
+        list.add(shipmov);
+        List<TemporalMessages> result = ship.getMoveByDate("31/12/2020");
 
         //Assert
         assertEquals(list,result);
 
-         */
+
     }
 
     /**

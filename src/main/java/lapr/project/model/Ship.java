@@ -24,7 +24,7 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     private Width Width;
     private Draft Draft;
     private Cargo Cargo;
-    private MovementsTree movements = new MovementsTree();
+    private MovementsTree movements ;
     private String meanSOG;
 
 
@@ -43,6 +43,7 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
         this.Width = Width;
         this.Draft = Draft;
         this.Cargo = Cargo;
+        this.movements = new MovementsTree();
     }
     
 

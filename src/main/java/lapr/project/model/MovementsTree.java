@@ -5,6 +5,9 @@ import lapr.project.utils.PL.AVL;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 import static lapr.project.model.TemporalMessages.*;
@@ -12,7 +15,7 @@ import static lapr.project.model.TemporalMessages.*;
 public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessages> {
 
 
-    private List<TemporalMessages> list;
+    private List<TemporalMessages> list = new ArrayList<>();
 
     /***
      * Creates Movements Tree  for Ship - Used only once per Ship
@@ -58,8 +61,9 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
     @Override
     public void insert(TemporalMessages element) {
         if (element == null) return;
-        insert(element, root());
+        root = insert(element, root());
     }
+
 
     private Node<TemporalMessages> insert(TemporalMessages element, Node<TemporalMessages> node) {
         if (node == null) {
@@ -78,16 +82,18 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
     }
 
 
+
+
     private  List<TemporalMessages> find(LocalDateTime date, LocalDateTime date1) {
         return find(date,date1,root());
     }
 
     private List<TemporalMessages> find(LocalDateTime date, LocalDateTime date1, Node<TemporalMessages> root) {
         if(root==null) return list;
-        if (root.getElement().getBaseDateTime().compareTo(date)<0) {
+        if (root.getElement().getBaseDateTime().isBefore(date)) {
             find(date,date1,root.getLeft());
         }
-        if (date.compareTo(root.getElement().getBaseDateTime()) <= 0 && date1.compareTo(root.getElement().getBaseDateTime()) >= 0) {
+        if (date.isBefore(root.getElement().getBaseDateTime())  && date1.isAfter(root.getElement().getBaseDateTime())) {
             list.add(root.getElement());
         }
         find(date,date1,root.getRight());
@@ -95,20 +101,26 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
     }
 
 
-    private List<TemporalMessages> find(Object s) { return find(s,root());
+    private List<TemporalMessages> find(Object s) {
+        DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm");
+        LocalDateTime f = LocalDateTime.parse((String)s + " 00:00", formatter);
+        LocalDateTime t = LocalDateTime.parse((String)s + " 24:00", formatter);
+        return find(f,t,root());
     }
 
-    private List<TemporalMessages> find(Object s, Node<TemporalMessages> root) {
-        if (root==null || root.getElement().getBaseDateTime()==s)
+    /*
+    private List<TemporalMessages> find(LocalDateTime s, Node<TemporalMessages> root) {
+        if (root==null || root.getElement().getBaseDateTime().isEqual(s))
             return list;
 
-        if (root.getElement().getBaseDateTime().compareTo((LocalDateTime) s)<0)
+        if (root.getElement().getBaseDateTime().isBefore(s))
             return find(s,root.getRight());
 
-        // Key is smaller than root's key
         return find(s,root.getLeft());
     }
 
+
+     */
     public String getSummary(Object code) {
         return null;
     }
