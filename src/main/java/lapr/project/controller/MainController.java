@@ -83,15 +83,15 @@ public class MainController {
     public void summary(Object code) {
         if (mmsiTree.isMMSI(code)) {
             if (mmsiTree.find(code)) {
-                System.out.print(mmsiTree.getShip(code).getMovements().getSummary(code));
+                System.out.print(mmsiTree.getShip(code).getSummary());
             }
         } else if (imoTree.isISO(code)) {
             if (imoTree.find(code)) {
-                System.out.print(imoTree.getShip(code).getMovements().getSummary(code));
+                System.out.print(imoTree.getShip(code).getSummary());
             }
         } else if (csTree.isCS(code)) {
             if (csTree.find(code)) {
-                System.out.print(csTree.getShip(code).getMovements().getSummary(code));
+                System.out.print(csTree.getShip(code).getSummary());
             }
         } else {
             System.out.println("Ship Code was not according regulations!");
