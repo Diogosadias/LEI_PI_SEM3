@@ -4,6 +4,7 @@ import oracle.ucp.util.Pair;
 import lapr.project.utils.PL.BST;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,7 +21,6 @@ public class Ship implements Comparable<Ship> {
     private double Draft;
     private String Cargo;
     private MovementsTree movements;
-    private String meanSOG;
 
     public Ship() {
 
@@ -113,14 +113,6 @@ public class Ship implements Comparable<Ship> {
         this.Cargo = Cargo;
     }
 
-    public String getMeanSOG() {
-        return meanSOG;
-    }
-
-    public void setMeanSOG(String meanSOG) {
-        this.meanSOG = meanSOG;
-    }
-
     public MovementsTree getMovements() {
         return movements;
     }
@@ -198,7 +190,87 @@ public class Ship implements Comparable<Ship> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public String  getSummary() {
-        return MMSI +"\t"+ VesselName + "\t"+ getMeanSOG();
+    public String getSummary() {
+        return MMSI + "\t" + VesselName + "\t" + getMeanSOG();
     }
+
+    public double getMeanCOG() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        double somaCOG = list.get(0).getCog();
+
+        while (list.iterator().hasNext()) {
+            somaCOG = somaCOG + list.iterator().next().getCog();
+        }
+        double meanCOG = somaCOG / list.size();
+        return meanCOG;
+    }
+
+    public double getMaxCOG() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        double maxCOG = list.get(0).getCog();
+
+        while (list.iterator().hasNext()) {
+            TemporalMessages atual = list.iterator().next();
+            if (atual.getCog() > maxCOG) {
+                maxCOG = atual.getCog();
+            }
+        }
+        return maxCOG;
+    }
+
+    public double getMeanSOG() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        double somaSOG = list.get(0).getSog();
+
+        while (list.iterator().hasNext()) {
+            somaSOG = somaSOG + list.iterator().next().getSog();
+        }
+        double meanSOG = somaSOG / list.size();
+        return meanSOG;
+    }
+
+    public double getMaxSOG() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        double maxSOG = list.get(0).getSog();
+
+        while (list.iterator().hasNext()) {
+            TemporalMessages atual = list.iterator().next();
+            if (atual.getSog() > maxSOG) {
+                maxSOG = atual.getSog();
+            }
+        }
+        return maxSOG;
+    }
+
+    public double getDepartureLatitude() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        return list.get(0).getLatitude();
+
+    }
+
+    public double getDepartureLongitude() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        return list.get(0).getLongitude();
+
+    }
+
+    public double getArrivalLongitude() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        return list.get(list.size() - 1).getLongitude();
+
+    }
+        public double getArrivalLatitude() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        return list.get(list.size() - 1).getLatitude();
+
+    }
+                public LocalDateTime getStartBaseDateTime() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        return list.get(0).getBaseDateTime();
+
+    }
+                            public LocalDateTime getEndBaseDateTime() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        return list.get(list.size()-1).getBaseDateTime();
+}
 }
