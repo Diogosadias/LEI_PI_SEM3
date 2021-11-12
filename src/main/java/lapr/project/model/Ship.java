@@ -13,113 +13,107 @@ import java.util.List;
  *
  * @author Diogo Dias {@literal <1161605@isep.ipp.pt>} on 10/11/2021.
  */
-public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Draft, Cargo> implements Comparable {
+public class Ship implements Comparable {
 
-    private MMSI MMSI;
-    private VesselName VesselName;
-    private IMO IMO;
-    private CallSign CallSign;
-    private VesselType VesselType;
-    private Length Length;
-    private Width Width;
-    private Draft Draft;
-    private Cargo Cargo;
+    private int MMSI;
+    private String VesselName;
+    private String IMO;
+    private String CallSign;
+    private int VesselType;
+    private int Length;
+    private int Width;
+    private double Draft;
+    private int Cargo;
     private MovementsTree movements ;
     private String meanSOG;
 
 
     public Ship() {
 
-        MMSI = (MMSI) "too bad";
+       
     }
 
-    public Ship(MMSI MMSI, VesselName VesselName, IMO IMO, CallSign CallSign, VesselType VesselType, Length Length, Width Width, Draft Draft, Cargo Cargo) {
-        this.MMSI = MMSI;
-        this.VesselName = VesselName;
-        this.IMO = IMO;
-        this.CallSign = CallSign;
-        this.VesselType = VesselType;
-        this.Length = Length;
-        this.Width = Width;
-        this.Draft = Draft;
-        this.Cargo = Cargo;
-        this.movements = new MovementsTree();
-    }
-    
-
-    
-
-    public MMSI getMMSI() {
+    public int getMMSI() {
         return MMSI;
     }
 
-    public void setMMSI(MMSI MMSI) {
+    public void setMMSI(int MMSI) {
         this.MMSI = MMSI;
     }
 
-    public VesselName getVesselName() {
+    public String getVesselName() {
         return VesselName;
     }
 
-    public void setVesselName(VesselName VesselName) {
+    public void setVesselName(String VesselName) {
         this.VesselName = VesselName;
     }
 
-    public IMO getIMO() {
+    public String getIMO() {
         return IMO;
     }
 
-    public void setIMO(IMO IMO) {
+    public void setIMO(String IMO) {
         this.IMO = IMO;
     }
 
-    public CallSign getCallSign() {
+    public String getCallSign() {
         return CallSign;
     }
 
-    public void setCallSign(CallSign CallSign) {
+    public void setCallSign(String CallSign) {
         this.CallSign = CallSign;
     }
 
-    public VesselType getVesselType() {
+    public int getVesselType() {
         return VesselType;
     }
 
-    public void setVesselType(VesselType VesselType) {
+    public void setVesselType(int VesselType) {
         this.VesselType = VesselType;
     }
 
-    public Length getLength() {
+    public int getLength() {
         return Length;
     }
 
-    public void setLength(Length Length) {
+    public void setLength(int Length) {
         this.Length = Length;
     }
 
-    public Width getWidth() {
+    public int getWidth() {
         return Width;
     }
 
-    public void setWidth(Width Width) {
+    public void setWidth(int Width) {
         this.Width = Width;
     }
 
-    public Draft getDraft() {
+    public double getDraft() {
         return Draft;
     }
 
-    public void setDraft(Draft Draft) {
+    public void setDraft(double Draft) {
         this.Draft = Draft;
     }
 
-    public Cargo getCargo() {
+    public int getCargo() {
         return Cargo;
     }
 
-    public void setCargo(Cargo Cargo) {
+    public void setCargo(int Cargo) {
         this.Cargo = Cargo;
     }
+
+    public String getMeanSOG() {
+        return meanSOG;
+    }
+
+    public void setMeanSOG(String meanSOG) {
+        this.meanSOG = meanSOG;
+    }
+
+    
 
     public MovementsTree getMovements() {
         return movements;
@@ -163,7 +157,7 @@ public class Ship<MMSI, VesselName, IMO, CallSign, VesselType, Length, Width, Dr
     }
 
     public boolean checkproximity(Ship t) {
-        if(MMSI.equals(t.getMMSI())) return false;
+        if(this.MMSI == (t.getMMSI())) return false;
         if(dist(getdeparture(),t.getdeparture()) && dist(getArrival(),t.getArrival())){
             if(getKm((Collection<List<TemporalMessages>>) t.getMovements())>10 && getKm((Collection<List<TemporalMessages>>) getMovements())>10){
                 return true;
