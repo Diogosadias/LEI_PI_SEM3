@@ -3,14 +3,20 @@ package lapr.project.controller;
 import lapr.project.model.*;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class MainController {
+    public void setMmsiTree(ShipTree mmsiTree) {
+        this.mmsiTree = mmsiTree;
+    }
+
     private ShipTree mmsiTree;
     private ShipTree imoTree;
     private ShipTree csTree;
     /*
     Mais tarde criar classe Software/APP para armazenar tudo o que é importante
     */
+    public MainController(){}
 
     public void importFile() {
         Import importer = new Import();
@@ -92,7 +98,7 @@ public class MainController {
     }
 
     public void getTopN(Object n, Object date1, Object date2) throws IOException {
-        if((int)n>mmsiTree.size()) throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
+        if((int)n>=mmsiTree.size()) throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
         TopN topsum = new TopN(mmsiTree);
         System.out.println(topsum.getTop(n,date1,date2));
     }
