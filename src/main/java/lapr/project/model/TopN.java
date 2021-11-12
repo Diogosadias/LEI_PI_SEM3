@@ -12,11 +12,12 @@ import java.util.*;
 
 public class TopN {
 
-    private TreeMap<Ship, List<TemporalMessages>> map = new TreeMap<>();
+    private final TreeMap<Ship, List<TemporalMessages>> map = new TreeMap<>();
 
-    private ShipTree mmsiTree;
+    private final ShipTree mmsiTree;
 
-    public TopN(ShipTree mmsiTree){
+    public TopN(ShipTree mmsiTree) throws IOException {
+        if(mmsiTree==null) throw new IOException("Tree is not Valid!");
         this.mmsiTree=mmsiTree;
 
     }

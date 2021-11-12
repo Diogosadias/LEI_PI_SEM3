@@ -207,7 +207,7 @@ class TemporalMessagesTest {
             System.out.println("Input is Invalid!");
         }
         try{
-            TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",100,-66.97001,12.9,13.1,355, "NA","B");
+            TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",-100,-66.97001,12.9,13.1,355, "NA","B");
         }catch (IOException ex){
             System.out.println("not Available!");
         }
