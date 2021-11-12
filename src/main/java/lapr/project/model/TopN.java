@@ -60,4 +60,7 @@ public class TopN {
     }
 
 
+    public ShipTree getTree() {
+        return mmsiTree;
+    }
 }
