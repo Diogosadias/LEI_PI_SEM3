@@ -109,9 +109,6 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
     }
 
     
-    public String getSummary(Object code) {
-        return null;
-    }
 
 
     public Pair<Double,Double> getmin() {return getmin(root());
