@@ -138,7 +138,7 @@ public class Ship implements Comparable<Ship> {
     }
 
   
-    
+   
 
     @Override
     public String toString() {
