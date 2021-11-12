@@ -108,19 +108,7 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
         return find(f,t,root());
     }
 
-    /*
-    private List<TemporalMessages> find(LocalDateTime s, Node<TemporalMessages> root) {
-        if (root==null || root.getElement().getBaseDateTime().isEqual(s))
-            return list;
-
-        if (root.getElement().getBaseDateTime().isBefore(s))
-            return find(s,root.getRight());
-
-        return find(s,root.getLeft());
-    }
-
-
-     */
+    
     public String getSummary(Object code) {
         return null;
     }
