@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
-
 /**
  * Ship Class
  *
@@ -24,13 +23,13 @@ public class Ship implements Comparable<Ship> {
     private int Width;
     private double Draft;
     private int Cargo;
-    private MovementsTree movements ;
+    private MovementsTree movements;
     private String meanSOG;
-
 
     public Ship() {
 
-       
+        this.VesselName = "too bad!";
+
     }
 
     public int getMMSI() {
@@ -113,8 +112,6 @@ public class Ship implements Comparable<Ship> {
         this.meanSOG = meanSOG;
     }
 
-    
-
     public MovementsTree getMovements() {
         return movements;
     }
@@ -132,32 +129,30 @@ public class Ship implements Comparable<Ship> {
         return this.movements.getMoveByDate(s);
     }
 
-    public void print(Object code,List<TemporalMessages> list){
+    public void print(Object code, List<TemporalMessages> list) {
         System.out.println(code);
         movements.printMoves(list);
     }
-
-  
-   
 
     @Override
     public String toString() {
         return "Ship{" + "MMSI=" + MMSI + ", VesselName=" + VesselName + ", IMO=" + IMO + ", CallSign=" + CallSign + ", VesselType=" + VesselType + ", Length=" + Length + ", Width=" + Width + ", Draft=" + Draft + ", Cargo=" + Cargo + '}';
     }
 
-
     public Double getKm(Collection<List<TemporalMessages>> values) {
         return null;
     }
 
     public String print(Double first) {
-        return  "\t"+MMSI + "\t" + CallSign + "\t" + IMO + "\t" + meanSOG + "\t\t" + first+"\r\n";
+        return "\t" + MMSI + "\t" + CallSign + "\t" + IMO + "\t" + meanSOG + "\t\t" + first + "\r\n";
     }
 
     public boolean checkproximity(Ship t) {
-        if(this.MMSI == (t.getMMSI())) return false;
-        if(dist(getdeparture(),t.getdeparture()) && dist(getArrival(),t.getArrival())){
-            if(getKm((Collection<List<TemporalMessages>>) t.getMovements())>10 && getKm((Collection<List<TemporalMessages>>) getMovements())>10){
+        if (this.MMSI == (t.getMMSI())) {
+            return false;
+        }
+        if (dist(getdeparture(), t.getdeparture()) && dist(getArrival(), t.getArrival())) {
+            if (getKm((Collection<List<TemporalMessages>>) t.getMovements()) > 10 && getKm((Collection<List<TemporalMessages>>) getMovements()) > 10) {
                 return true;
             }
         }
@@ -165,25 +160,27 @@ public class Ship implements Comparable<Ship> {
     }
 
     private boolean dist(Object getdeparture, Object getdeparture1) {
-        return dist(getdeparture,getdeparture1);
+        return dist(getdeparture, getdeparture1);
     }
 
     protected Object getArrival() {
-        Pair<Double,Double> value = getMovements().getmin();
+        Pair<Double, Double> value = getMovements().getmin();
         return value;
     }
 
     private boolean dist(Pair d, Pair a) {
-        if(dist(d.get1st(),d.get2nd(),a.get1st(),a.get2nd())<5) return true;
+        if (dist(d.get1st(), d.get2nd(), a.get1st(), a.get2nd()) < 5) {
+            return true;
+        }
         return false;
     }
 
     protected Double dist(Object x1, Object y1, Object x2, Object y2) {
-        return Math.sqrt(((Double)y2 - (Double)y1) * ((Double)y2 - (Double)y1) + ((Double)x2 - (Double)x1) * ((Double)x2 - (Double)x1));
+        return Math.sqrt(((Double) y2 - (Double) y1) * ((Double) y2 - (Double) y1) + ((Double) x2 - (Double) x1) * ((Double) x2 - (Double) x1));
     }
 
     protected Object getdeparture() {
-        Pair<Double,Double> value = getMovements().getmax();
+        Pair<Double, Double> value = getMovements().getmax();
         return value;
     }
 
