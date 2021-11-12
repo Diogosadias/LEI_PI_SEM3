@@ -29,28 +29,28 @@ public class TemporalMessages implements Comparable<TemporalMessages>{
     }
 
     private double checkHeading(double i) throws IOException {
-        if(i<0 && i>359) throw new IOException("not Available!");
+        if(i<0 || i>359) throw new IOException("not Available!");
         return i;
     }
 
     private double checkCog(double v3) throws IOException {
-        if(v3<0 && v3>359) throw new IOException("not Available!");
+        if(v3<0 || v3>359) throw new IOException("not Available!");
         return v3;
     }
 
 
     private double checklongitude(double v1) throws IOException {
-        if(v1<-180 && v1>180) throw new IOException("not Available!");
+        if(v1<-180 || v1>180) throw new IOException("not Available!");
         return v1;
     }
 
     private double checkLatitude(double v) throws IOException {
-        if(v<-90 && v>90) throw new IOException("not Available!");
+        if(v<-90 || v>90) throw new IOException("not Available!");
         return v;
     }
 
-    public static LocalDateTime getDate(Object s) {
-        if(s == null) return null;
+    public static LocalDateTime getDate(Object s) throws IOException {
+        if(s == null) throw  new IOException("Input is Invalid!");
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return LocalDateTime.parse((String) s, format);
     }

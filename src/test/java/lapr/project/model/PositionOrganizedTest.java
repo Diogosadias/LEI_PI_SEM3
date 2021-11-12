@@ -90,7 +90,7 @@ public class PositionOrganizedTest {
      *  Ensure date input is not null
      */
     @Test
-    public void ensureDateisNotNull(){
+    public void ensureDateisNotNull() throws IOException {
         //Arrange
         //Act
         LocalDateTime result = TemporalMessages.getDate(null);
