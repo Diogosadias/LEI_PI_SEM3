@@ -18,7 +18,7 @@ public class Ship implements Comparable<Ship> {
     private int Length;
     private int Width;
     private double Draft;
-    private int Cargo;
+    private String Cargo;
     private MovementsTree movements;
     private String meanSOG;
 
@@ -28,7 +28,7 @@ public class Ship implements Comparable<Ship> {
 
     }
 
-    public Ship(int MMSI, String VesselName, String IMO, String CallSign, int VesselType, int Length, int Width, double Draft, int Cargo, MovementsTree movements, String meanSOG) {
+    public Ship(int MMSI, String VesselName, String IMO, String CallSign, int VesselType, int Length, int Width, double Draft, String Cargo) {
         this.MMSI = MMSI;
         this.VesselName = VesselName;
         this.IMO = IMO;
@@ -38,8 +38,7 @@ public class Ship implements Comparable<Ship> {
         this.Width = Width;
         this.Draft = Draft;
         this.Cargo = Cargo;
-        this.movements = movements;
-        this.meanSOG = meanSOG;
+        this.movements = new MovementsTree();
     }
 
     public int getMMSI() {
@@ -106,11 +105,11 @@ public class Ship implements Comparable<Ship> {
         this.Draft = Draft;
     }
 
-    public int getCargo() {
+    public String getCargo() {
         return Cargo;
     }
 
-    public void setCargo(int Cargo) {
+    public void setCargo(String Cargo) {
         this.Cargo = Cargo;
     }
 
