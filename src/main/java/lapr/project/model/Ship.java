@@ -32,6 +32,21 @@ public class Ship implements Comparable<Ship> {
 
     }
 
+    public Ship(int MMSI, String VesselName, String IMO, String CallSign, int VesselType, int Length, int Width, double Draft, int Cargo, MovementsTree movements, String meanSOG) {
+        this.MMSI = MMSI;
+        this.VesselName = VesselName;
+        this.IMO = IMO;
+        this.CallSign = CallSign;
+        this.VesselType = VesselType;
+        this.Length = Length;
+        this.Width = Width;
+        this.Draft = Draft;
+        this.Cargo = Cargo;
+        this.movements = movements;
+        this.meanSOG = meanSOG;
+    }
+
+    
     public int getMMSI() {
         return MMSI;
     }
