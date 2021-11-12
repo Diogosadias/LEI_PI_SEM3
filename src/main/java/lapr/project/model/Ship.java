@@ -197,4 +197,8 @@ public class Ship implements Comparable<Ship> {
     public int compareTo(Ship o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public String  getSummary() {
+        return MMSI +"\t"+ VesselName + "\t"+ getMeanSOG();
+    }
 }

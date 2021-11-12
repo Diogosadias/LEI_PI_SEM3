@@ -20,18 +20,18 @@ public class MainUI {
         //Pedro
         mainController.importFile(); //US101 - Import file & US103 - Positional Messages
 
-        mainController.searchDetails(code1); //US102 - Search Ship by code MMSI
-        mainController.searchDetails(code2); //US102 - Search Ship by code CallSign
-        mainController.searchDetails(code3); //US102 - Search Ship by code ISO
+        mainController.searchDetails(code1); //US102 - Search Ship by code MMSI - Implemented
+        mainController.searchDetails(code2); //US102 - Search Ship by code CallSign - Implemented
+        mainController.searchDetails(code3); //US102 - Search Ship by code ISO - Implemented
 
         //Diogo
-        mainController.searchDate(code1,date); //US103 - Search Ship by code MMSI on Date
-        mainController.searchDate(code2,date); //US103 - Search Ship by code CallSign on Date
-        mainController.searchDate(code3,date); //US103 - Search Ship by code ISO on Date
+        mainController.searchDate(code1,date); //US103 - Search Ship by code MMSI on Date - Implemented
+        mainController.searchDate(code2,date); //US103 - Search Ship by code CallSign on Date - Implemented
+        mainController.searchDate(code3,date); //US103 - Search Ship by code ISO on Date - Implemented
 
-        mainController.searchDate(code1,date,date2); //US103 - Search Ship by code MMSI on Date Range
-        mainController.searchDate(code2,date,date2); //US103 - Search Ship by code CallSign on Date Range
-        mainController.searchDate(code3,date,date2); //US103 - Search Ship by code ISO on Date Range
+        mainController.searchDate(code1,date,date2); //US103 - Search Ship by code MMSI on Date Range - Implemented
+        mainController.searchDate(code2,date,date2); //US103 - Search Ship by code CallSign on Date Range - Implemented
+        mainController.searchDate(code3,date,date2); //US103 - Search Ship by code ISO on Date Range - Implemented
 
         //Duarte
         mainController.summary(code1); //US104 - Summary Ship by code MMSI
@@ -39,9 +39,9 @@ public class MainUI {
         mainController.summary(code3); //US104 - Summary Ship by code ISO
 
         //Diogo
-        mainController.getTopN(n,date,date2); //US106 - TopN for Date Range and Group By Vessel Type
+        mainController.getTopN(n,date,date2); //US106 - TopN for Date Range and Group By Vessel Type - Implemented
 
-        mainController.pairsofShips(); //US107 - Pair Ships with close location and Diferent Travel Distance
+        mainController.pairsofShips(); //US107 - Pair Ships with close location and Diferent Travel Distance - Implemented
 
 
 
