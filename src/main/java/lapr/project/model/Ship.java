@@ -139,9 +139,7 @@ public class Ship implements Comparable<Ship> {
         return "Ship{" + "MMSI=" + MMSI + ", VesselName=" + VesselName + ", IMO=" + IMO + ", CallSign=" + CallSign + ", VesselType=" + VesselType + ", Length=" + Length + ", Width=" + Width + ", Draft=" + Draft + ", Cargo=" + Cargo + '}';
     }
 
-    public Double getKm(Collection<List<TemporalMessages>> values) {
-        return null;
-    }
+
 
     public String print(Double first) {
         return "\t" + MMSI + "\t" + CallSign + "\t" + IMO + "\t\t" + first + "\r\n";
@@ -152,7 +150,7 @@ public class Ship implements Comparable<Ship> {
             return false;
         }
         if (dist(getdeparture(), t.getdeparture()) && dist(getArrival(), t.getArrival())) {
-            if (getKm((Collection<List<TemporalMessages>>) t.getMovements()) > 10 && getKm((Collection<List<TemporalMessages>>) getMovements()) > 10) {
+            if (t.getTravelledDistance() > 10 && getTravelledDistance() > 10) {
                 return true;
             }
         }
@@ -176,6 +174,7 @@ public class Ship implements Comparable<Ship> {
     }
 
     protected Double dist(Object x1, Object y1, Object x2, Object y2) {
+        //Change
         return Math.sqrt(((Double) y2 - (Double) y1) * ((Double) y2 - (Double) y1) + ((Double) x2 - (Double) x1) * ((Double) x2 - (Double) x1));
     }
 
@@ -189,8 +188,8 @@ public class Ship implements Comparable<Ship> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public String getSummary() {
-        return "Ship{" + " VesselName=" + VesselName + ", Start BaseDateTime=" + getStartBaseDateTime() + ", End BaseDateTime=" + getEndBaseDateTime() + ", TotalMovementTime" + getTotalMovementTime() + ", TotalNumberOfMovements" + getTotalNumberOfMovements() + ", MaxSOG" + getMaxSOG() + ", MeanSOG" + getMeanSOG() + ", MaxCOG=" + getMaxCOG()+ ", MeanCOG=" + getMeanCOG()+ ", DepartureLatitude" + getDepartureLatitude()+ ", DepartureLongitude" + getDepartureLongitude()+ ", ArrivalLatitude=" + getArrivalLatitude()+ ", ArrivalLongitude=" + getArrivalLongitude()+ ", TravelledDistance=" + getTravelledDistance()+ ", DeltaDistance=" + getDeltaDistance() + '}';
+    public String getSummary(Object code) {
+        return "Ship{" +code+ " VesselName=" + VesselName + ", Start BaseDateTime=" + getStartBaseDateTime() + ", End BaseDateTime=" + getEndBaseDateTime() + ", TotalMovementTime" + getTotalMovementTime() + ", TotalNumberOfMovements" + getTotalNumberOfMovements() + ", MaxSOG" + getMaxSOG() + ", MeanSOG" + getMeanSOG() + ", MaxCOG=" + getMaxCOG()+ ", MeanCOG=" + getMeanCOG()+ ", DepartureLatitude" + getDepartureLatitude()+ ", DepartureLongitude" + getDepartureLongitude()+ ", ArrivalLatitude=" + getArrivalLatitude()+ ", ArrivalLongitude=" + getArrivalLongitude()+ ", TravelledDistance=" + getTravelledDistance()+ ", DeltaDistance=" + getDeltaDistance() + '}';
     }
 
     public double getMeanCOG() {
@@ -293,6 +292,17 @@ public class Ship implements Comparable<Ship> {
     
     public Double getTravelledDistance(){
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
+        int i=2;
+        while (i<list.size()) {
+            sum = sum + dist(list.get(i-1).getLatitude(), list.get(i-1).getLongitude(), list.get(i).getLatitude(), list.get(i).getLongitude());
+            i++;
+        }
+        return sum;
+    }
+
+    public Double getTravelDistanceDates(List<TemporalMessages> messages){
+        List<TemporalMessages> list = messages;
         double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
         int i=2;
         while (i<list.size()) {
