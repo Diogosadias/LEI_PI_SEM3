@@ -20,7 +20,6 @@ public class Ship implements Comparable<Ship> {
     private double Draft;
     private String Cargo;
     private MovementsTree movements;
-    List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
 
     public Ship() {
 
@@ -195,6 +194,7 @@ public class Ship implements Comparable<Ship> {
     }
 
     public double getMeanCOG() {
+            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double somaCOG = list.get(0).getCog();
 
         while (list.iterator().hasNext()) {
@@ -205,6 +205,7 @@ public class Ship implements Comparable<Ship> {
     }
 
     public double getMaxCOG() {
+            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double maxCOG = list.get(0).getCog();
 
         while (list.iterator().hasNext()) {
@@ -217,6 +218,7 @@ public class Ship implements Comparable<Ship> {
     }
 
     public double getMeanSOG() {
+            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double somaSOG = list.get(0).getSog();
 
         while (list.iterator().hasNext()) {
@@ -227,6 +229,7 @@ public class Ship implements Comparable<Ship> {
     }
 
     public double getMaxSOG() {
+            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double maxSOG = list.get(0).getSog();
 
         while (list.iterator().hasNext()) {
@@ -239,47 +242,57 @@ public class Ship implements Comparable<Ship> {
     }
 
     public double getDepartureLatitude() {
+            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(0).getLatitude();
 
     }
 
     public double getDepartureLongitude() {
+            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(0).getLongitude();
 
     }
 
     public double getArrivalLongitude() {
+            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(list.size() - 1).getLongitude();
 
     }
 
     public double getArrivalLatitude() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(list.size() - 1).getLatitude();
 
     }
 
     public LocalDateTime getStartBaseDateTime() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(0).getBaseDateTime();
 
     }
 
     public LocalDateTime getEndBaseDateTime() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(list.size() - 1).getBaseDateTime();
     }
 
     public double getTotalNumberOfMovements() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.size();
     }
 
     public int getTotalMovementTime() {
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(list.size() - 1).getBaseDateTime().toLocalTime().toSecondOfDay() - list.get(0).getBaseDateTime().toLocalTime().toSecondOfDay();
 
     }
     public Double getDeltaDistance(){
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(list.size()-1).getLatitude(), list.get(list.size()-1).getLongitude());
     }
     
     public Double getTravelledDistance(){
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
         int i=2;
         while (i<list.size()) {
