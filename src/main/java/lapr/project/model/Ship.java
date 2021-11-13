@@ -41,6 +41,12 @@ public class Ship implements Comparable<Ship> {
         this.movements = new MovementsTree();
     }
 
+   
+
+   
+
+ 
+
     public int getMMSI() {
         return MMSI;
     }
@@ -145,7 +151,7 @@ public class Ship implements Comparable<Ship> {
     }
 
     public String print(Double first) {
-        return "\t" + MMSI + "\t" + CallSign + "\t" + IMO + "\t" + meanSOG + "\t\t" + first + "\r\n";
+        return "\t" + MMSI + "\t" + CallSign + "\t" + IMO + "\t\t" + first + "\r\n";
     }
 
     public boolean checkproximity(Ship t) {
