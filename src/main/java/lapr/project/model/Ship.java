@@ -191,7 +191,7 @@ public class Ship implements Comparable<Ship> {
     }
 
     public String getSummary() {
-        return MMSI + "\t" + VesselName + "\t" + getMeanSOG();
+        return "Ship{" + " VesselName=" + VesselName + ", Start BaseDateTime=" + getStartBaseDateTime() + ", End BaseDateTime=" + getEndBaseDateTime() + ", TotalMovementTime" + getTotalMovementTime() + ", TotalNumberOfMovements" + getTotalNumberOfMovements() + ", MaxSOG" + getMaxSOG() + ", MeanSOG" + getMeanSOG() + ", MaxCOG=" + getMaxCOG()+ ", MeanCOG=" + getMeanCOG()+ ", DepartureLatitude" + getDepartureLatitude()+ ", DepartureLongitude" + getDepartureLongitude()+ ", ArrivalLatitude=" + getArrivalLatitude()+ ", ArrivalLongitude=" + getArrivalLongitude()+ ", TravelledDistance=" + getTravelledDistance()+ ", DeltaDistance=" + getDeltaDistance() + '}';
     }
 
     public double getMeanCOG() {
@@ -267,12 +267,26 @@ public class Ship implements Comparable<Ship> {
         return list.get(list.size() - 1).getBaseDateTime();
     }
 
-    public double TotalNumberOfMovements() {
+    public double getTotalNumberOfMovements() {
         return list.size();
     }
 
-    public int TotalMovementTime() {
+    public int getTotalMovementTime() {
         return list.get(list.size() - 1).getBaseDateTime().toLocalTime().toSecondOfDay() - list.get(0).getBaseDateTime().toLocalTime().toSecondOfDay();
 
     }
+    public Double getDeltaDistance(){
+        return dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(list.size()-1).getLatitude(), list.get(list.size()-1).getLongitude());
+    }
+    
+    public Double getTravelledDistance(){
+        double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
+        int i=2;
+        while (i<list.size()) {
+            sum = sum + dist(list.get(i-1).getLatitude(), list.get(i-1).getLongitude(), list.get(i).getLatitude(), list.get(i).getLongitude());
+            i++;
+        }
+        return sum;
+    }
 }
+    
