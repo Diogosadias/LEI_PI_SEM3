@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+import static java.lang.Math.*;
+
 public class Ship implements Comparable<Ship> {
 
     private int MMSI;
@@ -174,8 +176,20 @@ public class Ship implements Comparable<Ship> {
     }
 
     protected Double dist(Object x1, Object y1, Object x2, Object y2) {
-        //Change
-        return Math.sqrt(((Double) y2 - (Double) y1) * ((Double) y2 - (Double) y1) + ((Double) x2 - (Double) x1) * ((Double) x2 - (Double) x1));
+        Double constant = 6371.0;
+
+        y1 = Math.toRadians((Double) y1);
+        y2 = Math.toRadians((Double) y2);
+        x1 = Math.toRadians((Double) x1);
+        x2 = Math.toRadians((Double) x2);
+        Double dlat = (Double) x2 - (Double) x1;
+
+
+        Double dlon=(Double) y2 - (Double) y1;
+        Double a=sin(dlat/2)*sin(dlat/2)+cos((Double) x1)- cos((Double) x2) + sin(dlon/2)*sin(dlon/2);
+        Double a1 = 1.0-a;
+        Double c=2 * atan2( sqrt(a), sqrt(a1) );
+        return constant*c;
     }
 
     protected Object getdeparture() {
