@@ -18,7 +18,8 @@ public class TemporalMessages implements Comparable<TemporalMessages> {
     public TemporalMessages() {
     }
 
-    public TemporalMessages(LocalDateTime baseDateTime) {
+    public TemporalMessages(LocalDateTime baseDateTime) throws IOException {
+        if(baseDateTime==null) throw new IOException("Input is Invalid!") ;
         this.baseDateTime = baseDateTime;
     }
 

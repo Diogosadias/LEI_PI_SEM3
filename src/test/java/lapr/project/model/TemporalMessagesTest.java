@@ -255,5 +255,10 @@ class TemporalMessagesTest {
         }catch (IOException ex){
             System.out.println("not Available!");
         }
+        try{
+            TemporalMessages shipmov = new TemporalMessages(null);
+        }catch (IOException ex){
+            System.out.println("Input is Invalid");
+        }
     }
 }
