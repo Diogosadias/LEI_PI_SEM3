@@ -3,6 +3,7 @@ package lapr.project.model;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,7 +22,7 @@ public class Import {
 
         Map<Integer, Ship> shipMap = new HashMap<Integer, Ship>();
         Map<String, TemporalMessages> moveMap = new HashMap<String, TemporalMessages>();
-
+        int i = 0;
         String keyMMSI = "";
         String keyIMO = "";
         String keyCallsign = "";
@@ -55,8 +56,17 @@ public class Import {
             shipMap.get(Integer.parseInt(keyCallsign)).insertMovements(moveMap.get(iteams[1]));
         }
 
-        MMSI.insert((Ship) shipMap.values());
-        ////////////////////////////////////////////////////////////////////////////////////////
+        while (i == shipMap.size()) {
+
+            MMSI.insert(shipMap.values().iterator().next());
+            i++;
+            IMO.insert(shipMap.values().iterator().next());
+            i++;
+            CallSign.insert(shipMap.values().iterator().next());
+            i++;
+
+        }
+
     }
 
 }
