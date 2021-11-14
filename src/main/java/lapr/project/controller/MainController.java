@@ -22,6 +22,7 @@ public class MainController {
     private IMOTree imoTree = new IMOTree();
     private CallSignTree csTree = new CallSignTree();
     private String s = "Input is Invalid!";
+    private String s2 ="-------------------------------------------------------------------------------------------------";
 
     /*
     Mais tarde criar classe Software/APP para armazenar tudo o que é importante
@@ -60,6 +61,7 @@ public class MainController {
         } else {
             System.out.println("Ship Code was not according regulations!");
         }
+        System.out.println(s2);
     }
 
     public void searchDate(Object code, Object date) throws IOException {
@@ -79,6 +81,7 @@ public class MainController {
         } else {
             System.out.println("Ship Code was not according regulations!");
         }
+        System.out.println(s2);
     }
 
     public void searchDate(Object code, Object date1, Object date2) throws IOException {
@@ -98,6 +101,7 @@ public class MainController {
         } else {
             System.out.println("Ship Code was not according regulations!");
         }
+        System.out.println(s2);
     }
 
     public void summary(Object code) throws IOException {
@@ -117,6 +121,7 @@ public class MainController {
         } else {
             System.out.println("Ship Code was not according regulations!");
         }
+        System.out.println(s2);
     }
 
     public void getTopN(Object n, String date1, String date2) throws IOException {
@@ -126,6 +131,7 @@ public class MainController {
         }
         TopN topsum = new TopN(mmsiTree);
         System.out.println(topsum.getTop(n,  getDate(date1),  getDate(date2)));
+        System.out.println(s2);
     }
 
     public void pairsofShips() {
