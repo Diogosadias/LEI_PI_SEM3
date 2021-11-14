@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static lapr.project.model.TemporalMessages.getDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TopNTest {
@@ -28,9 +29,9 @@ class TopNTest {
      */
     @Test
     void ensuredaterangeworks() throws IOException {
-        /*
+
         ShipTree mmsiTree =new ShipTree();
-        Ship ship = new Ship(210950000,"VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
+        Ship ship = new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         TemporalMessages shipmov1 = new TemporalMessages("01/01/2021 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         MovementsTree movs = new MovementsTree();
@@ -39,7 +40,7 @@ class TopNTest {
         ship.setMovements(movs);
         mmsiTree.insert(ship);
 
-        Ship ship1 = new Ship(210950020,"VARAMI","IMO9395042","C4SQ1",70,166,25,9.5,"NA");
+        Ship ship1 = new Ship("210950020","VARAMI","IMO9395042","C4SQ1",70,166,25,9.5,"NA");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 17:10",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         TemporalMessages shipmov3 = new TemporalMessages("01/01/2021 17:00",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         MovementsTree movs1 = new MovementsTree();
@@ -48,7 +49,8 @@ class TopNTest {
         ship1.setMovements(movs1);
         mmsiTree.insert(ship1);
         TopN top = new TopN(mmsiTree);
-        top.getTop(2,"31/12/2020 10:00","02/01/2021 21:00");
-                 */
+        String t = top.getTop(2,getDate("31/12/2020 10:00"),getDate("02/01/2021 21:00"));
+        assertEquals(t,top.getTop(2,getDate("31/12/2020 10:00"),getDate("02/01/2021 21:00")));
+
     }
 }
