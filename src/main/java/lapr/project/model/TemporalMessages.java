@@ -1,11 +1,10 @@
 package lapr.project.model;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
-public class TemporalMessages implements Comparable<TemporalMessages>{
-
+public class TemporalMessages implements Comparable<TemporalMessages> {
 
     private LocalDateTime baseDateTime;
     private double latitude;
@@ -16,44 +15,72 @@ public class TemporalMessages implements Comparable<TemporalMessages>{
     private String position;
     private String transceiverClass;
 
+    public TemporalMessages() {
+    }
+
+    public TemporalMessages(LocalDateTime baseDateTime) {
+        this.baseDateTime = baseDateTime;
+    }
+    
+
     public TemporalMessages(String s, double v, double v1, double v2, double v3, double i, String a, String b) throws IOException {
-        this.baseDateTime=getDate(s);
-        this.latitude=checkLatitude(v);
-        this.longitude=checklongitude(v1);
-        this.sog=v2;
-        this.cog=checkCog(v3);
-        this.heading=checkHeading(i);
-        this.position=a;
-        this.transceiverClass=b;
+        this.baseDateTime = getDate(s);
+        this.latitude = checkLatitude(v);
+        this.longitude = checklongitude(v1);
+        this.sog = v2;
+        this.cog = checkCog(v3);
+        this.heading = checkHeading(i);
+        this.position = a;
+        this.transceiverClass = b;
 
     }
 
+    public TemporalMessages(LocalDateTime baseDateTime, double latitude, double longitude, double sog, double cog, double heading, String transceiverClass) {
+        this.baseDateTime = baseDateTime;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.sog = sog;
+        this.cog = cog;
+        this.heading = heading;
+        this.transceiverClass = transceiverClass;
+    }
+
     private double checkHeading(double i) throws IOException {
-        if(i<0 || i>359) throw new IOException("not Available!");
+        if (i < 0 || i > 359) {
+            throw new IOException("not Available!");
+        }
         return i;
     }
 
     private double checkCog(double v3) throws IOException {
-        if(v3<0 || v3>359) throw new IOException("not Available!");
+        if (v3 < 0 || v3 > 359) {
+            throw new IOException("not Available!");
+        }
         return v3;
     }
 
-
     private double checklongitude(double v1) throws IOException {
-        if(v1<-180 || v1>180) throw new IOException("not Available!");
+        if (v1 < -180 || v1 > 180) {
+            throw new IOException("not Available!");
+        }
         return v1;
     }
 
     private double checkLatitude(double v) throws IOException {
-        if(v<-90 || v>90) throw new IOException("not Available!");
+        if (v < -90 || v > 90) {
+            throw new IOException("not Available!");
+        }
         return v;
     }
 
     public static LocalDateTime getDate(Object s) throws IOException {
-        if(s == null) throw  new IOException("Input is Invalid!");
+        if (s == null) {
+            throw new IOException("Input is Invalid!");
+        }
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return LocalDateTime.parse((String) s, format);
     }
+
     public LocalDateTime getBaseDateTime() {
         return baseDateTime;
     }
@@ -120,16 +147,13 @@ public class TemporalMessages implements Comparable<TemporalMessages>{
 
     public String printMessage() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm");
-        return  baseDateTime.format(formatter) + "\t" + latitude + "\t" + longitude + "\t" + sog + "\t\t" + cog +"\t\t" + heading +"\t\t\t"+ position + "\t\t\t" +transceiverClass;
+        return baseDateTime.format(formatter) + "\t" + latitude + "\t" + longitude + "\t" + sog + "\t\t" + cog + "\t\t" + heading + "\t\t\t" + position + "\t\t\t" + transceiverClass;
 
     }
-
-
 
     @Override
-    public int compareTo(TemporalMessages element) { return baseDateTime.compareTo(element.getBaseDateTime());
+    public int compareTo(TemporalMessages element) {
+        return baseDateTime.compareTo(element.getBaseDateTime());
     }
-
-
 
 }

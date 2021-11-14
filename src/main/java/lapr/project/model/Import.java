@@ -2,9 +2,11 @@ package lapr.project.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import static lapr.project.model.TemporalMessages.getDate;
 import lapr.project.utils.PL.BST;
 
 public class Import {
@@ -16,43 +18,47 @@ public class Import {
     private String SafeWord;
 
     public static void readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws FileNotFoundException {
-        Scanner in = new Scanner(new File(FileName));
-        in.nextLine();
+
+        Map<Integer, Ship> shipMap = new HashMap<Integer, Ship>();
+        Map<String, TemporalMessages> moveMap = new HashMap<String, TemporalMessages>();
+
         String keyMMSI = "";
         String keyIMO = "";
         String keyCallsign = "";
-        Map<Integer, Ship> kMap = new HashMap<Integer, Ship>();
-        int k = 0;
+
+        Scanner in = new Scanner(new File(FileName));
+        in.nextLine();
 
         while (in.hasNext()) {
             String line = in.nextLine();
             String[] iteams = line.split(",");
 
             if (!keyMMSI.equals(iteams[0])) {
-                k++;
-                kMap.put(k, new Ship());
+
                 keyMMSI = iteams[0];
-                MMSI.insert(kMap.get(k - 1));
-
-            }
-            if (!keyIMO.equals(iteams[8])) {
-                k++;
-                kMap.put(k, new Ship());
                 keyIMO = iteams[8];
-                IMO.insert(kMap.get(k - 1));
-
-            }
-            if (!keyCallsign.equals(iteams[9])) {
-                k++;
-                kMap.put(k, new Ship());
                 keyCallsign = iteams[9];
-                CallSign.insert(kMap.get(k - 1));
 
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                shipMap.put(Integer.parseInt(keyMMSI), new Ship(Integer.parseInt(iteams[0]), iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+
+                shipMap.put(Integer.parseInt(keyIMO), new Ship(Integer.parseInt(iteams[0]), iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+
+                shipMap.put(Integer.parseInt(keyCallsign), new Ship(Integer.parseInt(iteams[0]), iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
 
+            moveMap.put(iteams[1], new TemporalMessages(LocalDateTime.parse(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
+            shipMap.get(Integer.parseInt(keyMMSI)).insertMovements(moveMap.get(iteams[1]));
+            shipMap.get(Integer.parseInt(keyIMO)).insertMovements(moveMap.get(iteams[1]));
+            shipMap.get(Integer.parseInt(keyCallsign)).insertMovements(moveMap.get(iteams[1]));
         }
 
+        MMSI.insert((Ship) shipMap.values());
+        ////////////////////////////////////////////////////////////////////////////////////////
     }
+
 }
 
 //0 MMSI
@@ -71,16 +77,4 @@ public class Import {
 //13 Draft
 //14 Cargo
 //15 TranscieverClass
-
-
-//        this.MMSI = MMSI;
-//        this.VesselName = VesselName;
-//        this.IMO = IMO;
-//        this.CallSign = CallSign;
-//        this.VesselType = VesselType;
-//        this.Length = Length;
-//        this.Width = Width;
-//        this.Draft = Draft;
-//        this.Cargo = Cargo;
-
 
