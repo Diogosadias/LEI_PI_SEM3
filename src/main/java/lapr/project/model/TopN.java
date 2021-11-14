@@ -5,8 +5,8 @@ package lapr.project.model;
 
 import oracle.ucp.util.Pair;
 
-import java.awt.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.*;
 
@@ -22,37 +22,70 @@ public class TopN {
 
     }
 
-    public String getTop(Object n, Object date1, Object date2) throws IOException {
+    public String getTop(Object n, LocalDateTime date1, LocalDateTime date2) throws IOException {
         //Get Movements from Date Range
         List<Ship> list = (List<Ship>) mmsiTree.inOrder();
         for (Ship s:list) {
-            map.put(s,s.getMoveByDateFrame(date1,date2));
+            map.put(s,s.getMovements().find(date1,date2));
         }
         //Get Kms Traveled
-        TreeMap<Ship, Double> km = new TreeMap<>();
+        List<Pair<Ship, Double>> km = new ArrayList<>();
         for(Ship s:map.keySet()){
-            km.put(s,s.getTravelDistanceDates(map.get(s)));
-        }
-        km.values().stream().sorted(); //assure kms are sorted
-        TreeMap<Object, Pair<Double,Ship>> result = new TreeMap<>();
-        for(Ship s: km.keySet()) {
-            Pair<Double,Ship> value = new Pair<>(km.get(s),s);
-            result.put(s.getVesselType(),value);
+            km.add(new Pair<>(s,s.getTravelDistanceDates(map.get(s))));
         }
 
-        return printlist(n,result);
+        List<Object> first = new ArrayList<>();
+        List <Pair<Ship,Double>> second = new ArrayList<>();
+        List<Pair<Ship,Double>> topn = new ArrayList<>();
+        for(int i = 0; i<km.size();){
+            Pair <Ship,Double> t = getmax(km);
+            topn.add(t);
+            km.remove(getmax(km));
+        }
+        Collections.reverse(topn);
+
+        for(Pair<Ship,Double> s: topn) {
+            Pair<Ship,Double> value = s;
+            if(!(first.contains(s.get1st().getVesselType()))) first.add(s.get1st().getVesselType());
+            second.add(value);
+        }
+
+        return printlist(n,first,second);
+    }
+
+    private Pair<Ship, Double> getmax(List<Pair<Ship, Double>> km) {
+        Double max =km.get(0).get2nd();
+        int l=0;
+        for (int i = 1; i < km.size(); i++) {
+            if(km.get(i).get2nd()>max){
+                max = km.get(i).get2nd();
+                l=i;
+            }
+        }
+        return km.get(l);
     }
 
 
-
-    private String printlist(Object n, TreeMap<Object, Pair<Double, Ship>> map) {
+    private String printlist(Object n, List<Object> map, List<Pair<Ship, Double>> jo) {
         int a= (int) n;
-        for(Object o:map.keySet()){
-            System.out.println("From Vessel Type: "+o);
-            for(Pair<Double, Ship> d:map.values()){
-                d.get2nd().print(d.get1st());
-                n=(int)n-1;
-                if((int)n>0) break;
+        List h=  map;
+        List <Pair<Ship,Double>> l = (List<Pair<Ship,Double>>) jo;
+        List<Pair<Ship,Double>> topn = new ArrayList<>();
+        for(int i = 0; i<l.size();){
+            Pair <Ship,Double> t = getmax(l);
+            topn.add(t);
+            l.remove(getmax(l));
+        }
+        l=topn;
+
+        for(int i = 0 ; i<h.size();i++){
+            System.out.println("From Vessel Type: "+h.get(i));
+            for (int j = 0;j<l.size();j++){
+            if(h.get(i).equals(l.get(j).get1st().getVesselType())) {
+                System.out.print(l.get(j).get1st().print(l.get(j).get2nd()));
+                n = (int) n - 1;
+                if ((int) n == 0) break;
+            }
             }
             n=a;
         }

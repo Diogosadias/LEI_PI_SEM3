@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
+import static java.lang.Integer.bitCount;
 import static java.lang.Integer.parseInt;
 
 public class ShipTree <E extends Comparable<E>> extends AVL<E> {
@@ -17,9 +18,7 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
         return null;
     }
 
-    public boolean find(Object code) {
-        return false;
-    }
+
 
     public boolean isMMSI(Object code){
         if(isInt(code)) {
@@ -43,7 +42,8 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
 
     public boolean isISO(Object code) {
         String test = (String) code;
-        if(test.substring(0,3)=="IMO") return true;
+        if(test.substring(0,3).equals("IMO")) return true;
+        String j=test.substring(0,3);
         return false;
     }
 

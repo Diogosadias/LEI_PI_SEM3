@@ -6,17 +6,22 @@ import lapr.project.model.ShipTree;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
+import static lapr.project.model.TemporalMessages.getDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainControllerTest {
     private String code1="211331640";
     private String code2= "DHBN";
     private String code3="IMO9193305";
-    private String date="31/12/2020 17:19";
-    private String date2="30/01/2021 17:19";
+    private String date= "31/12/2020 17:19";
+    private String date2= "30/01/2021 17:19";
     private int n=5;
     MainController mainController = new MainController();
+
+    MainControllerTest() throws IOException {
+    }
 
 
     /***

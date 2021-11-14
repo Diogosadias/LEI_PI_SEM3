@@ -4,8 +4,11 @@ import lapr.project.model.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+
+import static lapr.project.model.TemporalMessages.getDate;
 
 public class MainController {
 
@@ -42,15 +45,15 @@ public class MainController {
     public void searchDetails(Object code) {
         if (mmsiTree.isMMSI(code)) {
             if (mmsiTree.find(code)) {
-                System.out.print(mmsiTree.getShip(code).toString());
+                System.out.println(mmsiTree.getShip(code).toString());
             }
         } else if (imoTree.isISO(code)) {
             if (imoTree.find(code)) {
-                System.out.print(imoTree.getShip(code).toString());
+                System.out.println(imoTree.getShip(code).toString());
             }
         } else if (csTree.isCS(code)) {
             if (csTree.find(code)) {
-                System.out.print(csTree.getShip(code).toString());
+                System.out.println(csTree.getShip(code).toString());
             }
         } else {
             System.out.println("Ship Code was not according regulations!");
@@ -60,15 +63,15 @@ public class MainController {
     public void searchDate(Object code, Object date) {
         if (mmsiTree.isMMSI(code)) {
             if (mmsiTree.find(code)) {
-                System.out.print(mmsiTree.getShip(code).getMovements().getMoveByDate(date));
+                System.out.println(mmsiTree.getShip(code).getMovements().getMoveByDate(date));
             }
         } else if (imoTree.isISO(code)) {
             if (imoTree.find(code)) {
-                System.out.print(imoTree.getShip(code).getMovements().getMoveByDate(date));
+                System.out.println(imoTree.getShip(code).getMovements().getMoveByDate(date));
             }
         } else if (csTree.isCS(code)) {
             if (csTree.find(code)) {
-                System.out.print(csTree.getShip(code).getMovements().getMoveByDate(date));
+                System.out.println(csTree.getShip(code).getMovements().getMoveByDate(date));
             }
         } else {
             System.out.println("Ship Code was not according regulations!");
@@ -78,15 +81,15 @@ public class MainController {
     public void searchDate(Object code, Object date1, Object date2) throws IOException {
         if (mmsiTree.isMMSI(code)) {
             if (mmsiTree.find(code)) {
-                System.out.print(mmsiTree.getShip(code).getMovements().searchDateFrame(date1, date2));
+                System.out.println(mmsiTree.getShip(code).getMovements().searchDateFrame(date1, date2));
             }
         } else if (imoTree.isISO(code)) {
             if (imoTree.find(code)) {
-                System.out.print(imoTree.getShip(code).getMovements().searchDateFrame(date1, date2));
+                System.out.println(imoTree.getShip(code).getMovements().searchDateFrame(date1, date2));
             }
         } else if (csTree.isCS(code)) {
             if (csTree.find(code)) {
-                System.out.print(csTree.getShip(code).getMovements().searchDateFrame(date1, date2));
+                System.out.println(csTree.getShip(code).getMovements().searchDateFrame(date1, date2));
             }
         } else {
             System.out.println("Ship Code was not according regulations!");
@@ -96,27 +99,27 @@ public class MainController {
     public void summary(Object code) {
         if (mmsiTree.isMMSI(code)) {
             if (mmsiTree.find(code)) {
-                System.out.print(mmsiTree.getShip(code).getSummary(code));
+                System.out.println(mmsiTree.getShip(code).getSummary(code));
             }
         } else if (imoTree.isISO(code)) {
             if (imoTree.find(code)) {
-                System.out.print(imoTree.getShip(code).getSummary(code));
+                System.out.println(imoTree.getShip(code).getSummary(code));
             }
         } else if (csTree.isCS(code)) {
             if (csTree.find(code)) {
-                System.out.print(csTree.getShip(code).getSummary(code));
+                System.out.println(csTree.getShip(code).getSummary(code));
             }
         } else {
             System.out.println("Ship Code was not according regulations!");
         }
     }
 
-    public void getTopN(Object n, Object date1, Object date2) throws IOException {
+    public void getTopN(Object n, String date1, String date2) throws IOException {
         if ((int) n >= mmsiTree.size()) {
             throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
         }
         TopN topsum = new TopN(mmsiTree);
-        System.out.println(topsum.getTop(n, date1, date2));
+        System.out.println(topsum.getTop(n,  getDate(date1),  getDate(date2)));
     }
 
     public void pairsofShips() {

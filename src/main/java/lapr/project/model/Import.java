@@ -17,8 +17,6 @@ public class Import {
     public static List<ShipTree> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
 
 
-        Map<String, TemporalMessages> moveMap = new HashMap<String, TemporalMessages>();
-        int i = 0;
         String keyMMSI = "";
         String keyIMO = "";
         String keyCallsign = "";
@@ -30,19 +28,20 @@ public class Import {
             String line = in.nextLine();
             String[] iteams = line.split(",");
 
-            if (!keyMMSI.equals(iteams[0])) {
+            if (keyMMSI.compareTo(iteams[0])!=0) {
 
                 keyMMSI = iteams[0];
                 keyIMO = iteams[8];
                 keyCallsign = iteams[9];
 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                MMSI.insert(new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+                Ship ship = new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]);
 
-                IMO.insert(new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+                MMSI.insert(ship);
 
-                CallSign.insert(new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+                IMO.insert(ship);
 
+                CallSign.insert(ship);
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
 

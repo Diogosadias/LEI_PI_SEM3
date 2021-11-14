@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.List;
 
 import static lapr.project.model.TemporalMessages.*;
@@ -17,17 +16,12 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
 
     private List<TemporalMessages> list = new ArrayList<>();
 
-    /***
-     * Creates Movements Tree  for Ship - Used only once per Ship
-     * @param elem - First of TemporalMessages
-     */
-    public void createTree(TemporalMessages elem){
-        insert(elem);
-    }
 
-    public  List<TemporalMessages> getMoveByDate(Object s) {
+    public  String getMoveByDate(Object s) {
         if(s==null) return null;
-        return find(s);
+        List<TemporalMessages> temp = find(s);
+        System.out.println("Moves for : " + s);
+        return printMoves(temp);
     }
 
 
@@ -40,21 +34,25 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
         this.list = list;
     }
 
-    public  List<TemporalMessages> searchDateFrame(Object s, Object s1) throws IOException {
+    public  String  searchDateFrame(Object s, Object s1) throws IOException {
         if(getDate(s).isAfter(getDate(s1))) throw new IOException("Input Date is invalid!");
         else{
-            return find(getDate(s),getDate(s1));
+            List<TemporalMessages> temp = find(getDate(s),getDate(s1));
+            System.out.println("Moves from - " + s + " to -"+s1);
+            return printMoves(temp);
         }
     }
 
 
-    public void printMoves(List<TemporalMessages> list){
-        if(list==null) return;
+    public String printMoves(List<TemporalMessages> list){
+        if(list==null) return null;
         System.out.println("BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass ");
         for (TemporalMessages ms:list) {
             System.out.println(ms.printMessage());
         }
 
+        String t="";
+        return t;
     }
 
 
@@ -84,19 +82,23 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
 
 
 
-    private  List<TemporalMessages> find(LocalDateTime date, LocalDateTime date1) {
+    public   List<TemporalMessages> find(LocalDateTime date, LocalDateTime date1) {
         return find(date,date1,root());
     }
 
     private List<TemporalMessages> find(LocalDateTime date, LocalDateTime date1, Node<TemporalMessages> root) {
         if(root==null) return list;
         if (root.getElement().getBaseDateTime().isBefore(date)) {
+            find(date,date1,root.getRight());
+        }
+        if (root.getElement().getBaseDateTime().isAfter(date1)) {
             find(date,date1,root.getLeft());
         }
-        if (date.isBefore(root.getElement().getBaseDateTime())  && date1.isAfter(root.getElement().getBaseDateTime())) {
+        if (root.getElement().getBaseDateTime().isAfter(date) && root.getElement().getBaseDateTime().isBefore(date1)) {
             list.add(root.getElement());
+            find(date,date1,root.getRight());
+            find(date,date1,root.getLeft());
         }
-        find(date,date1,root.getRight());
         return list;
     }
 

@@ -1,15 +1,10 @@
 package lapr.project.model;
 
 import oracle.ucp.util.Pair;
-import lapr.project.utils.PL.BST;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Period;
-import java.util.Collection;
 import java.util.List;
 
 import static java.lang.Math.*;
@@ -131,12 +126,12 @@ public class Ship implements Comparable<Ship> {
         this.movements.insert(temp);
     }
 
-    public List<TemporalMessages> getMoveByDateFrame(Object s, Object s1) throws IOException {
+    public String getMoveByDateFrame(Object s, Object s1) throws IOException {
         return this.movements.searchDateFrame(s, s1);
 
     }
 
-    public List<TemporalMessages> getMoveByDate(Object s) {
+    public String getMoveByDate(Object s) {
         return this.movements.getMoveByDate(s);
     }
 
@@ -151,7 +146,8 @@ public class Ship implements Comparable<Ship> {
     }
 
     public String print(Double first) {
-        return "\t" + MMSI + "\t" + CallSign + "\t" + IMO + "\t\t" + first + "\r\n";
+
+        return "\t" + MMSI + "\t" + CallSign + "\t" + IMO + "\t\t" + String.format("%.2f",first) + "\r\n";
     }
 
     public boolean checkproximity(Ship t) {
@@ -196,6 +192,9 @@ public class Ship implements Comparable<Ship> {
         Double dlon = (Double) y2 - (Double) y1;
         Double a = sin(dlat / 2) * sin(dlat / 2) + cos((Double) x1) - cos((Double) x2) + sin(dlon / 2) * sin(dlon / 2);
         Double a1 = 1.0 - a;
+        if(a<0){
+            return dist(Math.toDegrees((Double) x2),Math.toDegrees((Double) y2),Math.toDegrees((Double) x1),Math.toDegrees((Double) y1));
+        }
         Double c = 2 * atan2(sqrt(a), sqrt(a1));
         return constant * c;
     }
@@ -340,7 +339,7 @@ int i = 1;
 
     public Double getTravelDistanceDates(List<TemporalMessages> messages) {
         List<TemporalMessages> list = messages;
-        if(messages.size()==0) return 0.0;
+        if(messages.size()<2) return 0.0;
         double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
         int i = 2;
         while (i < list.size()) {

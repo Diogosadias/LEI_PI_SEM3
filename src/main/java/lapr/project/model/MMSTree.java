@@ -16,13 +16,18 @@ public class MMSTree<E extends Comparable<E>> extends ShipTree<Ship> {
         return find((String) code,root());
     }
 
+    public boolean find(Object code) {
+        if(!(getShip(code)==null)) return true;
+        return false;
+    }
+
     private Ship find(String code, Node<Ship> root) {
         if(root==null) return null;
         if(root.getElement().getMMSI().compareTo(code)>0)
-            find(code,root.getLeft());
+            return find(code,root.getLeft());
 
         if(root.getElement().getMMSI().compareTo(code)<0)
-            find(code,root.getRight());
+            return find(code,root.getRight());
 
         return root.getElement();
     }
