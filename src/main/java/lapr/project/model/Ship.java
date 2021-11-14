@@ -122,14 +122,7 @@ public class Ship implements Comparable<Ship> {
         this.movements = movements;
     }
 
-    public void insertMovements(TemporalMessages temp) {
-        this.movements.insert(temp);
-    }
 
-    public String getMoveByDateFrame(Object s, Object s1) throws IOException {
-        return this.movements.searchDateFrame(s, s1);
-
-    }
 
     public String getMoveByDate(Object s) {
         return this.movements.getMoveByDate(s);

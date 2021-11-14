@@ -79,7 +79,7 @@ public class TemporalMessages implements Comparable<TemporalMessages> {
             throw new IOException("Input is Invalid!");
         }
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        return LocalDateTime.parse((CharSequence) s, format);
+        return LocalDateTime.parse((String) s, format);
     }
 
     public LocalDateTime getBaseDateTime() {
