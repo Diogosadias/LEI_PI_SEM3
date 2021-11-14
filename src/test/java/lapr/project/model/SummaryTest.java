@@ -15,14 +15,14 @@ public class SummaryTest {
     @Test
     void testMMSI() throws IOException {
         //Arrange
-        Ship s = new Ship(211331640, "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
+        Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
-        int expectedResult = 211331640;
+        String expectedResult = "211331640";
         //Assert
         assertEquals(expectedResult, s.getMMSI());
 
         //Act
-        expectedResult = 211331640;
+        expectedResult = "211331640";
         s.setMMSI(expectedResult);
         //Assert
         assertEquals(expectedResult, s.getMMSI());
@@ -31,7 +31,7 @@ public class SummaryTest {
     @Test
     void testVesselName() throws IOException {
         //Arrange
-        Ship s = new Ship(211331640, "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
+        Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         String expectedResult = "SEOUL EXPRESS";
         //Assert
@@ -47,7 +47,7 @@ public class SummaryTest {
     @Test
     void testIMO() throws IOException {
         //Arrange
-        Ship s = new Ship(211331640, "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
+        Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         String expectedResult = "IMO9193305";
         //Assert
@@ -63,7 +63,7 @@ public class SummaryTest {
     @Test
     void testCallSign() throws IOException {
         //Arrange
-        Ship s = new Ship(211331640, "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
+        Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         String expectedResult = "DHBN";
         //Assert
@@ -79,7 +79,7 @@ public class SummaryTest {
     @Test
     void testVesselType() throws IOException {
         //Arrange
-        Ship s = new Ship(211331640, "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
+        Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         int expectedResult = 70;
         //Assert
@@ -95,7 +95,7 @@ public class SummaryTest {
     @Test
     void tesLength() throws IOException {
         //Arrange
-        Ship s = new Ship(211331640, "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
+        Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         int expectedResult = 294;
         //Assert
@@ -111,7 +111,7 @@ public class SummaryTest {
     @Test
     void testWidth() throws IOException {
         //Arrange
-        Ship s = new Ship(211331640, "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
+        Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         int expectedResult = 32;
         //Assert
@@ -127,7 +127,7 @@ public class SummaryTest {
     @Test
     void testDraft() throws IOException {
         //Arrange
-        Ship s = new Ship(211331640, "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
+        Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         double expectedResult = 13.6;
         //Assert
@@ -143,7 +143,7 @@ public class SummaryTest {
     @Test
     void testCargo() throws IOException {
         //Arrange
-        Ship s = new Ship(211331640, "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
+        Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         String expectedResult = "NA";
         //Assert
@@ -161,7 +161,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -185,7 +185,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -209,7 +209,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -233,7 +233,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -257,7 +257,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -281,7 +281,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -305,7 +305,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -329,7 +329,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -353,7 +353,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -377,7 +377,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -401,7 +401,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
@@ -425,7 +425,7 @@ public class SummaryTest {
         //Arrange
 
         //Act
-        Ship ship = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
         TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
