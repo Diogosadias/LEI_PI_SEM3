@@ -213,7 +213,7 @@ public class Ship implements Comparable<Ship> {
     }
 
     public String getSummary(Object code) {
-        return "Ship{" + code + " VesselName=" + VesselName + ", Start BaseDateTime=" + getStartBaseDateTime() + ", End BaseDateTime=" + getEndBaseDateTime() + ", TotalMovementTime" + getTotalMovementTime() + ", TotalNumberOfMovements" + getTotalNumberOfMovements() + ", MaxSOG" + getMaxSOG() + ", MeanSOG" + getMeanSOG() + ", MaxCOG=" + getMaxCOG() + ", MeanCOG=" + getMeanCOG() + ", DepartureLatitude" + getDepartureLatitude() + ", DepartureLongitude" + getDepartureLongitude() + ", ArrivalLatitude=" + getArrivalLatitude() + ", ArrivalLongitude=" + getArrivalLongitude() + ", TravelledDistance=" + getTravelledDistance() + ", DeltaDistance=" + getDeltaDistance() + '}';
+        return "The Ship with code " + code +" has:\n"+"\n"+ "VesselName=" + VesselName +"\n"+ "Start BaseDateTime=" + getStartBaseDateTime() +"\n"+ "End BaseDateTime=" + getEndBaseDateTime() +"\n"+ "TotalMovementTime" + getTotalMovementTime() +"\n"+ "TotalNumberOfMovements" + getTotalNumberOfMovements() +"\n"+ "MaxSOG" + getMaxSOG() +"\n"+ "MeanSOG" + getMeanSOG() +"\n"+ "MaxCOG=" + getMaxCOG() +"\n"+ "MeanCOG=" + getMeanCOG() +"\n"+ "DepartureLatitude" + getDepartureLatitude() +"\n"+ "DepartureLongitude" + getDepartureLongitude() +"\n"+ "ArrivalLatitude=" + getArrivalLatitude() +"\n"+ "ArrivalLongitude=" + getArrivalLongitude() +"\n"+ "TravelledDistance=" +"\n"+ getTravelledDistance() +"\n"+ "DeltaDistance=" + getDeltaDistance()+"\n"+"\n";
     }
 
     public double getMeanCOG() {
