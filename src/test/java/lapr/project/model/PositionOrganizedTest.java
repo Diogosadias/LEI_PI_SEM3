@@ -242,7 +242,7 @@ public class PositionOrganizedTest {
             System.out.println("List is Null!");
         }
         assertNull(moves.printMoves(null));
-        
+        List list = moves.getList();
 
     }
 }
