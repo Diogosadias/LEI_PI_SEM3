@@ -161,7 +161,7 @@ public class Ship implements Comparable<Ship> {
         return value;
     }
 
-    private boolean distPorts(Pair d, Pair a) {
+    boolean distPorts(Pair d, Pair a) {
         if(d==null || a==null) return false;
         if (dist(d.get1st(), d.get2nd(), a.get1st(), a.get2nd()) < 5) {
             return true;
