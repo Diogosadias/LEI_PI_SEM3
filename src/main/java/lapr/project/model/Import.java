@@ -1,11 +1,10 @@
 package lapr.project.model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import lapr.project.utils.PL.BST;
+import java.io.IOException;
+import java.util.*;
+
+import static lapr.project.model.TemporalMessages.getDate;
 
 public class Import {
 
@@ -15,44 +14,57 @@ public class Import {
     // ir ao main controleer fazer com que la leve o name file depois da ai posso dar hook up com as 3 trees e depois so tenho de fazer o codigo de import 
     private String SafeWord;
 
-    public static void readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws FileNotFoundException {
-        Scanner in = new Scanner(new File(FileName));
-        in.nextLine();
+    public static List<ShipTree> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
+
+
+        Map<String, TemporalMessages> moveMap = new HashMap<String, TemporalMessages>();
+        int i = 0;
         String keyMMSI = "";
         String keyIMO = "";
         String keyCallsign = "";
-        Map<Integer, Ship> kMap = new HashMap<Integer, Ship>();
-        int k = 0;
+
+        Scanner in = new Scanner(new File(FileName));
+        in.nextLine();
 
         while (in.hasNext()) {
             String line = in.nextLine();
             String[] iteams = line.split(",");
 
             if (!keyMMSI.equals(iteams[0])) {
-                k++;
-                kMap.put(k, new Ship());
+
                 keyMMSI = iteams[0];
-                MMSI.insert(kMap.get(k - 1));
-
-            }
-            if (!keyIMO.equals(iteams[8])) {
-                k++;
-                kMap.put(k, new Ship());
                 keyIMO = iteams[8];
-                IMO.insert(kMap.get(k - 1));
-
-            }
-            if (!keyCallsign.equals(iteams[9])) {
-                k++;
-                kMap.put(k, new Ship());
                 keyCallsign = iteams[9];
-                CallSign.insert(kMap.get(k - 1));
 
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                MMSI.insert(new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+
+                IMO.insert(new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+
+                CallSign.insert(new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
+
+
+            MMSI.getShip(keyMMSI).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
+            IMO.getShip(keyIMO).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
+            CallSign.getShip(keyCallsign).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
+
 
         }
 
+
+
+        List<ShipTree> map = new ArrayList();
+        map.add(MMSI);
+        map.add(IMO);
+        map.add(CallSign);
+
+        return map;
+
     }
+
 }
 
 //0 MMSI
@@ -71,16 +83,4 @@ public class Import {
 //13 Draft
 //14 Cargo
 //15 TranscieverClass
-
-
-//        this.MMSI = MMSI;
-//        this.VesselName = VesselName;
-//        this.IMO = IMO;
-//        this.CallSign = CallSign;
-//        this.VesselType = VesselType;
-//        this.Length = Length;
-//        this.Width = Width;
-//        this.Draft = Draft;
-//        this.Cargo = Cargo;
-
 

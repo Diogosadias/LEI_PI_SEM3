@@ -78,7 +78,7 @@ public class PositionOrganizedTest {
         //Arrange
         List<TemporalMessages> list=new ArrayList<>();
         //Act
-        Ship ship =new Ship(210950000,"VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
+        Ship ship =new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         movs.insert(shipmov);
@@ -113,7 +113,7 @@ public class PositionOrganizedTest {
         //Arrange
         List<TemporalMessages> list=new ArrayList<>();
         //Act
-        Ship ship =new Ship(210950000,"VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
+        Ship ship =new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
         MovementsTree movs = new MovementsTree();
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         movs.insert(shipmov);

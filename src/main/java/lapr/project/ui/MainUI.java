@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class MainUI {
 
-
+    private String filename = "data/data-ships&ports/sships.csv";
     private String code1="211331640";
     private String code2= "DHBN";
     private String code3="IMO9193305";
@@ -18,7 +18,7 @@ public class MainUI {
 
         MainController mainController = new MainController();
         //Pedro
-        mainController.importFile(); //US101 - Import file & US103 - Positional Messages
+        mainController.importFile(filename); //US101 - Import file & US103 - Positional Messages
 
         mainController.searchDetails(code1); //US102 - Search Ship by code MMSI - Implemented
         mainController.searchDetails(code2); //US102 - Search Ship by code CallSign - Implemented
