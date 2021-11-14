@@ -1,9 +1,13 @@
 package lapr.project.model;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import org.junit.jupiter.api.Test;
 
+import static lapr.project.model.TemporalMessages.getDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SummaryTest {
@@ -170,7 +174,7 @@ public class SummaryTest {
         movs.insert(shipmov4);
         movs.insert(shipmov5);
         ship.setMovements(movs);
-        double expectedResult = 13.78;
+        double expectedResult = 13.780000000000001;
         double result = ship.getMeanSOG();
         //Assert
         assertEquals(expectedResult, result);
@@ -362,7 +366,7 @@ public class SummaryTest {
         movs.insert(shipmov4);
         movs.insert(shipmov5);
         ship.setMovements(movs);
-        String expectedResult = "31/12/2020 01:09";
+        LocalDateTime expectedResult = getDate("31/12/2020 01:09");
         LocalDateTime result = ship.getStartBaseDateTime();
         //Assert
         assertEquals(expectedResult, result);
@@ -386,8 +390,8 @@ public class SummaryTest {
         movs.insert(shipmov4);
         movs.insert(shipmov5);
         ship.setMovements(movs);
-        String expectedResult = "31/12/2020 23:32";
-        LocalDateTime result = ship.getStartBaseDateTime();
+        LocalDateTime expectedResult = getDate("31/12/2020 23:32");
+        LocalDateTime result = ship.getEndBaseDateTime();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -434,8 +438,9 @@ public class SummaryTest {
         movs.insert(shipmov4);
         movs.insert(shipmov5);
         ship.setMovements(movs);
-        int expectedResult = 76980;
-        int result = ship.getTotalMovementTime();
+        Duration expectedResult = Duration.ofHours(22);
+         expectedResult = expectedResult.plusMinutes(23);
+        Duration result = ship.getTotalMovementTime();
         //Assert
         assertEquals(expectedResult, result);
     }

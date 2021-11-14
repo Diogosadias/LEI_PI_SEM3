@@ -4,7 +4,11 @@ import oracle.ucp.util.Pair;
 import lapr.project.utils.PL.BST;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
 import java.util.Collection;
 import java.util.List;
 
@@ -213,9 +217,10 @@ public class Ship implements Comparable<Ship> {
     public double getMeanCOG() {
             List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double somaCOG = list.get(0).getCog();
-
-        while (list.iterator().hasNext()) {
-            somaCOG = somaCOG + list.iterator().next().getCog();
+int i = 1;
+        while (i<list.size()) {
+            somaCOG = somaCOG + list.get(i).getCog();
+            i++;
         }
         double meanCOG = somaCOG / list.size();
         return meanCOG;
@@ -224,12 +229,14 @@ public class Ship implements Comparable<Ship> {
     public double getMaxCOG() {
             List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double maxCOG = list.get(0).getCog();
+        int i = 1;
 
-        while (list.iterator().hasNext()) {
-            TemporalMessages atual = list.iterator().next();
+        while (i<list.size()) {
+            TemporalMessages atual = list.get(i);
             if (atual.getCog() > maxCOG) {
                 maxCOG = atual.getCog();
             }
+            i++;
         }
         return maxCOG;
     }
@@ -237,9 +244,10 @@ public class Ship implements Comparable<Ship> {
     public double getMeanSOG() {
             List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double somaSOG = list.get(0).getSog();
-
-        while (list.iterator().hasNext()) {
-            somaSOG = somaSOG + list.iterator().next().getSog();
+        int i = 1;
+        while (i<list.size()) {
+            somaSOG = somaSOG + list.get(i).getSog();
+            i++;
         }
         double meanSOG = somaSOG / list.size();
         return meanSOG;
@@ -248,12 +256,13 @@ public class Ship implements Comparable<Ship> {
     public double getMaxSOG() {
             List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double maxSOG = list.get(0).getSog();
-
-        while (list.iterator().hasNext()) {
-            TemporalMessages atual = list.iterator().next();
+        int i =1;
+        while (i<list.size()) {
+            TemporalMessages atual = list.get(i);
             if (atual.getSog() > maxSOG) {
                 maxSOG = atual.getSog();
             }
+            i++;
         }
         return maxSOG;
     }
@@ -298,9 +307,10 @@ public class Ship implements Comparable<Ship> {
         return list.size();
     }
 
-    public int getTotalMovementTime() {
+    public Duration getTotalMovementTime() {
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
-        return list.get(list.size() - 1).getBaseDateTime().toLocalTime().toSecondOfDay() - list.get(0).getBaseDateTime().toLocalTime().toSecondOfDay();
+        Duration duration = Duration.between(list.get(0).getBaseDateTime(),list.get(list.size() - 1).getBaseDateTime());
+        return duration;
 
     }
     public Double getDeltaDistance(){
