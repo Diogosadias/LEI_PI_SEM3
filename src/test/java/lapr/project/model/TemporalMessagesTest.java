@@ -250,5 +250,10 @@ class TemporalMessagesTest {
         }catch (IOException ex){
             System.out.println("not Available!");
         }
+        try{
+            TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,-1, "NA","B");
+        }catch (IOException ex){
+            System.out.println("not Available!");
+        }
     }
 }
