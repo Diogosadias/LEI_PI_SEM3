@@ -155,10 +155,11 @@ public class Ship implements Comparable<Ship> {
     }
 
     public boolean checkproximity(Ship t) {
+        if(t==null || t.getdeparture()==null || t.getArrival()==null) return false;
         if (this.MMSI == (t.getMMSI())) {
             return false;
         }
-        if (dist(getdeparture(), t.getdeparture()) && dist(getArrival(), t.getArrival())) {
+        if (distPorts(getdeparture(), t.getdeparture()) && dist(getArrival(), t.getArrival())) {
             if (t.getTravelledDistance() > 10 && getTravelledDistance() > 10) {
                 return true;
             }
@@ -175,7 +176,8 @@ public class Ship implements Comparable<Ship> {
         return value;
     }
 
-    private boolean dist(Pair d, Pair a) {
+    private boolean distPorts(Pair d, Pair a) {
+        if(d==null || a==null) return false;
         if (dist(d.get1st(), d.get2nd(), a.get1st(), a.get2nd()) < 5) {
             return true;
         }
@@ -198,7 +200,7 @@ public class Ship implements Comparable<Ship> {
         return constant * c;
     }
 
-    protected Object getdeparture() {
+    protected Pair<Double, Double> getdeparture() {
         Pair<Double, Double> value = getMovements().getmax();
         return value;
     }
@@ -338,6 +340,7 @@ int i = 1;
 
     public Double getTravelDistanceDates(List<TemporalMessages> messages) {
         List<TemporalMessages> list = messages;
+        if(messages.size()==0) return 0.0;
         double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
         int i = 2;
         while (i < list.size()) {
@@ -349,6 +352,6 @@ int i = 1;
 
     @Override
     public int compareTo(Ship o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return compareToMMSI(o);
     }
 }

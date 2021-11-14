@@ -14,11 +14,9 @@ public class Import {
     // ir ao main controleer fazer com que la leve o name file depois da ai posso dar hook up com as 3 trees e depois so tenho de fazer o codigo de import 
     private String SafeWord;
 
-    public static List<Map> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
+    public static List<ShipTree> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
 
-        Map<Integer, Ship> shipMap = new HashMap<Integer, Ship>();
-        Map<String, Ship> shipMap1 = new HashMap<String, Ship>();
-        Map<String, Ship> shipMap2 = new HashMap<String, Ship>();
+
         Map<String, TemporalMessages> moveMap = new HashMap<String, TemporalMessages>();
         int i = 0;
         String keyMMSI = "";
@@ -39,27 +37,29 @@ public class Import {
                 keyCallsign = iteams[9];
 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                shipMap.put(Integer.parseInt(keyMMSI), new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+                MMSI.insert(new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
 
-                shipMap1.put(keyIMO, new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+                IMO.insert(new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
 
-                shipMap2.put(keyCallsign, new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+                CallSign.insert(new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
 
-            moveMap.put(iteams[1], new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
-            shipMap.get(Integer.parseInt(keyMMSI)).insertMovements(moveMap.get(iteams[1]));
-            shipMap1.get(keyIMO).insertMovements(moveMap.get(iteams[1]));
-            shipMap2.get(keyCallsign).insertMovements(moveMap.get(iteams[1]));
+
+            MMSI.getShip(keyMMSI).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
+            IMO.getShip(keyIMO).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
+            CallSign.getShip(keyCallsign).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
+
+
         }
 
 
 
-        List<Map> map = new ArrayList();
-        map.add(shipMap);
-        map.add(shipMap2);
-        map.add(shipMap2);
+        List<ShipTree> map = new ArrayList();
+        map.add(MMSI);
+        map.add(IMO);
+        map.add(CallSign);
 
         return map;
 

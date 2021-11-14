@@ -12,6 +12,21 @@ import lapr.project.utils.PL.AVL;
  * @author Weeb
  */
 public class IMOTree <E extends Comparable<E>> extends ShipTree <Ship> {
+
+    public Ship getShip(Object code){
+        return find((String) code,root());
+    }
+
+    private Ship find(String code, Node<Ship> root) {
+        if(root==null) return null;
+        if(root.getElement().getIMO().compareTo(code)>0)
+            find(code,root.getLeft());
+
+        if(root.getElement().getIMO().compareTo(code)<0)
+            find(code,root.getRight());
+
+        return root.getElement();
+    }
     
      @Override
     public void insert(Ship element) {

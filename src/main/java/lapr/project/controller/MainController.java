@@ -26,28 +26,17 @@ public class MainController {
     }
 
     public void importFile(String filename) throws IOException {
+
         Import importer = new Import();
-        List<Map> map = importer.readLine(filename,mmsiTree,imoTree,csTree);
-        Map shipMap=map.get(0);
-        Map shipMap1=map.get(1);
-        Map shipMap2=map.get(2);
+        List<ShipTree> map = importer.readLine(filename,mmsiTree,imoTree,csTree);
+        MMSTree mmsiTree= (MMSTree) map.get(0);
+        IMOTree imoTree= (IMOTree) map.get(1);
+        CallSignTree csTree= (CallSignTree) map.get(2);
 
-        int i =0;
-        while (!(i == shipMap.size())) {
-
-            mmsiTree.insert((Ship) shipMap.values().iterator().next());
-            i++;
-            imoTree.insert((Ship) shipMap1.values().iterator().next());
-            i++;
-            csTree.insert((Ship) shipMap2.values().iterator().next());
-            i++;
-
-        }
         this.mmsiTree=mmsiTree;
         this.imoTree=imoTree;
         this.csTree=csTree;
 
-        System.out.println("Acabou");
     }
 
     public void searchDetails(Object code) {
