@@ -1,0 +1,18 @@
+###### Naming Conventions ######
+-Table Name:
+	.use lower letter when naming database obects;
+	.for separating words, use underscore;
+	.use a single word instead of plural;
+	.if is name that represent real-world facts, it should be used nouns words;
+	.if is a relation between two tables, use those table's names.
+-Columns Name:
+	.primary key: just 1 column, and it should be simple like "id";
+	.foreign key: it should be use the table name that represents the referenced table and "id"(e.g ship_id);
+	.data columns: the rules are equals when we name a table. In the same table each columns has to have unique names;
+	.Dates: The date name should describe what represents(e.g start_date)
+	.Flags: we could have flags marking if some action took place or not (e.g is_activate).
+-Naming Conventions for Foreign Keys:
+	.foreign keys: it should be named in a manner that they uniquely and clearly describe what they are and which table they relate;
+	
+ 
+	
