@@ -294,3 +294,15 @@ ADD CONSTRAINT check_latitudePort
 ALTER TABLE Port
 ADD CONSTRAINT check_longitudePort
   CHECK (longitude BETWEEN -180 AND 180);
+  
+ALTER TABLE Ship
+ADD CONSTRAINT check_lenght
+    CHECK (lenght > 0);
+
+ALTER TABLE Ship
+ADD CONSTRAINT check_width
+    CHECK (width > 0);
+
+ALTER TABLE Container
+ADD CONSTRAINT check_gross
+    CHECK (gross > 0);
