@@ -228,4 +228,21 @@ public class PositionOrganizedTest {
          */
 
     }
+
+    @Test
+    public void testGeneral() throws IOException {
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        Ship ship =new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
+        MovementsTree moves = new MovementsTree();
+        ship.getMovements().insert(shipmov);
+        assertNull(moves.getMoveByDate(null));
+        try{
+            moves.setList(null);
+        }catch (IOException ex){
+            System.out.println("List is Null!");
+        }
+        assertNull(moves.printMoves(null));
+        
+
+    }
 }

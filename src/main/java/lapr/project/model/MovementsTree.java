@@ -30,7 +30,8 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
         return list;
     }
 
-    public void setList(List<TemporalMessages> list) {
+    public void setList(List<TemporalMessages> list) throws IOException {
+        if(list ==null) throw new IOException("List is Null!");
         this.list = list;
     }
 
