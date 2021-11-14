@@ -35,7 +35,7 @@ class TemporalMessagesTest {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
         TemporalMessages shipmov1 = new TemporalMessages(getDate("31/12/2020 17:19"),42.97875,-66.97001,12.9,13.1,355, "NA","B");
-
+        TemporalMessages shipmov2 = new TemporalMessages(getDate("31/12/2020 17:19"));
         //Act
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime expectedResult = LocalDateTime.parse("31/12/2020 17:19",format);
@@ -44,6 +44,8 @@ class TemporalMessagesTest {
         assertEquals(expectedResult,shipmov1.getBaseDateTime());
         assertEquals(expectedResult,result);
         assertEquals(expectedResult,shipmov.getBaseDateTime());
+        assertEquals(expectedResult,shipmov2.getBaseDateTime());
+
 
         //Act
         expectedResult = LocalDateTime.parse("01/01/2021 17:19",format);
@@ -60,10 +62,16 @@ class TemporalMessagesTest {
     void testLatitude() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 17:19",-90,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 17:19",90,-66.97001,12.9,13.1,355, "NA","B");
+
         //Act
         double expectedResult = 42.97875;
         //Assert
         assertEquals(expectedResult,shipmov.getLatitude());
+        assertEquals(-90,shipmov1.getLatitude());
+        assertEquals(90,shipmov2.getLatitude());
+
 
         //Act
         expectedResult = 42.77875;
@@ -79,10 +87,16 @@ class TemporalMessagesTest {
     void testLongitude() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 17:19",42.97875,-180,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 17:19",42.97875,180,12.9,13.1,355, "NA","B");
+
         //Act
         double expectedResult = -66.97001;
         //Assert
         assertEquals(expectedResult,shipmov.getLongitude());
+        assertEquals(-180,shipmov1.getLongitude());
+        assertEquals(180,shipmov2.getLongitude());
+
 
         //Act
         expectedResult = -66.97003;
@@ -117,10 +131,15 @@ class TemporalMessagesTest {
     void testcog() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,0,355, "NA","B");
+        TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,359,355, "NA","B");
+
         //Act
         double expectedResult = 13.1;
         //Assert
         assertEquals(expectedResult,shipmov.getCog());
+        assertEquals(0,shipmov1.getCog());
+        assertEquals(359,shipmov2.getCog());
 
         //Act
         expectedResult = 13.7;
@@ -136,10 +155,16 @@ class TemporalMessagesTest {
     void testheading() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,0, "NA","B");
+        TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,359, "NA","B");
+
         //Act
         double expectedResult = 355;
         //Assert
         assertEquals(expectedResult,shipmov.getHeading());
+        assertEquals(0,shipmov1.getHeading());
+        assertEquals(359,shipmov2.getHeading());
+
 
         //Act
         expectedResult = 354;
