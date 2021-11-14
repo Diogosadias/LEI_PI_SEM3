@@ -155,7 +155,7 @@ public class Ship implements Comparable<Ship> {
         if (this.MMSI == (t.getMMSI())) {
             return false;
         }
-        if (distPorts(getdeparture(), t.getdeparture()) && dist(getArrival(), t.getArrival())) {
+        if (distPorts(getdeparture(), t.getdeparture()) && distPorts(getArrival(), t.getArrival())) {
             if (t.getTravelledDistance() > 10 && getTravelledDistance() > 10) {
                 return true;
             }
@@ -163,11 +163,7 @@ public class Ship implements Comparable<Ship> {
         return false;
     }
 
-    private boolean dist(Object getdeparture, Object getdeparture1) {
-        return dist(getdeparture, getdeparture1);
-    }
-
-    protected Object getArrival() {
+    protected Pair<Double, Double> getArrival() {
         Pair<Double, Double> value = getMovements().getmin();
         return value;
     }
@@ -328,6 +324,7 @@ int i = 1;
 
     public Double getTravelledDistance() {
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        if(list.size()<2) return 0.0;
         double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
         int i = 2;
         while (i < list.size()) {

@@ -89,7 +89,8 @@ public class TopN {
             }
             n=a;
         }
-        return null;
+        String t = "";
+        return t;
     }
 
 
