@@ -12,7 +12,7 @@ import lapr.project.utils.PL.AVL;
  * @author Weeb
  * @param <E>
  */
-public class MMSTree<E extends Comparable<E>> extends AVL<Ship> {
+public class MMSTree<E extends Comparable<E>> extends ShipTree<Ship> {
 
     @Override
     public void insert(Ship element) {

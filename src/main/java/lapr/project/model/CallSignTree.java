@@ -11,7 +11,7 @@ import lapr.project.utils.PL.AVL;
  *
  * @author Weeb
  */
-public class CallSignTree <E extends Comparable<E>> extends AVL <Ship> {
+public class CallSignTree <E extends Comparable<E>> extends ShipTree <Ship> {
     
       @Override
     public void insert(Ship element) {

@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.model.MMSTree;
 import lapr.project.model.Ship;
 import lapr.project.model.ShipTree;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ class MainControllerTest {
     @Test
     public void insurefailN(){
         try{
-            ShipTree mmsiTree = new ShipTree();
+            MMSTree mmsiTree = new MMSTree();
             mainController.setMmsiTree(mmsiTree);
             mainController.getTopN(n,date,date2);
 
@@ -32,7 +33,7 @@ class MainControllerTest {
             System.out.println("Ships are not enough to fulfill requirement!");
         }
         try{
-            ShipTree mmsiTree = new ShipTree();
+            MMSTree mmsiTree = new MMSTree();
             mainController.setMmsiTree(mmsiTree);
             mainController.getTopN(0,date,date2);
 

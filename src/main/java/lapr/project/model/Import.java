@@ -1,14 +1,10 @@
 package lapr.project.model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.*;
+
 import static lapr.project.model.TemporalMessages.getDate;
-import lapr.project.utils.PL.BST;
 
 public class Import {
 
@@ -18,9 +14,11 @@ public class Import {
     // ir ao main controleer fazer com que la leve o name file depois da ai posso dar hook up com as 3 trees e depois so tenho de fazer o codigo de import 
     private String SafeWord;
 
-    public static void readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws FileNotFoundException {
+    public static List<Map> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
 
         Map<Integer, Ship> shipMap = new HashMap<Integer, Ship>();
+        Map<String, Ship> shipMap1 = new HashMap<String, Ship>();
+        Map<String, Ship> shipMap2 = new HashMap<String, Ship>();
         Map<String, TemporalMessages> moveMap = new HashMap<String, TemporalMessages>();
         int i = 0;
         String keyMMSI = "";
@@ -43,29 +41,27 @@ public class Import {
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 shipMap.put(Integer.parseInt(keyMMSI), new Ship(Integer.parseInt(iteams[0]), iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
 
-                shipMap.put(Integer.parseInt(keyIMO), new Ship(Integer.parseInt(iteams[0]), iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+                shipMap1.put(keyIMO, new Ship(Integer.parseInt(iteams[0]), iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
 
-                shipMap.put(Integer.parseInt(keyCallsign), new Ship(Integer.parseInt(iteams[0]), iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
+                shipMap2.put(keyCallsign, new Ship(Integer.parseInt(iteams[0]), iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]));
 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
 
-            moveMap.put(iteams[1], new TemporalMessages(LocalDateTime.parse(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
+            moveMap.put(iteams[1], new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[15]));
             shipMap.get(Integer.parseInt(keyMMSI)).insertMovements(moveMap.get(iteams[1]));
-            shipMap.get(Integer.parseInt(keyIMO)).insertMovements(moveMap.get(iteams[1]));
-            shipMap.get(Integer.parseInt(keyCallsign)).insertMovements(moveMap.get(iteams[1]));
+            shipMap1.get(keyIMO).insertMovements(moveMap.get(iteams[1]));
+            shipMap2.get(keyCallsign).insertMovements(moveMap.get(iteams[1]));
         }
 
-        while (i == shipMap.size()) {
 
-            MMSI.insert(shipMap.values().iterator().next());
-            i++;
-            IMO.insert(shipMap.values().iterator().next());
-            i++;
-            CallSign.insert(shipMap.values().iterator().next());
-            i++;
 
-        }
+        List<Map> map = new ArrayList();
+        map.add(shipMap);
+        map.add(shipMap2);
+        map.add(shipMap2);
+
+        return map;
 
     }
 

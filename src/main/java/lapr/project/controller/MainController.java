@@ -2,18 +2,22 @@ package lapr.project.controller;
 
 import lapr.project.model.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class MainController {
 
-    public void setMmsiTree(ShipTree mmsiTree) {
+    public void setMmsiTree(MMSTree mmsiTree) {
         this.mmsiTree = mmsiTree;
     }
 
-    private ShipTree mmsiTree;
-    private ShipTree imoTree;
-    private ShipTree csTree;
+
+
+    private MMSTree mmsiTree = new MMSTree();
+    private IMOTree imoTree = new IMOTree();
+    private CallSignTree csTree = new CallSignTree();
 
     /*
     Mais tarde criar classe Software/APP para armazenar tudo o que é importante
@@ -21,9 +25,29 @@ public class MainController {
     public MainController() {
     }
 
-    public void importFile() {
+    public void importFile(String filename) throws IOException {
         Import importer = new Import();
+        List<Map> map = importer.readLine(filename,mmsiTree,imoTree,csTree);
+        Map shipMap=map.get(0);
+        Map shipMap1=map.get(1);
+        Map shipMap2=map.get(2);
 
+        int i =0;
+        while (!(i == shipMap.size())) {
+
+            mmsiTree.insert((Ship) shipMap.values().iterator().next());
+            i++;
+            imoTree.insert((Ship) shipMap1.values().iterator().next());
+            i++;
+            csTree.insert((Ship) shipMap2.values().iterator().next());
+            i++;
+
+        }
+        this.mmsiTree=mmsiTree;
+        this.imoTree=imoTree;
+        this.csTree=csTree;
+
+        System.out.println("Acabou");
     }
 
     public void searchDetails(Object code) {
