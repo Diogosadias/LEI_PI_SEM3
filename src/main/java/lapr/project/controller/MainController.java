@@ -21,6 +21,7 @@ public class MainController {
     private MMSTree mmsiTree = new MMSTree();
     private IMOTree imoTree = new IMOTree();
     private CallSignTree csTree = new CallSignTree();
+    private String s = "Input is Invalid!";
 
     /*
     Mais tarde criar classe Software/APP para armazenar tudo o que é importante
@@ -43,7 +44,7 @@ public class MainController {
     }
 
     public void searchDetails(Object code) throws IOException {
-        if (code == null) { throw new IOException("Input is Invalid!");}
+        if (code == null) { throw new IOException(s);}
         if (mmsiTree.isMMSI(code)) {
             if (mmsiTree.find(code)) {
                 System.out.println(mmsiTree.getShip(code).toString());
@@ -62,7 +63,7 @@ public class MainController {
     }
 
     public void searchDate(Object code, Object date) throws IOException {
-        if (code == null||date==null) { throw new IOException("Input is Invalid!");}
+        if (code == null||date==null) { throw new IOException(s);}
         if (mmsiTree.isMMSI(code)) {
             if (mmsiTree.find(code)) {
                 System.out.println(mmsiTree.getShip(code).getMovements().getMoveByDate(date));
@@ -81,7 +82,7 @@ public class MainController {
     }
 
     public void searchDate(Object code, Object date1, Object date2) throws IOException {
-        if (code == null||date1==null||date2==null) { throw new IOException("Input is Invalid!");}
+        if (code == null||date1==null||date2==null) { throw new IOException(s);}
         if (mmsiTree.isMMSI(code)) {
             if (mmsiTree.find(code)) {
                 System.out.println(mmsiTree.getShip(code).getMovements().searchDateFrame(date1, date2));
@@ -100,7 +101,7 @@ public class MainController {
     }
 
     public void summary(Object code) throws IOException {
-        if (code == null) { throw new IOException("Input is Invalid!");}
+        if (code == null) { throw new IOException(s);}
         if (mmsiTree.isMMSI(code)) {
             if (mmsiTree.find(code)) {
                 System.out.println(mmsiTree.getShip(code).getSummary(code));
@@ -119,7 +120,7 @@ public class MainController {
     }
 
     public void getTopN(Object n, String date1, String date2) throws IOException {
-        if (n == null) { throw new IOException("Input is Invalid!");}
+        if (n == null) { throw new IOException(s);}
         if ((int) n >= mmsiTree.size()) {
             throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
         }
