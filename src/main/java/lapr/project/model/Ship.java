@@ -16,7 +16,7 @@ import static java.lang.Math.*;
 
 public class Ship implements Comparable<Ship> {
 
-    private int MMSI;
+    private String MMSI;
     private String VesselName;
     private String IMO;
     private String CallSign;
@@ -33,7 +33,7 @@ public class Ship implements Comparable<Ship> {
 
     }
 
-    public Ship(int MMSI, String VesselName, String IMO, String CallSign, int VesselType, int Length, int Width, double Draft, String Cargo) {
+    public Ship(String MMSI, String VesselName, String IMO, String CallSign, int VesselType, int Length, int Width, double Draft, String Cargo) {
         this.MMSI = MMSI;
         this.VesselName = VesselName;
         this.IMO = IMO;
@@ -44,13 +44,14 @@ public class Ship implements Comparable<Ship> {
         this.Draft = Draft;
         this.Cargo = Cargo;
         this.movements = new MovementsTree();
+
     }
 
-    public int getMMSI() {
+    public String getMMSI() {
         return MMSI;
     }
 
-    public void setMMSI(int MMSI) {
+    public void setMMSI(String MMSI) {
         this.MMSI = MMSI;
     }
 
@@ -126,10 +127,10 @@ public class Ship implements Comparable<Ship> {
         this.movements = movements;
     }
 
-    public void insertMovements(TemporalMessages temp){
+    public void insertMovements(TemporalMessages temp) {
         this.movements.insert(temp);
     }
-    
+
     public List<TemporalMessages> getMoveByDateFrame(Object s, Object s1) throws IOException {
         return this.movements.searchDateFrame(s, s1);
 
@@ -148,8 +149,6 @@ public class Ship implements Comparable<Ship> {
     public String toString() {
         return "Ship{" + "MMSI=" + MMSI + ", VesselName=" + VesselName + ", IMO=" + IMO + ", CallSign=" + CallSign + ", VesselType=" + VesselType + ", Length=" + Length + ", Width=" + Width + ", Draft=" + Draft + ", Cargo=" + Cargo + '}';
     }
-
-
 
     public String print(Double first) {
         return "\t" + MMSI + "\t" + CallSign + "\t" + IMO + "\t\t" + first + "\r\n";
@@ -192,12 +191,11 @@ public class Ship implements Comparable<Ship> {
         x2 = Math.toRadians((Double) x2);
         Double dlat = (Double) x2 - (Double) x1;
 
-
-        Double dlon=(Double) y2 - (Double) y1;
-        Double a=sin(dlat/2)*sin(dlat/2)+cos((Double) x1)- cos((Double) x2) + sin(dlon/2)*sin(dlon/2);
-        Double a1 = 1.0-a;
-        Double c=2 * atan2( sqrt(a), sqrt(a1) );
-        return constant*c;
+        Double dlon = (Double) y2 - (Double) y1;
+        Double a = sin(dlat / 2) * sin(dlat / 2) + cos((Double) x1) - cos((Double) x2) + sin(dlon / 2) * sin(dlon / 2);
+        Double a1 = 1.0 - a;
+        Double c = 2 * atan2(sqrt(a), sqrt(a1));
+        return constant * c;
     }
 
     protected Object getdeparture() {
@@ -205,17 +203,24 @@ public class Ship implements Comparable<Ship> {
         return value;
     }
 
-    @Override
-    public int compareTo(Ship o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int compareToMMSI(Ship o) {
+        return this.MMSI.compareTo(o.MMSI);
+    }
+
+    public int compareToIMO(Ship o) {
+        return this.IMO.compareTo(o.getIMO());
+    }
+
+    public int compareToCallSign(Ship o) {
+        return this.CallSign.compareTo(o.getCallSign());
     }
 
     public String getSummary(Object code) {
-        return "Ship{" +code+ " VesselName=" + VesselName + ", Start BaseDateTime=" + getStartBaseDateTime() + ", End BaseDateTime=" + getEndBaseDateTime() + ", TotalMovementTime" + getTotalMovementTime() + ", TotalNumberOfMovements" + getTotalNumberOfMovements() + ", MaxSOG" + getMaxSOG() + ", MeanSOG" + getMeanSOG() + ", MaxCOG=" + getMaxCOG()+ ", MeanCOG=" + getMeanCOG()+ ", DepartureLatitude" + getDepartureLatitude()+ ", DepartureLongitude" + getDepartureLongitude()+ ", ArrivalLatitude=" + getArrivalLatitude()+ ", ArrivalLongitude=" + getArrivalLongitude()+ ", TravelledDistance=" + getTravelledDistance()+ ", DeltaDistance=" + getDeltaDistance() + '}';
+        return "Ship{" + code + " VesselName=" + VesselName + ", Start BaseDateTime=" + getStartBaseDateTime() + ", End BaseDateTime=" + getEndBaseDateTime() + ", TotalMovementTime" + getTotalMovementTime() + ", TotalNumberOfMovements" + getTotalNumberOfMovements() + ", MaxSOG" + getMaxSOG() + ", MeanSOG" + getMeanSOG() + ", MaxCOG=" + getMaxCOG() + ", MeanCOG=" + getMeanCOG() + ", DepartureLatitude" + getDepartureLatitude() + ", DepartureLongitude" + getDepartureLongitude() + ", ArrivalLatitude=" + getArrivalLatitude() + ", ArrivalLongitude=" + getArrivalLongitude() + ", TravelledDistance=" + getTravelledDistance() + ", DeltaDistance=" + getDeltaDistance() + '}';
     }
 
     public double getMeanCOG() {
-            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double somaCOG = list.get(0).getCog();
 int i = 1;
         while (i<list.size()) {
@@ -227,7 +232,7 @@ int i = 1;
     }
 
     public double getMaxCOG() {
-            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double maxCOG = list.get(0).getCog();
         int i = 1;
 
@@ -242,7 +247,7 @@ int i = 1;
     }
 
     public double getMeanSOG() {
-            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double somaSOG = list.get(0).getSog();
         int i = 1;
         while (i<list.size()) {
@@ -254,7 +259,7 @@ int i = 1;
     }
 
     public double getMaxSOG() {
-            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double maxSOG = list.get(0).getSog();
         int i =1;
         while (i<list.size()) {
@@ -268,19 +273,19 @@ int i = 1;
     }
 
     public double getDepartureLatitude() {
-            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(0).getLatitude();
 
     }
 
     public double getDepartureLongitude() {
-            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(0).getLongitude();
 
     }
 
     public double getArrivalLongitude() {
-            List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.get(list.size() - 1).getLongitude();
 
     }
@@ -303,6 +308,7 @@ int i = 1;
     }
 
     public int getTotalNumberOfMovements() {
+
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.size();
     }
@@ -313,31 +319,36 @@ int i = 1;
         return duration;
 
     }
-    public Double getDeltaDistance(){
+
+    public Double getDeltaDistance() {
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
-        return dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(list.size()-1).getLatitude(), list.get(list.size()-1).getLongitude());
+        return dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(list.size() - 1).getLatitude(), list.get(list.size() - 1).getLongitude());
     }
-    
-    public Double getTravelledDistance(){
+
+    public Double getTravelledDistance() {
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
-        int i=2;
-        while (i<list.size()) {
-            sum = sum + dist(list.get(i-1).getLatitude(), list.get(i-1).getLongitude(), list.get(i).getLatitude(), list.get(i).getLongitude());
+        int i = 2;
+        while (i < list.size()) {
+            sum = sum + dist(list.get(i - 1).getLatitude(), list.get(i - 1).getLongitude(), list.get(i).getLatitude(), list.get(i).getLongitude());
             i++;
         }
         return sum;
     }
 
-    public Double getTravelDistanceDates(List<TemporalMessages> messages){
+    public Double getTravelDistanceDates(List<TemporalMessages> messages) {
         List<TemporalMessages> list = messages;
         double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
-        int i=2;
-        while (i<list.size()) {
-            sum = sum + dist(list.get(i-1).getLatitude(), list.get(i-1).getLongitude(), list.get(i).getLatitude(), list.get(i).getLongitude());
+        int i = 2;
+        while (i < list.size()) {
+            sum = sum + dist(list.get(i - 1).getLatitude(), list.get(i - 1).getLongitude(), list.get(i).getLatitude(), list.get(i).getLongitude());
             i++;
         }
         return sum;
     }
+
+    @Override
+    public int compareTo(Ship o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
-    

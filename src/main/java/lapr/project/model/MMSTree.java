@@ -23,9 +23,9 @@ public class MMSTree<E extends Comparable<E>> extends ShipTree<Ship> {
         if (node == null) {
             return new Node<>(element, null, null);
         }
-        if (node.getElement().compareTo(element) > 0) {
+        if (node.getElement().compareToMMSI(element) > 0) {
             node.setLeft(insert(element, node.getLeft()));
-        } else if (node.getElement().compareTo(element) < 0) {
+        } else if (node.getElement().compareToMMSI(element) < 0) {
             node.setRight(insert(element, node.getRight()));
         }
 

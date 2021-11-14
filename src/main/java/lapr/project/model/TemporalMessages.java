@@ -21,7 +21,6 @@ public class TemporalMessages implements Comparable<TemporalMessages> {
     public TemporalMessages(LocalDateTime baseDateTime) {
         this.baseDateTime = baseDateTime;
     }
-    
 
     public TemporalMessages(String s, double v, double v1, double v2, double v3, double i, String a, String b) throws IOException {
         this.baseDateTime = getDate(s);
