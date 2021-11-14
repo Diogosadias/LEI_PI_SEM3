@@ -266,43 +266,8 @@ alter table Ship_Status add constraint fk_ship_mmsi foreign key(mmsi_ship) refer
 alter table Connection_Port add constraint fk_port_id foreign key(port_id) references Port(id);
 alter table Connection_Port add constraint fk_port_Staff_id foreign key(port_staff_id) references Port_Staff(id_Staff);
 
---CHECK CONSTRAINTS--
-ALTER TABLE Ship
-ADD CONSTRAINT check_MMSI
-  CHECK (mmsi > 99999999 AND mmsi < 1000000000);
 
-ALTER TABLE Ship
-ADD CONSTRAINT check_IMO
-  CHECK (imo_number LIKE 'IMO%');
   
-ALTER TABLE Ship_Status
-ADD CONSTRAINT check_latitude
-  CHECK (latitude BETWEEN -90 AND 90);
-  
-ALTER TABLE Ship_Status
-ADD CONSTRAINT check_longitude
-  CHECK (longitude BETWEEN -180 AND 180);
-  
-ALTER TABLE Port
-ADD CONSTRAINT check_continent
-  CHECK (continent IN ('Europe','Africa','America','Asia','Oceania'));
-  
-ALTER TABLE Port
-ADD CONSTRAINT check_latitudePort
-  CHECK (latitude BETWEEN -90 AND 90);
-  
-ALTER TABLE Port
-ADD CONSTRAINT check_longitudePort
-  CHECK (longitude BETWEEN -180 AND 180);
-  
-ALTER TABLE Ship
-ADD CONSTRAINT check_lenght
-    CHECK (lenght > 0);
 
-ALTER TABLE Ship
-ADD CONSTRAINT check_width
-    CHECK (width > 0);
+  
 
-ALTER TABLE Container
-ADD CONSTRAINT check_gross
-    CHECK (gross > 0);

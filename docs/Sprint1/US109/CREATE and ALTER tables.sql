@@ -1,6 +1,6 @@
 
 Drop table ISO_Code Cascade constraints Purge;
-Drop table  Refrigerated_Container Cascade constraints Purge;
+Drop table Refrigerated_Container Cascade constraints Purge;
 Drop table Manifest Cascade constraints Purge;
 DROP TABLE Manifest_Warehouse      CASCADE CONSTRAINTS PURGE;
 DROP TABLE Warehouse                CASCADE CONSTRAINTS PURGE;
@@ -270,7 +270,7 @@ alter table Connection_Port add constraint fk_port_Staff_id foreign key(port_sta
 ALTER TABLE Ship
 ADD CONSTRAINT check_MMSI
   CHECK (mmsi > 99999999 AND mmsi < 1000000000);
-  
+
 ALTER TABLE Ship
 ADD CONSTRAINT check_IMO
   CHECK (imo_number LIKE 'IMO%');
@@ -294,3 +294,15 @@ ADD CONSTRAINT check_latitudePort
 ALTER TABLE Port
 ADD CONSTRAINT check_longitudePort
   CHECK (longitude BETWEEN -180 AND 180);
+  
+ALTER TABLE Ship
+ADD CONSTRAINT check_lenght
+    CHECK (lenght > 0);
+
+ALTER TABLE Ship
+ADD CONSTRAINT check_width
+    CHECK (width > 0);
+
+ALTER TABLE Container
+ADD CONSTRAINT check_gross
+    CHECK (gross > 0);
