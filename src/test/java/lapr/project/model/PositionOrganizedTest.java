@@ -87,8 +87,6 @@ public class PositionOrganizedTest {
         List<TemporalMessages> result = ship.getMovements().searchDateFrame("31/12/2020 10:00","01/01/2021 10:00");
         //Assert
         assertEquals(list,result);
-
-
     }
 
     /**
@@ -200,7 +198,7 @@ public class PositionOrganizedTest {
     @Test
     public void ensurePrinted() throws Exception {
 
-        /* -Jenkins Error
+       /* -Jenkins Error
         //Arrange
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         System.setOut(new PrintStream(result));

@@ -269,7 +269,7 @@ alter table Connection_Port add constraint fk_port_Staff_id foreign key(port_sta
 --CHECK CONSTRAINTS--
 ALTER TABLE Ship
 ADD CONSTRAINT check_MMSI
-  CHECK (mmsi > 00000000 AND mmsi < 99999999);
+  CHECK (mmsi > 0000000 AND mmsi < 9999999);
   
 ALTER TABLE Ship
 ADD CONSTRAINT check_IMO
@@ -277,7 +277,7 @@ ADD CONSTRAINT check_IMO
   
 ALTER TABLE Ship_Status
 ADD CONSTRAINT check_latitude
-  CHECK (latitude BETWEEN -180 AND 180);
+  CHECK (latitude BETWEEN -90 AND 90);
   
 ALTER TABLE Ship_Status
 ADD CONSTRAINT check_longitude
@@ -289,7 +289,7 @@ ADD CONSTRAINT check_continent
   
 ALTER TABLE Port
 ADD CONSTRAINT check_latitudePort
-  CHECK (latitude BETWEEN -180 AND 180);
+  CHECK (latitude BETWEEN -90 AND 90);
   
 ALTER TABLE Port
 ADD CONSTRAINT check_longitudePort

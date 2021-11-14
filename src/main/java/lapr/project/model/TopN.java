@@ -31,7 +31,7 @@ public class TopN {
         //Get Kms Traveled
         TreeMap<Ship, Double> km = new TreeMap<>();
         for(Ship s:map.keySet()){
-            km.put(s,s.getKm((Collection)map.get(s)));
+            km.put(s,s.getTravelDistanceDates(map.get(s)));
         }
         km.values().stream().sorted(); //assure kms are sorted
         TreeMap<Object, Pair<Double,Ship>> result = new TreeMap<>();
