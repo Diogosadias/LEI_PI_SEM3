@@ -293,7 +293,7 @@ public class Ship implements Comparable<Ship> {
         return list.get(list.size() - 1).getBaseDateTime();
     }
 
-    public double getTotalNumberOfMovements() {
+    public int getTotalNumberOfMovements() {
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         return list.size();
     }
