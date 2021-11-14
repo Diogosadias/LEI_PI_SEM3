@@ -34,11 +34,14 @@ class TemporalMessagesTest {
     void testBaseDateTime() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        TemporalMessages shipmov1 = new TemporalMessages(getDate("31/12/2020 17:19"),42.97875,-66.97001,12.9,13.1,355, "NA","B");
+
         //Act
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime expectedResult = LocalDateTime.parse("31/12/2020 17:19",format);
         LocalDateTime result =shipmov.getBaseDateTime();
         //Assert
+        assertEquals(expectedResult,shipmov1.getBaseDateTime());
         assertEquals(expectedResult,result);
         assertEquals(expectedResult,shipmov.getBaseDateTime());
 
@@ -46,6 +49,7 @@ class TemporalMessagesTest {
         expectedResult = LocalDateTime.parse("01/01/2021 17:19",format);
         shipmov.setBaseDateTime(expectedResult);
         //Assert
+
         assertEquals(expectedResult,shipmov.getBaseDateTime());
     }
 
@@ -202,7 +206,7 @@ class TemporalMessagesTest {
     @Test
     void ensureValidation() throws IOException {
         try{
-            TemporalMessages shipmov = new TemporalMessages(null,42.97875,-66.97001,12.9,13.1,355, "NA","B");
+            TemporalMessages shipmov = new TemporalMessages((String) null,42.97875,-66.97001,12.9,13.1,355, "NA","B");
         }catch (IOException ex){
             System.out.println("Input is Invalid!");
         }

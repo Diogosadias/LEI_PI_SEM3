@@ -34,13 +34,14 @@ public class TemporalMessages implements Comparable<TemporalMessages> {
 
     }
 
-    public TemporalMessages(LocalDateTime baseDateTime, double latitude, double longitude, double sog, double cog, double heading, String transceiverClass) {
+    public TemporalMessages(LocalDateTime baseDateTime, double latitude, double longitude, double sog, double cog, double heading, String position, String transceiverClass) {
         this.baseDateTime = baseDateTime;
         this.latitude = latitude;
         this.longitude = longitude;
         this.sog = sog;
         this.cog = cog;
         this.heading = heading;
+        this.position=position;
         this.transceiverClass = transceiverClass;
     }
 
