@@ -15,7 +15,9 @@ public class Import {
     private String SafeWord;
 
     public static List<ShipTree> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
-
+                if (MMSI == null ||CallSign == null||IMO == null ) {
+            throw new IOException("Input is Invalid!");
+        }
 
         Map<String, TemporalMessages> moveMap = new HashMap<String, TemporalMessages>();
         int i = 0;
