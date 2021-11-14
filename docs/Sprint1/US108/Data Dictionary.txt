@@ -1,0 +1,147 @@
+Entity: Container
+Description: Stores container information.
+Attributes: 
+	.container_id : container identication code; int type; primary key
+	.payload: container payload; float type
+	.tare: tare of the container; float type
+	.gross: gross weight of the container; float type
+	.code_iso: code iso of the container; int type
+
+-----------------------------------------------------------------------------------
+Entity: ISO_code
+Description: Describes the identification of a shipping container.
+Attributes: 
+	.code: iso container size type; int type; primary key
+	.description: description  of the iso code; varchar type
+
+-----------------------------------------------------------------------------------
+Entity: Refrigerated_Container
+Description: Stores the information of the temperature of the container.
+Attributes: 
+	.temperature: temperature of the container; float type; primary key
+	.container_id: id of the container; int type
+-----------------------------------------------------------------------------------
+Entity: Manifest
+Description: Stores the necessary information about the containers that are being loaded and unloaded.
+Attributes: 
+	.id: identification code of the manifest; int type; primary key
+	.container_gross_weight: weight of the container; float type
+	.container_id: id of the container; int type
+-----------------------------------------------------------------------------------
+Entity: Warehouse
+Description: Stores Warehouse information
+Attributes: 
+	.id: identification code of the warehouse; int type; primary key
+	.name:name of the wharehouse; varchar type
+	.continent: continent where the warehouse is placed; varchar type
+	.country: country where the warehouse is placed; varchar type
+	.location_name: location where the warehouse is placed; varchar type
+	.warehouse_manager_id: warehouse manager; int type
+-----------------------------------------------------------------------------------
+Entity: Warehouse_Manager
+Description: Stores warehouse manager information
+Attributes: 
+	.id: identification code of the manager; int type; primary key
+	.name:name of the manager; varchar type
+-----------------------------------------------------------------------------------
+Entity: Warehouse_Staff
+Description: Stores warehouse staff information
+Attributes: 
+	.id_staff: identification code of the staff; int type; primary key
+	.name:name of the staff member; varchar type
+-----------------------------------------------------------------------------------
+Entity: Truck
+Description: Stores truck information
+Attributes: 
+	.id: identification code of the truck; int type; primary key
+	.description: truck description; varchar type
+	.driver_id: truck driver id; int type
+-----------------------------------------------------------------------------------
+Entity: Driver
+Description: Stores Driver information
+Attributes: 
+	.id: identification code of the driver; int type; primary key
+	.name: drive's name ; varchar type
+-----------------------------------------------------------------------------------
+Entity: Ship
+Description: Stores Ship information
+Attributes: 
+	.mmsi: identification code of the ship; int type; primary key
+	.name: ship's name ; varchar type
+	.imo_number: imo code of the ship; varchat type
+	.generator_amount: generator amount of the ship; varchar type
+	.power_output: power output of the ship; float type
+	.callSign: call sign code of the ship; varchar type
+ 	.lenght: lenght of the ship; int type
+	.width: width of the ship; int type
+	.capacity: capacity if the ship; float type
+	.ship_type_id: identification code of the ship type; int type
+	.fleet_id: identification code of the fleet; int type
+	.captain_id: identification code of the captain; int type
+	.engineer_id: identification code of the engineer; int type
+-----------------------------------------------------------------------------------
+Entity: Ship_Status
+Description: Stores Ship status information
+Attributes: 
+	.base_data_time: data and time of the ship; varchar type; primary key
+	.latitude: ship latitude ; float type
+	.longitude: ship longitude; float type
+	.sog: ship sog; float type
+	.cog: ship cog; float type
+	.heading: heading of the ship; int type
+	.position: position of the ship; int type
+	.transceiver_class: ship transceiver class; int type
+	. mmsi_ship; identification code of the mmsi ship; int type
+-----------------------------------------------------------------------------------
+Entity: Fleet
+Description: Stores Fleet information
+Attributes: 
+	.id: identification code of the Fleet; int type; primary key
+	.name: fleet name; varchar type
+-----------------------------------------------------------------------------------
+Entity: Fleet_Manager
+Description: Stores Fleet information
+Attributes: 
+	.id: identification code of the Fleet Manager; int type; primary key
+	.name: fleet manager name; varchar type
+-----------------------------------------------------------------------------------
+Entity: Ship_Type
+Description: Stores ship type information
+Attributes: 
+	.id: identification code of the ship type; int type; primary key
+	.description: ship type description; varchar type
+-----------------------------------------------------------------------------------
+Entity: Engineer
+Description: Stores Engineer information
+Attributes: 
+	.id: identification code of the Engineer; int type; primary key
+	.name: Engineer name; varchar type
+-----------------------------------------------------------------------------------
+Entity: Captain
+Description: Stores Captain information
+Attributes: 
+	.id: identification code of the Captain; int type; primary key
+	.name: captain name; varchar type
+-----------------------------------------------------------------------------------
+Entity: Port
+Description: Stores Port information
+Attributes: 
+	.id: identification code of the Port; int type; primary key
+	.name: port name; varchar type
+	.latitude: port latitude ; float type
+	.longitude: port longitude; float type
+	.continent: continent where the port is placed; varchar type
+	.country: country where the port is placed; varchar type
+	.port_manager_id: port manager identification code; int type
+-----------------------------------------------------------------------------------
+Entity: Port_Manager
+Description: Stores Port Manager information
+Attributes: 
+	.id: identification code of the port manager; int type; primary key
+	.name: port manager name; varchar type
+-----------------------------------------------------------------------------------
+Entity: Port_Staff
+Description: Stores Port Staff information
+Attributes: 
+	.id: identification code of the port staff; int type; primary key
+	.name: port staff member name; varchar type
