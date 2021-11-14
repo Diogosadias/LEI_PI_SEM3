@@ -1,0 +1,9 @@
+Reasons to use relational databases:
+	.It's a simple model;
+	.It's easily structured into categories;
+	.Easy Acess to Data: is consistent in input, meaning, and easy to navigate;
+	.High Security;
+	.Using of a primary key and foreign key makes the date to be non-repetitive;
+	.Supports "joins" between tables and have a better transactional consistency;
+	.Viable for future modifications;
+	.Normalization(reduced data redundacy): this offers an impression of reassurance of the database plan, to be extra strong and reliable;
