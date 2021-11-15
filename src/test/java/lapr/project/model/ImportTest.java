@@ -47,9 +47,5 @@ public class ImportTest {
         }
 
 
-        @Test
-    public void testman(){
-            Import importer =new Import();
-            readLine
-        }
+        
 }
