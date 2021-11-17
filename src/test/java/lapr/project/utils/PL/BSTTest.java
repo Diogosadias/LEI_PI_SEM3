@@ -47,12 +47,14 @@ public class BSTTest {
         
         BST<String> sInstance = new BST();
         assertEquals("size should be = 0",sInstance.size(), 0);
+        assertTrue(sInstance.isEmpty());
         sInstance.insert("A");
         assertEquals("size should be = 1",sInstance.size(), 1);
         sInstance.insert("B");
         assertEquals("size should be = 2",sInstance.size(), 2);
         sInstance.insert("A");
         assertEquals("size should be = 2",sInstance.size(), 2);
+        assertFalse(sInstance.isEmpty());
     }
    
     /**
@@ -131,6 +133,8 @@ public class BSTTest {
     @Test
     public void testSmallestElement() {
         System.out.println("smallestElement");
+        BST arvore = new BST();
+        assertNull(arvore.smallestElement());
         assertEquals(new Integer(7), instance.smallestElement());
         instance.remove(7);
         assertEquals(new Integer(8), instance.smallestElement());
@@ -163,6 +167,10 @@ public class BSTTest {
     @Test
     public void testInOrder() {
         System.out.println("inOrder");
+        BST arvore = new BST();
+        Integer[] lits = new Integer[0];
+        List<Integer> list = Arrays.asList(lits);
+        assertEquals(list,arvore.inOrder());
         List<Integer> lExpected = Arrays.asList(inorderT);
         assertEquals("inOrder should be "+lExpected.toString(), lExpected, instance.inOrder());
     }
@@ -172,6 +180,10 @@ public class BSTTest {
     @Test
     public void testpreOrder() {
         System.out.println("preOrder");
+        BST arvore = new BST();
+        Integer[] lits = new Integer[0];
+        List<Integer> list = Arrays.asList(lits);
+        assertEquals(list,arvore.preOrder());
         List<Integer> lExpected = Arrays.asList(preorderT);
         assertEquals("preOrder should be "+lExpected.toString(), lExpected, instance.preOrder());
     }
@@ -181,6 +193,10 @@ public class BSTTest {
     @Test
     public void testposOrder() {
         System.out.println("posOrder");
+        BST arvore = new BST();
+        Integer[] lits = new Integer[0];
+        List<Integer> list = Arrays.asList(lits);
+        assertEquals(list,arvore.posOrder());
         List<Integer> lExpected = Arrays.asList(posorderT);
         assertEquals("posOrder should be "+lExpected.toString(), lExpected, instance.posOrder());
     }
@@ -228,10 +244,10 @@ public class BSTTest {
         assertNull(bst.find(bst.root(),i));
         bst.insert(i);
         bst.insert(l);
-        BST.Node node = new BST.Node(l,null,null);
+        BST.Node <Integer> node = new BST.Node(l,null,null);
         assertEquals(bst.find(bst.root(),l).getElement(),node.getElement());
         bst.insert(j);
-        BST.Node node1 = new BST.Node(j,null,null);
+        BST.Node<Integer> node1 = new BST.Node(j,null,null);
         assertEquals(bst.find(bst.root(),j).getElement(),node1.getElement());
         assertNull(bst.find(null,i));
     }
