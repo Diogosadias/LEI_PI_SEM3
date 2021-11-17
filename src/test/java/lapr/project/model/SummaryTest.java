@@ -444,4 +444,31 @@ public class SummaryTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+        @Test
+    void ensureCompareToIMO() throws IOException {
+        //Arrange
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship1 = new Ship("224871721", "VARAMO", "IMO7982712", "K6U1N", 79, 126, 23, 2.5, "NA");
+        
+        //Act
+        int expectedResult = ship.getIMO().compareTo(ship1.getIMO());
+        
+        //Assert
+         assertEquals(expectedResult,ship.compareToIMO(ship1));
+        
+    }
+    
+            @Test
+    void ensureCompareToCallSign() throws IOException {
+        //Arrange
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        Ship ship1 = new Ship("224871721", "VARAMO", "IMO7982712", "K6U1N", 79, 126, 23, 2.5, "NA");
+        
+        //Act
+        int expectedResult = ship.getCallSign().compareTo(ship1.getCallSign());
+        
+        //Assert
+         assertEquals(expectedResult,ship.compareToCallSign(ship1));
+        
+    }
 }
