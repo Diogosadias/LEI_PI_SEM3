@@ -147,16 +147,23 @@ public class AVLTest {
      */
     @Test
     public void testRotations(){
-        AVL<Integer> avl = new AVL<>();
-        avl.insert(1);
-        avl.insert(2);
-        avl.insert(-1);
-        avl.insert(7);
-        avl.insert(9);
-        avl.insert(10);
-        avl.insert(6);
-        avl.remove(-1);
-        avl.remove(1);
+
+
+        //test Big  rotation
+        AVL<Integer> instance = new AVL();
+        int arr[] = {8,4,10,2,6,3,10,22,11,16,21,1,5,7,6,9,23,12,14};
+        Integer[] inorder1={1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 21, 22, 23};
+        for (int i=0; i<arr.length; i++)            //new elements
+            instance.insert(arr[i]);
+
+        List<Integer> lExpected = Arrays.asList(inorder1);
+        assertEquals("inOrder should be "+lExpected.toString(), lExpected, instance.inOrder());
+        instance.remove(4);
+        instance.remove(1);
+
+        inorder1= new Integer[]{2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 21, 22, 23};
+        lExpected = Arrays.asList(inorder1);
+        assertEquals("inOrder should be "+lExpected.toString(), lExpected, instance.inOrder());
 
     }
 }
