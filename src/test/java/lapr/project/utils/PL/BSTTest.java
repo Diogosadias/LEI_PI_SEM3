@@ -5,9 +5,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+
+import javax.lang.model.element.Element;
 
 /**
  *
@@ -179,5 +183,44 @@ public class BSTTest {
         System.out.println("posOrder");
         List<Integer> lExpected = Arrays.asList(posorderT);
         assertEquals("posOrder should be "+lExpected.toString(), lExpected, instance.posOrder());
-    }    
+    }
+
+    /**
+     * Tests for Coverage
+     */
+    @Test
+    public void updateMethods() {
+        //Arrange
+        BST sInstance = new BST();
+        Object o = new Object();
+        BST.Node node = new BST.Node<>(o, null, null);
+        assertEquals(o,node.getElement());
+        Object o1 = new Object();
+        node.setElement(o1);
+        assertEquals(o1, node.getElement());
+        BST.Node node1 = new BST.Node<>(o, null, null);
+        node.setLeft(node1);
+        assertEquals(node.getLeft().getElement(),o);
+
+    }
+
+    /**
+     * Test IsEmpty()
+     */
+    @Test
+    public void ensureEmptiness(){
+        BST bst = new BST();
+        assertTrue(bst.isEmpty());
+        int i = 0;
+        bst.insert( i);
+        assertFalse(bst.isEmpty());
+    }
+
+    /**
+     * Test find
+     */
+    @Test
+    public void findtest(){
+        
+    }
 }
