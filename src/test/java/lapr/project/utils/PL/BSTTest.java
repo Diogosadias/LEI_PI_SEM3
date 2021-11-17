@@ -221,6 +221,18 @@ public class BSTTest {
      */
     @Test
     public void findtest(){
-        
+        BST bst = new BST();
+        int i = 0,j=1,l=-1;
+        assertNull(bst.find(bst.root(),i));
+        bst.insert(i);
+        bst.insert(l);
+        BST.Node node = new BST.Node(l,null,null);
+        assertEquals(bst.find(bst.root(),l).getElement(),node.getElement());
+        bst.insert(j);
+        BST.Node node1 = new BST.Node(j,null,null);
+        assertEquals(bst.find(bst.root(),j).getElement(),node1.getElement());
+
+
+
     }
 }
