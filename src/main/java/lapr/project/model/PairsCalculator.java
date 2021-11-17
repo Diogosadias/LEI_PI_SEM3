@@ -54,4 +54,8 @@ public class PairsCalculator {
         return s.getMMSI() +"\t" + t.getMMSI() + "\t" + String.format("%.2f",s.dist(coor1.get1st(),coor1.get2nd(),coor2.get1st(),coor2.get2nd())) + "\t" + String.format("%.2f",s.dist(coor3.get1st(),coor3.get2nd(),coor4.get1st(),coor4.get2nd())) +
                 "\t" + s.getMovements().size() + "\t" + String.format("%.2f",s.getTravelledDistance()) + "\t" + t.getMovements().size() + "\t" + String.format("%.2f",t.getTravelledDistance()) + "\r\n";
     }
+
+    public ShipTree gettree() {
+        return mmsiTree;
+    }
 }
