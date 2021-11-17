@@ -5,7 +5,7 @@ import oracle.ucp.util.Pair;
 import java.util.*;
 
 public class PairsCalculator {
-    private ShipTree mmsiTree ;
+    private final ShipTree mmsiTree ;
 
     public PairsCalculator(ShipTree mmsiTree){
         this.mmsiTree=mmsiTree;
