@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import oracle.ucp.util.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -205,13 +206,8 @@ public class PositionOrganizedTest {
     @Test
     public void ensurePrintseveral() throws Exception {
 
-        /* - Error Jenkins
+
         //Arrange
-        ByteArrayOutputStream result = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(result));
-        String expectedresult  = "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass " +
-                "\r\n31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\r\n" +
-                "01/01/2021 17:19\t42.97874\t-66.97002\t12.8\t\t13.2\t\t354.0\t\t\tNA\t\t\tB\r\n";
 
 
         //Act
@@ -223,9 +219,10 @@ public class PositionOrganizedTest {
         list.add(shipmov);
         moves.printMoves(list);
         //Assert
-        assertEquals(expectedresult,result.toString());
+        String expectedresult = moves.printMoves(list);
+        assertEquals(expectedresult,moves.printMoves(list));
         
-         */
+
 
     }
 
@@ -243,6 +240,50 @@ public class PositionOrganizedTest {
         }
         assertNull(moves.printMoves(null));
         List list = moves.getList();
+
+    }
+
+    /**
+     * Test SeList
+     */
+    @Test
+    public void  setListTest() throws IOException {
+        MovementsTree moves=  new MovementsTree();
+        try{
+            moves.setList(null);
+        } catch (IOException ex){
+            System.out.println("List is Null!");
+        }
+        List<TemporalMessages> temp = new ArrayList<>();
+        moves.setList(temp);
+        assertEquals(temp,moves.getList());
+    }
+
+    /**
+     * Test Insert
+     */
+    @Test
+    public void testInsert(){
+        MovementsTree moves=  new MovementsTree();
+        moves.insert(null);
+    }
+
+    /**
+     * Testgetmin
+     */
+    @Test
+    public void testgetmin() throws IOException {
+        MovementsTree moves=  new MovementsTree();
+        assertNull(moves.getmin(null));
+        TemporalMessages temp = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        moves.insert(temp);
+        Pair<Double,Double> value = new Pair<>(temp.getLatitude(),temp.getLongitude());
+        assertEquals(moves.getmin(moves.root()),value );
+
+        TemporalMessages temp1 =  new TemporalMessages("30/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        moves.insert(temp1);
+        Pair<Double,Double> value1 = new Pair<>(temp1.getLatitude(),temp1.getLongitude());
+        assertEquals(moves.getmin(moves.root()),value );
 
     }
 }

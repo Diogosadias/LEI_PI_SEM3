@@ -117,7 +117,7 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
     public Pair<Double,Double> getmin() {return getmin(root());
     }
 
-    private Pair<Double, Double> getmin(Node<TemporalMessages> root) {
+    Pair<Double, Double> getmin(Node<TemporalMessages> root) {
         if(root==null) return null;
         if(root.getLeft()==null){
             Pair<Double,Double> value = new Pair<>(root.getElement().getLatitude(),root.getElement().getLongitude());

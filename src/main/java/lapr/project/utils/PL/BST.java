@@ -55,7 +55,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
     /*
     * @return root Node of the tree (or null if tree is empty)
     */
-    protected Node<E> root() {
+    public Node<E> root() {
        return root;
     }  
 
