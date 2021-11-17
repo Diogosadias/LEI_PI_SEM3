@@ -471,4 +471,51 @@ public class SummaryTest {
          assertEquals(expectedResult,ship.compareToCallSign(ship1));
         
     }
+        @Test
+    void ensureDeltaDistance() throws IOException {
+        //Arrange
+
+        //Act
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        MovementsTree movs = new MovementsTree();
+        TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
+        TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
+        TemporalMessages shipmov3 = new TemporalMessages("31/12/2020 19:25", 58.89612, -52.18733, 17.2, 16.9, 121, "NA", "B");
+        TemporalMessages shipmov4 = new TemporalMessages("31/12/2020 20:49", 53.98716, -53.99174, 10.1, 17.4, 142, "NA", "B");
+        TemporalMessages shipmov5 = new TemporalMessages("31/12/2020 23:32", 62.81971, -68.33132, 15.5, 16.3, 147, "NA", "B");
+        movs.insert(shipmov1);
+        movs.insert(shipmov2);
+        movs.insert(shipmov3);
+        movs.insert(shipmov4);
+        movs.insert(shipmov5);
+        ship.setMovements(movs);
+        double expectedResult = 7450.089918639114;
+        double result = ship.getDeltaDistance();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+    
+            @Test
+    void ensureTravelledDistance() throws IOException {
+        //Arrange
+
+        //Act
+        Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        MovementsTree movs = new MovementsTree();
+        TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 01:09", 42.97875, -66.97001, 12.9, 17.1, 147, "NA", "B");
+        TemporalMessages shipmov2 = new TemporalMessages("31/12/2020 05:19", 49.37628, -68.98271, 13.2, 12.3, 119, "NA", "B");
+        TemporalMessages shipmov3 = new TemporalMessages("31/12/2020 19:25", 58.89612, -52.18733, 17.2, 16.9, 121, "NA", "B");
+        TemporalMessages shipmov4 = new TemporalMessages("31/12/2020 20:49", 53.98716, -53.99174, 10.1, 17.4, 142, "NA", "B");
+        TemporalMessages shipmov5 = new TemporalMessages("31/12/2020 23:32", 62.81971, -68.33132, 15.5, 16.3, 147, "NA", "B");
+        movs.insert(shipmov1);
+        movs.insert(shipmov2);
+        movs.insert(shipmov3);
+        movs.insert(shipmov4);
+        movs.insert(shipmov5);
+        ship.setMovements(movs);
+        double expectedResult = 17648.239898955795;
+        double result = ship.getTravelledDistance();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }
