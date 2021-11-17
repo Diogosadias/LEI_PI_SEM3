@@ -141,4 +141,22 @@ public class AVLTest {
         assertFalse(instance.equals(null));
         assertFalse(instance2.equals(null));
     }
+
+    /**
+     * Rotations Testing
+     */
+    @Test
+    public void testRotations(){
+        AVL<Integer> avl = new AVL<>();
+        avl.insert(1);
+        avl.insert(2);
+        avl.insert(-1);
+        avl.insert(7);
+        avl.insert(9);
+        avl.insert(10);
+        avl.insert(6);
+        avl.remove(-1);
+        avl.remove(1);
+
+    }
 }

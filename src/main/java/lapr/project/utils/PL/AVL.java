@@ -44,6 +44,8 @@ public class AVL <E extends Comparable<E>> extends BST<E> {
         return node;
 
     }
+
+
     
     private Node<E> balanceNode(Node<E> node)    {
         if(balanceFactor(node)<-1) {
