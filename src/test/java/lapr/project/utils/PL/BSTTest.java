@@ -200,7 +200,7 @@ public class BSTTest {
         assertEquals(o1, node.getElement());
         BST.Node node1 = new BST.Node<>(o, null, null);
         node.setLeft(node1);
-        assertEquals(node.getLeft().getElement(),o);
+        assertEquals(node.getLeft(),node1);
 
     }
 
@@ -214,6 +214,9 @@ public class BSTTest {
         int i = 0;
         bst.insert( i);
         assertFalse(bst.isEmpty());
+        bst.remove(i);
+        assertTrue(bst.isEmpty());
+
     }
 
     /**
@@ -231,8 +234,6 @@ public class BSTTest {
         bst.insert(j);
         BST.Node node1 = new BST.Node(j,null,null);
         assertEquals(bst.find(bst.root(),j).getElement(),node1.getElement());
-
-
-
+        assertNull(bst.find(null,i));
     }
 }
