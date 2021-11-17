@@ -191,14 +191,13 @@ public class BSTTest {
     @Test
     public void updateMethods() {
         //Arrange
-        BST sInstance = new BST();
         Object o = new Object();
-        BST.Node node = new BST.Node<>(o, null, null);
+        BST.Node<Object> node = new BST.Node<>(o, null, null);
         assertEquals(o,node.getElement());
         Object o1 = new Object();
         node.setElement(o1);
         assertEquals(o1, node.getElement());
-        BST.Node node1 = new BST.Node<>(o, null, null);
+        BST.Node<Object> node1 = new BST.Node<>(o, null, null);
         node.setLeft(node1);
         assertEquals(node.getLeft(),node1);
 
@@ -209,7 +208,7 @@ public class BSTTest {
      */
     @Test
     public void ensureEmptiness(){
-        BST bst = new BST();
+        BST<Integer> bst = new BST();
         assertTrue(bst.isEmpty());
         int i = 0;
         bst.insert( i);
@@ -224,7 +223,7 @@ public class BSTTest {
      */
     @Test
     public void findtest(){
-        BST bst = new BST();
+        BST<Integer> bst = new BST();
         int i = 0,j=1,l=-1;
         assertNull(bst.find(bst.root(),i));
         bst.insert(i);
@@ -235,5 +234,13 @@ public class BSTTest {
         BST.Node node1 = new BST.Node(j,null,null);
         assertEquals(bst.find(bst.root(),j).getElement(),node1.getElement());
         assertNull(bst.find(null,i));
+    }
+
+    /**
+     * Test insert
+     */
+    @Test
+    public void insertTest(){
+
     }
 }
