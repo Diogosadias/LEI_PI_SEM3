@@ -286,4 +286,6 @@ public class PositionOrganizedTest {
         assertEquals(moves.getmin(moves.root()),value );
 
     }
+
+    
 }
