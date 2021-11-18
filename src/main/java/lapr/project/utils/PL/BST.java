@@ -81,18 +81,9 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
      * So its access level is protected
      */
     protected Node<E> find(Node<E> node, E element) {
-        if (node ==null){
-            return null;
-        }
-
-        if (node.getElement().compareTo(element)>0) {
-            return find(node.getLeft(),element) ;
-
-        }
-        if (node.getElement().compareTo(element)<0) {
-            return find(node.getRight(),element) ;
-
-        }
+        if (node ==null) return null;
+        if (node.getElement().compareTo(element)>0) return find(node.getLeft(),element) ;
+        if (node.getElement().compareTo(element)<0) return find(node.getRight(),element) ;
         return node;
     }
     
@@ -104,15 +95,9 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
     }
     
     private Node<E> insert(E element, Node<E> node){
-        if(node==null){
-            return new Node<>(element,null,null);
-        }
-        if(node.getElement().compareTo(element)>0){
-            node.setLeft(insert(element,node.getLeft()));
-        } else if(node.getElement().compareTo(element)<0){
-            node.setRight(insert(element,node.getRight()));
-        }
-
+        if(node==null) return new Node<>(element,null,null);
+        if(node.getElement().compareTo(element)>0)  node.setLeft(insert(element,node.getLeft()));
+        if(node.getElement().compareTo(element)<0)  node.setRight(insert(element,node.getRight()));
         return node;
     }
 
