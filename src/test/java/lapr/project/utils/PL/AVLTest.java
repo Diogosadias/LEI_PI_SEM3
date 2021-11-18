@@ -165,5 +165,23 @@ public class AVLTest {
         lExpected = Arrays.asList(inorder1);
         assertEquals("inOrder should be "+lExpected.toString(), lExpected, instance.inOrder());
 
+
+
+    }
+
+    /**
+     * Test BalanceNode
+     */
+    @Test
+    public void testBalanceNode(){
+        BST.Node no = new BST.Node(1,null,null);
+        BST.Node no1 = new BST.Node(2,null,null);
+        BST.Node no2 = new BST.Node(3,null,null);
+        AVL arvore = new AVL();
+        assertEquals(no,arvore.balanceNode(no));
+        assertEquals(no2,arvore.balanceNode(no2));
+        assertEquals(no1,arvore.balanceNode(no1));
+        assertNull(arvore.balanceNode(null));
+
     }
 }

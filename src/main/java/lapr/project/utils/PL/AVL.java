@@ -47,7 +47,8 @@ public class AVL <E extends Comparable<E>> extends BST<E> {
 
 
     
-    private Node<E> balanceNode(Node<E> node)    {
+    protected Node<E> balanceNode(Node<E> node)    {
+        if(node == null) return null;
         if(balanceFactor(node)<-1) {
             if (balanceFactor(node.getLeft()) < 0)
                 node = rightRotation(node);
