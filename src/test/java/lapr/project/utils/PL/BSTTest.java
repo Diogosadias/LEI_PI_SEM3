@@ -1,7 +1,6 @@
 
 package lapr.project.utils.PL;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -179,16 +178,14 @@ public class BSTTest {
      * Test of preOrder method, of class BST.
      */
     @Test
-    public void testpreOrder() throws IOException {
+    public void testpreOrder() {
         System.out.println("preOrder");
         BST arvore = new BST();
         Integer[] lits = new Integer[0];
         List<Integer> list = Arrays.asList(lits);
-        try{
-            arvore.preOrder();
-        } catch (IOException ex){
-            System.out.println("Node is Null!");
-        }
+        assertEquals(list,arvore.preOrder());
+        List<Integer> lExpected = Arrays.asList(preorderT);
+        assertEquals("preOrder should be "+lExpected.toString(), lExpected, instance.preOrder());
     }
 /**
      * Test of posOrder method, of class BST.

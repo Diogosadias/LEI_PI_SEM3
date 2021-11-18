@@ -227,7 +227,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
    * Returns an iterable collection of elements of the tree, reported in pre-order.
    * @return iterable collection of the tree's elements reported in pre-order
    */
-    public Iterable<E> preOrder() throws IOException {
+    public Iterable<E> preOrder() {
         List<E> snapshot = new ArrayList<>();
         if (root!=null)
             preOrderSubtree(root, snapshot);   // fill the snapshot recursively
@@ -239,9 +239,9 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
    * @param node       Node serving as the root of a subtree
    * @param snapshot  a list to which results are appended
    */
-    private void preOrderSubtree(Node<E> node, List<E> snapshot) throws IOException {
-        if (node == null) throw new IOException("Node is Null!");
-
+    private void preOrderSubtree(Node<E> node, List<E> snapshot){
+        if (node == null)
+            return;
         snapshot.add(node.getElement());
         preOrderSubtree(node.getLeft(),snapshot);
         preOrderSubtree(node.getRight(), snapshot);
