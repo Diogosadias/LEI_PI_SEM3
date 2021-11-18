@@ -64,6 +64,19 @@ By the description provided by the client they will want to have this implemente
 
 ---
 
+##US202 <a name="us202"></a>
+###Analysis
+![US202-SSD](docs/Sprint 2/US202/US202-SSD.svg)
+![US202-MD](docs/Sprint 2/US202/US202-MD.svg)
+###Design
+![US202-SD](docs/Sprint 2/US202/US202-SD.svg)
+![US202-CD](docs/Sprint 2/US202/US202-CD.svg)
+###Implementation
+
+####Test Description
+
+---
+
 ##Domain Model
 
 ![Domain Model](docs/DM.svg)
