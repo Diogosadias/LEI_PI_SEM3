@@ -241,7 +241,7 @@ public class BSTTest {
     public void findtest(){
         BST<Integer> bst = new BST();
         int i = 0,j=1,l=-1;
-        assertNull(bst.find(bst.root(),i));
+        assertNull(bst.find(null,i));
         bst.insert(i);
         bst.insert(l);
         BST.Node <Integer> node = new BST.Node(l,null,null);
