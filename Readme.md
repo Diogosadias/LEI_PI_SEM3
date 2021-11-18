@@ -90,6 +90,20 @@ By the description provided by the client they will want to have this implemente
 ####Test Description
 
 ---
+
+
+##US206 <a name="us206"></a>
+###Analysis
+![US206-SSD](docs/Sprint 2/US206/US206-SSD.svg)
+![US206-MD](docs/Sprint 2/US206/US206-MD.svg)
+###Design
+![US206-SD](docs/Sprint 2/US206/US206-SD.svg)
+![US206-CD](docs/Sprint 2/US206/US206-CD.svg)
+###Implementation
+
+####Test Description
+
+---
 ##Domain Model
 
 ![Domain Model](docs/DM.svg)
