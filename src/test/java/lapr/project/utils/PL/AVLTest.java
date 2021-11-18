@@ -161,27 +161,18 @@ public class AVLTest {
         instance.remove(4);
         instance.remove(1);
 
-        inorder1= new Integer[]{2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 21, 22, 23};
+        for (int i=0; i<arr.length-1; i++)            //new elements
+            instance.remove(arr[i]);
+        inorder1= new Integer[]{14};
         lExpected = Arrays.asList(inorder1);
         assertEquals("inOrder should be "+lExpected.toString(), lExpected, instance.inOrder());
 
+        BST.Node no = new BST.Node(1,null ,null );
+        assertEquals(no,instance.balanceNode(no));
+        assertNull(instance.balanceNode(null));
 
 
     }
 
-    /**
-     * Test BalanceNode
-     */
-    @Test
-    public void testBalanceNode(){
-        BST.Node no = new BST.Node(1,null,null);
-        BST.Node no1 = new BST.Node(2,null,null);
-        BST.Node no2 = new BST.Node(3,null,null);
-        AVL arvore = new AVL();
-        assertEquals(no,arvore.balanceNode(no));
-        assertEquals(no2,arvore.balanceNode(no2));
-        assertEquals(no1,arvore.balanceNode(no1));
-        assertNull(arvore.balanceNode(null));
 
-    }
 }
