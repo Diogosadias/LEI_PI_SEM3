@@ -1,5 +1,6 @@
 package lapr.project.utils.PL;
 
+import java.io.IOException;
 import java.util.*;
 
 
@@ -226,7 +227,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
    * Returns an iterable collection of elements of the tree, reported in pre-order.
    * @return iterable collection of the tree's elements reported in pre-order
    */
-    public Iterable<E> preOrder(){
+    public Iterable<E> preOrder() throws IOException {
         List<E> snapshot = new ArrayList<>();
         if (root!=null)
             preOrderSubtree(root, snapshot);   // fill the snapshot recursively
@@ -238,9 +239,9 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
    * @param node       Node serving as the root of a subtree
    * @param snapshot  a list to which results are appended
    */
-    private void preOrderSubtree(Node<E> node, List<E> snapshot) {
-        if (node == null)
-            return;
+    private void preOrderSubtree(Node<E> node, List<E> snapshot) throws IOException {
+        if (node == null) throw new IOException("Node is Null!");
+
         snapshot.add(node.getElement());
         preOrderSubtree(node.getLeft(),snapshot);
         preOrderSubtree(node.getRight(), snapshot);

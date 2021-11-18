@@ -5,6 +5,7 @@
  */
 package lapr.project.utils.PL;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public interface BSTInterface<E> {
     
     public E smallestElement();
     public Iterable<E> inOrder();
-    public Iterable<E> preOrder();
+    public Iterable<E> preOrder() throws IOException;
     public Iterable<E> posOrder();
     public Map<Integer,List<E>> nodesByLevel();
 
