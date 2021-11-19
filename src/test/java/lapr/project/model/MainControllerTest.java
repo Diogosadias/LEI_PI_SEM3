@@ -8,7 +8,7 @@ package lapr.project.model;
 import java.io.IOException;
 import lapr.project.controller.MainController;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  *

@@ -1,7 +1,7 @@
 package lapr.project.model;
 
 import lapr.project.controller.MainController;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -12,6 +12,13 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ImportTest {
+
+    @Test
+    public void testReadLine() {
+        assertThrows(IOException.class, () -> readLine("", null, new IMOTree(), new CallSignTree()), "Expected readLine to throw IOException but it didn't");
+        assertThrows(IOException.class, () -> readLine("", new MMSTree(), null, new CallSignTree()), "Expected readLine to throw IOException but it didn't");
+        assertThrows(IOException.class, () -> readLine("", new MMSTree(), new IMOTree(), null), "Expected readLine to throw IOException but it didn't");
+    }
 
     @Test
     public void ensureImportParametresisNotNull() throws IOException {
@@ -43,10 +50,4 @@ public class ImportTest {
         assertTrue(ship.distPorts(ship.getArrival(), ship.getdeparture()));
     }
 
-    @Test
-    public void testReadLine() {
-        assertThrows(IOException.class, () -> readLine("", null, new IMOTree(), new CallSignTree()), "Expected readLine to throw IOException but it didn't");
-        assertThrows(IOException.class, () -> readLine("", new MMSTree(), null, new CallSignTree()), "Expected readLine to throw IOException but it didn't");
-        assertThrows(IOException.class, () -> readLine("", new MMSTree(), new IMOTree(), null), "Expected readLine to throw IOException but it didn't");
-    }
 }

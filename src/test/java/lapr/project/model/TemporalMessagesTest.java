@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
