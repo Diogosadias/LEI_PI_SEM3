@@ -8,14 +8,10 @@ import static lapr.project.model.TemporalMessages.getDate;
 
 public class Import {
 
-    //in.hasNextline();
-    //String line = in.nexLine();    
-    //String[] iteams = line.split(",");
-    // ir ao main controleer fazer com que la leve o name file depois da ai posso dar hook up com as 3 trees e depois so tenho de fazer o codigo de import 
-    private String SafeWord;
+    ;
 
     public static List<ShipTree> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
-                if (MMSI == null ||CallSign == null||IMO == null ) {
+        if (MMSI == null || CallSign == null || IMO == null) {
             throw new IOException("Input is Invalid!");
         }
 
@@ -30,7 +26,7 @@ public class Import {
             String line = in.nextLine();
             String[] iteams = line.split(",");
 
-            if (keyMMSI.compareTo(iteams[0])!=0) {
+            if (keyMMSI.compareTo(iteams[0]) != 0) {
 
                 keyMMSI = iteams[0];
                 keyIMO = iteams[8];
@@ -47,21 +43,17 @@ public class Import {
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
 
-
-            MMSI.getShip(keyMMSI).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]),iteams[14], iteams[15]));
-            IMO.getShip(keyIMO).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]),iteams[14], iteams[15]));
-            CallSign.getShip(keyCallsign).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14],iteams[15]));
-
+            MMSI.getShip(keyMMSI).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14], iteams[15]));
+            IMO.getShip(keyIMO).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14], iteams[15]));
+            CallSign.getShip(keyCallsign).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14], iteams[15]));
 
         }
-
-
 
         List<ShipTree> map = new ArrayList();
         map.add(MMSI);
         map.add(IMO);
         map.add(CallSign);
-
+        in.close();
         return map;
 
     }
