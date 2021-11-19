@@ -5,10 +5,11 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static lapr.project.model.TemporalMessages.getDate;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+
 
 public class SummaryTest {
 
@@ -495,7 +496,7 @@ public class SummaryTest {
         assertEquals(expectedResult, result);
     }
     
-            @Test
+    @Test
     void ensureTravelledDistance() throws IOException {
         //Arrange
 
