@@ -49,5 +49,5 @@ public class ImportTest {
         assertEquals(ship.getArrival(), ship.getdeparture());
         assertTrue(ship.distPorts(ship.getArrival(), ship.getdeparture()));
     }
-
+//gmaer
 }
