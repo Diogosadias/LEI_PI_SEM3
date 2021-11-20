@@ -16,7 +16,7 @@ class TemporalMessagesTest {
      * Ensure Time is correctly inputted
      */
     @Test
-    void testGetDate() throws IOException {
+   public void testGetDate() throws IOException {
         //Arrange
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime expectedResult = LocalDateTime.parse("01/02/2021 10:10", format);
@@ -31,7 +31,7 @@ class TemporalMessagesTest {
      * Ensure BaseDateTime is Working
      */
     @Test
-    void testBaseDateTime() throws IOException {
+   public void testBaseDateTime() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         TemporalMessages shipmov1 = new TemporalMessages(getDate("31/12/2020 17:19"), 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
@@ -58,7 +58,7 @@ class TemporalMessagesTest {
      * Ensure latitude is Working
      */
     @Test
-    void testLatitude() throws IOException {
+     public void testLatitude() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 17:19", -90, -66.97001, 12.9, 13.1, 355, "NA", "B");
@@ -82,7 +82,7 @@ class TemporalMessagesTest {
      * Ensure longitude is Working
      */
     @Test
-    void testLongitude() throws IOException {
+   public void testLongitude() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 17:19", 42.97875, -180, 12.9, 13.1, 355, "NA", "B");
@@ -106,7 +106,7 @@ class TemporalMessagesTest {
      * Ensure sog is Working
      */
     @Test
-    void testsog() throws IOException {
+     public void testsog() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         //Act
@@ -125,7 +125,7 @@ class TemporalMessagesTest {
      * Ensure cog is Working
      */
     @Test
-    void testcog() throws IOException {
+    public void testcog() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 0, 355, "NA", "B");
@@ -149,7 +149,7 @@ class TemporalMessagesTest {
      * Ensure Heading is Working
      */
     @Test
-    void testheading() throws IOException {
+    public void testheading() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         TemporalMessages shipmov1 = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 0, "NA", "B");
@@ -173,7 +173,7 @@ class TemporalMessagesTest {
      * Ensure Position is Working
      */
     @Test
-    void testPosition() throws IOException {
+    public void testPosition() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         //Act
@@ -192,7 +192,7 @@ class TemporalMessagesTest {
      * Ensure TransceiverClass is Working
      */
     @Test
-    void testTrasnceiverClass() throws IOException {
+   public  void testTrasnceiverClass() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         //Act
@@ -211,7 +211,7 @@ class TemporalMessagesTest {
      * Ensure Compare to is Working
      */
     @Test
-    void testCompareto() throws IOException {
+   public  void testCompareto() throws IOException {
         //Arrange
         TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         TemporalMessages shipmov1 = new TemporalMessages("01/01/2021 17:19", 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
@@ -226,7 +226,7 @@ class TemporalMessagesTest {
      * Ensure data is valid by Business Standard
      */
     @Test
-    void ensureValidation() throws IOException {
+    public void ensureValidation() throws IOException {
         try {
             TemporalMessages shipmov = new TemporalMessages((String) null, 42.97875, -66.97001, 12.9, 13.1, 355, "NA", "B");
         } catch (IOException ex) {

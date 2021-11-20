@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.List;
 import static lapr.project.model.Import.readLine;
 import lapr.project.controller.MainController.*;
+import org.junit.jupiter.api.Assertions;
+
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -21,15 +23,19 @@ public class ImportTest {
     }
 
     @Test
-    public void ensureImportParametresisNotNull() throws IOException {
+    public void ensureImportParametresisNotNull() {
         //Arrange
         //Act
         //Assert
-        try {
+
+        Exception exception = assertThrows(IOException.class, () -> {
             List<ShipTree> result = readLine(null, null, null, null);
-        } catch (IOException ex) {
-            System.out.println("Input is Invalid!");
-        }
+        });
+
+        String expectedMessage = "Input";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test

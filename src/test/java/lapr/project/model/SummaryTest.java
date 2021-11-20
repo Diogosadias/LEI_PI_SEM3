@@ -5,7 +5,9 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static lapr.project.model.TemporalMessages.getDate;
 import static org.junit.Assert.assertEquals;
@@ -20,13 +22,13 @@ public class SummaryTest {
         //Act
         String expectedResult = "211331640";
         //Assert
-        assertEquals(expectedResult, s.getMMSI());
+        Assertions.assertEquals(expectedResult, s.getMMSI());
 
         //Act
         expectedResult = "211331640";
         s.setMMSI(expectedResult);
         //Assert
-        assertEquals(expectedResult, s.getMMSI());
+        Assertions.assertEquals(expectedResult, s.getMMSI());
     }
 
     @Test
@@ -36,13 +38,13 @@ public class SummaryTest {
         //Act
         String expectedResult = "SEOUL EXPRESS";
         //Assert
-        assertEquals(expectedResult, s.getVesselName());
+        Assertions.assertEquals(expectedResult, s.getVesselName());
 
         //Act
         expectedResult = "SEOUL EXPRESS";
         s.setVesselName(expectedResult);
         //Assert
-        assertEquals(expectedResult, s.getVesselName());
+        Assertions.assertEquals(expectedResult, s.getVesselName());
     }
 
     @Test
@@ -52,13 +54,13 @@ public class SummaryTest {
         //Act
         String expectedResult = "IMO9193305";
         //Assert
-        assertEquals(expectedResult, s.getIMO());
+        Assertions.assertEquals(expectedResult, s.getIMO());
 
         //Act
         expectedResult = "IMO9193305";
         s.setIMO(expectedResult);
         //Assert
-        assertEquals(expectedResult, s.getIMO());
+        Assertions.assertEquals(expectedResult, s.getIMO());
     }
 
     @Test
@@ -68,29 +70,29 @@ public class SummaryTest {
         //Act
         String expectedResult = "DHBN";
         //Assert
-        assertEquals(expectedResult, s.getCallSign());
+        Assertions.assertEquals(expectedResult, s.getCallSign());
 
         //Act
         expectedResult = "DHBN";
         s.setCallSign(expectedResult);
         //Assert
-        assertEquals(expectedResult, s.getCallSign());
+        Assertions.assertEquals(expectedResult, s.getCallSign());
     }
 
     @Test
-    void testVesselType() throws IOException {
+     void testVesselType() throws IOException {
         //Arrange
         Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         int expectedResult = 70;
         //Assert
-        assertEquals(expectedResult, s.getVesselType());
+        Assertions.assertEquals(expectedResult, s.getVesselType());
 
         //Act
         expectedResult = 70;
         s.setVesselType(expectedResult);
         //Assert
-        assertEquals(expectedResult, s.getVesselType());
+        Assertions.assertEquals(expectedResult, s.getVesselType());
     }
 
     @Test
@@ -100,13 +102,7 @@ public class SummaryTest {
         //Act
         int expectedResult = 294;
         //Assert
-        assertEquals(expectedResult, s.getLength());
-
-        //Act
-        expectedResult = 294;
-        s.setLength(expectedResult);
-        //Assert
-        assertEquals(expectedResult, s.getLength());
+        Assertions.assertEquals(expectedResult, s.getLength());
     }
 
     @Test
@@ -116,13 +112,7 @@ public class SummaryTest {
         //Act
         int expectedResult = 32;
         //Assert
-        assertEquals(expectedResult, s.getWidth());
-
-        //Act
-        expectedResult = 32;
-        s.setWidth(expectedResult);
-        //Assert
-        assertEquals(expectedResult, s.getWidth());
+        Assertions.assertEquals(expectedResult, s.getWidth());
     }
 
     @Test
@@ -132,13 +122,13 @@ public class SummaryTest {
         //Act
         double expectedResult = 13.6;
         //Assert
-        assertEquals(expectedResult, s.getDraft());
+        Assertions.assertEquals(expectedResult, s.getDraft());
 
         //Act
         expectedResult = 13.6;
         s.setDraft(expectedResult);
         //Assert
-        assertEquals(expectedResult, s.getDraft());
+        Assertions.assertEquals(expectedResult, s.getDraft());
     }
 
     @Test
@@ -147,14 +137,9 @@ public class SummaryTest {
         Ship s = new Ship("211331640", "SEOUL EXPRESS", "IMO9193305", "DHBN", 70, 294, 32, 13.6, "NA");
         //Act
         String expectedResult = "NA";
-        //Assert
-        assertEquals(expectedResult, s.getCargo());
-
-        //Act
-        expectedResult = "NA";
         s.setCargo(expectedResult);
         //Assert
-        assertEquals(expectedResult, s.getCargo());
+        Assertions.assertEquals(expectedResult,s.getCargo());
     }
 
     @Test
@@ -178,7 +163,7 @@ public class SummaryTest {
         double expectedResult = 13.780000000000001;
         double result = ship.getMeanSOG();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult,result);
     }
 
     @Test
@@ -202,7 +187,7 @@ public class SummaryTest {
         double expectedResult = 16;
         double result = ship.getMeanCOG();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult,result);
     }
 
     @Test
@@ -226,7 +211,7 @@ public class SummaryTest {
         double expectedResult = 17.2;
         double result = ship.getMaxSOG();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult,result);
     }
 
     @Test
@@ -250,11 +235,11 @@ public class SummaryTest {
         double expectedResult = 17.4;
         double result = ship.getMaxCOG();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult,result);
     }
 
     @Test
-    void ensureDepartureLatitude() throws IOException {
+     void ensureDepartureLatitude() throws IOException {
         //Arrange
 
         //Act
@@ -274,7 +259,7 @@ public class SummaryTest {
         double expectedResult = 42.97875;
         double result = ship.getDepartureLatitude();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult,result);
     }
 
     @Test
@@ -298,11 +283,11 @@ public class SummaryTest {
         double expectedResult = -66.97001;
         double result = ship.getDepartureLongitude();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult, result);
     }
 
     @Test
-    void ensureArrivalLatitude() throws IOException {
+     void ensureArrivalLatitude() throws IOException {
         //Arrange
 
         //Act
@@ -322,7 +307,7 @@ public class SummaryTest {
         double expectedResult = 62.81971;
         double result = ship.getArrivalLatitude();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult,result);
     }
 
     @Test
@@ -346,7 +331,7 @@ public class SummaryTest {
         double expectedResult = -68.33132;
         double result = ship.getArrivalLongitude();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult, result);
     }
 
     @Test
@@ -370,7 +355,7 @@ public class SummaryTest {
         LocalDateTime expectedResult = getDate("31/12/2020 01:09");
         LocalDateTime result = ship.getStartBaseDateTime();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult, result);
     }
 
     @Test
@@ -394,7 +379,7 @@ public class SummaryTest {
         LocalDateTime expectedResult = getDate("31/12/2020 23:32");
         LocalDateTime result = ship.getEndBaseDateTime();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult, result);
     }
 
     @Test
@@ -443,9 +428,10 @@ public class SummaryTest {
          expectedResult = expectedResult.plusMinutes(23);
         Duration result = ship.getTotalMovementTime();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult, result);
     }
-        @Test
+
+    @Test
     void ensureCompareToIMO() throws IOException {
         //Arrange
         Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
@@ -455,24 +441,26 @@ public class SummaryTest {
         int expectedResult = ship.getIMO().compareTo(ship1.getIMO());
         
         //Assert
-         assertEquals(expectedResult,ship.compareToIMO(ship1));
+         Assertions.assertEquals(expectedResult,ship.compareToIMO(ship1));
         
     }
-    
-            @Test
+
+    @Test
     void ensureCompareToCallSign() throws IOException {
         //Arrange
         Ship ship = new Ship("211331640", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         Ship ship1 = new Ship("224871721", "VARAMO", "IMO7982712", "K6U1N", 79, 126, 23, 2.5, "NA");
-        
+
         //Act
         int expectedResult = ship.getCallSign().compareTo(ship1.getCallSign());
-        
+
         //Assert
-         assertEquals(expectedResult,ship.compareToCallSign(ship1));
-        
+        Assertions.assertEquals(expectedResult, ship.compareToCallSign(ship1));
+
+
     }
-        @Test
+
+    @Test
     void ensureDeltaDistance() throws IOException {
         //Arrange
 
@@ -493,7 +481,7 @@ public class SummaryTest {
         double expectedResult = 7450.089918639114;
         double result = ship.getDeltaDistance();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult, result);
     }
     
     @Test
@@ -517,6 +505,6 @@ public class SummaryTest {
         double expectedResult = 17648.239898955795;
         double result = ship.getTravelledDistance();
         //Assert
-        assertEquals(expectedResult, result);
+        Assertions.assertEquals(expectedResult, result);
     }
 }

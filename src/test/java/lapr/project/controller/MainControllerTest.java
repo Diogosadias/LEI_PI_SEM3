@@ -48,30 +48,30 @@ class MainControllerTest {
     }
 
     @Test
-    void testimportFile() {
+    public void testimportFile() {
     }
 
     @Test
-    void testsearchDetails() {
+    public void testsearchDetails() {
     }
 
     @Test
-    void testsearchDate() {
+    public void testsearchDate() {
     }
 
     @Test
-    void testSearchDate() {
+    public void testSearchDate() {
     }
 
     @Test
-    void testsummary() {
+    public void testsummary() {
     }
 
     @Test
-    void testgetTopN() {
+    public void testgetTopN() {
     }
 
     @Test
-    void testpairsofShips() {
+    public void testpairsofShips() {
     }
 }

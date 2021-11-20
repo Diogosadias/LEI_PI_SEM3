@@ -12,7 +12,7 @@ class PairsCalculatorTest {
     ShipTree mmsiTree = new ShipTree();
 
     @Test
-    void testpairs() {
+    public void testpairs() {
         PairsCalculator pair = new PairsCalculator(mmsiTree);
         assertEquals(pair.gettree(),mmsiTree);
     }
