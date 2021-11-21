@@ -110,7 +110,6 @@ public class ImportTest {
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
-
     }
 
 }

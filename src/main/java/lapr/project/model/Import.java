@@ -16,51 +16,52 @@ public class Import {
     }
 
     public static List<ShipTree> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
-        if (MMSI == null || CallSign == null || IMO == null) {
-            throw new IOException("Input is Invalid!");
-        }
+         if (MMSI != null && CallSign != null && IMO != null) {
+             String keyMMSI = "";
+             String keyIMO = "";
+             String keyCallsign = "";
 
-        String keyMMSI = "";
-        String keyIMO = "";
-        String keyCallsign = "";
+             Scanner in = new Scanner(new File(FileName));
+             in.nextLine();
 
-        Scanner in = new Scanner(new File(FileName));
-        in.nextLine();
+             if (in.ioException() == null) {
+                 while (in.hasNext()) {
+                     String line = in.nextLine();
+                     String[] iteams = line.split(",");
 
-        while (in.hasNext()) {
-            String line = in.nextLine();
-            String[] iteams = line.split(",");
+                     if (keyMMSI.compareTo(iteams[0]) != 0) {
 
-            if (keyMMSI.compareTo(iteams[0]) != 0) {
+                         keyMMSI = iteams[0];
+                         keyIMO = iteams[8];
+                         keyCallsign = iteams[9];
 
-                keyMMSI = iteams[0];
-                keyIMO = iteams[8];
-                keyCallsign = iteams[9];
+                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                         Ship ship = new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]);
 
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                Ship ship = new Ship(iteams[0], iteams[7], iteams[8], iteams[9], Integer.parseInt(iteams[10]), Integer.parseInt(iteams[11]), Integer.parseInt(iteams[12]), Double.parseDouble(iteams[13]), iteams[14]);
+                         MMSI.insert(ship);
 
-                MMSI.insert(ship);
+                         IMO.insert(ship);
 
-                IMO.insert(ship);
+                         CallSign.insert(ship);
+                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                     }
 
-                CallSign.insert(ship);
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            }
+                     MMSI.getShip(keyMMSI).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14], iteams[15]));
+                     IMO.getShip(keyIMO).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14], iteams[15]));
+                     CallSign.getShip(keyCallsign).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14], iteams[15]));
 
-            MMSI.getShip(keyMMSI).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14], iteams[15]));
-            IMO.getShip(keyIMO).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14], iteams[15]));
-            CallSign.getShip(keyCallsign).getMovements().insert(new TemporalMessages(getDate(iteams[1]), Double.parseDouble(iteams[2]), Double.parseDouble(iteams[3]), Double.parseDouble(iteams[4]), Double.parseDouble(iteams[5]), Double.parseDouble(iteams[6]), iteams[14], iteams[15]));
+                 }
+             }
+                 List<ShipTree> map = new ArrayList();
+                 map.add(MMSI);
+                 map.add(IMO);
+                 map.add(CallSign);
+                 in.close();
+                 return map;
 
-        }
+             }
 
-        List<ShipTree> map = new ArrayList();
-        map.add(MMSI);
-        map.add(IMO);
-        map.add(CallSign);
-        in.close();
-        return map;
-
+        else throw new IOException("Input is Invalid!");
     }
 
 }
