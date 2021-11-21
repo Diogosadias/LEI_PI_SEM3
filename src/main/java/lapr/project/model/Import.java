@@ -3,12 +3,17 @@ package lapr.project.model;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Logger;
 
 import static lapr.project.model.TemporalMessages.getDate;
 
 public class Import {
 
-    ;
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    public Import() {
+        // Only to import text files
+    }
 
     public static List<ShipTree> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
         if (MMSI == null || CallSign == null || IMO == null) {
@@ -59,7 +64,6 @@ public class Import {
     }
 
 }
-
 //0 MMSI
 //1 BaseDateTime
 //2 LAT
@@ -68,7 +72,7 @@ public class Import {
 //5 COG
 //6 Heading
 //7 VesselName
-//8 IMO
+//8 imo
 //9 CallSign
 //10  VesselType
 //11 Length

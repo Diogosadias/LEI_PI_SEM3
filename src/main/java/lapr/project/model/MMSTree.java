@@ -12,6 +12,10 @@ package lapr.project.model;
  */
 public class MMSTree<E extends Comparable<E>> extends ShipTree<Ship> {
 
+    public MMSTree() {
+
+    }
+
     public Ship getShip(Object code){
         return find((String) code,root());
     }

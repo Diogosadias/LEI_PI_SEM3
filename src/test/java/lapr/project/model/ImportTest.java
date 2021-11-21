@@ -1,17 +1,14 @@
 package lapr.project.model;
 
-import lapr.project.controller.MainController;
 import org.junit.Test;
 
 import java.io.IOException;
 
-import java.util.List;
 import static lapr.project.model.Import.readLine;
-import lapr.project.controller.MainController.*;
-import org.junit.jupiter.api.Assertions;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.*;
 
 public class ImportTest {
 
@@ -55,5 +52,65 @@ public class ImportTest {
         assertEquals(ship.getArrival(), ship.getdeparture());
         assertTrue(ship.distPorts(ship.getArrival(), ship.getdeparture()));
     }
-//gmaer
+
+    @Test
+    public void testIfTemporalMessagesnull() throws IOException {
+        Ship ship = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+        String t = ship.toString();
+        assertEquals(t, ship.toString());
+        t = ship.print(22.0);
+
+        assertEquals(ship.print(22.0), t);
+
+        assertFalse(ship.checkproximity(null));
+        assertFalse(ship.checkproximity(ship));
+
+        TemporalMessages shipmov = new TemporalMessages();
+        ship.getMovements().insert(shipmov);
+        assertEquals(ship.getArrival(), ship.getdeparture());
+        assertTrue(ship.distPorts(ship.getArrival(), ship.getdeparture()));
+
+    }
+
+    @Test
+    public void ensureMMSItreeNotNull(){
+
+        Exception exception = assertThrows(IOException.class, () -> {
+            List<ShipTree> result = readLine("", null, new IMOTree(), new CallSignTree());
+        });
+
+        String expectedMessage = "Input";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+
+    }
+
+    @Test
+    public void ensureIMONotNull(){
+
+        Exception exception = assertThrows(IOException.class, () -> {
+            List<ShipTree> result = readLine("", new MMSTree(), null, new CallSignTree());
+        });
+
+        String expectedMessage = "Input";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void ensureCallSignNotNull(){
+
+        Exception exception = assertThrows(IOException.class, () -> {
+            List<ShipTree> result = readLine("", new MMSTree(), new IMOTree(), null);
+        });
+
+        String expectedMessage = "Input";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+
+    }
+
 }
