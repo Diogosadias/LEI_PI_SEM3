@@ -112,4 +112,27 @@ public class ImportTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    @Test
+    public void ensureMMSIisNotEmpty(){
+        Exception exception = assertThrows(IOException.class, () -> {
+            List<ShipTree> result = readLine("Testfile", new MMSTree(), new IMOTree(), new CallSignTree());
+        });
+
+        String expectedMessage = "Input";
+        String actualMessage = exception.getMessage();
+
+        assertFalse(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void ensureFileIsNotEmpty(){
+        Exception exception = assertThrows(IOException.class, () -> {
+            List<ShipTree> result = readLine("sships.csv", new MMSTree(), new IMOTree(), new CallSignTree());
+        });
+
+        String expectedMessage = "Input";
+        String actualMessage = exception.getMessage();
+
+        assertFalse(actualMessage.contains(expectedMessage));
+    }
 }

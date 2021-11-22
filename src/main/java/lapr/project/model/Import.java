@@ -29,7 +29,7 @@ public class Import {
                      String line = in.nextLine();
                      String[] iteams = line.split(",");
 
-                     if (keyMMSI.compareTo(iteams[0]) != 0) {
+                     if (keyMMSI.equals(iteams[0])) {
 
                          keyMMSI = iteams[0];
                          keyIMO = iteams[8];
