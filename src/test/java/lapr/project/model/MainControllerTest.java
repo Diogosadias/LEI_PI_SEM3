@@ -6,18 +6,18 @@
 package lapr.project.model;
 
 import java.io.IOException;
-
 import lapr.project.controller.MainController;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
+ *
  * @author diasd
  */
 public class MainControllerTest {
 
     @Test
-    public void ensureSearchDetailsisNotNull() throws IOException {
+    void ensureSearchDetailsisNotNull() throws IOException {
 
         MainController main = new MainController();
         //Act
@@ -30,7 +30,7 @@ public class MainControllerTest {
     }
 
     @Test
-     public void ensureSearchDateisNotNull() throws IOException {
+    void ensureSearchDateisNotNull() throws IOException {
 
         MainController main = new MainController();
         //Act
@@ -43,7 +43,7 @@ public class MainControllerTest {
     }
 
     @Test
-    public void ensureSearchDate2isNotNull() throws IOException {
+    void ensureSearchDate2isNotNull() throws IOException {
 
         MainController main = new MainController();
         //Act
@@ -56,7 +56,7 @@ public class MainControllerTest {
     }
 
     @Test
-    public void ensureSummaryisNotNull() throws IOException {
+    void ensureSummaryisNotNull() throws IOException {
 
         MainController main = new MainController();
         //Act
@@ -69,7 +69,7 @@ public class MainControllerTest {
     }
 
     @Test
-    public void ensureGetTopNisNotNull() throws IOException {
+    void ensureGetTopNisNotNull() throws IOException {
 
         MainController main = new MainController();
         //Act

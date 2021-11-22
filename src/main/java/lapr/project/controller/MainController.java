@@ -1,19 +1,22 @@
 package lapr.project.controller;
 
 import lapr.project.model.*;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.*;
-import java.util.logging.Logger;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 import static lapr.project.model.TemporalMessages.getDate;
 
 public class MainController {
 
-    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     public void setMmsiTree(MMSTree mmsiTree) {
         this.mmsiTree = mmsiTree;
     }
+
+
 
     private MMSTree mmsiTree = new MMSTree();
     private IMOTree imoTree = new IMOTree();

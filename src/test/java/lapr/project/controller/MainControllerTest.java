@@ -3,12 +3,13 @@ package lapr.project.controller;
 import lapr.project.model.MMSTree;
 import lapr.project.model.Ship;
 import lapr.project.model.ShipTree;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 
 import static lapr.project.model.TemporalMessages.getDate;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MainControllerTest {
     private String code1="211331640";
@@ -48,30 +49,30 @@ class MainControllerTest {
     }
 
     @Test
-    public void testimportFile() {
+    void testimportFile() {
     }
 
     @Test
-    public void testsearchDetails() {
+    void testsearchDetails() {
     }
 
     @Test
-    public void testsearchDate() {
+    void testsearchDate() {
     }
 
     @Test
-    public void testSearchDate() {
+    void testSearchDate() {
     }
 
     @Test
-    public void testsummary() {
+    void testsummary() {
     }
 
     @Test
-    public void testgetTopN() {
+    void testgetTopN() {
     }
 
     @Test
-    public void testpairsofShips() {
+    void testpairsofShips() {
     }
 }

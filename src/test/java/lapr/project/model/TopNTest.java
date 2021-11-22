@@ -13,7 +13,7 @@ class TopNTest {
      * Ensure Constructor can't be null
      */
     @Test
-   public void testgetTop() throws IOException {
+    void testgetTop() throws IOException {
         try{
             TopN top = new TopN(null);
         }catch (IOException ex){
@@ -28,7 +28,7 @@ class TopNTest {
      * Get Ships from specific date Range Moves
      */
     @Test
-   public void ensuredaterangeworks() throws IOException {
+    void ensuredaterangeworks() throws IOException {
 
         ShipTree mmsiTree =new ShipTree();
         Ship ship = new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");

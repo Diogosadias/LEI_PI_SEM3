@@ -1,18 +1,16 @@
 package lapr.project.model;
 
-
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PairsCalculatorTest {
     ShipTree mmsiTree = new ShipTree();
 
     @Test
-    public void testpairs() {
+    void testpairs() {
         PairsCalculator pair = new PairsCalculator(mmsiTree);
         assertEquals(pair.gettree(),mmsiTree);
     }

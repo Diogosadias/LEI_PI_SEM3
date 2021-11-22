@@ -44,9 +44,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
       } 
 
     //----------- end of nested Node class -----------
-
-
-
+    
     protected Node<E> root = null;     // root of the tree
 
     

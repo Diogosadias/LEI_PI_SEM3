@@ -1,7 +1,7 @@
 package lapr.project.model;
 
 import oracle.ucp.util.Pair;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -13,8 +13,7 @@ import java.util.List;
 
 
 import static lapr.project.model.TemporalMessages.getDate;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * PositionOrganized Class Unit Testing.
