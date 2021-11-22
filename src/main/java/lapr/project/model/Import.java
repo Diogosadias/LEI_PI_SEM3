@@ -16,7 +16,7 @@ public class Import {
     }
 
     public static List<ShipTree> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {
-         if (MMSI != null && CallSign != null && IMO != null) {
+         if (MMSI != null && CallSign != null && IMO != null && FileName != null) {
              String keyMMSI = "";
              String keyIMO = "";
              String keyCallsign = "";

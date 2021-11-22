@@ -36,6 +36,28 @@ public class ImportTest {
     }
 
     @Test
+    public void ensureFileIsNotNull() {
+        //Arrange
+        //Act
+        //Assert
+
+         String actualMessage = "";
+
+       try {
+           List<ShipTree> result = readLine(null, new MMSTree(), new IMOTree(), new CallSignTree());
+       }
+        catch (IOException ex){
+            actualMessage = ex.getMessage();
+            System.out.println(ex.getMessage());
+        }
+
+        String expectedMessage = "Input is Invalid!";
+
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
     public void testGeneral() throws IOException {
         Ship ship = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
         String t = ship.toString();
