@@ -11,7 +11,7 @@ import static java.lang.Integer.parseInt;
 
 public class ShipTree <E extends Comparable<E>> extends AVL<E> {
     public void ShipTree(){
-
+        //Only extends to other structures
     }
 
     public Ship getShip(Object code) {
