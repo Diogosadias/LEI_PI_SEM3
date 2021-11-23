@@ -10,7 +10,7 @@ import static java.lang.Integer.bitCount;
 import static java.lang.Integer.parseInt;
 
 public class ShipTree <E extends Comparable<E>> extends AVL<E> {
-    public void ShipTree(){
+    public  ShipTree(){
         //Only extends to other structures
     }
 

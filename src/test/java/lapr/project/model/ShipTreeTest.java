@@ -14,4 +14,12 @@ public class ShipTreeTest {
         assertNull(shipTree.getShip(null));
     }
 
+    /***
+     * Ensure verify Codes is working
+     */
+    @Test
+    public void ensurecodes(){
+
+    }
+
 }
