@@ -12,18 +12,18 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
 
 
     public boolean isMMSI(Object code){
+        if(code == null) return false;
         return (isInt(code) && (parseInt(code.toString()) > 99999999 && parseInt(code.toString()) < 1000000000));
 
     }
 
     public boolean isInt(Object code) {
         try{
-            if(code == null) return false;
-            if (code == (Integer) code) return true;
-        } catch (ClassCastException ex){
+            Number n = (Integer) code;
+        }catch (ClassCastException ex){
             return false;
         }
-        return false;
+        return true;
     }
 
     public boolean isISO(Object code) {

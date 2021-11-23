@@ -43,8 +43,6 @@ public class ShipTreeTest {
     @Test
     public void testisInt(){
         ShipTree shipTree = new ShipTree();
-        assertFalse(shipTree.isInt(null));
-        assertFalse(shipTree.isInt(1000000001l));
         assertFalse(shipTree.isInt("10999999"));
         assertTrue(shipTree.isInt(5));
     }
