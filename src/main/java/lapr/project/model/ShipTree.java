@@ -17,13 +17,13 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
     }
 
     private boolean isInt(Object code) {
-        if (code == null) return false;
-        try {
-            Integer.parseInt(code.toString());
-        } catch (NumberFormatException nfe) {
+        try{
+            if(code == null) return false;
+            if (code == (Integer) code) return true;
+        } catch (ClassCastException ex){
             return false;
         }
-        return true;
+        return false;
     }
 
     public boolean isISO(Object code) {
