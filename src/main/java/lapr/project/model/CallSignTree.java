@@ -17,7 +17,7 @@ public class CallSignTree <E extends Comparable<E>> extends ShipTree <Ship> {
     }
 
     public boolean find(Object code) {
-        return (!(getShip(code)==null));
+        return (getShip(code)!=null);
     }
 
     private Ship find(String code, Node<Ship> root) {

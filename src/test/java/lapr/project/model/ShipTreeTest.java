@@ -59,6 +59,19 @@ public class ShipTreeTest {
         assertNull(tree.getShip(210950000));
         assertTrue(tree.find("C4SQ2"));
         assertFalse(tree.find(210950000));
+        Ship sbigger = new Ship("210950001","VARAMO","IMO9395045","D4SQ2",70,166,25,9.5,"NA");
+        tree.insert(sbigger);
+        assertEquals(tree.getShip("D4SQ2"),sbigger);
+        assertNull(tree.getShip(210950001));
+        assertTrue(tree.find("D4SQ2"));
+        assertFalse(tree.find(210950001));
+        Ship ssmaller = new Ship("210949999","VARAMO","IMO9395455","A4SQ2",70,166,25,9.5,"NA");
+        tree.insert(ssmaller);
+        assertEquals(tree.getShip("A4SQ2"),ssmaller);
+        assertNull(tree.getShip(210949999));
+        assertTrue(tree.find("A4SQ2"));
+        assertFalse(tree.find(210949999));
+
     }
 
 }
