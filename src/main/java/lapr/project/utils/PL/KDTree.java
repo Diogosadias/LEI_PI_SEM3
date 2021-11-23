@@ -45,6 +45,8 @@ public class KDTree <E extends Comparable<E>> {
         public int compareY(E element) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
+
+
     }
 
     //----------- end of nested DoubleNode class -----------
