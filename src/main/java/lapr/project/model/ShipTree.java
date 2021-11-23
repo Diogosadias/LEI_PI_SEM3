@@ -14,7 +14,7 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
     public boolean isMMSI(Object code){
         if(isInt(code)) {
             Integer test = parseInt(code.toString());
-            if (test > 99999999 & test < 1000000000) return true;
+            if (test > 99999999 && test < 1000000000) return true;
         }
         return false;
     }
