@@ -77,6 +77,18 @@ By the description provided by the client they will want to have this implemente
 
 ---
 
+##US204 <a name="us204"></a>
+###Analysis
+![US204-SSD](docs/Sprint 2/US204/US204-SSD.jpg)
+![US204-MD](docs/Sprint 2/US204/US204-MD.jpg)
+###Design
+![US204-SD](docs/Sprint 2/US204/US204-SD.svg)
+![US204-CD](docs/Sprint 2/US204/US204-CD.svg)
+###Implementation
+
+####Test Description
+
+---
 
 ##US205 <a name="us205"></a>
 ###Analysis
