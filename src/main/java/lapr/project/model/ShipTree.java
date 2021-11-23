@@ -16,7 +16,7 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
 
     }
 
-    private boolean isInt(Object code) {
+    public boolean isInt(Object code) {
         try{
             if(code == null) return false;
             if (code == (Integer) code) return true;
