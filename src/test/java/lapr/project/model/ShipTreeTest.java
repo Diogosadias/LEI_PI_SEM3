@@ -2,8 +2,7 @@ package lapr.project.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ShipTreeTest {
     /***
@@ -20,7 +19,14 @@ public class ShipTreeTest {
      */
     @Test
     public void ensurecodes(){
-
+        ShipTree shipTree = new ShipTree();
+        assertFalse(shipTree.isMMSI(0));
+        assertFalse(shipTree.isMMSI(99999999));
+        assertFalse(shipTree.isMMSI(1000000000));
+        assertFalse(shipTree.isMMSI(1000000001l));
+        assertTrue(shipTree.isMMSI(109999999));
+        assertFalse(shipTree.isMMSI(null));
+        assertFalse(shipTree.isMMSI(20.5));
     }
 
 }

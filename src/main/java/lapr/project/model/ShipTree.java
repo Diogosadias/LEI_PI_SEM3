@@ -2,11 +2,6 @@ package lapr.project.model;
 
 import lapr.project.utils.PL.AVL;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.TreeMap;
-
-import static java.lang.Integer.bitCount;
 import static java.lang.Integer.parseInt;
 
 public class ShipTree <E extends Comparable<E>> extends AVL<E> {
@@ -18,7 +13,7 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
 
     public boolean isMMSI(Object code){
         if(isInt(code)) {
-            Integer test = parseInt((String) code);
+            Integer test = parseInt(code.toString());
             if (test > 99999999 & test < 1000000000) return true;
         }
         return false;
@@ -29,7 +24,7 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
             return false;
         }
         try {
-            Integer d = Integer.parseInt((String) code);
+            Integer d = Integer.parseInt(code.toString());
         } catch (NumberFormatException nfe) {
             return false;
         }
