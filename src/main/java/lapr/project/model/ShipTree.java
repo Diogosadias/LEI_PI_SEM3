@@ -12,8 +12,8 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
 
 
     public boolean isMMSI(Object code){
-        if(isInt(code) && (parseInt(code.toString()) > 99999999 && parseInt(code.toString()) < 1000000000)) return true;
-        return false;
+        return (isInt(code) && (parseInt(code.toString()) > 99999999 && parseInt(code.toString()) < 1000000000));
+
     }
 
     private boolean isInt(Object code) {
@@ -27,14 +27,12 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
     }
 
     public boolean isISO(Object code) {
-        String test = (String) code;
-        if(test.startsWith("IMO")) return true;
-        return false;
+        String test = code.toString();
+        return test.startsWith("IMO");
     }
 
     public boolean isCS(Object code) {
-        if(!isISO(code) && !isMMSI(code)) return true;
-        return false;
+        return (!isISO(code) && !isMMSI(code));
     }
 
 

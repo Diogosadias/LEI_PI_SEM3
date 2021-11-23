@@ -27,6 +27,14 @@ public class ShipTreeTest {
         assertTrue(shipTree.isMMSI(109999999));
         assertFalse(shipTree.isMMSI(null));
         assertFalse(shipTree.isMMSI(20.5));
+
+        assertFalse(shipTree.isISO(1));
+        assertFalse(shipTree.isISO("asghdkenur"));
+        assertTrue(shipTree.isISO("IMO123456"));
+
+        assertTrue(shipTree.isCS("C4SQ2"));
+        assertFalse(shipTree.isCS("IMO123456"));
+        assertFalse(shipTree.isCS(109999999));
     }
 
 }
