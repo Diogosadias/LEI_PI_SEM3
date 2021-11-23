@@ -124,7 +124,7 @@ public class MainController {
 
     public void getTopN(Object n, String date1, String date2) throws IOException {
         if (n == null) { throw new IOException(s);}
-        if ((int) n >= mmsiTree.size()) {
+        if ((int) n > mmsiTree.size()) {
             throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
         }
         TopN topsum = new TopN(mmsiTree);
