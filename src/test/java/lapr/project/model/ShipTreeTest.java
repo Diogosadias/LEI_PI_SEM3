@@ -47,4 +47,18 @@ public class ShipTreeTest {
         assertTrue(shipTree.isInt(5));
     }
 
+    /***
+     * Test CSTree
+     */
+    @Test
+    public void testCallSign(){
+        CallSignTree tree = new CallSignTree();
+        Ship s = new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
+        tree.insert(s);
+        assertEquals(tree.getShip("C4SQ2"),s);
+        assertNull(tree.getShip(210950000));
+        assertTrue(tree.find("C4SQ2"));
+        assertFalse(tree.find(210950000));
+    }
+
 }
