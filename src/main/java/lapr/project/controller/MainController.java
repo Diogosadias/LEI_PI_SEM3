@@ -128,12 +128,12 @@ public class MainController {
             throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
         }
         TopN topsum = new TopN(mmsiTree);
-        System.out.println(topsum.getTop(n,  getDate(date1),  getDate(date2)));
-        System.out.println(s2);
+        System.err.println(topsum.getTop(n,  getDate(date1),  getDate(date2)));
+        System.err.println(s2);
     }
 
     public void pairsofShips() {
         PairsCalculator pc = new PairsCalculator(mmsiTree);
-        System.out.println(pc.pairs());
+        System.err.println(pc.pairs());
     }
 }

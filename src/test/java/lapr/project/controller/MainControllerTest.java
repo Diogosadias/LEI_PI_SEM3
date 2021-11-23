@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.model.MMSTree;
+import lapr.project.model.PairsCalculator;
 import lapr.project.model.Ship;
 import lapr.project.model.ShipTree;
 import org.junit.jupiter.api.Test;
@@ -152,13 +153,16 @@ class MainControllerTest {
 
     @Test
     void testsummary() {
+        
     }
 
-    @Test
-    void testgetTopN() {
-    }
+
 
     @Test
     void testpairsofShips() {
+        MMSTree tree = new MMSTree();
+        PairsCalculator pc = new PairsCalculator(tree);
+        String test = pc.pairs();
+        assertEquals(test,pc.pairs());
     }
 }
