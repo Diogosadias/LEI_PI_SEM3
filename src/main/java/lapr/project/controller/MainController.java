@@ -2,11 +2,8 @@ package lapr.project.controller;
 
 import lapr.project.model.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 import static lapr.project.model.TemporalMessages.getDate;
 
@@ -28,6 +25,7 @@ public class MainController {
     Mais tarde criar classe Software/APP para armazenar tudo o que é importante
      */
     public MainController() {
+        //Only Initiated
     }
 
     public void importFile(String filename) throws IOException {
