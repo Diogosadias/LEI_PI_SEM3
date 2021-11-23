@@ -13,18 +13,15 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
 
     public boolean isMMSI(Object code){
         if(isInt(code)) {
-            Integer test = parseInt(code.toString());
-            if (test > 99999999 && test < 1000000000) return true;
+            if (parseInt(code.toString()) > 99999999 && parseInt(code.toString()) < 1000000000) return true;
         }
         return false;
     }
 
     private boolean isInt(Object code) {
-        if (code == null) {
-            return false;
-        }
+        if (code == null) return false;
         try {
-            Integer d = Integer.parseInt(code.toString());
+            Integer.parseInt(code.toString());
         } catch (NumberFormatException nfe) {
             return false;
         }
@@ -33,13 +30,12 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
 
     public boolean isISO(Object code) {
         String test = (String) code;
-        if(test.substring(0,3).equals("IMO")) return true;
-        String j=test.substring(0,3);
+        if(test.startsWith("IMO")) return true;
         return false;
     }
 
     public boolean isCS(Object code) {
-        if(!isISO(code) & !isMMSI(code)) return true;
+        if(!isISO(code) && !isMMSI(code)) return true;
         return false;
     }
 
