@@ -3,6 +3,7 @@ package lapr.project.model;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class ShipTreeTest {
     /***
@@ -11,7 +12,7 @@ public class ShipTreeTest {
     @Test
     public void ensurecreationandfetching(){
         ShipTree shipTree = new ShipTree();
-        assertNull(shipTree.getShip(null));
+        assertTrue(shipTree.isEmpty());
     }
 
     /***

@@ -14,10 +14,6 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
         //Only extends to other structures
     }
 
-    public Ship getShip(Object code) {
-        return null;
-    }
-
 
 
     public boolean isMMSI(Object code){
