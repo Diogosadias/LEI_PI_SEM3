@@ -27,8 +27,7 @@ public class ShipTree <E extends Comparable<E>> extends AVL<E> {
     }
 
     public boolean isISO(Object code) {
-        String test = code.toString();
-        return test.startsWith("IMO");
+        return code.toString().startsWith("IMO");
     }
 
     public boolean isCS(Object code) {
