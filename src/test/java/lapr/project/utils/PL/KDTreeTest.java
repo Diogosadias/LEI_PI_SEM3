@@ -3,6 +3,8 @@ package lapr.project.utils.PL;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -23,7 +25,7 @@ public class KDTreeTest {
      * Test empty
      */
     @Test
-    public void testEmpty(){
+    public void testEmpty() throws IOException {
         assertNull(instance.root);
         assertTrue(instance.isEmpty());
         assertNull(instance.root());
@@ -32,7 +34,7 @@ public class KDTreeTest {
     }
 
     @Test
-    public void testDouble(){
+    public void testDouble() throws IOException {
         KDTree.DoubleNode node = new KDTree.DoubleNode(1,null,null);
         assertEquals(1,node.getElement());
         KDTree.DoubleNode nodel = new KDTree.DoubleNode(0,null,null);
@@ -43,5 +45,15 @@ public class KDTreeTest {
         assertEquals(noder.getElement(),node.getRight().getElement());
         node.setElement(5);
         assertEquals(5,node.getElement());
+    }
+
+    @Test
+    public void testDoublecreation() throws IOException {
+        try{
+            new KDTree.DoubleNode<>(null,null,null);
+        }catch (IOException ex){
+            System.out.println("Input is Invalid!");
+        }
+
     }
 }
