@@ -60,7 +60,24 @@ By the description provided by the client they will want to have this implemente
 ![US201-CD](docs/Sprint 2/US201/US201-CD.svg)
 ###Implementation
 
+1. We will need to import the Ports from file
+  1. We will need, for each Port, to verify its values in construction
+  1. We will need to insert Port in Class and use Coordinates to Compare
+1. We will need to add them to Database
+
+
 ####Test Description
+Only information to be presented is success/not success - We need to text this output
+  * Test if Ports where imported successfully!
+      * Added to the Database.
+  * Test if Ports where not imported!
+
+We need to check if 2D-Tree is Balanced:
+  * Test 2DTree Methods
+    * Insert
+    * Remove
+    * Find
+  
 
 ---
 
@@ -115,18 +132,7 @@ By the description provided by the client they will want to have this implemente
 
 ####Test Description
 
-##US202 <a name="us202"></a>
-###Analysis
-![US202-SSD](docs/Sprint 2/US202/US202-SSD.svg)
-![US202-MD](docs/Sprint 2/US202/US202-MD.svg)
-###Design
-![US202-SD](docs/Sprint 2/US202/US202-SD.svg)
-![US202-CD](docs/Sprint 2/US202/US202-CD.svg)
-###Implementation
 
-####Test Description
-
----
 
 ---
 ##Domain Model
