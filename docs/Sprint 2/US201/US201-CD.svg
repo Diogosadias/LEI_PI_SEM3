@@ -42,10 +42,10 @@
       ><path d="M0 0 L0 15 L238 15 L238 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath13"
-      ><path d="M-7 -7 L145 -7 L145 211 L-7 211 L-7 -7 Z"
+      ><path d="M-7 -7 L145 -7 L145 129 L-7 129 L-7 -7 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath14"
-      ><path d="M0 0 L0 185 L134 185 L134 0 Z"
+      ><path d="M0 0 L0 103 L134 103 L134 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath15"
       ><path d="M0 0 L0 15 L134 15 L134 0 Z"
@@ -146,55 +146,35 @@
       >PortImport</text
     ></g
     ><g font-size="11px" transform="translate(2,2)" fill-opacity="1" fill="rgb(122,207,245)" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="rgb(122,207,245)" font-weight="bold" stroke-opacity="1"
-    ><rect x="0" width="134" height="200" y="0" clip-path="url(#clipPath13)" stroke="none"
+    ><rect x="0" width="134" height="118" y="0" clip-path="url(#clipPath13)" stroke="none"
     /></g
     ><g fill-opacity="1" text-rendering="geometricPrecision" stroke="black" stroke-linecap="butt" transform="translate(2,2)" stroke-miterlimit="0" stroke-opacity="1" fill="black" font-weight="bold" font-family="sans-serif" stroke-linejoin="round" font-size="11px" image-rendering="optimizeQuality"
-    ><rect fill="none" x="0" width="134" height="200" y="0" clip-path="url(#clipPath13)"
+    ><rect fill="none" x="0" width="134" height="118" y="0" clip-path="url(#clipPath13)"
       /><line y2="15" fill="none" x1="0" clip-path="url(#clipPath13)" x2="134" y1="15"
     /></g
     ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
     ><text x="2" xml:space="preserve" y="14" clip-path="url(#clipPath14)" stroke="none"
-      >-MMSI : long</text
+      >-id : int</text
     ></g
     ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
     ><text x="2" xml:space="preserve" y="29" clip-path="url(#clipPath14)" stroke="none"
-      >-ShipName : String</text
+      >-name : String</text
     ></g
     ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
     ><text x="2" xml:space="preserve" y="44" clip-path="url(#clipPath14)" stroke="none"
-      >-IMO : String</text
+      >-continent : String</text
     ></g
     ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
     ><text x="2" xml:space="preserve" y="59" clip-path="url(#clipPath14)" stroke="none"
-      >-numGen : int</text
+      >-location : String</text
     ></g
     ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
     ><text x="2" xml:space="preserve" y="74" clip-path="url(#clipPath14)" stroke="none"
-      >-callSign : String</text
-    ></g
-    ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="2" xml:space="preserve" y="89" clip-path="url(#clipPath14)" stroke="none"
-      >-vesselType : int</text
-    ></g
-    ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="2" xml:space="preserve" y="104" clip-path="url(#clipPath14)" stroke="none"
-      >-lenght : double</text
-    ></g
-    ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="2" xml:space="preserve" y="119" clip-path="url(#clipPath14)" stroke="none"
-      >-width : double</text
-    ></g
-    ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="2" xml:space="preserve" y="134" clip-path="url(#clipPath14)" stroke="none"
-      >-capacity : double</text
-    ></g
-    ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="2" xml:space="preserve" y="149" clip-path="url(#clipPath14)" stroke="none"
-      >-draft : double</text
-      ><line stroke-linecap="butt" clip-path="url(#clipPath14)" fill="none" x1="0" x2="134" y1="154" y2="154" stroke-linejoin="bevel" stroke-miterlimit="0"
+      >-country : String</text
+      ><line stroke-linecap="butt" clip-path="url(#clipPath14)" fill="none" x1="0" x2="134" y1="79" y2="79" stroke-linejoin="bevel" stroke-miterlimit="0"
     /></g
     ><g font-size="11px" transform="matrix(1,0,0,1,2,17)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="2" xml:space="preserve" y="168" clip-path="url(#clipPath14)" stroke="none"
+    ><text x="2" xml:space="preserve" y="93" clip-path="url(#clipPath14)" stroke="none"
       >+Port(l)</text
     ></g
     ><g font-size="11px" transform="translate(2,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" font-weight="bold" stroke-opacity="1"
