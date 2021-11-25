@@ -65,8 +65,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
     * @return true if the tree is empty, false otherwise
     */
     public boolean isEmpty(){
-        if(root == null) return true;
-        return false;
+        return root == null;
     }
     
     /**

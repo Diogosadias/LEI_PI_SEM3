@@ -30,6 +30,15 @@ public class BSTTest {
         BST arvore = new BST();
         assertNull(arvore.root);
     }
+    @Test
+    public void testSomething(){
+        BST t = new BST();
+        assertNull(t.root);
+        assertTrue(t.isEmpty());
+        assertNull(t.find(t.root, 1));
+        t.insert(1);
+        assertEquals(t.root.getElement(),new BST.Node(1,null,null).getElement());
+    }
     
     @Before
     public void setUp(){
