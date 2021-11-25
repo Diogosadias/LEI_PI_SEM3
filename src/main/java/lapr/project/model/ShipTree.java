@@ -2,54 +2,36 @@ package lapr.project.model;
 
 import lapr.project.utils.PL.AVL;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.TreeMap;
-
-import static java.lang.Integer.bitCount;
 import static java.lang.Integer.parseInt;
 
 public class ShipTree <E extends Comparable<E>> extends AVL<E> {
-    public void ShipTree(){
-
-    }
-
-    public Ship getShip(Object code) {
-        return null;
+    public  ShipTree(){
+        //Only extends to other structures
     }
 
 
 
     public boolean isMMSI(Object code){
-        if(isInt(code)) {
-            Integer test = parseInt((String) code);
-            if (test > 99999999 & test < 1000000000) return true;
-        }
-        return false;
+        if(code == null) return false;
+        return (isInt(code) && (parseInt(code.toString()) > 99999999 && parseInt(code.toString()) < 1000000000));
+
     }
 
-    private boolean isInt(Object code) {
-        if (code == null) {
-            return false;
-        }
-        try {
-            Integer d = Integer.parseInt((String) code);
-        } catch (NumberFormatException nfe) {
+    public boolean isInt(Object code) {
+        try{
+            Number n = (Integer) code;
+        }catch (ClassCastException ex){
             return false;
         }
         return true;
     }
 
     public boolean isISO(Object code) {
-        String test = (String) code;
-        if(test.substring(0,3).equals("IMO")) return true;
-        String j=test.substring(0,3);
-        return false;
+        return code.toString().startsWith("IMO");
     }
 
     public boolean isCS(Object code) {
-        if(!isISO(code) & !isMMSI(code)) return true;
-        return false;
+        return (!isISO(code) && !isMMSI(code));
     }
 
 

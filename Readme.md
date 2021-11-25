@@ -60,7 +60,24 @@ By the description provided by the client they will want to have this implemente
 ![US201-CD](docs/Sprint 2/US201/US201-CD.svg)
 ###Implementation
 
+1. We will need to import the Ports from file
+  1. We will need, for each Port, to verify its values in construction
+  1. We will need to insert Port in Class and use Coordinates to Compare
+1. We will need to add them to Database
+
+
 ####Test Description
+Only information to be presented is success/not success - We need to text this output
+  * Test if Ports where imported successfully!
+      * Added to the Database.
+  * Test if Ports where not imported!
+
+We need to check if 2D-Tree is Balanced:
+  * Test 2DTree Methods
+    * Insert
+    * Remove
+    * Find
+  
 
 ---
 
@@ -77,6 +94,18 @@ By the description provided by the client they will want to have this implemente
 
 ---
 
+##US204 <a name="us204"></a>
+###Analysis
+![US204-SSD](docs/Sprint 2/US204/US204-SSD.jpg)
+![US204-MD](docs/Sprint 2/US204/US204-MD.jpg)
+###Design
+![US204-SD](docs/Sprint 2/US204/US204-SD.svg)
+![US204-CD](docs/Sprint 2/US204/US204-CD.svg)
+###Implementation
+
+####Test Description
+
+---
 
 ##US205 <a name="us205"></a>
 ###Analysis
@@ -92,16 +121,18 @@ By the description provided by the client they will want to have this implemente
 ---
 
 
-##US206 <a name="us206"></a>
+##US210 <a name="us210"></a>
 ###Analysis
-![US206-SSD](docs/Sprint 2/US206/US206-SSD.svg)
-![US206-MD](docs/Sprint 2/US206/US206-MD.svg)
+![US210-SSD](docs/Sprint 2/US210/US210-SSD.svg)
+![US210-MD](docs/Sprint 2/US210/US210-MD.svg)
 ###Design
-![US206-SD](docs/Sprint 2/US206/US206-SD.svg)
-![US206-CD](docs/Sprint 2/US206/US206-CD.svg)
+![US210-SD](docs/Sprint 2/US210/US210-SD.svg)
+![US210-CD](docs/Sprint 2/US210/US210-CD.svg)
 ###Implementation
 
 ####Test Description
+
+
 
 ---
 ##Domain Model

@@ -24,11 +24,20 @@ public class BSTTest {
     Integer[] preorderT= {20, 15, 10, 8, 7, 13, 17, 40, 30, 50};
     Integer[] posorderT = {7, 8, 13, 10, 17, 15, 30, 50, 40, 20};
     
-    BST<Integer> instance;    
+    BST<Integer> instance;    //Problem with coverage could be from this statement
     @Test
     public void testBSTTest() {
         BST arvore = new BST();
         assertNull(arvore.root);
+    }
+    @Test
+    public void testSomething(){
+        BST t = new BST();
+        assertNull(t.root);
+        assertTrue(t.isEmpty());
+        assertNull(t.find(t.root, 1));
+        t.insert(1);
+        assertEquals(t.root.getElement(),new BST.Node(1,null,null).getElement());
     }
     
     @Before

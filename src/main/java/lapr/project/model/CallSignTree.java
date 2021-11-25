@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import lapr.project.utils.PL.AVL;
 
 /**
  *
@@ -14,12 +13,11 @@ import lapr.project.utils.PL.AVL;
 public class CallSignTree <E extends Comparable<E>> extends ShipTree <Ship> {
 
     public Ship getShip(Object code){
-        return find((String) code,root());
+        return find(code.toString(),root());
     }
 
     public boolean find(Object code) {
-        if(!(getShip(code)==null)) return true;
-        return false;
+        return (getShip(code)!=null);
     }
 
     private Ship find(String code, Node<Ship> root) {

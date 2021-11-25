@@ -1,6 +1,8 @@
 package lapr.project.utils.PL;
 
 
+import java.io.IOException;
+
 /**
  * @author Diogo Dias
  * @param <E>
@@ -22,10 +24,16 @@ public class KDTree <E extends Comparable<E>> {
          * @param leftChild   reference to a left child node
          * @param rightChild  reference to a right child node
          */
-        public DoubleNode(E e, DoubleNode<E> leftChild, DoubleNode<E> rightChild) {
-            element = e;
+        public DoubleNode(E e, DoubleNode<E> leftChild, DoubleNode<E> rightChild) throws IOException {
+            if(checkElement(e)==null) throw new IOException("Input is Invalid!");
+            element = checkElement(e);
             left = leftChild;
             right = rightChild;
+        }
+
+        private E checkElement(E e) {
+            if(e==null) return null;
+            return e;
         }
 
         // accessor methods
@@ -45,6 +53,8 @@ public class KDTree <E extends Comparable<E>> {
         public int compareY(E element) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
+
+
     }
 
     //----------- end of nested DoubleNode class -----------
@@ -73,10 +83,10 @@ public class KDTree <E extends Comparable<E>> {
         return false;
     }
 
-    public void insert(E element){root=insert(element,root(),true);
+    public void insert(E element) throws IOException {root=insert(element,root(),true);
     }
 
-    private DoubleNode<E> insert(E element, DoubleNode<E> node, boolean levelchecker){
+    private DoubleNode<E> insert(E element, DoubleNode<E> node, boolean levelchecker) throws IOException {
         if(node==null) return new DoubleNode<>(element,null,null);
         if(levelchecker){
             if(node.compareX(element)>0) insert(element,node.getLeft(),false);
