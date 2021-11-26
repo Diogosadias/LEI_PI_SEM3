@@ -36,15 +36,15 @@ public class KDTreeTest {
     @Test
     public void testDouble() throws IOException {
         KDTree.DoubleNode node = new KDTree.DoubleNode(1,null,null);
-        assertEquals(1,node.getElement());
+        assertEquals(1,node.getinfo());
         KDTree.DoubleNode nodel = new KDTree.DoubleNode(0,null,null);
         KDTree.DoubleNode noder = new KDTree.DoubleNode(2,null,null);
         node.setLeft(nodel);
         node.setRight(noder);
-        assertEquals(nodel.getElement(),node.getLeft().getElement());
-        assertEquals(noder.getElement(),node.getRight().getElement());
+        assertEquals(nodel.getinfo(),node.getLeft().getinfo());
+        assertEquals(noder.getinfo(),node.getRight().getinfo());
         node.setElement(5);
-        assertEquals(5,node.getElement());
+        assertEquals(5,node.getinfo());
     }
 
     @Test
@@ -54,6 +54,14 @@ public class KDTreeTest {
         }catch (IOException ex){
             System.out.println("Input is Invalid!");
         }
+    }
+
+    /***
+     * Test Compares
+     */
+    @Test
+    public void testCompares(){
+        compa
 
     }
 }
