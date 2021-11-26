@@ -61,7 +61,6 @@ public class KDTreeTest {
      */
     @Test
     public void testCompares(){
-        compa
 
     }
 }
