@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -70,6 +71,9 @@ public class ImportPortTest {
     @Test
     public void testPortTree(){
         /*
+
+        PortTree expectedResult = new ArrayList<>();
+        Add ports
         PortTree portTree = new PortTree();
         Port port = new Port("Europe","United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
         portTree.insert(port);
@@ -97,7 +101,11 @@ public class ImportPortTest {
         assertEquals(portTree.root.getLeft().getLeft().getElement(),portxy2);
 
 
-        */
+        assertEquals(portTree.inOrder(),expectedResult);
+
+
+         */
+
     }
 
     /***
@@ -105,6 +113,6 @@ public class ImportPortTest {
      */
     @Test
     public void tesPortsDatabse(){
-        
+
     }
 }
