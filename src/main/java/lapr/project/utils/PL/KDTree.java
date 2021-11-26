@@ -12,18 +12,8 @@ import java.util.Comparator;
 
 public class KDTree <T> {
 
-    private final Comparator<DoubleNode<T>> cmpX = new Comparator<DoubleNode<T>>(){
-        @Override
-        public int compare(DoubleNode<T> p1, DoubleNode<T> p2) {
-            return Double.compare(p1.getX(), p2.getX());
-        }
-    };
-    private final Comparator<DoubleNode<T>> cmpY = new Comparator<DoubleNode<T>>(){
-        @Override
-        public int compare(DoubleNode<T> p1, DoubleNode<T> p2) {
-            return Double.compare(p1.getY(), p2.getY());
-        }
-    };
+    private final Comparator<DoubleNode<T>> cmpX = (p1, p2) -> Double.compare(p1.getX(), p2.getX());
+    private final Comparator<DoubleNode<T>> cmpY = (p1, p2) -> Double.compare(p1.getY(), p2.getY());
 
     /** Nested static class for a binary search tree doublenode. */
 
@@ -41,17 +31,14 @@ public class KDTree <T> {
          * @param rightChild  reference to a right child node
          */
         public DoubleNode(T e, DoubleNode<T> leftChild, DoubleNode<T> rightChild) throws IOException {
-            if(checkElement(e)==null) throw new IOException("Input is Invalid!");
+            if(e==null) throw new IOException("Input is Invalid!");
             coords = new Point2D.Double(0, 0);
-            info = checkElement(e);
+            info = e;
             left = leftChild;
             right = rightChild;
         }
 
-        private T checkElement(T e) {
-            if(e==null) return null;
-            return e;
-        }
+        
 
         // accessor methods
         public T getinfo() { return info; }
@@ -98,12 +85,14 @@ public class KDTree <T> {
         return root==null;
     }
 
-    public void insert(T element) throws IOException {
+    public void insert(T element,Point2D.Double coords) throws IOException {
+        DoubleNode n =new DoubleNode<>(element,null,null);
+        n.setCoords(coords);
         if (root==null) {
-            root=new DoubleNode<>(element,null,null);
+            root = n;
             return;
         }
-        root=insert(new DoubleNode<>(element,null,null),root(),true);
+        insert(root(),n,true);
     }
 
     private DoubleNode<T> insert(DoubleNode<T> currentNode, DoubleNode<T> node, boolean levelchecker) throws IOException {
@@ -112,15 +101,15 @@ public class KDTree <T> {
         int cmpResult = (levelchecker ? cmpX : cmpY).compare(node, currentNode);
 
         if (cmpResult == -1)
-            if (currentNode.left == null)
-                currentNode.left = node;
+            if (currentNode.getLeft() == null)
+                currentNode.setLeft(node);
             else
-                insert(currentNode.left, node, !levelchecker);
+                insert(currentNode.getLeft(), node, !levelchecker);
         else
-        if (currentNode.right == null)
-            currentNode.right = node;
+        if (currentNode.getRight() == null)
+            currentNode.setRight(node);
         else
-            insert(currentNode.right, node, !levelchecker);
+            insert(currentNode.getRight(), node, !levelchecker);
 
         return node;
 
