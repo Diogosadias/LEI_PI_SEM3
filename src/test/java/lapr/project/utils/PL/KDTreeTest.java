@@ -3,7 +3,9 @@ package lapr.project.utils.PL;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.util.Comparator;
 
 import static org.junit.Assert.*;
 
@@ -29,22 +31,22 @@ public class KDTreeTest {
         assertNull(instance.root);
         assertTrue(instance.isEmpty());
         assertNull(instance.root());
-        instance.insert(1);
+        instance.insert(1,new Point2D.Double(0,0));
         assertFalse(instance.isEmpty());
     }
 
     @Test
     public void testDouble() throws IOException {
         KDTree.DoubleNode node = new KDTree.DoubleNode(1,null,null);
-        assertEquals(1,node.getElement());
+        assertEquals(1,node.getinfo());
         KDTree.DoubleNode nodel = new KDTree.DoubleNode(0,null,null);
         KDTree.DoubleNode noder = new KDTree.DoubleNode(2,null,null);
         node.setLeft(nodel);
         node.setRight(noder);
-        assertEquals(nodel.getElement(),node.getLeft().getElement());
-        assertEquals(noder.getElement(),node.getRight().getElement());
+        assertEquals(nodel.getinfo(),node.getLeft().getinfo());
+        assertEquals(noder.getinfo(),node.getRight().getinfo());
         node.setElement(5);
-        assertEquals(5,node.getElement());
+        assertEquals(5,node.getinfo());
     }
 
     @Test
@@ -54,6 +56,29 @@ public class KDTreeTest {
         }catch (IOException ex){
             System.out.println("Input is Invalid!");
         }
+    }
 
+    /***
+     * Test Compares
+     */
+    @Test
+    public void testCompares(){
+    }
+
+    /**
+     * Test of insert method, of class KDTree.
+     */
+    @Test
+    public void testInsert() throws IOException {
+        System.out.println("insert");
+        Integer arr[] = {20,15,10,13,8,17,40,50,30,20,15,10};
+        Integer[] arr1 = {20,15,10,13,8,17,40,50,30,7,15,12};
+        for (int i=0; i<arr.length; i++){            //new elements
+            instance.insert(i,new Point2D.Double(arr[i],arr1[i]));
+        }
+        assertEquals(0,instance.root.getinfo().intValue());
+        KDTree.DoubleNode n = new KDTree.DoubleNode<>(11,null,null);
+        n.setCoords(new Point2D.Double(10,12));
+        assertEquals((Double)n.getX(),(Double)instance.root.getLeft().getLeft().getRight().getLeft().getX());
     }
 }

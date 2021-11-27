@@ -46,7 +46,7 @@ public class BSTTest {
         for(int i :arr)
             instance.insert(i);        
     }    
-/**
+    /**
      * Test of size method, of class BST.
      */
     @Test

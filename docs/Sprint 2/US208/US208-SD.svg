@@ -39,28 +39,28 @@
       ><path d="M-7 -7 L19 -7 L19 23 L-7 23 L-7 -7 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath12"
-      ><path d="M-176 -15 L352 -15 L352 30 L-176 30 L-176 -15 Z"
+      ><path d="M-46 -15 L92 -15 L92 30 L-46 30 L-46 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath13"
-      ><path d="M-205 -15 L410 -15 L410 30 L-205 30 L-205 -15 Z"
-      /></clipPath
-      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath14"
-      ><path d="M-128 -15 L256 -15 L256 30 L-128 30 L-128 -15 Z"
-      /></clipPath
-      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath15"
-      ><path d="M-180 -15 L360 -15 L360 30 L-180 30 L-180 -15 Z"
-      /></clipPath
-      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath16"
       ><path d="M-196 -15 L392 -15 L392 30 L-196 30 L-196 -15 Z"
       /></clipPath
+      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath14"
+      ><path d="M-180 -15 L360 -15 L360 30 L-180 30 L-180 -15 Z"
+      /></clipPath
+      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath15"
+      ><path d="M-128 -15 L256 -15 L256 30 L-128 30 L-128 -15 Z"
+      /></clipPath
+      ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath16"
+      ><path d="M-205 -15 L410 -15 L410 30 L-205 30 L-205 -15 Z"
+      /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath17"
-      ><path d="M-36 -15 L72 -15 L72 30 L-36 30 L-36 -15 Z"
+      ><path d="M-176 -15 L352 -15 L352 30 L-176 30 L-176 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath18"
       ><path d="M0 0 L452 0 L452 104 L0 104 L0 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath19"
-      ><path d="M319 30 L319 45 L129 45 L129 30 ZM366 78 L366 93 L81 93 L81 78 ZM0 0 L0 104 L452 104 L452 0 L64 0 L64 2 L28 2 L28 0 Z"
+      ><path d="M319 30 L319 45 L129 45 L129 30 ZM366 78 L366 93 L81 93 L81 78 ZM0 0 L0 104 L452 104 L452 0 L69 0 L69 2 L23 2 L23 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath20"
       ><path d="M366 30 L366 45 L81 45 L81 30 ZM0 0 L0 104 L94 104 L94 94 L352 94 L352 104 L452 104 L452 0 Z"
@@ -212,29 +212,29 @@
     ><g stroke-linecap="butt" font-size="11px" transform="translate(1722,516)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1" stroke-miterlimit="0"
     ><rect fill="none" x="0" width="8" height="12" y="0" clip-path="url(#clipPath11)"
     /></g
-    ><g font-size="11px" transform="translate(1638,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="60" xml:space="preserve" y="12" clip-path="url(#clipPath12)" stroke="none"
-      >: Container</text
-    ></g
-    ><g font-size="11px" transform="translate(1293,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="61" xml:space="preserve" y="12" clip-path="url(#clipPath13)" stroke="none"
-      >: Cargo Manifest</text
-    ></g
-    ><g font-size="11px" transform="translate(1046,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="49" xml:space="preserve" y="12" clip-path="url(#clipPath14)" stroke="none"
-      >: Ship</text
-    ></g
-    ><g font-size="11px" transform="translate(677,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="35" xml:space="preserve" y="12" clip-path="url(#clipPath15)" stroke="none"
-      >: OccupancyController</text
+    ><g font-size="11px" transform="translate(9,37)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><text x="10" xml:space="preserve" y="12" clip-path="url(#clipPath12)" stroke="none"
+      >Actor</text
     ></g
     ><g font-size="11px" transform="translate(290,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="61" xml:space="preserve" y="12" clip-path="url(#clipPath16)" stroke="none"
-      >: OccupancyUI</text
+    ><text x="59" xml:space="preserve" y="12" clip-path="url(#clipPath13)" stroke="none"
+      >: ShipCaptainUI</text
     ></g
-    ><g font-size="11px" transform="translate(14,37)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="5" xml:space="preserve" y="12" clip-path="url(#clipPath17)" stroke="none"
-      >Actor</text
+    ><g font-size="11px" transform="translate(677,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><text x="51" xml:space="preserve" y="12" clip-path="url(#clipPath14)" stroke="none"
+      >: ShipCaptainUI</text
+    ></g
+    ><g font-size="11px" transform="translate(1046,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><text x="49" xml:space="preserve" y="12" clip-path="url(#clipPath15)" stroke="none"
+      >: Ship</text
+    ></g
+    ><g font-size="11px" transform="translate(1293,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><text x="61" xml:space="preserve" y="12" clip-path="url(#clipPath16)" stroke="none"
+      >: Cargo Manifest</text
+    ></g
+    ><g font-size="11px" transform="translate(1638,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><text x="60" xml:space="preserve" y="12" clip-path="url(#clipPath17)" stroke="none"
+      >: Container</text
     ></g
     ><g stroke-linecap="butt" font-size="11px" transform="translate(-14,50)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
     ><line y2="50" fill="none" x1="50" clip-path="url(#clipPath19)" x2="398" y1="50"
