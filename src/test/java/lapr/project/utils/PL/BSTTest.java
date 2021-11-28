@@ -1,6 +1,7 @@
 
 package lapr.project.utils.PL;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -253,7 +254,7 @@ public class BSTTest {
      * Test setElement Node
      */
     @Test
-    public void testSetElement(){
+    public void testSetElement() throws NoSuchFieldException, IllegalAccessException {
         BST<Integer> n = new BST();
         assertTrue(n.isEmpty());
         BST.Node<Integer> node = new BST.Node<>(1,null,null);
@@ -263,6 +264,15 @@ public class BSTTest {
         node.setElement(null);
         assertTrue(node.getElement().equals(2));
 
+        //given
+        final BST.Node pojo = new BST.Node(1,null,null);
 
+        //when
+        pojo.setElement("foo");
+
+        //then
+        final Field field = pojo.getClass().getDeclaredField("element");
+        field.setAccessible(true);
+        assertEquals("Fields didn't match", field.get(pojo), "foo");
     }
 }
