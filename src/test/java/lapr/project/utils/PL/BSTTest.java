@@ -150,24 +150,7 @@ public class BSTTest {
         instance.remove(8);
         assertEquals(new Integer(10), instance.smallestElement());
     }    
-/**
-     * Test of processBstByLevel method, of class TREE.
-     */
-    @Test
-    public void testProcessBstByLevel() {
-        System.out.println("processbstbylevel");
-        Map<Integer,List<Integer>> expResult = new HashMap();
-        expResult.put(0, Arrays.asList(new Integer[]{20}));
-        expResult.put(1, Arrays.asList(new Integer[]{15,40}));
-        expResult.put(2, Arrays.asList(new Integer[]{10,17,30,50}));
-        expResult.put(3, Arrays.asList(new Integer[]{8,13}));
-        expResult.put(4, Arrays.asList(new Integer[]{7}));
-        
-        Map<Integer,List<Integer>> result = instance.nodesByLevel();
-        
-        for(Map.Entry<Integer,List<Integer>> e : result.entrySet())
-            assertEquals(expResult.get(e.getKey()), e.getValue());
-    }    
+
    
 
 /**
@@ -183,32 +166,7 @@ public class BSTTest {
         List<Integer> lExpected = Arrays.asList(inorderT);
         assertEquals("inOrder should be "+lExpected.toString(), lExpected, instance.inOrder());
     }
-/**
-     * Test of preOrder method, of class BST.
-     */
-    @Test
-    public void testpreOrder() {
-        System.out.println("preOrder");
-        BST arvore = new BST();
-        Integer[] lits = new Integer[0];
-        List<Integer> list = Arrays.asList(lits);
-        assertEquals(list,arvore.preOrder());
-        List<Integer> lExpected = Arrays.asList(preorderT);
-        assertEquals("preOrder should be "+lExpected.toString(), lExpected, instance.preOrder());
-    }
-/**
-     * Test of posOrder method, of class BST.
-     */
-    @Test
-    public void testposOrder() {
-        System.out.println("posOrder");
-        BST arvore = new BST();
-        Integer[] lits = new Integer[0];
-        List<Integer> list = Arrays.asList(lits);
-        assertEquals(list,arvore.posOrder());
-        List<Integer> lExpected = Arrays.asList(posorderT);
-        assertEquals("posOrder should be "+lExpected.toString(), lExpected, instance.posOrder());
-    }
+
 
     /**
      * Tests for Coverage
@@ -220,6 +178,7 @@ public class BSTTest {
         BST.Node<Object> node = new BST.Node<>(o, null, null);
         assertEquals(o,node.getElement());
         Object o1 = new Object();
+        assertNotEquals(o1,node.getElement());
         node.setElement(o1);
         assertEquals(o1, node.getElement());
         BST.Node<Object> node1 = new BST.Node<>(o, null, null);

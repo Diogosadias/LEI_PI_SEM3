@@ -26,9 +26,6 @@ public interface BSTInterface<E> {
     
     public E smallestElement();
     public Iterable<E> inOrder();
-    public Iterable<E> preOrder() throws IOException;
-    public Iterable<E> posOrder();
-    public Map<Integer,List<E>> nodesByLevel();
 
 
     
