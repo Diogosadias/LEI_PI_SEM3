@@ -1,7 +1,7 @@
 package lapr.project.utils.PL;
 
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
 
 import java.awt.geom.Point2D;
