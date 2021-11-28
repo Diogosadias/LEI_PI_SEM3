@@ -36,11 +36,9 @@ public class KDTreeTest {
         assertFalse(instance.isEmpty());
     }
 
-    @Nested
-    class innerTesting {
-
+    static class staticnestedTest {
         @Test
-        void testDouble() throws IOException {
+        public void testDouble() throws IOException {
             KDTree.DoubleNode node = new KDTree.DoubleNode(1, null, null);
             assertEquals(1, node.getinfo());
             KDTree.DoubleNode nodel = new KDTree.DoubleNode(0, null, null);
@@ -52,7 +50,6 @@ public class KDTreeTest {
             node.setElement(5);
             assertEquals(5, node.getinfo());
         }
-        
     }
 
     @Test
