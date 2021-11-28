@@ -260,6 +260,9 @@ public class BSTTest {
         assertTrue(node.getElement().equals(1));
         node.setElement(2);
         assertTrue(node.getElement().equals(2));
+        node.setElement(null);
+        assertTrue(node.getElement().equals(2));
+
 
     }
 }
