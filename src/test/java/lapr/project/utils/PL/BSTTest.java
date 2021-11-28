@@ -110,7 +110,8 @@ public class BSTTest {
             System.out.println("Element does not exist");
         }
     }
-/**
+
+    /**
      * Test of isEmpty method, of class BST.
      */
     @Test
@@ -126,6 +127,8 @@ public class BSTTest {
         
         instance.remove(11);
         assertTrue("the BST should be empty", instance.isEmpty());
+
+        assertNull(instance.smallestElement());
     }
 /**
      * Test of height method, of class BST.
