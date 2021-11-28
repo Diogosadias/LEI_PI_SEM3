@@ -86,7 +86,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
         return node;
     }
     
-    /*
+    /***
     * Inserts an element in the tree.
     */
     public void insert(E element){
@@ -110,11 +110,10 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
     private Node<E> remove(E element, Node<E> node) {
         
         if (node == null) {
-            return null;    //throw new IllegalArgumentException("Element does not exist");
+            throw new IllegalArgumentException("Element does not exist");
         }   
         if (element.compareTo(node.getElement())==0) {
-            // node is the Node to be removed
-            if (node.getLeft() == null && node.getRight() == null) { //node is a leaf (has no childs)
+            if (node.getLeft() == null && node.getRight() == null) {
                 return null;
             }
             if (node.getLeft() == null) {   //has only right child
@@ -135,7 +134,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
         return node;
     }
 
-    /*
+    /***
     * Returns the number of nodes in the tree.
     * @return number of nodes in the tree
     */
@@ -150,7 +149,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
             return(1 + size(node.getLeft()) + size(node.getRight()));
     }
     
-    /*
+    /***
     * Returns the height of the tree
     * @return height 
     */
@@ -158,7 +157,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
         return height(root());
     }
 
-    /*
+    /***
     * Returns the height of the subtree rooted at Node node.
     * @param node A valid Node within the tree
     * @return height 
@@ -182,9 +181,9 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
         if(node==null) return null;
         if(node.getLeft()==null) return node.getElement();
         return smallestElement(node.getLeft());
-    } 
+    }
     
-   /*
+   /***
    * Returns an iterable collection of elements of the tree, reported in in-order.
    * @return iterable collection of the tree's elements reported in in-order
    */

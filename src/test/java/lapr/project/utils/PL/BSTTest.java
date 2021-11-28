@@ -91,7 +91,11 @@ public class BSTTest {
         System.out.println("remove");
 
         int qtd=arr.length;
-        instance.remove(999);
+        try {
+            instance.remove(999);
+        } catch (IllegalArgumentException ex){
+            System.out.println("Element does not exist");
+        }
 
         assertEquals("size should be = "+qtd, instance.size(), qtd);
         for (int i=0; i<arr.length; i++){
@@ -99,9 +103,12 @@ public class BSTTest {
             qtd--;
             assertEquals("size should be = "+qtd, qtd,instance.size());
         }
-        
-        instance.remove(999);
-        assertEquals("size should be = 0", 0,instance.size());
+
+        try {
+            instance.remove(999);
+        } catch (IllegalArgumentException ex){
+            System.out.println("Element does not exist");
+        }
     }
 /**
      * Test of isEmpty method, of class BST.
@@ -126,11 +133,14 @@ public class BSTTest {
     @Test
     public void testHeight() {
         System.out.println("height");
+        Integer[] list = {20,40,15,10,13,8,17,50,30,7};
+        int[] height={0,1,1,2,3,3,3,3,3,4};
+
 
         instance = new BST();
         assertEquals("height should be = -1", instance.height(), -1);
-        for(int idx=0; idx<arr.length; idx++){
-            instance.insert(arr[idx]);
+        for(int idx=0; idx<list.length; idx++){
+            instance.insert(list[idx]);
             assertEquals("height should be = "+height[idx], instance.height(), height[idx]);            
         }
         instance = new BST();
@@ -143,13 +153,14 @@ public class BSTTest {
     public void testSmallestElement() {
         System.out.println("smallestElement");
         BST arvore = new BST();
+        arvore.root = null;
         assertNull(arvore.smallestElement());
         assertEquals(new Integer(7), instance.smallestElement());
         instance.remove(7);
         assertEquals(new Integer(8), instance.smallestElement());
         instance.remove(8);
         assertEquals(new Integer(10), instance.smallestElement());
-    }    
+    }
 
    
 
