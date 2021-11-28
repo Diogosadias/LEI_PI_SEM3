@@ -287,5 +287,12 @@ public class PositionOrganizedTest {
 
     }
 
+    /***
+     * Test searchDetails
+     */
+    @Test
+    public void testDetails(){
+        //Test searchDetails
+    }
 
 }
