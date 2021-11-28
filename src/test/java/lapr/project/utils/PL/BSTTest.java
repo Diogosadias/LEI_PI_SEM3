@@ -25,7 +25,8 @@ public class BSTTest {
     Integer[] preorderT= {20, 15, 10, 8, 7, 13, 17, 40, 30, 50};
     Integer[] posorderT = {7, 8, 13, 10, 17, 15, 30, 50, 40, 20};
     
-    BST<Integer> instance;    //Problem with coverage could be from this statement
+    BST<Integer> instance = new BST();
+
     @Test
     public void testBSTTest() {
         BST arvore = new BST();
@@ -41,17 +42,15 @@ public class BSTTest {
         assertEquals(t.root.getElement(),new BST.Node(1,null,null).getElement());
     }
     
-    @Before
-    public void setUp(){
-        instance = new BST();
-        for(int i :arr)
-            instance.insert(i);        
-    }    
+
     /**
      * Test of size method, of class BST.
      */
     @Test
     public void testSize() {
+
+        for(int i :arr)
+            instance.insert(i);
         System.out.println("size");
         assertEquals("size should be = 10",instance.size(), arr.length);
         
@@ -89,6 +88,9 @@ public class BSTTest {
      */
     @Test
     public void testRemove() {
+
+        for(int i :arr)
+            instance.insert(i);
         System.out.println("remove");
         Integer[] arr = {20,40,15,10,13,8,17,50,30,7};
 
@@ -119,6 +121,9 @@ public class BSTTest {
      */
     @Test
     public void testIsEmpty() {
+
+        for(int i :arr)
+            instance.insert(i);
         System.out.println("isempty");
         
         assertFalse("the BST should be NOT empty", instance.isEmpty());        
@@ -157,6 +162,9 @@ public class BSTTest {
      */
     @Test
     public void testSmallestElement() {
+
+        for(int i :arr)
+            instance.insert(i);
         System.out.println("smallestElement");
         BST arvore = new BST();
         arvore.root = null;
@@ -175,6 +183,9 @@ public class BSTTest {
      */
     @Test
     public void testInOrder() {
+
+        for(int i :arr)
+            instance.insert(i);
         System.out.println("inOrder");
         BST arvore = new BST();
         Integer[] lits = new Integer[0];
