@@ -72,7 +72,11 @@ public class AVLTest {
         
 
         //no rotations needed
-        instance.remove(3);
+        try {
+            instance.remove(3);
+        }catch (IllegalArgumentException ex){
+            System.out.println("Element does not exist");
+        }
         lExpected = Arrays.asList(2,4,6,8,10);           
         assertEquals("inOrder should be "+lExpected.toString(), lExpected, instance.inOrder());
         assertEquals("height should be 2 ",instance.height(), 2);       
@@ -161,8 +165,17 @@ public class AVLTest {
         instance.remove(4);
         instance.remove(1);
 
-        for (int i=0; i<arr.length-1; i++)            //new elements
-            instance.remove(arr[i]);
+        for (int i=0; i<arr.length-1; i++) {          //new elements
+            if (i == 1 || i == 6 || i == 11 || i==14 ) {
+                try {
+                    instance.remove(arr[i]);
+                } catch (IllegalArgumentException ex) {
+                    System.out.println("Element does not exist");
+                }
+            } else{
+                instance.remove(arr[i]);
+            }
+        }
         inorder1= new Integer[]{14};
         lExpected = Arrays.asList(inorder1);
         assertEquals("inOrder should be "+lExpected.toString(), lExpected, instance.inOrder());

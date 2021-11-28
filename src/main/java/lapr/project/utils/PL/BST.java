@@ -1,6 +1,5 @@
 package lapr.project.utils.PL;
 
-import java.io.IOException;
 import java.util.*;
 
 
@@ -107,7 +106,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
         root = remove(element, root());
     }
  
-    private Node<E> remove(E element, Node<E> node) {
+    Node<E> remove(E element, Node<E> node) {
         
         if (node == null) {
             throw new IllegalArgumentException("Element does not exist");
