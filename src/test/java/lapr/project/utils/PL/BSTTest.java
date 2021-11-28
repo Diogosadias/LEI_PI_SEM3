@@ -247,8 +247,19 @@ public class BSTTest {
         bst.insert(-1);
         i =bst.smallestElement();
         assertEquals(i,-1);
+    }
 
-
+    /***
+     * Test setElement Node
+     */
+    @Test
+    public void testSetElement(){
+        BST<Integer> n = new BST();
+        assertTrue(n.isEmpty());
+        BST.Node<Integer> node = new BST.Node<>(1,null,null);
+        assertTrue(node.getElement().equals(1));
+        node.setElement(2);
+        assertTrue(node.getElement().equals(2));
 
     }
 }
