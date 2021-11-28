@@ -36,7 +36,7 @@ public class KDTreeTest {
         assertFalse(instance.isEmpty());
     }
 
-    
+
     @Test
     public void testDouble() throws IOException {
         KDTree.DoubleNode node = new KDTree.DoubleNode(1,null,null);
@@ -49,6 +49,12 @@ public class KDTreeTest {
         assertEquals(noder.getinfo(),node.getRight().getinfo());
         node.setElement(5);
         assertEquals(5,node.getinfo());
+        Integer l =1;
+        node.setElement(l);
+        assertEquals(node.getinfo(),l);
+        Point2D.Double d = new Point2D.Double(0,0);
+        node.setCoords(d);
+        assertEquals(new Point2D.Double(node.getX(),node.getY()),d);
     }
 
     @Test
