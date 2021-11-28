@@ -1,9 +1,13 @@
 package lapr.project.utils.PL;
 
 
+import org.testng.annotations.Test;
+
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.Comparator;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * @author Diogo Dias
@@ -55,6 +59,20 @@ public class KDTree <T> {
         public void setLeft(DoubleNode<T> leftChild) { left = leftChild; }
         public void setRight(DoubleNode<T> rightChild) { right = rightChild; }
         public void setCoords(Point2D.Double location){ coords=location;}
+
+        @Test
+        public void testDouble() throws IOException {
+            KDTree.DoubleNode node = new KDTree.DoubleNode(1,null,null);
+            assertEquals(1,node.getinfo());
+            KDTree.DoubleNode nodel = new KDTree.DoubleNode(0,null,null);
+            KDTree.DoubleNode noder = new KDTree.DoubleNode(2,null,null);
+            node.setLeft(nodel);
+            node.setRight(noder);
+            assertEquals(nodel.getinfo(),node.getLeft().getinfo());
+            assertEquals(noder.getinfo(),node.getRight().getinfo());
+            node.setElement(5);
+            assertEquals(5,node.getinfo());
+        }
 
 
 
