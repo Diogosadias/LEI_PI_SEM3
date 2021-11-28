@@ -17,6 +17,7 @@ public class KDTree <T> {
 
     /** Nested static class for a binary search tree doublenode. */
 
+
     protected static class DoubleNode<T> {
         protected Point2D.Double coords;
         protected T info;     // an element stored at this node
@@ -56,7 +57,7 @@ public class KDTree <T> {
         public void setRight(DoubleNode<T> rightChild) { right = rightChild; }
         public void setCoords(Point2D.Double location){ coords=location;}
 
-        
+
 
 
 
