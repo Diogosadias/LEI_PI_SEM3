@@ -90,6 +90,8 @@ public class BSTTest {
     @Test
     public void testRemove() {
         System.out.println("remove");
+        Integer[] arr = {20,40,15,10,13,8,17,50,30,7};
+
 
         int qtd=arr.length;
         try {
@@ -254,25 +256,14 @@ public class BSTTest {
      * Test setElement Node
      */
     @Test
-    public void testSetElement() throws NoSuchFieldException, IllegalAccessException {
+    public void testSetElement(){
         BST<Integer> n = new BST();
         assertTrue(n.isEmpty());
-        BST.Node<Integer> node = new BST.Node<>(1,null,null);
+        BST.Node<Integer> node = new BST.Node<>(1, null, null);
         assertTrue(node.getElement().equals(1));
         node.setElement(2);
         assertTrue(node.getElement().equals(2));
         node.setElement(null);
         assertTrue(node.getElement().equals(2));
-
-        //given
-        final BST.Node pojo = new BST.Node(1,null,null);
-
-        //when
-        pojo.setElement("foo");
-
-        //then
-        final Field field = pojo.getClass().getDeclaredField("element");
-        field.setAccessible(true);
-        assertEquals("Fields didn't match", field.get(pojo), "foo");
     }
 }
