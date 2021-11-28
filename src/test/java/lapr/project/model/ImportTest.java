@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import java.util.List;
 import static lapr.project.model.Import.readLine;
@@ -46,6 +47,19 @@ public class ImportTest {
 
         }
 
+                 @Test
+        public void testReadLine() throws IOException {
+MainController main = new MainController();
+MMSTree mmsiTree = new MMSTree();
+IMOTree imoTree = new IMOTree();
+CallSignTree csTree = new CallSignTree();
+List<ShipTree> list = new ArrayList<>();
+list.add(mmsiTree);
+list.add(imoTree);
+list.add(csTree);
+assertEquals(Import.readLine("data/data-ships&ports/bships.csv",mmsiTree,imoTree,csTree), list);
 
+
+        }
 
 }
