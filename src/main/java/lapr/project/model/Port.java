@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import static lapr.project.model.TemporalMessages.*;
 
-public class Port {
+public class Port implements Comparable<Port> {
     private String cont;
     private String country;
     private Integer code;
@@ -57,5 +57,11 @@ public class Port {
 
     public Point2D.Double getCoords() {
         return coords;
+    }
+
+
+
+    public int compareTo(Port o) {
+        return this.code.compareTo(o.code);
     }
 }

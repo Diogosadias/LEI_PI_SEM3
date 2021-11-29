@@ -4,6 +4,7 @@ package lapr.project.model;
 import lapr.project.utils.PL.KDTree;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +17,13 @@ public class ImportPortTest {
      * Test not Success and Success - importPort will return String to be printed in output file
      */
     @Test
-    public void testFilesOutput(){
-        /*
-        String fileresult = importPort(null);
+    public void testFilesOutput() throws IOException {
+        PortManager portManager = new PortManager();
+        String fileresult = portManager.importPort(null);
         assertEquals("The Program has encountered a problem. Ports were not successfully imported.",fileresult.toString());
-        fileresult = importPort("Data/data-ships&ports/sports.csv");
+        fileresult = portManager.importPort("Data/data-ships&ports/sports.csv");
         assertEquals("Ports were successfully imported!",fileresult.toString());
 
-         */
     }
 
     /***
@@ -112,7 +112,6 @@ public class ImportPortTest {
 
 
 
-
         assertEquals(portTree.inOrder(),expectedResult);
 
 
@@ -126,5 +125,13 @@ public class ImportPortTest {
     @Test
     public void tesPortsDatabse(){
 
+    }
+
+    /***
+     * Test if imports imports Ports
+     */
+    @Test
+    public void ensureFullImport(){
+        
     }
 }
