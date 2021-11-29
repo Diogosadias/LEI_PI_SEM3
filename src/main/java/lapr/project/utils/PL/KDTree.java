@@ -106,13 +106,19 @@ public class KDTree <T> {
         if (cmpResult == -1)
             if (currentNode.getLeft() == null)
                 currentNode.setLeft(node);
-            else
-                insert(currentNode.getLeft(), node, !levelchecker);
+            else{
+                levelchecker = !levelchecker;
+                insert(currentNode.getLeft(), node, levelchecker);
+            }
+
         else
         if (currentNode.getRight() == null)
             currentNode.setRight(node);
-        else
+        else{
+            levelchecker = !levelchecker;
             insert(currentNode.getRight(), node, !levelchecker);
+        }
+
 
         return node;
 
