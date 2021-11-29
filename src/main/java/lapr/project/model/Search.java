@@ -4,7 +4,7 @@ import lapr.project.controller.MainController;
 
 import java.io.IOException;
 
-public class Search {
+public class    Search {
 
 
     private String s = "Input is Invalid!";
