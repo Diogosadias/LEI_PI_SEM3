@@ -1,4 +1,6 @@
-package lapr.project.model;
+package lapr.project.controller;
+
+import lapr.project.model.PortManager;
 
 import java.io.File;
 import java.io.FileWriter;

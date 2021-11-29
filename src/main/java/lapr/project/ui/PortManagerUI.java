@@ -1,6 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.model.PortManagerController;
+import lapr.project.controller.PortManagerController;
 
 import java.io.IOException;
 
