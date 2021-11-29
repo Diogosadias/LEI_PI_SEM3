@@ -3,7 +3,9 @@ package lapr.project.utils.PL;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * @author Diogo Dias
@@ -15,10 +17,12 @@ public class KDTree <T> {
     private final Comparator<DoubleNode<T>> cmpX = (p1, p2) -> Double.compare(p1.getX(), p2.getX());
     private final Comparator<DoubleNode<T>> cmpY = (p1, p2) -> Double.compare(p1.getY(), p2.getY());
 
+
+
     /** Nested static class for a binary search tree doublenode. */
 
 
-    protected static class DoubleNode<T> {
+    public static class DoubleNode<T> {
         protected Point2D.Double coords;
         protected T info;     // an element stored at this node
         private DoubleNode<T> left;       // a reference to the left child (if any)
@@ -42,7 +46,7 @@ public class KDTree <T> {
         
 
         // accessor methods
-        public T getinfo() { return info; }
+        public T getInfo() { return info; }
         public DoubleNode<T> getLeft() { return left; }
         public DoubleNode<T> getRight() { return right; }
         public double getX() {
@@ -57,15 +61,11 @@ public class KDTree <T> {
         public void setRight(DoubleNode<T> rightChild) { right = rightChild; }
         public void setCoords(Point2D.Double location){ coords=location;}
 
-
-
-
-
     }
 
     //----------- end of nested DoubleNode class -----------
 
-    protected DoubleNode<T> root = null;     // root of the tree
+    public DoubleNode<T> root = null;     // root of the tree
 
 
     /* Constructs an empty binary search tree. */
@@ -118,5 +118,28 @@ public class KDTree <T> {
 
     }
 
+    /***
+     * Returns an iterable collection of elements of the tree, reported in in-order.
+     * @return iterable collection of the tree's elements reported in in-order
+     */
+    public Iterable<T> inOrder(){
+        List<T> snapshot = new ArrayList<>();
+        if (root!=null)
+            inOrderSubtree(root, snapshot);   // fill the snapshot recursively
+        return snapshot;
+    }
+    /**
+     * Adds elements of the subtree rooted at Node node to the given
+     * snapshot using an in-order traversal
+     * @param node       Node serving as the root of a subtree
+     * @param snapshot  a list to which results are appended
+     */
+    private void inOrderSubtree(DoubleNode<T> node, List<T> snapshot) {
+        if (node == null)
+            return;
+        inOrderSubtree(node.getLeft(), snapshot);
+        snapshot.add(node.getInfo());
+        inOrderSubtree(node.getRight(), snapshot);
+    }
 
 }

@@ -40,18 +40,18 @@ public class KDTreeTest {
     @Test
     public void testDouble() throws IOException {
         KDTree.DoubleNode node = new KDTree.DoubleNode(1,null,null);
-        assertEquals(1,node.getinfo());
+        assertEquals(1,node.getInfo());
         KDTree.DoubleNode nodel = new KDTree.DoubleNode(0,null,null);
         KDTree.DoubleNode noder = new KDTree.DoubleNode(2,null,null);
         node.setLeft(nodel);
         node.setRight(noder);
-        assertEquals(nodel.getinfo(),node.getLeft().getinfo());
-        assertEquals(noder.getinfo(),node.getRight().getinfo());
+        assertEquals(nodel.getInfo(),node.getLeft().getInfo());
+        assertEquals(noder.getInfo(),node.getRight().getInfo());
         node.setElement(5);
-        assertEquals(5,node.getinfo());
+        assertEquals(5,node.getInfo());
         Integer l =1;
         node.setElement(l);
-        assertEquals(node.getinfo(),l);
+        assertEquals(node.getInfo(),l);
         Point2D.Double d = new Point2D.Double(0,0);
         node.setCoords(d);
         assertEquals(new Point2D.Double(node.getX(),node.getY()),d);
@@ -84,7 +84,7 @@ public class KDTreeTest {
         for (int i=0; i<arr.length; i++){            //new elements
             instance.insert(i,new Point2D.Double(arr[i],arr1[i]));
         }
-        assertEquals(0,instance.root.getinfo().intValue());
+        assertEquals(0,instance.root.getInfo().intValue());
         KDTree.DoubleNode n = new KDTree.DoubleNode<>(11,null,null);
         n.setCoords(new Point2D.Double(10,12));
         assertEquals((Double)n.getX(),(Double)instance.root.getLeft().getLeft().getRight().getLeft().getX());

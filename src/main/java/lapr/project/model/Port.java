@@ -54,4 +54,8 @@ public class Port {
                             return true;
         return false;
     }
+
+    public Point2D.Double getCoords() {
+        return coords;
+    }
 }

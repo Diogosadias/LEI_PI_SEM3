@@ -1,13 +1,15 @@
 package lapr.project.model;
 
+
+import lapr.project.utils.PL.KDTree;
 import org.junit.jupiter.api.Test;
 
-
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ImportPortTest {
     /***
@@ -70,42 +72,51 @@ public class ImportPortTest {
      * Test if 2DTree is well constructed and works for Ports
      */
     @Test
-    public void testPortTree(){
-        /*
+    public void testPortTree() throws IOException {
 
-        PortTree expectedResult = new ArrayList<>();
-        Add ports
+
+
         PortTree portTree = new PortTree();
         Port port = new Port("Europe","United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
         portTree.insert(port);
-        assertEquals(portTree.root.getElement(),port);
-        Port portx1 = new Port("Europe","United Kingdom",12345,"Lol",60,-3.033333333);
-        Port portx2 = new Port("Europe","United Kingdom",23456,"LEL",50,-3.033333333);
+        assertEquals(portTree.root().getInfo(),port);
+        Port portx1 = new Port("Europe","United Kingdom",12345,"Lol", 60.0,-3.033333333);
+        Port portx2 = new Port("Europe","United Kingdom",23456,"LEL", 50.0,-3.033333333);
         portTree.insert(portx1);
-        assertEquals(portTree.root.getRigth().getElement(),portx1);
+        assertEquals(portTree.root().getRight().getInfo(),portx1); //rigth
         portTree.insert(portx2);
-        assertEquals(portTree.root.getLeft().getElement(),portx2);
+        assertEquals(portTree.root().getLeft().getInfo(),portx2); //left
 
-        Port porty1 = new Port("Europe","United Kingdom",34567,"London",61,5);
-        Port porty2 = new Port("Europe","United Kingdom",45678,"Jupiter",61,-5);
+        Port porty1 = new Port("Europe","United Kingdom",34567,"London",61.0,5.0);
+        Port porty2 = new Port("Europe","United Kingdom",45678,"Jupiter",61.0,-5.0);
         portTree.insert(porty1);
         portTree.insert(porty2);
-        assertEquals(portTree.root.getRigth().getRigth().getElement(),porty1);
-        assertEquals(portTree.root.getRigth().getLeft().getElement(),porty2);
+        assertEquals(portTree.root().getRight().getRight().getInfo(),porty1);
+        assertEquals(portTree.root().getRight().getLeft().getInfo(),porty2);
 
 
-        Port portxy1 = new Port("Europe","United Kingdom",56789,"PORTO",40,5);
-        Port portxy2 = new Port("Europe","United Kingdom",67890,"Peru",40,-5);
-        portTree.insert(porty1);
-        portTree.insert(porty2);
-        assertEquals(portTree.root.getLeft().getRigth().getElement(),portxy1);
-        assertEquals(portTree.root.getLeft().getLeft().getElement(),portxy2);
+        Port portxy1 = new Port("Europe","United Kingdom",56789,"PORTO",40.0,5.0);
+        Port portxy2 = new Port("Europe","United Kingdom",67890,"Peru",40.0,-5.0);
+        portTree.insert(portxy1);
+        portTree.insert(portxy2);
+        assertEquals(portTree.root().getLeft().getRight().getInfo(),portxy1);
+        assertEquals(portTree.root().getLeft().getLeft().getInfo(),portxy2);
+        List<Port> expectedResult = new ArrayList<>();
+        expectedResult.add(portxy2);
+        expectedResult.add(portx2);
+        expectedResult.add(portxy1);
+        expectedResult.add(port);
+        expectedResult.add(porty2);
+        expectedResult.add(portx1);
+        expectedResult.add(porty1);
+
+
 
 
         assertEquals(portTree.inOrder(),expectedResult);
 
 
-         */
+
 
     }
 
