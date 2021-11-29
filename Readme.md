@@ -2,7 +2,8 @@
 
 #Introduction
 #Index
-[US201](#us201)
+* Sprint 1 - From US101 to US110
+* Sprint 2 - From US201 to US210
 
 ##US101
 ###Analysis
@@ -87,7 +88,7 @@ We need to check if 2D-Tree is Balanced:
 ![US202-MD](docs/Sprint 2/US202/US202-MD.svg)
 ###Design
 ![US202-SD](docs/Sprint 2/US202/US202-SD.svg)
-![US202-CD](docs/Sprint 2/US202/US202-CD.svg)
+![US202-CD](docs/Sprint 2/US202/US202-CDx.svg)
 ###Implementation
 
 ####Test Description
@@ -120,6 +121,57 @@ We need to check if 2D-Tree is Balanced:
 
 ---
 
+##US206 <a name="us206"></a>
+###Analysis
+![US206-SSD](docs/Sprint 2/US206/US206-SSD.svg)
+![US206-MD](docs/Sprint 2/US206/US206-MD.svg)
+###Design
+![US206-SD](docs/Sprint 2/US206/US206-SD.svg)
+![US206-CD](docs/Sprint 2/US206/US206-CD.svg)
+###Implementation
+
+####Test Description
+
+---
+
+##US207 <a name="us207"></a>
+###Analysis
+![US207-SSD](docs/Sprint 2/US207/US207-SSD.svg)
+![US207-MD](docs/Sprint 2/US207/US207-MD.svg)
+###Design
+![US207-SD](docs/Sprint 2/US207/US207-SD.svg)
+![US207-CD](docs/Sprint 2/US207/US207-CD.svg)
+###Implementation
+
+####Test Description
+
+---
+
+##US208 <a name="us208"></a>
+###Analysis
+![US208-SSD](docs/Sprint 2/US208/US208-SSD.jpg)
+![US208-MD](docs/Sprint 2/US208/US208-MD.jpg)
+###Design
+![US208-SD](docs/Sprint 2/US208/US208-SD.svg)
+![US208-CD](docs/Sprint 2/US208/US208-CD.svg)
+###Implementation
+
+####Test Description
+
+---
+
+##US209 <a name="us209"></a>
+###Analysis
+![US209-SSD](docs/Sprint 2/US209/US209-SSD.jpg)
+![US209-MD](docs/Sprint 2/US209/US209-MD.jpg)
+###Design
+![US209-SD](docs/Sprint 2/US209/US209-SD.svg)
+![US209-CD](docs/Sprint 2/US209/US209-CD.svg)
+###Implementation
+
+####Test Description
+
+---
 
 ##US210 <a name="us210"></a>
 ###Analysis
@@ -145,6 +197,8 @@ We need to check if 2D-Tree is Balanced:
 
 ![Class Diagram](docs/CD.svg)
 
+---
+---
 ---
 # README
 
