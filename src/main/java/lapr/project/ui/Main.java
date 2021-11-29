@@ -29,8 +29,8 @@ class Main {
     public static void main(String[] args) throws IOException, SQLException {
 
 
-        MainUI mainUI = new MainUI();
-        mainUI.run();
+        TrafficManagerUI trafficManagerUI = new TrafficManagerUI();
+        trafficManagerUI.run();
 
         System.out.println("Chose your Role:");
 

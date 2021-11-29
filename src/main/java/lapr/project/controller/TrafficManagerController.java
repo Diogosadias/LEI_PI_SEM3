@@ -7,7 +7,7 @@ import java.util.List;
 
 import static lapr.project.model.TemporalMessages.getDate;
 
-public class MainController {
+public class TrafficManagerController {
 
     public void setMmsiTree(MMSTree mmsiTree) {
         this.mmsiTree = mmsiTree;
@@ -25,7 +25,7 @@ public class MainController {
     /*
     Mais tarde criar classe Software/APP para armazenar tudo o que é importante
      */
-    public MainController() {
+    public TrafficManagerController() {
         //Only Initiated
     }
 

@@ -1,14 +1,11 @@
 package lapr.project.model;
-import lapr.project.controller.MainController;
 import org.junit.jupiter.api.Test;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import java.util.List;
 import static lapr.project.model.Import.readLine;
-import lapr.project.controller.MainController.*;
 import static org.junit.Assert.*;
 
 

@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-import lapr.project.controller.MainController;
+import lapr.project.controller.TrafficManagerController;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ public class    Search {
         //only Initiated
     }
 
-    public String searchDetails(Object code, MainController main) throws IOException {
+    public String searchDetails(Object code, TrafficManagerController main) throws IOException {
         if (code == null) { throw new IOException(s);}
         if (main.mmsiTree.isMMSI(code)) {
             if (main.mmsiTree.find(code)) {
@@ -34,7 +34,7 @@ public class    Search {
         return s2;
     }
 
-    public String searchDate(Object code, Object date, MainController main) throws IOException {
+    public String searchDate(Object code, Object date, TrafficManagerController main) throws IOException {
         if (code == null||date==null) { throw new IOException(s);}
         if (main.mmsiTree.isMMSI(code)) {
             if (main.mmsiTree.find(code)) {
@@ -54,7 +54,7 @@ public class    Search {
         return s2;
     }
 
-    public String searchDate(Object code, Object date1, Object date2, MainController main) throws IOException {
+    public String searchDate(Object code, Object date1, Object date2, TrafficManagerController main) throws IOException {
         if (code == null||date1==null||date2==null) { throw new IOException(s);}
         if (main.mmsiTree.isMMSI(code)) {
             if (main.mmsiTree.find(code)) {
