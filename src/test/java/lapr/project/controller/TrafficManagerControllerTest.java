@@ -3,28 +3,24 @@ package lapr.project.controller;
 import lapr.project.model.MMSTree;
 import lapr.project.model.PairsCalculator;
 import lapr.project.model.Ship;
-import lapr.project.model.ShipTree;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.time.LocalDateTime;
-import java.util.Scanner;
 
-import static lapr.project.model.TemporalMessages.getDate;
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainControllerTest {
+class TrafficManagerControllerTest {
     private String code1="211331640";
     private String code2= "DHBN";
     private String code3="IMO9193305";
     private String date= "31/12/2020 17:19";
     private String date2= "30/01/2021 17:19";
     private int n=5;
-    MainController mainController = new MainController();
+    TrafficManagerController trafficManagerController = new TrafficManagerController();
 
-    MainControllerTest() throws IOException {
+    TrafficManagerControllerTest() throws IOException {
     }
 
 
@@ -35,24 +31,24 @@ class MainControllerTest {
     public void insurefailN() throws IOException {
         try{
             MMSTree mmsiTree = new MMSTree();
-            mainController.setMmsiTree(mmsiTree);
-            mainController.getTopN(n,date,date2);
+            trafficManagerController.setMmsiTree(mmsiTree);
+            trafficManagerController.getTopN(n,date,date2);
 
         }catch (UnsupportedOperationException | IOException ex){
             System.out.println("Ships are not enough to fulfill requirement!");
         }
         try{
             MMSTree mmsiTree = new MMSTree();
-            mainController.setMmsiTree(mmsiTree);
-            mainController.getTopN(0,date,date2);
+            trafficManagerController.setMmsiTree(mmsiTree);
+            trafficManagerController.getTopN(0,date,date2);
 
         }catch (UnsupportedOperationException | IOException ex){
             System.out.println("Ships are not enough to fulfill requirement!");
         }
         try{
             MMSTree mmsiTree = new MMSTree();
-            mainController.setMmsiTree(mmsiTree);
-            mainController.getTopN(1,date,date2);
+            trafficManagerController.setMmsiTree(mmsiTree);
+            trafficManagerController.getTopN(1,date,date2);
 
         }catch (UnsupportedOperationException | IOException ex){
             System.out.println("Ships are not enough to fulfill requirement!");
@@ -60,10 +56,10 @@ class MainControllerTest {
         MMSTree mmsTree = new MMSTree();
         Ship s = new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
         mmsTree.insert(s);
-        mainController.setMmsiTree(mmsTree);
+        trafficManagerController.setMmsiTree(mmsTree);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        mainController.getTopN(1,date,date2);
+        trafficManagerController.getTopN(1,date,date2);
         String expectResult = outContent.toString();
         assertEquals(expectResult,outContent.toString());
 
@@ -73,7 +69,7 @@ class MainControllerTest {
     @Test
     void ensureSearchDetailsisNotNull() throws IOException {
 
-        MainController main = new MainController();
+        TrafficManagerController main = new TrafficManagerController();
         //Act
         //Assert
         try {
@@ -86,7 +82,7 @@ class MainControllerTest {
     @Test
     void ensureSearchDateisNotNull() throws IOException {
 
-        MainController main = new MainController();
+        TrafficManagerController main = new TrafficManagerController();
         //Act
         //Assert
         try {
@@ -99,7 +95,7 @@ class MainControllerTest {
     @Test
     void ensureSearchDate2isNotNull() throws IOException {
 
-        MainController main = new MainController();
+        TrafficManagerController main = new TrafficManagerController();
         //Act
         //Assert
         try {
@@ -112,7 +108,7 @@ class MainControllerTest {
     @Test
     void ensureSummaryisNotNull() throws IOException {
 
-        MainController main = new MainController();
+        TrafficManagerController main = new TrafficManagerController();
         //Act
         //Assert
         try {
@@ -125,7 +121,7 @@ class MainControllerTest {
     @Test
     void ensureGetTopNisNotNull() throws IOException {
 
-        MainController main = new MainController();
+        TrafficManagerController main = new TrafficManagerController();
         //Act
         //Assert
         try {
