@@ -4,10 +4,14 @@ package lapr.project.model;
 import lapr.project.utils.PL.KDTree;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 
 import static org.junit.Assert.*;
 
@@ -143,6 +147,22 @@ public class ImportPortTest {
         assertTrue(portManager.getPortTree().find(port));
         port.setCode(12345);
         assertFalse(portManager.getPortTree().find(port));
+
+    }
+
+    /***
+     * Test file creation
+     */
+    @Test
+    public void testFilesCreation() throws IOException {
+        PortManagerController portManagerControoler = new PortManagerController();
+        Scanner in = new Scanner(new File("src/test/resources/PortsNotSuccess"));
+        Scanner ou = new Scanner(portManagerControoler.importPort(null));
+        assertEquals(in.nextLine(),ou.nextLine());
+
+        in = new Scanner(new File("src/test/resources/PortsSuccess"));
+        ou = new Scanner(portManagerControoler.importPort("Data/data-ships&ports/sports.csv"));
+        assertEquals(in.nextLine(),ou.nextLine());
 
     }
 }
