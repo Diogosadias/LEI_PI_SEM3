@@ -9,8 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ImportPortTest {
     /***
@@ -142,6 +141,8 @@ public class ImportPortTest {
             e.printStackTrace();
         }
         assertTrue(portManager.getPortTree().find(port));
+        port.setCode(12345);
+        assertFalse(portManager.getPortTree().find(port));
 
     }
 }

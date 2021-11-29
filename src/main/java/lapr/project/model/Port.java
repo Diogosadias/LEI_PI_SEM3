@@ -64,4 +64,8 @@ public class Port implements Comparable<Port> {
     public int compareTo(Port o) {
         return this.code.compareTo(o.code);
     }
+
+    public void setCode(int i) {
+        this.code=i;
+    }
 }
