@@ -131,7 +131,17 @@ public class ImportPortTest {
      * Test if imports imports Ports
      */
     @Test
-    public void ensureFullImport(){
-        
+    public void ensureFullImport() throws FileNotFoundException {
+        PortManager portManager = new PortManager();
+        String fileresult = portManager.importPort("Data/data-ships&ports/sports.csv");
+        assertEquals("Ports were successfully imported!",fileresult.toString());
+        Port port = null;
+        try {
+            port = new Port("Europe","United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assertTrue(portManager.getPortTree().find(port));
+
     }
 }

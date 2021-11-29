@@ -47,4 +47,8 @@ public class PortManager {
         return "Ports were successfully imported!";
 
     }
+
+    public PortTree<Port> getPortTree() {
+        return portTree;
+    }
 }
