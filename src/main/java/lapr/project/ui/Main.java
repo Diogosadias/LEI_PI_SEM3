@@ -32,6 +32,10 @@ class Main {
         MainUI mainUI = new MainUI();
         mainUI.run();
 
+        System.out.println("Chose your Role:");
+
+        PortManagerUI portManagerUI = new PortManagerUI();
+        portManagerUI.runUI();
 
 
 
