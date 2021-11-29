@@ -60,14 +60,14 @@ public class TemporalMessages implements Comparable<TemporalMessages> {
         return v3;
     }
 
-    private double checklongitude(double v1) throws IOException {
+    protected static double checklongitude(double v1) throws IOException {
         if (v1 < -180 || v1 > 180) {
             throw new IOException("not Available!");
         }
         return v1;
     }
 
-    private double checkLatitude(double v) throws IOException {
+    protected static double checkLatitude(double v) throws IOException {
         if (v < -90 || v > 90) {
             throw new IOException("not Available!");
         }

@@ -28,42 +28,42 @@ public class ImportPortTest {
      * Test if Port is valid
      */
     @Test
-    public void portValidity(){
-        /*
+    public void portValidity() throws IOException {
+
         try{
-            Port(null,"United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
+            new Port(null,"United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
         }catch (IOException ex){
             System.out.println("Input is Invalid!");
         }
         try{
-            Port("Europe",null,29002,"Liverpool",53.46666667,-3.033333333);
+            new Port("Europe",null,29002,"Liverpool",53.46666667,-3.033333333);
         }catch (IOException ex){
             System.out.println("Input is Invalid!");
         }
         try{
-            Port("Europe","United Kingdom",null,"Liverpool",53.46666667,-3.033333333);
+            new Port("Europe","United Kingdom",null,"Liverpool",53.46666667,-3.033333333);
         }catch (IOException ex){
             System.out.println("Input is Invalid!");
         }
         try{
-            Port("Europe","United Kingdom",29002,null,53.46666667,-3.033333333);
+            new Port("Europe","United Kingdom",29002,null,53.46666667,-3.033333333);
         }catch (IOException ex){
             System.out.println("Input is Invalid!");
         }
         try{
-            Port("Europe","United Kingdom",29002,"Liverpool",null,-3.033333333);
+            new Port("Europe","United Kingdom",29002,"Liverpool", (double) -91,-3.033333333);
         }catch (IOException ex){
-            System.out.println("Input is Invalid!");
+            System.out.println("not Available!");
         }
         try{
-            Port("Europe","United Kingdom",29002,"Liverpool",53.46666667,null);
+            new Port("Europe","United Kingdom",29002,"Liverpool",53.46666667, 181.0);
         }catch (IOException ex){
-            System.out.println("Input is Invalid!");
+            System.out.println("not Available!");
         }
 
         Port port = new Port("Europe","United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
         assertTrue(port.isValid());
-        */
+
     }
 
     /***
