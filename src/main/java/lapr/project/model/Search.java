@@ -67,9 +67,9 @@ public class    Search {
         } else if (main.csTree.isCS(code)) {
             if (main.csTree.find(code)) {
                 return main.csTree.getShip(code).getMovements().searchDateFrame(date1, date2)+"\n"+s2;
+            } else {
+                return "Ship Code was not according regulations!" + "\n" + s2;
             }
-        } else {
-            System.out.println("Ship Code was not according regulations!");
         }
         return s2;
     }
@@ -87,9 +87,9 @@ public class    Search {
         } else if (main.csTree.isCS(code)) {
             if (main.csTree.find(code)) {
                 return main.csTree.getShip(code).getSummary(code)+"\n"+s2;
+            } else {
+                return "Ship Code was not according regulations!" + "\n" + s2;
             }
-        } else {
-            System.out.println("Ship Code was not according regulations!");
         }
         return s2;
     }

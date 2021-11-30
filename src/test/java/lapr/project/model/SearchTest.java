@@ -15,6 +15,7 @@ public class SearchTest {
     private String code2= "IMO9395044";
     private String code3="C4SQ2";
     private String date= "31/12/2020";
+    private String date1= "30/12/2020 17:19";
     private String date2= "30/01/2021 17:19";
     private int n=5;
 
@@ -131,7 +132,84 @@ public class SearchTest {
     }
 
     @Test
-    public void testSearchDate3parameters() {
+    public void testSearchDate3parameters() throws IOException {
+        try{
+            search.searchDate(null,date1,date2,main);
+        } catch (IOException ex){
+            System.out.println(s);
+        }
+        try{
+            search.searchDate(code1,null,date2,main);
+        } catch (IOException ex){
+            System.out.println(s);
+        }
+        try{
+            search.searchDate(code1,date1,null,main);
+        } catch (IOException ex){
+            System.out.println(s);
+        }
+        try{
+            search.searchDate(null,null,date2,main);
+        } catch (IOException ex){
+            System.out.println(s);
+        }
+        try{
+            search.searchDate(null,date1,null,main);
+        } catch (IOException ex){
+            System.out.println(s);
+        }
+        try{
+            search.searchDate(code1,null,null,main);
+        } catch (IOException ex){
+            System.out.println(s);
+        }
+        try{
+            search.searchDate(null,null,null,main);
+        } catch (IOException ex){
+            System.out.println(s);
+        }
+
+        Ship s = new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        s.getMovements().insert(shipmov);
+        main.mmsiTree.insert(s);
+        String result = "Moves from - 30/12/2020 17:19 to -30/01/2021 17:19\n" +
+                "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass \n" +
+                "31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\n" +
+                "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.searchDate(Integer.parseInt(code1),date1,date2,main),result);
+        main.imoTree.insert(s);
+        result = "Moves from - 30/12/2020 17:19 to -30/01/2021 17:19\n" +
+                "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass \n" +
+                "31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\n" +
+                "31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\n" +
+                "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.searchDate(code2,date1,date2,main),result);
+        main.csTree.insert(s);
+        result = "Moves from - 30/12/2020 17:19 to -30/01/2021 17:19\n" +
+                "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass \n" +
+                "31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\n" +
+                "31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\n" +
+                "31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\n" +
+                "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.searchDate(code3,date1,date2,main),result);
+
+        result = "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.searchDate(210950001,date1,date2,main),result);
+
+        result = "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.searchDate("IMO9395042",date1,date2,main),result);
+
+
+        result = "Ship Code was not according regulations!" + "\n" + s2;
+        assertEquals(search.searchDate("C4SQ1",date1,date2,main),result);
+
+
+        result = "Ship Code was not according regulations!" +"\n"+ s2;
+        assertEquals(search.searchDate("1234588",date1,date2,main),result);
+
+
+
     }
 
     @Test

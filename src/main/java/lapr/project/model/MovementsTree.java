@@ -39,8 +39,8 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
         if(getDate(s).isAfter(getDate(s1))) throw new IOException("Input Date is invalid!");
         else{
             List<TemporalMessages> temp = find(getDate(s),getDate(s1));
-            System.out.println("Moves from - " + s + " to -"+s1);
-            return printMoves(temp);
+            String print ="Moves from - " + s + " to -"+s1;
+            return print + "\n" + printMoves(temp);
         }
     }
 
