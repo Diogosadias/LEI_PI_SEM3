@@ -22,7 +22,7 @@ public class TrafficManagerController {
     private String s2 ="-------------------------------------------------------------------------------------------------";
     public Search search = new Search();
     private PairsCalculator pc = new PairsCalculator(mmsiTree);
-    private TopN topsum = new TopN(mmsiTree);
+    public TopN topsum = new TopN(mmsiTree);
 
 
     /*

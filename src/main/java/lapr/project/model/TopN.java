@@ -20,7 +20,7 @@ public class TopN {
     private String s = "Input is Invalid!";
     private String s2 ="-------------------------------------------------------------------------------------------------";
 
-    private final ShipTree mmsiTree;
+    private ShipTree mmsiTree;
 
     public TopN(ShipTree mmsiTree) throws IOException {
         if(mmsiTree==null) throw new IOException("Tree is not Valid!");
@@ -103,6 +103,8 @@ public class TopN {
     public ShipTree getTree() {
         return mmsiTree;
     }
+
+    public void setMmsiTree(ShipTree mmsiTree){this.mmsiTree=mmsiTree;}
 
     public String getTopNString(Object n, String date1, String date2) throws IOException {
         if (n == null) { throw new IOException(s);}

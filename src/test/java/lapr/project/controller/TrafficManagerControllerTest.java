@@ -56,7 +56,7 @@ class TrafficManagerControllerTest {
         MMSTree mmsTree = new MMSTree();
         Ship s = new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
         mmsTree.insert(s);
-        trafficManagerController.setMmsiTree(mmsTree);
+        trafficManagerController.topsum.setMmsiTree(mmsTree);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         trafficManagerController.getTopN(1,date,date2);
