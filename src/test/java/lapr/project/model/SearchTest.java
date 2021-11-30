@@ -213,6 +213,99 @@ public class SearchTest {
     }
 
     @Test
-    public void testsummary() {
+    public void testsummary() throws IOException {
+
+        try{
+            search.summary(null,main);
+        } catch (IOException ex){
+            System.out.println(s);
+        }
+        Ship s = new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
+        TemporalMessages shipmov = new TemporalMessages("31/12/2020 17:19",42.97875,-66.97001,12.9,13.1,355, "NA","B");
+        s.getMovements().insert(shipmov);
+        main.mmsiTree.insert(s);
+        String result = "The Ship with code 210950000 has:\n" +
+                "\n" +
+                "VesselName=VARAMO\n" +
+                "Start BaseDateTime=2020-12-31T17:19\n" +
+                "End BaseDateTime=2020-12-31T17:19\n" +
+                "TotalMovementTimePT0S\n" +
+                "TotalNumberOfMovements1\n" +
+                "MaxSOG12.9\n" +
+                "MeanSOG12.9\n" +
+                "MaxCOG=13.1\n" +
+                "MeanCOG=13.1\n" +
+                "DepartureLatitude42.97875\n" +
+                "DepartureLongitude-66.97001\n" +
+                "ArrivalLatitude=42.97875\n" +
+                "ArrivalLongitude=-66.97001\n" +
+                "TravelledDistance=\n" +
+                "0.0\n" +
+                "DeltaDistance=0.0\n" +
+                "\n" +
+                "\n" +
+                "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.summary(Integer.parseInt(code1),main),result);
+        main.imoTree.insert(s);
+        result = "The Ship with code IMO9395044 has:\n" +
+                "\n" +
+                "VesselName=VARAMO\n" +
+                "Start BaseDateTime=2020-12-31T17:19\n" +
+                "End BaseDateTime=2020-12-31T17:19\n" +
+                "TotalMovementTimePT0S\n" +
+                "TotalNumberOfMovements1\n" +
+                "MaxSOG12.9\n" +
+                "MeanSOG12.9\n" +
+                "MaxCOG=13.1\n" +
+                "MeanCOG=13.1\n" +
+                "DepartureLatitude42.97875\n" +
+                "DepartureLongitude-66.97001\n" +
+                "ArrivalLatitude=42.97875\n" +
+                "ArrivalLongitude=-66.97001\n" +
+                "TravelledDistance=\n" +
+                "0.0\n" +
+                "DeltaDistance=0.0\n" +
+                "\n" +
+                "\n" +
+                "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.summary(code2,main),result);
+        main.csTree.insert(s);
+        result = "The Ship with code C4SQ2 has:\n" +
+                "\n" +
+                "VesselName=VARAMO\n" +
+                "Start BaseDateTime=2020-12-31T17:19\n" +
+                "End BaseDateTime=2020-12-31T17:19\n" +
+                "TotalMovementTimePT0S\n" +
+                "TotalNumberOfMovements1\n" +
+                "MaxSOG12.9\n" +
+                "MeanSOG12.9\n" +
+                "MaxCOG=13.1\n" +
+                "MeanCOG=13.1\n" +
+                "DepartureLatitude42.97875\n" +
+                "DepartureLongitude-66.97001\n" +
+                "ArrivalLatitude=42.97875\n" +
+                "ArrivalLongitude=-66.97001\n" +
+                "TravelledDistance=\n" +
+                "0.0\n" +
+                "DeltaDistance=0.0\n" +
+                "\n" +
+                "\n" +
+                "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.summary(code3,main),result);
+
+        result = "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.summary(210950001,main),result);
+
+        result = "-------------------------------------------------------------------------------------------------";
+        assertEquals(search.summary("IMO9395042",main),result);
+
+
+        result = "Ship Code was not according regulations!" + "\n" + s2;
+        assertEquals(search.summary("C4SQ1",main),result);
+
+
+        result = "Ship Code was not according regulations!" +"\n"+ s2;
+        assertEquals(search.summary("1234588",main),result);
+
     }
 }
