@@ -20,8 +20,8 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
     public  String getMoveByDate(Object s) {
         if(s==null) return null;
         List<TemporalMessages> temp = find(s);
-        System.out.println("Moves for : " + s);
-        return printMoves(temp);
+        String print ="Moves for : " + s;
+        return print + "\n" + printMoves(temp);
     }
 
 
@@ -47,13 +47,12 @@ public class MovementsTree <E extends Comparable<E>> extends AVL<TemporalMessage
 
     public String printMoves(List<TemporalMessages> list){
         if(list==null) return null;
-        System.out.println("BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass ");
+        String print =        "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass ";
         for (TemporalMessages ms:list) {
-            System.out.println(ms.printMessage());
+            print = print + "\n" + ms.printMessage();
         }
 
-        String t="";
-        return t;
+        return print;
     }
 
 
