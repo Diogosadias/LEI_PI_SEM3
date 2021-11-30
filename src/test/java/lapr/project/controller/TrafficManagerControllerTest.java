@@ -56,7 +56,7 @@ class TrafficManagerControllerTest {
         MMSTree mmsTree = new MMSTree();
         Ship s = new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
         mmsTree.insert(s);
-        trafficManagerController.setMmsiTree(mmsTree);
+        trafficManagerController.topsum.setMmsiTree(mmsTree);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         trafficManagerController.getTopN(1,date,date2);
@@ -130,28 +130,6 @@ class TrafficManagerControllerTest {
             System.out.println("Input is Invalid!");
         }
     }
-
-    @Test
-    void testimportFile() {
-    }
-
-    @Test
-    void testsearchDetails() {
-    }
-
-    @Test
-    void testsearchDate() {
-    }
-
-    @Test
-    void testSearchDate() {
-    }
-
-    @Test
-    void testsummary() {
-
-    }
-
 
 
     @Test

@@ -9,10 +9,11 @@ public class PortManagerUI {
     String filename = "Data/data-ships&ports/bports.csv";
 
     public PortManagerUI(){
-
+        //Creation Only
     }
 
     public void runUI() throws IOException {
-        portManagerController.importPort(filename);
+        if(portManagerController.importPort(filename)!= null) System.out.println("Import Success, check File!");
+        else System.out.println("Import Not Success, please check File!");
     }
 }

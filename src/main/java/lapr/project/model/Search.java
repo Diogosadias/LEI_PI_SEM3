@@ -18,18 +18,18 @@ public class    Search {
         if (code == null) { throw new IOException(s);}
         if (main.mmsiTree.isMMSI(code)) {
             if (main.mmsiTree.find(code)) {
-                return main.mmsiTree.getShip(code).toString();
+                return main.mmsiTree.getShip(code).toString()+"\n"+s2;
             }
         } else if (main.imoTree.isISO(code)) {
             if (main.imoTree.find(code)) {
-                return main.imoTree.getShip(code).toString();
+                return main.imoTree.getShip(code).toString()+"\n"+s2;
             }
         } else if (main.csTree.isCS(code)) {
             if (main.csTree.find(code)) {
-                return main.csTree.getShip(code).toString();
+                return main.csTree.getShip(code).toString() + "\n" + s2;
+            } else {
+                return "Ship Code was not according regulations!" + "\n" + s2;
             }
-        } else {
-            System.out.println("Ship Code was not according regulations!");
         }
         return s2;
     }
@@ -38,18 +38,18 @@ public class    Search {
         if (code == null||date==null) { throw new IOException(s);}
         if (main.mmsiTree.isMMSI(code)) {
             if (main.mmsiTree.find(code)) {
-                return main.mmsiTree.getShip(code).getMovements().getMoveByDate(date);
+                return main.mmsiTree.getShip(code).getMovements().getMoveByDate(date)+"\n"+s2;
             }
         } else if (main.imoTree.isISO(code)) {
             if (main.imoTree.find(code)) {
-                return main.imoTree.getShip(code).getMovements().getMoveByDate(date);
+                return main.imoTree.getShip(code).getMovements().getMoveByDate(date)+"\n"+s2;
             }
         } else if (main.csTree.isCS(code)) {
             if (main.csTree.find(code)) {
-                return main.csTree.getShip(code).getMovements().getMoveByDate(date);
+                return main.csTree.getShip(code).getMovements().getMoveByDate(date)+"\n"+s2;
+            } else {
+                return "Ship Code was not according regulations!" + "\n" + s2;
             }
-        } else {
-            System.out.println("Ship Code was not according regulations!");
         }
         return s2;
     }
@@ -58,18 +58,38 @@ public class    Search {
         if (code == null||date1==null||date2==null) { throw new IOException(s);}
         if (main.mmsiTree.isMMSI(code)) {
             if (main.mmsiTree.find(code)) {
-                return main.mmsiTree.getShip(code).getMovements().searchDateFrame(date1, date2);
+                return main.mmsiTree.getShip(code).getMovements().searchDateFrame(date1, date2)+"\n"+s2;
             }
         } else if (main.imoTree.isISO(code)) {
             if (main.imoTree.find(code)) {
-                return main.imoTree.getShip(code).getMovements().searchDateFrame(date1, date2);
+                return main.imoTree.getShip(code).getMovements().searchDateFrame(date1, date2)+"\n"+s2;
             }
         } else if (main.csTree.isCS(code)) {
             if (main.csTree.find(code)) {
-                return main.csTree.getShip(code).getMovements().searchDateFrame(date1, date2);
+                return main.csTree.getShip(code).getMovements().searchDateFrame(date1, date2)+"\n"+s2;
+            } else {
+                return "Ship Code was not according regulations!" + "\n" + s2;
             }
-        } else {
-            System.out.println("Ship Code was not according regulations!");
+        }
+        return s2;
+    }
+
+    public String summary(Object code,TrafficManagerController main) throws IOException {
+        if (code == null) { throw new IOException(s);}
+        if (main.mmsiTree.isMMSI(code)) {
+            if (main.mmsiTree.find(code)) {
+                return main.mmsiTree.getShip(code).getSummary(code)+"\n"+s2;
+            }
+        } else if (main.imoTree.isISO(code)) {
+            if (main.imoTree.find(code)) {
+                return main.imoTree.getShip(code).getSummary(code)+"\n"+s2;
+            }
+        } else if (main.csTree.isCS(code)) {
+            if (main.csTree.find(code)) {
+                return main.csTree.getShip(code).getSummary(code)+"\n"+s2;
+            } else {
+                return "Ship Code was not according regulations!" + "\n" + s2;
+            }
         }
         return s2;
     }

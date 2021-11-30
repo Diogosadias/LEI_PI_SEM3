@@ -124,7 +124,8 @@ public class PositionOrganizedTest {
         movs.insert(shipmov);
         ship.setMovements(movs);
         list.add(shipmov);
-        String result = ship.getMoveByDate("31/12/2020");
+        String result = "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass \n" +
+                "31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB";
 
         //Assert
         assertEquals(movs.printMoves(list),result);
@@ -167,7 +168,9 @@ public class PositionOrganizedTest {
         ship.setMovements(movs);
         list.add(shipmov);
 
-        String result = ship.getMovements().searchDateFrame("31/12/2020 10:00","01/01/2021 17:19");
+        String result = "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass \n" +
+                "31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB\n" +
+                "31/12/2020 17:19\t42.97875\t-66.97001\t12.9\t\t13.1\t\t355.0\t\t\tNA\t\t\tB";
 
        //Assert
        assertEquals(movs.printMoves(list),result);
@@ -191,10 +194,11 @@ public class PositionOrganizedTest {
         Ship ship =new Ship("210950000","VARAMO","IMO9395044","C4SQ2",70,166,25,9.5,"NA");
         MovementsTree moves = new MovementsTree();
         ship.getMovements().insert(shipmov);
-        String expectedresult=ship.getMoveByDate("31/12/2020");
+        String expectedresult= "Moves for : 31/12/2020\n" +
+                "BaseDate Time \t\tLAT \t\tLON \t\tSOG \t\tCOG \t\tHeading \t\tCargo \t\tTranscieverClass ";
 
         //Assert
-        assertEquals(expectedresult,moves.getMoveByDate("31/12/2020"));
+        assertEquals(moves.getMoveByDate("31/12/2020"),expectedresult);
 
 
 
