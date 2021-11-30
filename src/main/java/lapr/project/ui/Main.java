@@ -55,8 +55,8 @@ class Main {
                 //shipCaptainUI.runUI();
                 break;
             case "4":
-                //ClientUI clientUI = new ClientUI();
-                //clientUI.runUI();
+                ClientUI clientUI = new ClientUI();
+                clientUI.runUI();
                 break;
             case "5":
                 break;

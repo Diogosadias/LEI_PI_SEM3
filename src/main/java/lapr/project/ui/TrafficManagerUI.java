@@ -16,6 +16,7 @@ public class TrafficManagerUI {
     private int n=5;
 
     public TrafficManagerUI() throws IOException {
+        //Creation Only
     }
 
     public void run() throws IOException {

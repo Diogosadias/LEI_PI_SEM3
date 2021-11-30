@@ -9,7 +9,7 @@ public class PortManagerUI {
     String filename = "Data/data-ships&ports/bports.csv";
 
     public PortManagerUI(){
-
+        //Creation Only
     }
 
     public void runUI() throws IOException {
