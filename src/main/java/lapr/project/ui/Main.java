@@ -51,8 +51,8 @@ class Main {
                 portManagerUI.runUI();
                 break;
             case "3":
-                //ShipCaptainUI shipCaptainUI = new ShipCaptainUI();
-                //shipCaptainUI.runUI();
+                ShipCaptainUI shipCaptainUI = new ShipCaptainUI();
+                shipCaptainUI.runUI();
                 break;
             case "4":
                 ClientUI clientUI = new ClientUI();
