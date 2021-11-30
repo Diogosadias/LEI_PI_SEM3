@@ -3,6 +3,7 @@ package lapr.project.model;
 
 
 
+import lapr.project.controller.TrafficManagerController;
 import oracle.ucp.util.Pair;
 
 import java.io.IOException;
@@ -10,9 +11,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.*;
 
+import static lapr.project.model.TemporalMessages.getDate;
+
 public class TopN {
 
     private final TreeMap<Ship, List<TemporalMessages>> map = new TreeMap<>();
+
+    private String s = "Input is Invalid!";
+    private String s2 ="-------------------------------------------------------------------------------------------------";
 
     private final ShipTree mmsiTree;
 
@@ -96,5 +102,13 @@ public class TopN {
 
     public ShipTree getTree() {
         return mmsiTree;
+    }
+
+    public String getTopNString(Object n, String date1, String date2) throws IOException {
+        if (n == null) { throw new IOException(s);}
+        if ((int) n > mmsiTree.size()) {
+            throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
+        }
+        return getTop(n,  getDate(date1),  getDate(date2)) + s2;
     }
 }

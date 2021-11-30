@@ -21,11 +21,14 @@ public class TrafficManagerController {
     private String s = "Input is Invalid!";
     private String s2 ="-------------------------------------------------------------------------------------------------";
     public Search search = new Search();
+    private PairsCalculator pc = new PairsCalculator(mmsiTree);
+    private TopN topsum = new TopN(mmsiTree);
+
 
     /*
     Mais tarde criar classe Software/APP para armazenar tudo o que é importante
      */
-    public TrafficManagerController() {
+    public TrafficManagerController() throws IOException {
         //Only Initiated
     }
 
@@ -56,37 +59,15 @@ public class TrafficManagerController {
     }
 
     public void summary(Object code) throws IOException {
-        if (code == null) { throw new IOException(s);}
-        if (mmsiTree.isMMSI(code)) {
-            if (mmsiTree.find(code)) {
-                System.out.println(mmsiTree.getShip(code).getSummary(code));
-            }
-        } else if (imoTree.isISO(code)) {
-            if (imoTree.find(code)) {
-                System.out.println(imoTree.getShip(code).getSummary(code));
-            }
-        } else if (csTree.isCS(code)) {
-            if (csTree.find(code)) {
-                System.out.println(csTree.getShip(code).getSummary(code));
-            }
-        } else {
-            System.out.println("Ship Code was not according regulations!");
-        }
-        System.out.println(s2);
+       System.out.println(search.summary(code,this));
     }
 
     public void getTopN(Object n, String date1, String date2) throws IOException {
-        if (n == null) { throw new IOException(s);}
-        if ((int) n > mmsiTree.size()) {
-            throw new UnsupportedOperationException("Ships are not enough to fulfill requirement!");
-        }
-        TopN topsum = new TopN(mmsiTree);
-        System.out.println(topsum.getTop(n,  getDate(date1),  getDate(date2)));
-        System.out.println(s2);
+        System.out.println(topsum.getTopNString(n,date1,date2));
+
     }
 
     public void pairsofShips() {
-        PairsCalculator pc = new PairsCalculator(mmsiTree);
         System.out.println(pc.pairs());
     }
 }

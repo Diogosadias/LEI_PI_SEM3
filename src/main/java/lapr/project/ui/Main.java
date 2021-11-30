@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 /**
@@ -28,15 +29,39 @@ class Main {
      */
     public static void main(String[] args) throws IOException, SQLException {
 
+        Scanner scanner = new Scanner(System.in);
 
-        TrafficManagerUI trafficManagerUI = new TrafficManagerUI();
-        trafficManagerUI.run();
 
-        System.out.println("Chose your Role:");
+        System.out.println("Welcome to our Application!" +
+                "\nPlease Select Your Role from the following:" +
+                "\n1 - Traffic Manager" +
+                "\n2 - Port Manager" +
+                "\n3 - Ship Captain" +
+                "\n4 - Client" +
+                "\n5 - Other");
 
-        PortManagerUI portManagerUI = new PortManagerUI();
-        portManagerUI.runUI();
-
+        String inputString = scanner.nextLine();
+        switch (inputString) {
+            case "1":
+                TrafficManagerUI trafficManagerUI = new TrafficManagerUI();
+                trafficManagerUI.run();
+                break;
+            case "2":
+                PortManagerUI portManagerUI = new PortManagerUI();
+                portManagerUI.runUI();
+                break;
+            case "3":
+                //ShipCaptainUI shipCaptainUI = new ShipCaptainUI();
+                //shipCaptainUI.runUI();
+                break;
+            case "4":
+                //ClientUI clientUI = new ClientUI();
+                //clientUI.runUI();
+                break;
+            case "5":
+                break;
+            default:
+        }
 
 
         /*
