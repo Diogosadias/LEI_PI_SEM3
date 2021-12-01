@@ -80,6 +80,13 @@ public class KDTree<T> {
             coords = location;
         }
 
+        public void setObject(DoubleNode<T> node) {
+            info = node.info;
+            left = node.left;
+            right = node.right;
+            coords = node.coords;
+
+        }
     }
 
     //----------- end of nested DoubleNode class -----------
@@ -169,16 +176,26 @@ public class KDTree<T> {
         snapshot.add(node.getInfo());
         inOrderSubtree(node.getRight(), snapshot);
     }
+
+
+    /***
+     * findNearestNeighbour - Finds nearest node given a location
+     * @param x
+     * @param y
+     * @return
+     */
+    public T findNearesNeighbour(double x ,double y) {
+        return findNearestNeighbour(root,x,y,root,true);
+    }
     
     private T findNearestNeighbour(DoubleNode<T> node, double x, double y, DoubleNode<T> closestNode, boolean divX) {
-        if (node == null) {
-            return null;
-        }
+        if (node == null) return null;
+
         double d = Point2D.distanceSq(node.coords.x, node.coords.y, x, y);
         double closestDist = Point2D.distanceSq(closestNode.coords.x,
                 closestNode.coords.y, x, y);
         if (closestDist > d) {
-            closestNode.setElement(node.getInfo());}
+            closestNode.setObject(node);}
         
             double delta = divX ? x - node.coords.x : y - node.coords.y;
             double delta2 = delta * delta;
@@ -190,6 +207,6 @@ public class KDTree<T> {
                 
 
             }
-            return closestNode.getInfo();
+            return closestNode.info;
         }
     }

@@ -89,4 +89,18 @@ public class KDTreeTest {
         n.setCoords(new Point2D.Double(10,12));
         assertEquals((Double)n.getX(),(Double)instance.root.getLeft().getLeft().getRight().getLeft().getX());
     }
+
+    /***
+     * Test Nearest Neighbour
+     */
+    @Test
+    public void testNearest() throws IOException {
+        Integer arr[] = {20,15,10,13,8,17,40,50,30,20,10};
+        Integer[] arr1 = {20,15,10,13,8,17,40,50,30,7,12};
+        for (int i=0; i<arr.length; i++){            //new elements
+            instance.insert(i,new Point2D.Double(arr[i],arr1[i]));
+        }
+        KDTree.DoubleNode n = new KDTree.DoubleNode(2,null,null);
+        assertEquals(instance.findNearesNeighbour(10,10),n.getInfo());
+    }
 }
