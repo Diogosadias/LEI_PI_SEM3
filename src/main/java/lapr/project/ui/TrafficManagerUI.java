@@ -47,6 +47,9 @@ public class TrafficManagerUI {
 
 
 
+        trafficManagerController.closestPort(code3,date);
+
+        trafficManagerController.shipAvailableMonday();
 
     }
 }

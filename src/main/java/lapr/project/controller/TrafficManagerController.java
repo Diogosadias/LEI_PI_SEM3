@@ -70,4 +70,11 @@ public class TrafficManagerController {
     public void pairsofShips() {
         System.out.println(pc.pairs());
     }
+
+
+    public void shipAvailableMonday() {
+    }
+
+    public void closestPort(String code3, String date1) {
+    }
 }
