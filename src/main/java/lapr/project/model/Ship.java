@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-
 import oracle.ucp.util.Pair;
 
 import java.io.IOException;
@@ -123,8 +122,6 @@ public class Ship implements Comparable<Ship> {
         this.movements = movements;
     }
 
-
-
     public String getMoveByDate(Object s) {
         return this.movements.getMoveByDate(s);
     }
@@ -141,11 +138,13 @@ public class Ship implements Comparable<Ship> {
 
     public String print(Double first) {
 
-        return "\t" + MMSI + "\t" + CallSign + "\t" + IMO + "\t\t" + String.format("%.2f",first) + "\r\n";
+        return "\t" + MMSI + "\t" + CallSign + "\t" + IMO + "\t\t" + String.format("%.2f", first) + "\r\n";
     }
 
     public boolean checkproximity(Ship t) {
-        if(t==null || t.getdeparture()==null || t.getArrival()==null) return false;
+        if (t == null || t.getdeparture() == null || t.getArrival() == null) {
+            return false;
+        }
         if (this.MMSI == (t.getMMSI())) {
             return false;
         }
@@ -163,7 +162,9 @@ public class Ship implements Comparable<Ship> {
     }
 
     boolean distPorts(Pair d, Pair a) {
-        if(d==null || a==null) return false;
+        if (d == null || a == null) {
+            return false;
+        }
         if (dist(d.get1st(), d.get2nd(), a.get1st(), a.get2nd()) < 5) {
             return true;
         }
@@ -182,8 +183,8 @@ public class Ship implements Comparable<Ship> {
         Double dlon = (Double) y2 - (Double) y1;
         Double a = sin(dlat / 2) * sin(dlat / 2) + cos((Double) x1) - cos((Double) x2) + sin(dlon / 2) * sin(dlon / 2);
         Double a1 = 1.0 - a;
-        if(a<0){
-            return dist(Math.toDegrees((Double) x2),Math.toDegrees((Double) y2),Math.toDegrees((Double) x1),Math.toDegrees((Double) y1));
+        if (a < 0) {
+            return dist(Math.toDegrees((Double) x2), Math.toDegrees((Double) y2), Math.toDegrees((Double) x1), Math.toDegrees((Double) y1));
         }
         Double c = 2 * atan2(sqrt(a), sqrt(a1));
         return constant * c;
@@ -207,14 +208,14 @@ public class Ship implements Comparable<Ship> {
     }
 
     public String getSummary(Object code) {
-        return "The Ship with code " + code +" has:\n"+"\n"+ "VesselName=" + VesselName +"\n"+ "Start BaseDateTime=" + getStartBaseDateTime() +"\n"+ "End BaseDateTime=" + getEndBaseDateTime() +"\n"+ "TotalMovementTime" + getTotalMovementTime() +"\n"+ "TotalNumberOfMovements" + getTotalNumberOfMovements() +"\n"+ "MaxSOG" + getMaxSOG() +"\n"+ "MeanSOG" + getMeanSOG() +"\n"+ "MaxCOG=" + getMaxCOG() +"\n"+ "MeanCOG=" + getMeanCOG() +"\n"+ "DepartureLatitude" + getDepartureLatitude() +"\n"+ "DepartureLongitude" + getDepartureLongitude() +"\n"+ "ArrivalLatitude=" + getArrivalLatitude() +"\n"+ "ArrivalLongitude=" + getArrivalLongitude() +"\n"+ "TravelledDistance=" +"\n"+ getTravelledDistance() +"\n"+ "DeltaDistance=" + getDeltaDistance()+"\n"+"\n";
+        return "The Ship with code " + code + " has:\n" + "\n" + "VesselName=" + VesselName + "\n" + "Start BaseDateTime=" + getStartBaseDateTime() + "\n" + "End BaseDateTime=" + getEndBaseDateTime() + "\n" + "TotalMovementTime" + getTotalMovementTime() + "\n" + "TotalNumberOfMovements" + getTotalNumberOfMovements() + "\n" + "MaxSOG" + getMaxSOG() + "\n" + "MeanSOG" + getMeanSOG() + "\n" + "MaxCOG=" + getMaxCOG() + "\n" + "MeanCOG=" + getMeanCOG() + "\n" + "DepartureLatitude" + getDepartureLatitude() + "\n" + "DepartureLongitude" + getDepartureLongitude() + "\n" + "ArrivalLatitude=" + getArrivalLatitude() + "\n" + "ArrivalLongitude=" + getArrivalLongitude() + "\n" + "TravelledDistance=" + "\n" + getTravelledDistance() + "\n" + "DeltaDistance=" + getDeltaDistance() + "\n" + "\n";
     }
 
     public double getMeanCOG() {
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double somaCOG = list.get(0).getCog();
-int i = 1;
-        while (i<list.size()) {
+        int i = 1;
+        while (i < list.size()) {
             somaCOG = somaCOG + list.get(i).getCog();
             i++;
         }
@@ -227,7 +228,7 @@ int i = 1;
         double maxCOG = list.get(0).getCog();
         int i = 1;
 
-        while (i<list.size()) {
+        while (i < list.size()) {
             TemporalMessages atual = list.get(i);
             if (atual.getCog() > maxCOG) {
                 maxCOG = atual.getCog();
@@ -241,7 +242,7 @@ int i = 1;
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double somaSOG = list.get(0).getSog();
         int i = 1;
-        while (i<list.size()) {
+        while (i < list.size()) {
             somaSOG = somaSOG + list.get(i).getSog();
             i++;
         }
@@ -252,8 +253,8 @@ int i = 1;
     public double getMaxSOG() {
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
         double maxSOG = list.get(0).getSog();
-        int i =1;
-        while (i<list.size()) {
+        int i = 1;
+        while (i < list.size()) {
             TemporalMessages atual = list.get(i);
             if (atual.getSog() > maxSOG) {
                 maxSOG = atual.getSog();
@@ -306,7 +307,7 @@ int i = 1;
 
     public Duration getTotalMovementTime() {
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
-        Duration duration = Duration.between(list.get(0).getBaseDateTime(),list.get(list.size() - 1).getBaseDateTime());
+        Duration duration = Duration.between(list.get(0).getBaseDateTime(), list.get(list.size() - 1).getBaseDateTime());
         return duration;
 
     }
@@ -318,7 +319,9 @@ int i = 1;
 
     public Double getTravelledDistance() {
         List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
-        if(list.size()<2) return 0.0;
+        if (list.size() < 2) {
+            return 0.0;
+        }
         double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
         int i = 2;
         while (i < list.size()) {
@@ -330,7 +333,9 @@ int i = 1;
 
     public Double getTravelDistanceDates(List<TemporalMessages> messages) {
         List<TemporalMessages> list = messages;
-        if(messages.size()<2) return 0.0;
+        if (messages.size() < 2) {
+            return 0.0;
+        }
         double sum = dist(list.get(0).getLatitude(), list.get(0).getLongitude(), list.get(1).getLatitude(), list.get(1).getLongitude());
         int i = 2;
         while (i < list.size()) {
@@ -338,6 +343,20 @@ int i = 1;
             i++;
         }
         return sum;
+    }
+
+    public double[] getCoordsbyBaseDateTime(Object date) {
+        double array[] = new double[2];
+        List<TemporalMessages> list = (List<TemporalMessages>) movements.inOrder();
+        int i = 0;
+        while (i < list.size()) {
+            if (list.get(i).getBaseDateTime() == date) {
+                array[0] = list.get(i).getLatitude();
+                array[1] = list.get(i).getLongitude();
+            }
+            i++;
+        }
+        return array;
     }
 
     @Override

@@ -18,7 +18,10 @@ public class PortManagerController {
         FileWriter myWriter = new FileWriter("importResult.txt");
         myWriter.write(portManager.importPort(o));
         myWriter.close();
+        
 
         return  myObj;
     }
+    
+    public PortManager getPortManager(){return portManager;}
 }

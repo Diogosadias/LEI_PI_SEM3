@@ -12,14 +12,13 @@ public class TrafficManagerController {
     public void setMmsiTree(MMSTree mmsiTree) {
         this.mmsiTree = mmsiTree;
     }
-
-
-
+    public PortManager pm = new PortManager();
+    public PortTree portTree = pm.getPortTree();
     public MMSTree mmsiTree = new MMSTree();
     public IMOTree imoTree = new IMOTree();
     public CallSignTree csTree = new CallSignTree();
     private String s = "Input is Invalid!";
-    private String s2 ="-------------------------------------------------------------------------------------------------";
+    private String s2 = "-------------------------------------------------------------------------------------------------";
     public Search search = new Search();
     private PairsCalculator pc = new PairsCalculator(mmsiTree);
     public TopN topsum = new TopN(mmsiTree);
@@ -35,35 +34,35 @@ public class TrafficManagerController {
     public void importFile(String filename) throws IOException {
 
         Import importer = new Import();
-        List<ShipTree> map = importer.readLine(filename,mmsiTree,imoTree,csTree);
-        MMSTree mmsiTree= (MMSTree) map.get(0);
-        IMOTree imoTree= (IMOTree) map.get(1);
-        CallSignTree csTree= (CallSignTree) map.get(2);
+        List<ShipTree> map = importer.readLine(filename, mmsiTree, imoTree, csTree);
+        MMSTree mmsiTree = (MMSTree) map.get(0);
+        IMOTree imoTree = (IMOTree) map.get(1);
+        CallSignTree csTree = (CallSignTree) map.get(2);
 
-        this.mmsiTree=mmsiTree;
-        this.imoTree=imoTree;
-        this.csTree=csTree;
+        this.mmsiTree = mmsiTree;
+        this.imoTree = imoTree;
+        this.csTree = csTree;
 
     }
 
     public void searchDetails(Object code) throws IOException {
-        System.out.println(search.searchDetails(code,this));
+        System.out.println(search.searchDetails(code, this));
     }
 
     public void searchDate(Object code, Object date) throws IOException {
-       System.out.println(search.searchDate(code,date,this));
+        System.out.println(search.searchDate(code, date, this));
     }
 
     public void searchDate(Object code, Object date1, Object date2) throws IOException {
-       System.out.println(search.searchDate(code,date1,date2,this));
+        System.out.println(search.searchDate(code, date1, date2, this));
     }
 
     public void summary(Object code) throws IOException {
-       System.out.println(search.summary(code,this));
+        System.out.println(search.summary(code, this));
     }
 
     public void getTopN(Object n, String date1, String date2) throws IOException {
-        System.out.println(topsum.getTopNString(n,date1,date2));
+        System.out.println(topsum.getTopNString(n, date1, date2));
 
     }
 
@@ -71,10 +70,12 @@ public class TrafficManagerController {
         System.out.println(pc.pairs());
     }
 
-
     public void shipAvailableMonday() {
     }
 
-    public void closestPort(String code3, String date1) {
+    
+
+    public void closestPort(String code3, String date, PortTree portTree) throws IOException {
+        System.out.println(search.getClosestPort(code3, date,this, portTree));
     }
 }

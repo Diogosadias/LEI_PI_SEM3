@@ -3,9 +3,12 @@ package lapr.project.ui;
 import lapr.project.controller.*;
 
 import java.io.IOException;
+import lapr.project.model.Port;
+import lapr.project.model.PortTree;
 
 public class TrafficManagerUI {
 
+    private PortTree portTree;
     private String filename = "data/data-ships&ports/bships.csv";
     private String code1="211331640";
     private String code3= "DHBN";
@@ -18,6 +21,12 @@ public class TrafficManagerUI {
     public TrafficManagerUI() throws IOException {
         //Creation Only
     }
+
+    TrafficManagerUI(PortTree<Port> portTree) {
+        this.portTree=portTree;
+
+    }
+
 
     public void run() throws IOException {
 
@@ -47,7 +56,7 @@ public class TrafficManagerUI {
 
 
 
-        trafficManagerController.closestPort(code3,date);
+        trafficManagerController.closestPort(code3,date,portTree);
 
         trafficManagerController.shipAvailableMonday();
 
