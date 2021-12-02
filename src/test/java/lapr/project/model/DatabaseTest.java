@@ -19,7 +19,7 @@ public class DatabaseTest {
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
 
         Connection connection = mock(Connection.class);
-        
+
          */
     }
 
