@@ -164,4 +164,17 @@ public class ImportPortTest {
         assertEquals(in.nextLine(),ou.nextLine());
 
     }
+
+    /***
+     * Balanced KD-Tree
+     */
+    @Test
+    public void testBalance() throws IOException {
+        PortManager portManager = new PortManager();
+        String fileresult = portManager.importPort("Data/data-ships&ports/balancedPorts.csv");
+        Port port = new Port("Europe","United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
+        assertEquals(portManager.getPortTree().root().getInfo().getCode(),port.getCode());
+        assertEquals(portManager.getPortTree().root().getInfo().getCoords(),port.getCoords());
+
+    }
 }
