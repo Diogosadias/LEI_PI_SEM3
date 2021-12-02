@@ -76,5 +76,8 @@ public class TrafficManagerController {
     }
 
     public void closestPort(String code3, String date1) {
+        //getLocation(callsign)
+
+        //getNearst(port)
     }
 }

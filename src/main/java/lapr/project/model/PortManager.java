@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.data.DatabaseConnection;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class PortManager {
                     e.printStackTrace();
                 }
 
-                //Add to Database
+
             }
         }
 

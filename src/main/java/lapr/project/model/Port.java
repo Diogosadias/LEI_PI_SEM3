@@ -68,4 +68,17 @@ public class Port implements Comparable<Port> {
     public void setCode(int i) {
         this.code=i;
     }
+
+    public int getCode() { return code;
+    }
+
+
+    public String getCont() { return cont;
+    }
+
+    public String getCountry() { return country;
+    }
+
+    public String getLocation() { return city;
+    }
 }

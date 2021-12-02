@@ -67,7 +67,7 @@ class Main {
                 break;
             case "2":
                 PortManagerUI portManagerUI = new PortManagerUI();
-                portManagerUI.runUI();
+                portManagerUI.runUI(databaseConnection);
                 break;
             case "3":
                 ShipCaptainUI shipCaptainUI = new ShipCaptainUI();
