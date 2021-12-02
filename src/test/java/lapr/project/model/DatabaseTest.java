@@ -3,10 +3,20 @@ package lapr.project.model;
 import lapr.project.data.DatabaseConnection;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 
-
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 public class DatabaseTest {
 
@@ -31,4 +41,47 @@ public class DatabaseTest {
 
     }
 
+    /***
+     * Test to Import
+     */
+    @Test
+    public void testImportMockito() throws IOException {
+
+
+
+        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+
+        Connection connection = mock(Connection.class);
+
+
+        try {
+            PortTree portTree = mock(PortTree.class);
+
+            List<Port> list= (List<Port>) portTree.inOrder();
+            connection.setAutoCommit(false);
+            for (Port port : list) {
+
+
+                when(portTree.save(databaseConnection, port)).thenReturn(
+                        true);
+                boolean result = portTree.save(databaseConnection, port);
+                assertTrue(result);
+
+                Logger.getLogger(DatabaseTest.class.getName())
+                        .log(Level.INFO, "Port Added!");
+
+            }
+        }catch(SQLException ex){
+            Logger.getLogger(PortTree.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(PortTree.class.getName())
+                        .log(Level.SEVERE, null, ex1);
+            }
+        }
+
+
+    }
 }
