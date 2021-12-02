@@ -22,9 +22,10 @@
     <dependencies>
         <!-- Students can only add new dependencies to this section -->
         <dependency>
-            <groupId>com.oracle.ojdbc</groupId>
-            <artifactId>ojdbc10</artifactId>
-            <version>19.3.0.0</version>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.8.0.0</version>
+            <type>jar</type>
         </dependency>
 
 
