@@ -1,9 +1,15 @@
 package lapr.project.ui;
 
+import lapr.project.data.*;
+import lapr.project.model.ShipTree;
+
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -28,6 +34,19 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException {
+
+        DatabaseConnection databaseConnection = null;
+        try {
+            databaseConnection = ConnectionFactory.getInstance()
+                    .getDatabaseConnection();
+        } catch (IOException exception) {
+            Logger.getLogger(ShipTree.class.getName())
+                    .log(Level.SEVERE, null, exception);
+        }
+        Connection connection = databaseConnection.getConnection();
+        System.out.println("Connected to the database!\n\n");
+
+
 
         Scanner scanner = new Scanner(System.in);
 
