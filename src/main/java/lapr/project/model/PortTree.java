@@ -39,11 +39,11 @@ PortTree <E extends Comparable<E>> extends KDTree<Port> {
                 connection.prepareStatement(
                         sqlCommand);
         savePortPreparedStatement.setInt(1,port.getCode());
-        savePortPreparedStatement.setString(3,port.getCont());
-        savePortPreparedStatement.setString(4,port.getCountry());
-        savePortPreparedStatement.setString(5,port.getLocation());
-        savePortPreparedStatement.setFloat(6, (float) port.getCoords().x);
-        savePortPreparedStatement.setFloat(7, (float) port.getCoords().y);
+        savePortPreparedStatement.setString(2,port.getCont());
+        savePortPreparedStatement.setString(3,port.getCountry());
+        savePortPreparedStatement.setString(4,port.getLocation());
+        savePortPreparedStatement.setFloat(5, (float) port.getCoords().x);
+        savePortPreparedStatement.setFloat(6, (float) port.getCoords().y);
         savePortPreparedStatement.executeUpdate();
     }
 

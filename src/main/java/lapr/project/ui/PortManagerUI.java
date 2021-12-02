@@ -17,7 +17,7 @@ public class PortManagerUI {
     public void runUI(DatabaseConnection databaseConnection) throws IOException, SQLException {
         if(portManagerController.importPort(filename)!= null){
             System.out.println("Import Success, check File!");
-            //portManagerController.importToDatabase(databaseConnection,portManagerController.getPortManager().getPortTree());
+            portManagerController.importToDatabase(databaseConnection,portManagerController.getPortManager().getPortTree());
         }
         else System.out.println("Import Not Success, please check File!");
     }
