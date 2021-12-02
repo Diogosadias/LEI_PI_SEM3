@@ -34,6 +34,8 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException {
+                        PortManagerUI portManagerUI = new PortManagerUI();
+
 
         DatabaseConnection databaseConnection = null;
         try {
@@ -62,12 +64,17 @@ class Main {
         String inputString = scanner.nextLine();
         switch (inputString) {
             case "1":
-                TrafficManagerUI trafficManagerUI = new TrafficManagerUI();
+                portManagerUI.runUI();
+                TrafficManagerUI trafficManagerUI = new TrafficManagerUI(portManagerUI.portManagerController.getPortManager().getPortTree());
                 trafficManagerUI.run();
                 break;
             case "2":
+<<<<<<< HEAD
                 PortManagerUI portManagerUI = new PortManagerUI();
                 portManagerUI.runUI(databaseConnection);
+=======
+                portManagerUI.runUI();
+>>>>>>> 7e9f1c16a65296589627183eeceb842f3d09e5d6
                 break;
             case "3":
                 ShipCaptainUI shipCaptainUI = new ShipCaptainUI();
