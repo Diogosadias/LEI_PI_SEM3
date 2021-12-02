@@ -73,16 +73,10 @@ public class TrafficManagerController {
     public void shipAvailableMonday() {
     }
 
-<<<<<<< HEAD
-    public void closestPort(String code3, String date1) {
-        //getLocation(callsign)
 
-        //getNearst(port)
-=======
     
 
     public void closestPort(String code3, String date, PortTree portTree) throws IOException {
         System.out.println(search.getClosestPort(code3, date,this, portTree));
->>>>>>> 7e9f1c16a65296589627183eeceb842f3d09e5d6
     }
 }

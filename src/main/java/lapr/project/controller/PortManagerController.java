@@ -32,7 +32,6 @@ public class PortManagerController {
     }
     
     public PortManager getPortManager(){return portManager;}
-<<<<<<< HEAD
 
     public void importToDatabase(DatabaseConnection databaseConnection,PortTree<Port> portTree) throws SQLException {
         List<Port> list= (List<Port>) portTree.inOrder();
@@ -61,6 +60,5 @@ public class PortManagerController {
             }
 
     }
-=======
->>>>>>> 7e9f1c16a65296589627183eeceb842f3d09e5d6
+
 }
