@@ -21,11 +21,11 @@
 
     <dependencies>
         <!-- Students can only add new dependencies to this section -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.oracle.ojdbc</groupId>
             <artifactId>ojdbc10</artifactId>
             <version>19.3.0.0</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc8</artifactId>
