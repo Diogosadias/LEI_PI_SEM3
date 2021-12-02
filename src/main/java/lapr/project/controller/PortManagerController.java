@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.data.DatabaseConnection;
+import lapr.project.data.ImportPortDatabase;
 import lapr.project.model.Port;
 import lapr.project.model.PortManager;
 import lapr.project.model.PortTree;
@@ -35,13 +36,14 @@ public class PortManagerController {
 
     public void importToDatabase(DatabaseConnection databaseConnection,PortTree<Port> portTree) throws SQLException {
         List<Port> list= (List<Port>) portTree.inOrder();
+        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
 
         Connection connection = databaseConnection.getConnection();
 
         try {
             connection.setAutoCommit(false);
             for (Port port : list) {
-                if (!portTree.save(databaseConnection, port)) {
+                if (!importPortDatabase.save(databaseConnection, port)) {
                     throw databaseConnection.getLastError();
                 }
                 connection.commit();

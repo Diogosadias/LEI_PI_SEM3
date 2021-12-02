@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import lapr.project.data.DatabaseConnection;
+import lapr.project.data.ImportPortDatabase;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -56,15 +57,16 @@ public class DatabaseTest {
 
         try {
             PortTree portTree = mock(PortTree.class);
+            ImportPortDatabase importPortDatabase = mock(ImportPortDatabase.class);
 
             List<Port> list= (List<Port>) portTree.inOrder();
             connection.setAutoCommit(false);
             for (Port port : list) {
 
 
-                when(portTree.save(databaseConnection, port)).thenReturn(
+                when(importPortDatabase.save(databaseConnection, port)).thenReturn(
                         true);
-                boolean result = portTree.save(databaseConnection, port);
+                boolean result = importPortDatabase.save(databaseConnection, port);
                 assertTrue(result);
 
                 Logger.getLogger(DatabaseTest.class.getName())
