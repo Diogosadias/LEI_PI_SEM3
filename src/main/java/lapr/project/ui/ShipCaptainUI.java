@@ -1,9 +1,7 @@
 package lapr.project.ui;
 
 import lapr.project.controller.ShipCaptainController;
-import lapr.project.controller.TrafficManagerController;
 import lapr.project.data.DatabaseConnection;
-import lapr.project.model.CargoManifest;
 
 import java.io.IOException;
 import java.util.Scanner;
