@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ClientUI {
     ClientController clientController = new ClientController();
-    String code = "211331640";
+    String code = "12345";
 
     public void runUI(DatabaseConnection databaseConnection) throws IOException {
         Scanner scanner = new Scanner(System.in);

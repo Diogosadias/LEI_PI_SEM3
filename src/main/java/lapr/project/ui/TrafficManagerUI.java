@@ -83,7 +83,7 @@ public class TrafficManagerUI {
                 trafficManagerController.closestPort(databaseConnection, code3, date);
                 break;
             case "9":
-                trafficManagerController.shipAvailableMonday();
+                trafficManagerController.shipAvailableMonday(databaseConnection,date1);
                 break;
             case "E":
                 flag = false;

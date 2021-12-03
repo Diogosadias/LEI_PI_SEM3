@@ -11,6 +11,7 @@ public class ShipCaptainUI {
     private Integer cargoID = 12345;
     private String ship_id="211331640";
     private String date= "31/12/2020 00:01";
+    private String year = "2020";
 
 
 
@@ -37,10 +38,10 @@ public class ShipCaptainUI {
                     shipCaptainController.offloaded(databaseConnection);
                     break;
                 case "2":
-                    shipCaptainController.loaded();
+                    shipCaptainController.loaded(databaseConnection);
                     break;
                 case "3":
-                    shipCaptainController.yearlymainfest();
+                    shipCaptainController.yearlymainfest(databaseConnection,year);
                     break;
                 case "4":
                     shipCaptainController.occupancyratemanifest(databaseConnection,cargoID,ship_id);

@@ -3,10 +3,12 @@ package lapr.project.model;
 import lapr.project.controller.TrafficManagerController;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ImportPortDatabase;
+import lapr.project.data.ShipDatabase;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -152,5 +154,19 @@ public class Search {
         }
 
         return s2;
+    }
+
+    public String nextMonday(DatabaseConnection databaseConnection, LocalDateTime date1) {
+        Ship ship = null;
+        if(date1==null) return "Date is not Valid!";
+        ShipDatabase shipDatabase = new ShipDatabase();
+
+        ship = shipDatabase.getNextMonday(databaseConnection,date1);
+
+
+        if(ship==null) return "Ship was not Found!";
+
+
+        return "The Ship Avilable next Monday is : \n" + ship.toString() + "|\n" +s2;
     }
 }

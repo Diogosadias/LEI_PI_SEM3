@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import oracle.ucp.util.Pair;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ShipDatabase;
 
@@ -81,5 +82,42 @@ public class ShipCaptain {
 
         return print + "|\n" +s2;
 
+    }
+
+    public String load(DatabaseConnection databaseConnection, Integer id) {
+        List<Container> containers = new ArrayList<>();
+
+        if(id==null) return "Ship Captain Id was not Found!";
+
+        ShipDatabase shipDatabase = new ShipDatabase();
+
+        containers = shipDatabase.getLoad(databaseConnection,id);
+
+
+        if(containers==null) return "There are no Containers to Offload!";
+        String print = "The Containers to be Loaded next Port: \n";
+
+        for(Container c : containers){
+            print = print + c.toString();
+        }
+
+        return print + "|\n" +s2;
+    }
+
+    public String yearly(DatabaseConnection databaseConnection, String year) {
+        Pair<Integer,Double> c ;
+
+        if(year==null) return "Year is not Valid!";
+
+        ShipDatabase shipDatabase = new ShipDatabase();
+
+        c = shipDatabase.year(databaseConnection,year);
+
+
+        if(c.get1st()==null) return "There are no Container Information for this Year!";
+
+
+        return "The total number of containers is " + c.get1st() +
+                "\n And the average number of container per Mainfest is : " + c.get2nd() + "\n" +s2;
     }
 }

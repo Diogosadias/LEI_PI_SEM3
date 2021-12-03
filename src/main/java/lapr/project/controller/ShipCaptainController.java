@@ -22,10 +22,23 @@ public class ShipCaptainController {
         return  myObj;
     }
 
-    public void loaded() {
+    public File loaded(DatabaseConnection databaseConnection) throws IOException {
+        File myObj = new File("Load.txt");
+        FileWriter myWriter = new FileWriter("Load.txt");
+        myWriter.write(shipCaptain.load(databaseConnection, shipCaptain.getId()));
+        myWriter.close();
+
+        return  myObj;
     }
 
-    public void yearlymainfest() {
+    public File yearlymainfest(DatabaseConnection databaseConnection, String year) throws IOException {
+        File myObj = new File("YearInformation.txt");
+        FileWriter myWriter = new FileWriter("YearInformation.txt");
+        myWriter.write(shipCaptain.yearly(databaseConnection, year));
+        myWriter.close();
+
+
+        return  myObj;
     }
 
 
