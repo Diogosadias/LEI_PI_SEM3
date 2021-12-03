@@ -34,7 +34,7 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException {
-                        PortManagerUI portManagerUI = new PortManagerUI();
+        PortManagerUI portManagerUI = new PortManagerUI();
 
 
         DatabaseConnection databaseConnection = null;
@@ -49,17 +49,18 @@ class Main {
         System.out.println("Connected to the database!\n\n");
 
 
-
         Scanner scanner = new Scanner(System.in);
+        boolean flag=true;
 
-
+        while(flag){
         System.out.println("Welcome to our Application!" +
                 "\nPlease Select Your Role from the following:" +
                 "\n1 - Traffic Manager" +
                 "\n2 - Port Manager" +
                 "\n3 - Ship Captain" +
                 "\n4 - Client" +
-                "\n5 - Other");
+                "\n5 - Other" +
+                "\nE - Exit");
 
         String inputString = scanner.nextLine();
         switch (inputString) {
@@ -80,9 +81,12 @@ class Main {
                 break;
             case "5":
                 break;
+            case "E":
+                flag = false;
+                break;
             default:
         }
-
+    }
 
         /*
         if (LOGGER.isLoggable(Level.INFO)) {

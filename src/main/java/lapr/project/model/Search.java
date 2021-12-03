@@ -119,10 +119,10 @@ public class Search {
             connection.setAutoCommit(false);
 
             if (!importPortDatabase.getPortData(databaseConnection, portTree)) {
-                    throw databaseConnection.getLastError();
-                }
-                connection.commit();
-                System.out.println("Ports Retrieved From Database!");
+                throw databaseConnection.getLastError();
+            }
+            connection.commit();
+            System.out.println("Ports Retrieved From Database!");
 
 
         }catch(SQLException ex){
