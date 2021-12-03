@@ -3,12 +3,14 @@ package lapr.project.ui;
 import lapr.project.controller.*;
 
 import java.io.IOException;
+import java.util.Scanner;
+
+import lapr.project.data.DatabaseConnection;
 import lapr.project.model.Port;
 import lapr.project.model.PortTree;
 
 public class TrafficManagerUI {
 
-    private PortTree portTree;
     private String filename = "data/data-ships&ports/bships.csv";
     private String code1="211331640";
     private String code3= "DHBN";
@@ -22,43 +24,73 @@ public class TrafficManagerUI {
         //Creation Only
     }
 
-    TrafficManagerUI(PortTree<Port> portTree) {
-        this.portTree=portTree;
-
-    }
 
 
-    public void run() throws IOException {
-
+    public void run(DatabaseConnection databaseConnection) throws IOException {
         TrafficManagerController trafficManagerController = new TrafficManagerController();
 
-        trafficManagerController.importFile(filename); //US101 - Import file & US103 - Positional Messages
 
-        trafficManagerController.searchDetails(code1); //US102 - Search Ship by code MMSI - Implemented
-        trafficManagerController.searchDetails(code2); //US102 - Search Ship by code CallSign - Implemented
-        trafficManagerController.searchDetails(code3); //US102 - Search Ship by code ISO - Implemented
-
-        trafficManagerController.searchDate(code1,date1); //US103 - Search Ship by code MMSI on Date - Implemented
-        trafficManagerController.searchDate(code2,date1); //US103 - Search Ship by code CallSign on Date - Implemented
-        trafficManagerController.searchDate(code3,date1); //US103 - Search Ship by code ISO on Date - Implemented
-
-        trafficManagerController.searchDate(code1,date,date2); //US103 - Search Ship by code MMSI on Date Range - Implemented
-        trafficManagerController.searchDate(code2,date,date2); //US103 - Search Ship by code CallSign on Date Range - Implemented
-        trafficManagerController.searchDate(code3,date,date2); //US103 - Search Ship by code ISO on Date Range - Implemented
-
-        trafficManagerController.summary(code1); //US104 - Summary Ship by code MMSI
-        trafficManagerController.summary(code2); //US104 - Summary Ship by code CallSign
-        trafficManagerController.summary(code3); //US104 - Summary Ship by code ISO
-
-        trafficManagerController.getTopN(n,date,date2); //US106 - TopN for Date Range and Group By Vessel Type - Implemented
-
-        trafficManagerController.pairsofShips(); //US107 - Pair Ships with close location and Diferent Travel Distance - Implemented
+        Scanner scanner = new Scanner(System.in);
 
 
+        boolean flag =true;
+        while(flag){
+        System.out.println("Traffic Manager!" +
+                "\nPlease Select the task from the following:" +
+                "\n1 - Import Ships" +
+                "\n2 - Search Details" +
+                "\n3 - Search Move By Date" +
+                "\n4 - Search Move By Date Range" +
+                "\n5 - Summary of Ship" +
+                "\n6 - Top-N" +
+                "\n7 - Pairs of Ships" +
+                "\n8 - Get Closest Port" +
+                "\n9 - Ship Availability" +
+                "\nE - Exit");
 
-        trafficManagerController.closestPort(code3,date,portTree);
-
-        trafficManagerController.shipAvailableMonday();
+        String inputString = scanner.nextLine();
+        switch (inputString) {
+            case "1":
+                trafficManagerController.importFile(filename); //US101 - Import file & US103 - Positional Messages
+                break;
+            case "2":
+                trafficManagerController.searchDetails(code1); //US102 - Search Ship by code MMSI - Implemented
+                trafficManagerController.searchDetails(code2); //US102 - Search Ship by code CallSign - Implemented
+                trafficManagerController.searchDetails(code3); //US102 - Search Ship by code ISO - Implemented                break;
+                break;
+            case "3":
+                trafficManagerController.searchDate(code1, date1); //US103 - Search Ship by code MMSI on Date - Implemented
+                trafficManagerController.searchDate(code2, date1); //US103 - Search Ship by code CallSign on Date - Implemented
+                trafficManagerController.searchDate(code3, date1); //US103 - Search Ship by code ISO on Date - Implemented
+                break;
+            case "4":
+                trafficManagerController.searchDate(code1, date, date2); //US103 - Search Ship by code MMSI on Date Range - Implemented
+                trafficManagerController.searchDate(code2, date, date2); //US103 - Search Ship by code CallSign on Date Range - Implemented
+                trafficManagerController.searchDate(code3, date, date2); //US103 - Search Ship by code ISO on Date Range - Implemented
+                break;
+            case "5":
+                trafficManagerController.summary(code1); //US104 - Summary Ship by code MMSI
+                trafficManagerController.summary(code2); //US104 - Summary Ship by code CallSign
+                trafficManagerController.summary(code3); //US104 - Summary Ship by code ISO
+                break;
+            case "6":
+                trafficManagerController.getTopN(n, date, date2); //US106 - TopN for Date Range and Group By Vessel Type - Implemented
+                break;
+            case "7":
+                trafficManagerController.pairsofShips(); //US107 - Pair Ships with close location and Diferent Travel Distance - Implemented
+                break;
+            case "8":
+                trafficManagerController.closestPort(databaseConnection, code3, date);
+                break;
+            case "9":
+                trafficManagerController.shipAvailableMonday();
+                break;
+            case "E":
+                flag = false;
+            break;
+            default:
+        }
+        }
 
     }
 }

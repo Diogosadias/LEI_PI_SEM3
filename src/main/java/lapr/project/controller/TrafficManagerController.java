@@ -1,7 +1,10 @@
 package lapr.project.controller;
 
+import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -76,7 +79,12 @@ public class TrafficManagerController {
 
     
 
-    public void closestPort(String code3, String date, PortTree portTree) throws IOException {
-        System.out.println(search.getClosestPort(code3, date,this, portTree));
+    public File closestPort(DatabaseConnection databaseConnection, String code3, String date) throws IOException {
+        File myObj = new File("ClosestPort.txt");
+        FileWriter myWriter = new FileWriter("ClosestPort.txt");
+        myWriter.write(search.getClosestPort(databaseConnection,code3, date,this));        myWriter.close();
+
+
+        return  myObj;
     }
 }

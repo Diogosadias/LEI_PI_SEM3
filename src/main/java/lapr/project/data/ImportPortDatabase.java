@@ -3,6 +3,8 @@ package lapr.project.data;
 import lapr.project.model.Port;
 import lapr.project.model.PortTree;
 
+import java.awt.geom.Point2D;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -104,4 +106,64 @@ public class ImportPortDatabase {
     }
 
 
+    public boolean getPortData(DatabaseConnection databaseConnection, PortTree portTree) {
+        boolean returnValue = false;
+
+        try {
+            portTree = getPortsFromDataBase(databaseConnection,portTree);
+
+            //Save changes.
+            returnValue = true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PortTree.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+            returnValue = false;
+        }
+        return returnValue;
+
+    }
+
+    private PortTree getPortsFromDataBase(DatabaseConnection databaseConnection,PortTree portTree) throws SQLException {
+        String sqlCommand = "select * from Port";
+        return executePortTreeStatement(databaseConnection,portTree,sqlCommand);
+    }
+
+    private PortTree executePortTreeStatement(DatabaseConnection databaseConnection, PortTree portTree, String sqlCommand) throws SQLException {
+        Integer code;
+        String cont;
+        String country;
+        String location;
+        Double lat;
+        Double lon;
+        Connection connection = databaseConnection.getConnection();
+
+        PreparedStatement getPorts = connection.prepareStatement(sqlCommand);
+        ResultSet rs = getPorts.executeQuery();
+
+        // Get the result table from the query
+        while (rs.next()) {
+            code = rs.getInt(1);
+            cont = rs.getString(3);
+            country = rs.getString(4);
+            location = rs.getString(5);
+            lat = rs.getDouble(6);
+            lon = rs.getDouble(7);
+            Port port =null;
+            try {
+                port = new Port(cont,country,code,location,lat,lon);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                portTree.insert(port, new Point2D.Double(lat,lon));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        rs.close();                       // Close the ResultSet                 4
+
+        return portTree;
+    }
 }

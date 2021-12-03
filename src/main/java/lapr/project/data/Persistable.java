@@ -36,5 +36,5 @@ public interface Persistable {
      * @param object
      * @return Operation success.
      */
-    boolean getData(DatabaseConnection databaseConnection, Object object);
+    Object getData(DatabaseConnection databaseConnection, Object object);
 }

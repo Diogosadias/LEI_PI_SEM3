@@ -81,4 +81,12 @@ public class Port implements Comparable<Port> {
 
     public String getLocation() { return city;
     }
+
+    public String toString(){
+        return "Port [code - "+code+ " ]" +
+                "\n\t" + cont +
+                "\n\t" + country +
+                "\n\t" + city +
+                "\n[ " + lat + " ; " + lon + " ]";
+    }
 }

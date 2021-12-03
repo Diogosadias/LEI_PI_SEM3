@@ -64,9 +64,8 @@ class Main {
         String inputString = scanner.nextLine();
         switch (inputString) {
             case "1":
-                portManagerUI.runUI(databaseConnection);
-                TrafficManagerUI trafficManagerUI = new TrafficManagerUI(portManagerUI.portManagerController.getPortManager().getPortTree());
-                trafficManagerUI.run();
+                TrafficManagerUI trafficManagerUI = new TrafficManagerUI();
+                trafficManagerUI.run(databaseConnection);
                 break;
             case "2":
                 portManagerUI.runUI(databaseConnection);

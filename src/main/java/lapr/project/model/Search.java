@@ -1,8 +1,15 @@
 package lapr.project.model;
 
 import lapr.project.controller.TrafficManagerController;
+import lapr.project.data.DatabaseConnection;
+import lapr.project.data.ImportPortDatabase;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Search {
 
@@ -101,7 +108,33 @@ public class Search {
         return s2;
     }
 
-    public String getClosestPort(Object code3, Object date1, TrafficManagerController main, PortTree portTree) throws IOException {
+    public String getClosestPort(DatabaseConnection databaseConnection, Object code3, Object date1, TrafficManagerController main) throws IOException {
+
+        PortTree portTree = new PortTree();
+        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+
+        Connection connection = databaseConnection.getConnection();
+
+        try {
+            connection.setAutoCommit(false);
+
+            if (!importPortDatabase.getPortData(databaseConnection, portTree)) {
+                    throw databaseConnection.getLastError();
+                }
+                connection.commit();
+                System.out.println("Ports Retrieved From Database!");
+
+
+        }catch(SQLException ex){
+            Logger.getLogger(PortTree.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(PortTree.class.getName())
+                        .log(Level.SEVERE, null, ex1);
+            }
+        }
         if (code3 == null) {
             throw new IOException(s);
         }
@@ -111,7 +144,7 @@ public class Search {
         if (main.csTree.isCS(code3)) {
             if (main.csTree.find(code3)) {
                 a = main.csTree.getShip(code3).getCoordsbyBaseDateTime(date1);
-                return main.portTree.findNearesNeighbour(a[0], a[1]) + "\n" + s2;
+                return portTree.findNearesNeighbour(a[0], a[1]).toString() + "\n" + s2;
             }
         } else {
             return "Ship Code was not according regulations!" + "\n" + s2;
