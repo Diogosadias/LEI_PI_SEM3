@@ -82,7 +82,8 @@ public class TrafficManagerController {
     public File closestPort(DatabaseConnection databaseConnection, String code3, String date) throws IOException {
         File myObj = new File("ClosestPort.txt");
         FileWriter myWriter = new FileWriter("ClosestPort.txt");
-        myWriter.write(search.getClosestPort(databaseConnection,code3, date,this));        myWriter.close();
+        myWriter.write(search.getClosestPort(databaseConnection,code3, date,this));
+        myWriter.close();
 
 
         return  myObj;

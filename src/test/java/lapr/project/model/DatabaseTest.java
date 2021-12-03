@@ -21,18 +21,6 @@ import java.util.logging.Logger;
 
 public class DatabaseTest {
 
-    /***
-     * Test closest port?
-     */
-    @Test
-    public void testClosestPortDatabase(){
-        /*
-        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-
-        Connection connection = mock(Connection.class);
-
-         */
-    }
 
     /***
      * Client wants to Know Situation of Container
@@ -86,4 +74,44 @@ public class DatabaseTest {
 
 
     }
+
+    /***
+     * Test Closest Port
+     */
+    @Test
+    public void testClosestPort(){
+
+        PortTree portTree =mock(PortTree.class);
+        ImportPortDatabase importPortDatabase = mock(ImportPortDatabase.class);
+
+        Connection connection = mock(Connection.class);
+        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+
+
+        try {
+            connection.setAutoCommit(false);
+
+            when(importPortDatabase.getPortData(databaseConnection, portTree)).thenReturn(
+                    true);
+            boolean result =importPortDatabase.getPortData(databaseConnection, portTree);
+            assertTrue(result);
+
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.INFO, "Ports Retrieved From Database!");
+
+
+        }catch(SQLException ex){
+            Logger.getLogger(PortTree.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(PortTree.class.getName())
+                        .log(Level.SEVERE, null, ex1);
+            }
+        }
+
+    }
+
+
 }
