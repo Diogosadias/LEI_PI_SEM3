@@ -106,4 +106,33 @@ public class ShipDatabase {
 
         return rate;
     }
+
+    public Double getORM(DatabaseConnection databaseConnection, Integer cargoID, String ship_id) {
+
+        Connection connection = databaseConnection.getConnection();
+
+        Double rate = null;
+
+        try {
+            connection.setAutoCommit(false);
+
+            if (!getOccupancyRateManifest(databaseConnection, cargoID,ship_id,rate)) {
+                throw databaseConnection.getLastError();
+            }
+            connection.commit();
+            System.out.println("Occupancy Rate Retrieved!");
+
+
+        }catch(SQLException ex){
+            Logger.getLogger(PortTree.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(PortTree.class.getName())
+                        .log(Level.SEVERE, null, ex1);
+            }
+        }
+        return rate;
+    }
 }

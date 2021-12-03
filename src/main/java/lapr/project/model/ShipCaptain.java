@@ -19,28 +19,8 @@ public class ShipCaptain {
 
         ShipDatabase shipDatabase = new ShipDatabase();
 
-        Connection connection = databaseConnection.getConnection();
+        rate = shipDatabase.getORM(databaseConnection,cargoID,ship_id);
 
-        try {
-            connection.setAutoCommit(false);
-
-            if (!shipDatabase.getOccupancyRateManifest(databaseConnection, cargoID,ship_id,rate)) {
-                throw databaseConnection.getLastError();
-            }
-            connection.commit();
-            System.out.println("Occupancy Rate Retrieved!");
-
-
-        }catch(SQLException ex){
-            Logger.getLogger(PortTree.class.getName())
-                    .log(Level.SEVERE, null, ex);
-            try {
-                connection.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(PortTree.class.getName())
-                        .log(Level.SEVERE, null, ex1);
-            }
-        }
 
         if(rate==null) return "Rate was not Calculated!";
 
