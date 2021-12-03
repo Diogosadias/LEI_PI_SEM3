@@ -2,21 +2,25 @@ package lapr.project.ui;
 
 import lapr.project.controller.ShipCaptainController;
 import lapr.project.controller.TrafficManagerController;
+import lapr.project.data.DatabaseConnection;
 import lapr.project.model.CargoManifest;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ShipCaptainUI {
     ShipCaptainController shipCaptainController = new ShipCaptainController();
-    private CargoManifest cargoManifest = new CargoManifest();
+    private Integer cargoID = 12345;
+    private String ship_id="211331640";
     private String date= "31/12/2020 00:01";
+
 
 
     public ShipCaptainUI(){
         //Creation Only
     }
 
-    public void runUI() {
+    public void runUI(DatabaseConnection databaseConnection) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean flag =true;
         while(flag){
@@ -41,10 +45,10 @@ public class ShipCaptainUI {
                     shipCaptainController.yearlymainfest();
                     break;
                 case "4":
-                    shipCaptainController.occupancyratemanifest(cargoManifest);
+                    shipCaptainController.occupancyratemanifest(databaseConnection,cargoID,ship_id);
                     break;
                 case "5":
-                    shipCaptainController.occupancyrateTime(date);
+                    shipCaptainController.occupancyrateTime(databaseConnection,ship_id,date);
                     break;
                 case "E":
                     flag = false;

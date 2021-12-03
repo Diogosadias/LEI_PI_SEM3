@@ -73,7 +73,7 @@ class Main {
                 break;
             case "3":
                 ShipCaptainUI shipCaptainUI = new ShipCaptainUI();
-                shipCaptainUI.runUI();
+                shipCaptainUI.runUI(databaseConnection);
                 break;
             case "4":
                 ClientUI clientUI = new ClientUI();
