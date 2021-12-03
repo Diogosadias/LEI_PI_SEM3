@@ -1,14 +1,16 @@
 package lapr.project.ui;
 
 import lapr.project.controller.ClientController;
+import lapr.project.data.DatabaseConnection;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ClientUI {
     ClientController clientController = new ClientController();
     String code = "211331640";
 
-    public void runUI() {
+    public void runUI(DatabaseConnection databaseConnection) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean flag =true;
         while(flag){
@@ -20,7 +22,7 @@ public class ClientUI {
             String inputString = scanner.nextLine();
             switch (inputString) {
                 case "1":
-                    clientController.searchPosition(code);
+                    clientController.searchPosition(databaseConnection,code);
                     break;
                 case "E":
                     flag = false;

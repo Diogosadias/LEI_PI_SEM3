@@ -77,7 +77,7 @@ class Main {
                 break;
             case "4":
                 ClientUI clientUI = new ClientUI();
-                clientUI.runUI();
+                clientUI.runUI(databaseConnection);
                 break;
             case "5":
                 break;
