@@ -4,6 +4,7 @@ import lapr.project.model.PortTree;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +44,7 @@ public class ShipDatabase {
         return rate;
     }
 
-    public boolean getOccupancyRateTime(DatabaseConnection databaseConnection,String ship_id, String date, Double rate) {
+    public boolean getOccupancyRateTime(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date, Double rate) {
         boolean returnValue = false;
 
         try {
@@ -61,25 +62,20 @@ public class ShipDatabase {
         return returnValue;
     }
 
-    private Double executeORManifestTime(DatabaseConnection databaseConnection, String date, String ship_id) throws SQLException {
+    private Double executeORManifestTime(DatabaseConnection databaseConnection, LocalDateTime date, String ship_id) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
 
-        CallableStatement cstmt = connection.prepareCall("{? = CALL checkOccupancyRateMoment(?,?)}");
+        CallableStatement cstmt = connection.prepareCall("{? = call checkOccupancyRateMoment(?,?)}");
         cstmt.registerOutParameter(1, Types.FLOAT);
         cstmt.setInt(2, Integer.parseInt(ship_id));
-
-        try {
-            cstmt.setDate(3, (Date) Date.from(getDate(date).atZone(ZoneId.systemDefault()).toInstant()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        cstmt.setDate(3, Date.valueOf(date.toLocalDate()));
         cstmt.executeUpdate();
         Double rate = cstmt.getDouble(1);
         return rate;
     }
 
-    public Double getOCT(DatabaseConnection databaseConnection, String ship_id, String date) {
+    public Double getOCT(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date) {
         Connection connection = databaseConnection.getConnection();
         Double rate=null;
 

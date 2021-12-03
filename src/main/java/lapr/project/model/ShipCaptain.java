@@ -6,6 +6,7 @@ import lapr.project.data.ShipDatabase;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +32,7 @@ public class ShipCaptain {
 
     }
 
-    public String occupancyRateTime(DatabaseConnection databaseConnection,String ship_id, String date) {
+    public String occupancyRateTime(DatabaseConnection databaseConnection,String ship_id, LocalDateTime date) {
         Double rate = null;
         if(date==null) return "Cargo Manifest was not Found!";
 

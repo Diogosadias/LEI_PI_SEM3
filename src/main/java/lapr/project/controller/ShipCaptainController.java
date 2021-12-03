@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import static lapr.project.model.TemporalMessages.getDate;
+
 public class ShipCaptainController {
     private ShipCaptain shipCaptain = new ShipCaptain();
 
@@ -23,9 +25,9 @@ public class ShipCaptainController {
 
 
     public File occupancyrateTime(DatabaseConnection databaseConnection,String ship_id, String date) throws IOException {
-        File myObj = new File("OccupancyRateTime - " + date + ".txt");
-        FileWriter myWriter = new FileWriter("OccupancyRateTime - " + date + ".txt");
-        myWriter.write(shipCaptain.occupancyRateTime(databaseConnection, ship_id,date));
+        File myObj = new File("OccupancyRateTime.txt");
+        FileWriter myWriter = new FileWriter("OccupancyRateTime.txt");
+        myWriter.write(shipCaptain.occupancyRateTime(databaseConnection, ship_id,getDate(date)));
         myWriter.close();
 
 
