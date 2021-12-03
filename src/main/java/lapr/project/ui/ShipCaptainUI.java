@@ -34,7 +34,7 @@ public class ShipCaptainUI {
             String inputString = scanner.nextLine();
             switch (inputString) {
                 case "1":
-                    shipCaptainController.offloaded();
+                    shipCaptainController.offloaded(databaseConnection);
                     break;
                 case "2":
                     shipCaptainController.loaded();

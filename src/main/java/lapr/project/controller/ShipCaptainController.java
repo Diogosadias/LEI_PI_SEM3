@@ -10,10 +10,16 @@ import java.io.IOException;
 import static lapr.project.model.TemporalMessages.getDate;
 
 public class ShipCaptainController {
-    private ShipCaptain shipCaptain = new ShipCaptain();
+    private ShipCaptain shipCaptain = new ShipCaptain(12345);
 
 
-    public void offloaded() {
+    public File offloaded(DatabaseConnection databaseConnection) throws IOException {
+        File myObj = new File("Offload.txt");
+        FileWriter myWriter = new FileWriter("Offload.txt");
+        myWriter.write(shipCaptain.offload(databaseConnection, shipCaptain.getId()));
+        myWriter.close();
+
+        return  myObj;
     }
 
     public void loaded() {
