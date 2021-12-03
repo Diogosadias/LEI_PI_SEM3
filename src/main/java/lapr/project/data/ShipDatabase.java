@@ -34,7 +34,7 @@ public class ShipDatabase {
         Connection connection = databaseConnection.getConnection();
 
 
-        CallableStatement cstmt = connection.prepareCall("{? = CALL checkShipsOccupancyRate(?,?)}");
+        CallableStatement cstmt = connection.prepareCall("{ ? = call checkShipsOccupancyRate(?,?)}");
         cstmt.registerOutParameter(1, Types.FLOAT);
         cstmt.setInt(2, cargoID);
         cstmt.setInt(3, Integer.parseInt(ship_id));
@@ -76,6 +76,34 @@ public class ShipDatabase {
         }
         cstmt.executeUpdate();
         Double rate = cstmt.getDouble(1);
+        return rate;
+    }
+
+    public Double getOCT(DatabaseConnection databaseConnection, String ship_id, String date) {
+        Connection connection = databaseConnection.getConnection();
+        Double rate=null;
+
+        try {
+            connection.setAutoCommit(false);
+
+            if (!getOccupancyRateTime(databaseConnection, ship_id,date,rate)) {
+                throw databaseConnection.getLastError();
+            }
+            connection.commit();
+            System.out.println("Occupancy Rate Retrieved!");
+
+
+        }catch(SQLException ex){
+            Logger.getLogger(PortTree.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(PortTree.class.getName())
+                        .log(Level.SEVERE, null, ex1);
+            }
+        }
+
         return rate;
     }
 }
