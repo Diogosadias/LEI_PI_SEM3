@@ -1,21 +1,25 @@
 package lapr.project.model;
 
+import lapr.project.controller.ClientController;
 import lapr.project.data.ClientDatabase;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ImportPortDatabase;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -108,29 +112,63 @@ public class DatabaseTest {
      * Client Mockito
      */
     @Test
-    public void clientMockito() {
-        String code = null;
-        ClientDatabase clientDatabase = mock(ClientDatabase.class);
+    public void clientMockito() throws IOException {
+        Client client = new Client();
+        assertNotNull(client);
+
+        ClientController clientController = new ClientController();
+        assertNotNull(clientController);
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
 
+
+        Scanner in = new Scanner(new File("src/test/resources/Client1"));
+        Scanner ou = new Scanner(clientController.searchPosition(databaseConnection, null));
+        assertEquals(in.nextLine(), ou.nextLine());
+
         Connection connection = mock(Connection.class);
+
+
+        String code = null;
+        ClientDatabase clientDatabase = mock(ClientDatabase.class);
+
         Object object = null;
         try {
             connection.setAutoCommit(false);
 
 
-            when(clientDatabase.searchPosition(databaseConnection, code, object)).thenReturn(
+            when(clientDatabase.searchPosition(databaseConnection, "12345", object)).thenReturn(
                     true);
-            boolean result = clientDatabase.searchPosition(databaseConnection, code, object);
-            assertTrue(result);
+            assertTrue(clientDatabase.searchPosition(databaseConnection, "12345", object));
 
-            Logger.getLogger(DatabaseTest.class.getName())
-                    .log(Level.INFO, "Container Found!");
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseTest.class.getName())
                     .log(Level.SEVERE, null, ex);
 
+        }
+        try {
+            connection.setAutoCommit(false);
+
+            when(clientDatabase.searchPosition(databaseConnection, "12345", object)).thenReturn(
+                    true);
+            boolean result = clientDatabase.searchPosition(databaseConnection, "12345", object);
+            assertTrue(result);
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.INFO, "Container Found!");
+
+        } catch (
+                SQLException ex) {
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            Ship ship = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+            when(client.search(databaseConnection, "12345")).thenReturn(ship.toString());
+            assertEquals(client.search(databaseConnection, "12345"), ship.toString());
+        }catch (NullPointerException ex){
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
     }
 

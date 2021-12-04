@@ -38,11 +38,13 @@ public class PortManagerController {
 
 
         Connection connection = databaseConnection.getConnection();
+        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+
 
         try {
             connection.setAutoCommit(false);
             List<Port> list= (List<Port>) portTree.inOrder();
-            ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+
 
 
             for (Port port : list) {
