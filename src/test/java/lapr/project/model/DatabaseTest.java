@@ -106,6 +106,7 @@ public class DatabaseTest {
                     .log(Level.SEVERE, null, ex);
         }
 
+        ImportPortDatabase importPortDatabase1 = new ImportPortDatabase();
         try {
             Connection connection1 = mock(Connection.class);
             connection1.setAutoCommit(false);
@@ -113,8 +114,8 @@ public class DatabaseTest {
             PortTree portTree = new PortTree();
             List<Port> list = (List<Port>) portTree.inOrder();
             for (Port port : list) {
-                when(importPortDatabase.save(databaseConnection,port)).thenReturn(true);
-                assertTrue(importPortDatabase.save(databaseConnection,port));
+                when(importPortDatabase1.save(databaseConnection,port)).thenReturn(true);
+                assertTrue(importPortDatabase1.save(databaseConnection,port));
                 connection.commit();
                 Logger.getLogger(DatabaseTest.class.getName())
                         .log(Level.INFO, "Port Added!");
