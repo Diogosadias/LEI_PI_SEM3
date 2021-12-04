@@ -14,7 +14,7 @@ public class ClientUI {
         Scanner scanner = new Scanner(System.in);
         boolean flag =true;
         while(flag){
-            System.out.println("SDear Client!" +
+            System.out.println("Dear Client!" +
                     "\nPlease Select the task from the following:" +
                     "\n1 - Get info about container Location" +
                     "\nE - Exit");

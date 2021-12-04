@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import lapr.project.data.ClientDatabase;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ImportPortDatabase;
 import org.junit.jupiter.api.Test;
@@ -111,6 +112,36 @@ public class DatabaseTest {
             }
         }
 
+    }
+
+    /**
+     * Client Mockito
+     */
+    @Test
+    public void clientMockito() {
+        String code = null;
+        ClientDatabase clientDatabase = mock(ClientDatabase.class);
+        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+
+        Connection connection = mock(Connection.class);
+        Object object = null;
+        try {
+            connection.setAutoCommit(false);
+
+
+            when(clientDatabase.searchPosition(databaseConnection, code, object)).thenReturn(
+                    true);
+            boolean result = clientDatabase.searchPosition(databaseConnection, code, object);
+            assertTrue(result);
+
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.INFO, "Container Found!");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.SEVERE, null, ex);
+
+        }
     }
 
 
