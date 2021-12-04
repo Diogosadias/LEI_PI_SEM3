@@ -35,13 +35,16 @@ public class PortManagerController {
     public PortManager getPortManager(){return portManager;}
 
     public void importToDatabase(DatabaseConnection databaseConnection,PortTree<Port> portTree) throws SQLException {
-        List<Port> list= (List<Port>) portTree.inOrder();
-        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+
 
         Connection connection = databaseConnection.getConnection();
 
         try {
             connection.setAutoCommit(false);
+            List<Port> list= (List<Port>) portTree.inOrder();
+            ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+
+
             for (Port port : list) {
                 if (!importPortDatabase.save(databaseConnection, port)) {
                     throw databaseConnection.getLastError();
