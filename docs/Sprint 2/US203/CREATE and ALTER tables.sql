@@ -1,4 +1,3 @@
-
 -- APAGAR AS TABELAS--
 DROP table ISO_Code Cascade constraints Purge;
 DROP table Refrigerated_Container Cascade constraints Purge;
@@ -24,6 +23,8 @@ DROP TABLE Userperson CASCADE CONSTRAINTS PURGE;
 DROP TABLE Employee CASCADE CONSTRAINTS PURGE;
 DROP TABLE Role CASCADE CONSTRAINTS PURGE;
 DROP TABLE Client CASCADE CONSTRAINTS PURGE;
+DROP TABLE Manifest_Unload CASCADE CONSTRAINTS PURGE;
+DROP TABLE Manifest_Load CASCADE CONSTRAINTS PURGE;
 
 --CRIAR AS TABELAS--
 create table Container(
@@ -125,7 +126,7 @@ captain_id integer
 );
 
 create table Ship_Status(
-base_data_time varchar(100),
+base_date_time varchar(100),
 latitude float,
 longitude float,
 sog float,
@@ -135,6 +136,19 @@ transceiver_class varchar(100),
 ship_mmsi integer
 );
 
+create table Manifest_Unload(
+manifest_unload_id integer,
+base_date_time varchar(100),
+ship_mmsi integer,
+trip_id integer
+);
+
+create table Manifest_Load(
+manifest_load_id integer,
+base_date_time varchar(100),
+ship_mmsi integer,
+trip_id integer
+);
 
 create table Fleet(
 fleet_id integer,
@@ -206,11 +220,13 @@ alter table Warehouse add constraint pk_warehouse_id primary key(warehouse_id);
 alter table Port add constraint pk_id_port primary key(port_id);
 alter table Truck add constraint pk_id_truck primary key(truck_id);
 alter table Ship add constraint pk_mmsi primary key(mmsi);
-alter table Ship_Status add constraint pk_base_date primary key(base_data_time);
+alter table Ship_Status add constraint pk_base_date primary key(base_date_time);
 alter table Client add constraint pk_client_id primary key(client_id);
 alter table Userperson add constraint pk_email primary key(email);
 alter table Role add constraint pk_role_id primary key(role_id);
 alter table Employee add constraint pk_employee_id primary key(employee_id);
+alter table Manifest_Unload add constraint pk_manifest_unload_id primary key(manifest_unload_id);
+alter table Manifest_Load add constraint pk_manifest_load_id primary key(manifest_load_id);
 
 --DEFINIR AS FOREIGN KEYS--
 alter table Container add constraint fk_code_iso foreign key(code_iso) references ISO_code(code);
@@ -238,6 +254,10 @@ alter table Port_Employee add constraint fk_portE_id foreign key(port_id) refere
 alter table Port_Employee add constraint fk_employeeP_id foreign key(employee_id) references Employee(employee_id);
 alter table Fleet_Employee add constraint fk_employeeF_id foreign key(employee_id) references Employee(employee_id);
 alter table Fleet_Employee add constraint fk_fleetE_id foreign key(fleet_id) references Fleet(fleet_id);
+alter table Manifest_Unload add constraint fk_manifestU_mmsi foreign key(ship_mmsi) references Ship(mmsi);
+alter table Manifest_Unload add constraint fk_manifestU_trip_id foreign key(trip_id ) references Trip(trip_id);
+alter table Manifest_Load add constraint fk_manifestL_mmsi foreign key(ship_mmsi) references Ship(mmsi);
+alter table Manifest_Load add constraint fk_manifestL_trip_id foreign key(trip_id ) references Trip(trip_id);
 
 --RESTRIÇÕES--
 
