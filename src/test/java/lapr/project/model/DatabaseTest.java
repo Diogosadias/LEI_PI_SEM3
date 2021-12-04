@@ -106,7 +106,27 @@ public class DatabaseTest {
                     .log(Level.SEVERE, null, ex);
         }
 
-         
+        try {
+            Connection connection1 = mock(Connection.class);
+            connection1.setAutoCommit(false);
+
+            PortTree portTree = new PortTree();
+            List<Port> list = (List<Port>) portTree.inOrder();
+            for (Port port : list) {
+                when(importPortDatabase.save(databaseConnection,port)).thenReturn(true);
+                assertTrue(importPortDatabase.save(databaseConnection,port));
+                connection.commit();
+                Logger.getLogger(DatabaseTest.class.getName())
+                        .log(Level.INFO, "Port Added!");
+
+            }
+        }catch(SQLException ex){
+            Logger.getLogger(PortTree.class.getName())
+                    .log(Level.SEVERE, null, ex);
+
+        }
+
+
     }
 
     /***
