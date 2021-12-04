@@ -139,14 +139,12 @@ ship_mmsi integer
 create table Manifest_Unload(
 manifest_unload_id integer,
 base_date_time varchar(100),
-ship_mmsi integer,
 trip_id integer
 );
 
 create table Manifest_Load(
 manifest_load_id integer,
 base_date_time varchar(100),
-ship_mmsi integer,
 trip_id integer
 );
 
@@ -254,9 +252,7 @@ alter table Port_Employee add constraint fk_portE_id foreign key(port_id) refere
 alter table Port_Employee add constraint fk_employeeP_id foreign key(employee_id) references Employee(employee_id);
 alter table Fleet_Employee add constraint fk_employeeF_id foreign key(employee_id) references Employee(employee_id);
 alter table Fleet_Employee add constraint fk_fleetE_id foreign key(fleet_id) references Fleet(fleet_id);
-alter table Manifest_Unload add constraint fk_manifestU_mmsi foreign key(ship_mmsi) references Ship(mmsi);
 alter table Manifest_Unload add constraint fk_manifestU_trip_id foreign key(trip_id ) references Trip(trip_id);
-alter table Manifest_Load add constraint fk_manifestL_mmsi foreign key(ship_mmsi) references Ship(mmsi);
 alter table Manifest_Load add constraint fk_manifestL_trip_id foreign key(trip_id ) references Trip(trip_id);
 
 --RESTRIÇÕES--
