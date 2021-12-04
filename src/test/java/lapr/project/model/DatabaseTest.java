@@ -6,6 +6,7 @@ import lapr.project.data.ImportPortDatabase;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -35,24 +36,20 @@ public class DatabaseTest {
      * Test to Import
      */
     @Test
-    public void testImportMockito() throws IOException {
-
-
+    public void testImportMockito()  {
 
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
 
         Connection connection = mock(Connection.class);
 
-
         try {
-            PortTree portTree = mock(PortTree.class);
-            ImportPortDatabase importPortDatabase = mock(ImportPortDatabase.class);
-
-            List<Port> list= (List<Port>) portTree.inOrder();
             connection.setAutoCommit(false);
+
+            ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+            List<Port> list= new ArrayList<>();
+
+
             for (Port port : list) {
-
-
                 when(importPortDatabase.save(databaseConnection, port)).thenReturn(
                         true);
                 boolean result = importPortDatabase.save(databaseConnection, port);
@@ -65,15 +62,8 @@ public class DatabaseTest {
         }catch(SQLException ex){
             Logger.getLogger(PortTree.class.getName())
                     .log(Level.SEVERE, null, ex);
-            try {
-                connection.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(PortTree.class.getName())
-                        .log(Level.SEVERE, null, ex1);
-            }
+
         }
-
-
     }
 
     /***
