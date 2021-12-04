@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import lapr.project.controller.ClientController;
+import lapr.project.controller.PortManagerController;
 import lapr.project.data.ClientDatabase;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ImportPortDatabase;
@@ -40,34 +41,72 @@ public class DatabaseTest {
      * Test to Import
      */
     @Test
-    public void testImportMockito()  {
+    public void testImportMockito() throws IOException {
+        PortManager portManager = new PortManager();
+        assertNotNull(portManager);
 
+        PortManagerController portManagerController = new PortManagerController();
+        assertNotNull(portManagerController);
+        assertNotNull(portManagerController.getPortManager());
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+
+
+        Scanner in = new Scanner(new File("src/test/resources/PortsNotSuccess"));
+        Scanner ou = new Scanner(portManagerController.importPort(null));
+        assertEquals(in.nextLine(), ou.nextLine());
+
 
         Connection connection = mock(Connection.class);
 
+
+
+        ImportPortDatabase importPortDatabase = mock(ImportPortDatabase.class);
+
+        Object object = null;
         try {
             connection.setAutoCommit(false);
 
-            ImportPortDatabase importPortDatabase = new ImportPortDatabase();
-            List<Port> list= new ArrayList<>();
+
+            when(importPortDatabase.save(databaseConnection, object)).thenReturn(
+                    true);
+            assertTrue(importPortDatabase.save(databaseConnection, object));
 
 
-            for (Port port : list) {
-                when(importPortDatabase.save(databaseConnection, port)).thenReturn(
-                        true);
-                boolean result = importPortDatabase.save(databaseConnection, port);
-                assertTrue(result);
-
-                Logger.getLogger(DatabaseTest.class.getName())
-                        .log(Level.INFO, "Port Added!");
-
-            }
-        }catch(SQLException ex){
-            Logger.getLogger(PortTree.class.getName())
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseTest.class.getName())
                     .log(Level.SEVERE, null, ex);
 
         }
+
+        try {
+            connection.setAutoCommit(false);
+            Port port = new Port("Europe","United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
+
+
+            when(importPortDatabase.save(databaseConnection, port)).thenReturn(
+                    true);
+            boolean result = importPortDatabase.save(databaseConnection, port);
+            assertTrue(result);
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.INFO, "Port Added!");
+
+        } catch (
+                SQLException ex) {
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+
+
+        try {
+            PortTree portTree = new PortTree();
+
+            portManagerController.importToDatabase(databaseConnection, portTree);
+        }catch (NullPointerException | SQLException ex){
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+
+         
     }
 
     /***
