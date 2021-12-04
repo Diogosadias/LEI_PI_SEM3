@@ -185,8 +185,8 @@ public class DatabaseTest {
 
         try {
             Port port = new Port("Europe","United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
-            when(trafficManagerController.closestPort(databaseConnection,null,null)).thenReturn(new File(port.toString()));
-            assertEquals(trafficManagerController.closestPort(databaseConnection,null,null),new File(port.toString()));
+            when(search.getClosestPort(databaseConnection,null,null,null)).thenReturn(port.toString());
+            assertEquals(search.getClosestPort(databaseConnection,null,null,null),port.toString());
         }catch (NullPointerException ex){
             Logger.getLogger(DatabaseTest.class.getName())
                     .log(Level.SEVERE, null, ex);
