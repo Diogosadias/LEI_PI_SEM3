@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import lapr.project.controller.ClientController;
 import lapr.project.controller.PortManagerController;
+import lapr.project.controller.TrafficManagerController;
 import lapr.project.data.ClientDatabase;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ImportPortDatabase;
@@ -134,36 +135,61 @@ public class DatabaseTest {
      * Test Closest Port
      */
     @Test
-    public void testClosestPort(){
+    public void testClosestPort() throws IOException {
 
-        PortTree portTree =mock(PortTree.class);
-        ImportPortDatabase importPortDatabase = mock(ImportPortDatabase.class);
-
-        Connection connection = mock(Connection.class);
+        TrafficManagerController trafficManagerController = new TrafficManagerController();
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
 
 
+
+        Connection connection = mock(Connection.class);
+
+
+
+        Search search = mock(Search.class);
+
+        Object object = null;
         try {
             connection.setAutoCommit(false);
 
-            when(importPortDatabase.getPortData(databaseConnection, portTree)).thenReturn(
-                    true);
-            boolean result =importPortDatabase.getPortData(databaseConnection, portTree);
-            assertTrue(result);
 
+            when(search.getClosestPort(databaseConnection, null, null,null)).thenReturn(
+                    "true");
+            assertEquals(search.getClosestPort(databaseConnection, null, null,null),"true");
+
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.SEVERE, null, ex);
+
+        }
+
+        ImportPortDatabase importPortDatabase = mock(ImportPortDatabase.class);
+        try {
+            connection.setAutoCommit(false);
+
+            when(importPortDatabase.getPortData(databaseConnection, null)).thenReturn(
+                    true);
+            boolean result = importPortDatabase.getPortData(databaseConnection, null);
+            assertTrue(result);
             Logger.getLogger(DatabaseTest.class.getName())
                     .log(Level.INFO, "Ports Retrieved From Database!");
 
-
-        }catch(SQLException ex){
-            Logger.getLogger(PortTree.class.getName())
+        } catch (
+                SQLException ex) {
+            Logger.getLogger(DatabaseTest.class.getName())
                     .log(Level.SEVERE, null, ex);
-            try {
-                connection.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(PortTree.class.getName())
-                        .log(Level.SEVERE, null, ex1);
-            }
+        }
+
+
+        try {
+            Port port = new Port("Europe","United Kingdom",29002,"Liverpool",53.46666667,-3.033333333);
+            when(trafficManagerController.closestPort(databaseConnection,null,null)).thenReturn(new File(port.toString()));
+            assertEquals(trafficManagerController.closestPort(databaseConnection,null,null),new File(port.toString()));
+        }catch (NullPointerException ex){
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
 
     }
