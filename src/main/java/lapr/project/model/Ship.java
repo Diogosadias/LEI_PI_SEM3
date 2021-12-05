@@ -21,6 +21,8 @@ public class Ship implements Comparable<Ship> {
     private double Draft;
     private String Cargo;
     private MovementsTree movements;
+    private Double lat;
+    private Double lon;
 
     public Ship() {
 
@@ -40,6 +42,12 @@ public class Ship implements Comparable<Ship> {
         this.Cargo = Cargo;
         this.movements = new MovementsTree();
 
+    }
+
+    public Ship(String toString, Double lat, Double lon) {
+        this.MMSI = toString;
+        this.lat=lat;
+        this.lon=lon;
     }
 
     public String getMMSI() {
@@ -362,5 +370,9 @@ public class Ship implements Comparable<Ship> {
     @Override
     public int compareTo(Ship o) {
         return compareToMMSI(o);
+    }
+
+    public String toStringwPosition() {
+        return "The Ship with code " + MMSI + " Located:\n" +  "Latitude =" + lat + "\n" + "Longitude =" + lon;
     }
 }

@@ -205,15 +205,17 @@ public class ShipDatabase {
         return list;
     }
 
-    public Ship getNextMonday(DatabaseConnection databaseConnection, String date1) {
-        Ship ship = null;
+    public List<Ship> getNextMonday(DatabaseConnection databaseConnection, String date1) {
+        List<Ship> ship = null;
         Connection connection = databaseConnection.getConnection();
 
 
         try {
             connection.setAutoCommit(false);
 
-            if (!executeNextMonday(databaseConnection, date1,ship)) {
+            ship =executeNextMonday(databaseConnection, date1,ship);
+
+            if (ship==null) {
                 throw databaseConnection.getLastError();
             }
             connection.commit();
@@ -233,36 +235,28 @@ public class ShipDatabase {
         return ship;
     }
 
-    private boolean executeNextMonday(DatabaseConnection databaseConnection, String date1, Ship ship) {
-        boolean returnValue = false;
+    private List<Ship> executeNextMonday(DatabaseConnection databaseConnection, String date1, List<Ship> ship) {
+
 
         try {
             ship = executeMonday(databaseConnection,date1);
 
-            //Save changes.
-            returnValue = true;
 
         } catch (SQLException ex) {
             Logger.getLogger(PortTree.class.getName())
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
-            returnValue = false;
+            ship = null;
         }
-        return returnValue;
+        return ship;
     }
 
-    private Ship executeMonday(DatabaseConnection databaseConnection, String date1) throws SQLException {
+    private List<Ship> executeMonday(DatabaseConnection databaseConnection, String date1) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-        Ship ship = null;
+        List<Ship> list = null;
         Integer mmsi;
-        String vesselName;
-        String callSign;
-        int vesselType ;
-        int length;
-        int width;
-        double draft;
-        String cargo;
-        String IMO;
+        Double lat;
+        Double lon;
 
 
         CallableStatement cstmt = connection.prepareCall("{? = call nextMonday(?)}"); //Redo this call
@@ -273,18 +267,13 @@ public class ShipDatabase {
 
         while (rs.next()){
             mmsi = rs.getInt(1);
-            vesselName = rs.getString(2);
-            callSign = rs.getString(6);
-            vesselType = rs.getInt(10) ;
-            length = rs.getInt(7);
-            width = rs.getInt(8);
-            draft = Double.parseDouble(null); //replace by access
-            cargo = null; //replace by access
-            IMO = rs.getString(3);
-            ship = new Ship(mmsi.toString(),vesselName,IMO,callSign,vesselType,length,width,draft,cargo);
+            lat = rs.getDouble(2);
+            lon = rs.getDouble(3);
+            Ship ship = new Ship(mmsi.toString(),lat,lon);
+            list.add(ship);
         }
 
-        return ship;
+        return list;
     }
 
     public List<Container> getLoad(DatabaseConnection databaseConnection, Integer id) {

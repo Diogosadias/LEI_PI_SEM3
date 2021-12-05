@@ -289,7 +289,7 @@ public class DatabaseTest {
             connection.setAutoCommit(false);
 
 
-            when(shipDatabase.getNextMonday(databaseConnection,date)).thenReturn((Ship) object);
+            when(shipDatabase.getNextMonday(databaseConnection,date)).thenReturn((List<Ship>) object);
             assertEquals(object,shipDatabase.getNextMonday(databaseConnection,date));
 
 
@@ -302,7 +302,7 @@ public class DatabaseTest {
 
         try {
             Ship ship = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
-            when(shipDatabase.getNextMonday(databaseConnection, date)).thenReturn(ship);
+            when(shipDatabase.getNextMonday(databaseConnection, date)).thenReturn((List<Ship>) ship);
             assertEquals(shipDatabase.getNextMonday(databaseConnection, date), ship);
         }catch (NullPointerException ex){
             Logger.getLogger(DatabaseTest.class.getName())
