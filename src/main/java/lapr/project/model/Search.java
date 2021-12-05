@@ -163,7 +163,7 @@ public class Search {
         if(date1==null) return "Date is not Valid!";
         ShipDatabase shipDatabase = new ShipDatabase();
 
-        ship = shipDatabase.getNextMonday(databaseConnection,getDate(date1));
+        ship = shipDatabase.getNextMonday(databaseConnection,date1);
 
 
         if(ship==null) return "Ship was not Found!";

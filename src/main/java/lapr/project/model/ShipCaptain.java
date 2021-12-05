@@ -4,15 +4,8 @@ import oracle.ucp.util.Pair;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ShipDatabase;
 
-import java.awt.*;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ShipCaptain {
     private Integer shipCaptain_id;
@@ -42,7 +35,7 @@ public class ShipCaptain {
 
     }
 
-    public String occupancyRateTime(DatabaseConnection databaseConnection,String ship_id, LocalDateTime date) {
+    public String occupancyRateTime(DatabaseConnection databaseConnection, String ship_id, String date) {
         Double rate = null;
         if(date==null) return "Cargo Manifest was not Found!";
 
@@ -121,7 +114,7 @@ public class ShipCaptain {
         if(c.get1st()==null) return "There are no Container Information for this Year!";
 
 
-        return "The total number of containers is " + c.get1st() +
-                "\n And the average number of container per Mainfest is : " + c.get2nd() + "\n" +s2;
+        return "The total number of Manifest is " + c.get1st() +
+                "\n And the average number of container per Manifest is : " + c.get2nd() + "\n" +s2;
     }
 }

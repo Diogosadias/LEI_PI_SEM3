@@ -12,6 +12,7 @@ public class ShipCaptainUI {
     private String ship_id="999999999";
     private String date= "31/01/2019 17:19";
     private String year = "2019";
+    private String captain_id = "90";
 
 
 
@@ -41,7 +42,7 @@ public class ShipCaptainUI {
                     shipCaptainController.loaded(databaseConnection);
                     break;
                 case "3":
-                    shipCaptainController.yearlymainfest(databaseConnection,year,ship_id);
+                    shipCaptainController.yearlymainfest(databaseConnection,year,captain_id);
                     break;
                 case "4":
                     shipCaptainController.occupancyratemanifest(databaseConnection,cargoID,ship_id);

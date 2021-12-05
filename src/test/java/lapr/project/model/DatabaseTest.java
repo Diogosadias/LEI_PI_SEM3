@@ -283,7 +283,7 @@ public class DatabaseTest {
 
         ShipDatabase shipDatabase = mock(ShipDatabase.class);
 
-        LocalDateTime date = getDate("31/12/2020 00:01");
+        String date = "31/12/2020 00:01";
         Object object = null;
         try {
             connection.setAutoCommit(false);
@@ -309,6 +309,6 @@ public class DatabaseTest {
                     .log(Level.SEVERE, null, ex);
         }
 
- 
+
     }
 }

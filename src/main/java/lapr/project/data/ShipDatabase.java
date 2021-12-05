@@ -49,7 +49,7 @@ public class ShipDatabase {
         return rate;
     }
 
-    public Double getOccupancyRateTime(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date, Double rate) {
+    public Double getOccupancyRateTime(DatabaseConnection databaseConnection, String ship_id, String date, Double rate) {
 
         try {
             rate = executeORManifestTime(databaseConnection,date,ship_id,rate);
@@ -64,20 +64,20 @@ public class ShipDatabase {
         return rate;
     }
 
-    private Double executeORManifestTime(DatabaseConnection databaseConnection, LocalDateTime date, String ship_id, Double rate) throws SQLException {
+    private Double executeORManifestTime(DatabaseConnection databaseConnection, String date, String ship_id, Double rate) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
 
         CallableStatement cstmt = connection.prepareCall("{? = call checkOccupancyRateMoment(?,?)}");
         cstmt.registerOutParameter(1, Types.DOUBLE);
         cstmt.setInt(2, Integer.parseInt(ship_id));
-        cstmt.setString(3, date.toString());
+        cstmt.setString(3, date);
         cstmt.executeUpdate();
         rate = cstmt.getDouble(1);
         return rate;
     }
 
-    public Double getOCT(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date) {
+    public Double getOCT(DatabaseConnection databaseConnection, String ship_id, String date) {
         Connection connection = databaseConnection.getConnection();
         Double rate=null;
 
@@ -205,7 +205,7 @@ public class ShipDatabase {
         return list;
     }
 
-    public Ship getNextMonday(DatabaseConnection databaseConnection, LocalDateTime date1) {
+    public Ship getNextMonday(DatabaseConnection databaseConnection, String date1) {
         Ship ship = null;
         Connection connection = databaseConnection.getConnection();
 
@@ -233,7 +233,7 @@ public class ShipDatabase {
         return ship;
     }
 
-    private boolean executeNextMonday(DatabaseConnection databaseConnection, LocalDateTime date1, Ship ship) {
+    private boolean executeNextMonday(DatabaseConnection databaseConnection, String date1, Ship ship) {
         boolean returnValue = false;
 
         try {
@@ -251,7 +251,7 @@ public class ShipDatabase {
         return returnValue;
     }
 
-    private Ship executeMonday(DatabaseConnection databaseConnection, LocalDateTime date1) throws SQLException {
+    private Ship executeMonday(DatabaseConnection databaseConnection, String date1) throws SQLException {
         Connection connection = databaseConnection.getConnection();
         Ship ship = null;
         Integer mmsi;
@@ -266,8 +266,10 @@ public class ShipDatabase {
 
 
         CallableStatement cstmt = connection.prepareCall("{? = call nextMonday(?)}"); //Redo this call
-        cstmt.setDate(2,Date.valueOf(date1.toLocalDate()));
-        ResultSet rs = cstmt.executeQuery();
+        cstmt.setString(2,date1);
+        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
+        cstmt.executeUpdate();
+        ResultSet rs = ((OracleCallableStatement)cstmt).getCursor(1);
 
         while (rs.next()){
             mmsi = rs.getInt(1);
@@ -402,11 +404,15 @@ public class ShipDatabase {
     private Pair<Integer, Double> yearexecute(DatabaseConnection databaseConnection, String year,String ship_id) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
-        CallableStatement cstmt = connection.prepareCall("{? = call US_207(?,?)}");
-        cstmt.setInt(2, Integer.parseInt(year));
-        cstmt.executeQuery();
-        Integer first = cstmt.getInt(1);
-        Double second = cstmt.getDouble(2);
+
+        CallableStatement cstmt = connection.prepareCall("{? = call US_207(?)}");
+        cstmt.setInt(2, Integer.parseInt(ship_id));
+        cstmt.registerOutParameter(1, Types.VARCHAR);
+        cstmt.executeUpdate();
+        String t = cstmt.getString(1);
+        String[] arrOfStr = t.split(",");
+        Integer first = Integer.parseInt(arrOfStr[0]);
+        Double second = Double.parseDouble(arrOfStr[1]);
 
         Pair<Integer, Double> c = new Pair<>(first,second);
         return c;

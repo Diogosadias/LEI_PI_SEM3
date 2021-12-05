@@ -47,7 +47,7 @@ public class ShipCaptainController {
     public File occupancyrateTime(DatabaseConnection databaseConnection,String ship_id, String date) throws IOException {
         File myObj = new File("OccupancyRateTime.txt");
         FileWriter myWriter = new FileWriter("OccupancyRateTime.txt");
-        myWriter.write(shipCaptain.occupancyRateTime(databaseConnection, ship_id,getDate(date)));
+        myWriter.write(shipCaptain.occupancyRateTime(databaseConnection, ship_id,date));
         myWriter.close();
 
 
