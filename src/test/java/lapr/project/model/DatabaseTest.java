@@ -301,9 +301,11 @@ public class DatabaseTest {
 
 
         try {
+            List<Ship> list = new ArrayList<>();
             Ship ship = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
-            when(shipDatabase.getNextMonday(databaseConnection, date)).thenReturn((List<Ship>) ship);
-            assertEquals(shipDatabase.getNextMonday(databaseConnection, date), ship);
+            list.add(ship);
+            when(shipDatabase.getNextMonday(databaseConnection, date)).thenReturn(list);
+            assertEquals(shipDatabase.getNextMonday(databaseConnection, date), list);
         }catch (NullPointerException ex){
             Logger.getLogger(DatabaseTest.class.getName())
                     .log(Level.SEVERE, null, ex);
