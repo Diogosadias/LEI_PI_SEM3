@@ -11,12 +11,13 @@ import static lapr.project.model.TemporalMessages.getDate;
 
 public class ShipCaptainController {
     private ShipCaptain shipCaptain = new ShipCaptain(12345);
+    private Integer trip_code =50;
 
 
     public File offloaded(DatabaseConnection databaseConnection) throws IOException {
         File myObj = new File("Offload.txt");
         FileWriter myWriter = new FileWriter("Offload.txt");
-        myWriter.write(shipCaptain.offload(databaseConnection, shipCaptain.getId()));
+        myWriter.write(shipCaptain.offload(databaseConnection, trip_code));
         myWriter.close();
 
         return  myObj;
@@ -25,7 +26,7 @@ public class ShipCaptainController {
     public File loaded(DatabaseConnection databaseConnection) throws IOException {
         File myObj = new File("Load.txt");
         FileWriter myWriter = new FileWriter("Load.txt");
-        myWriter.write(shipCaptain.load(databaseConnection, shipCaptain.getId()));
+        myWriter.write(shipCaptain.load(databaseConnection, trip_code));
         myWriter.close();
 
         return  myObj;

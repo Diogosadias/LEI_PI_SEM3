@@ -46,20 +46,21 @@ public class ClientDatabase {
         cstmt.registerOutParameter(1, Types.VARCHAR);
         cstmt.setInt(2, Integer.parseInt(containercode));
         cstmt.executeUpdate();
-        ResultSet rs = (ResultSet) cstmt.getRef(1);
+        String rs = cstmt.getString(1);
         if(rs==null) return object;
 
-        while (rs.next()) {
-            String  testShip = rs.getString(1).substring(0,4);
+        while (rs.length()!=0) {
+            String  testShip = rs.substring(0,4);
             if(testShip=="SHIP"){
-                Ship s = getShipFromDatabase(databaseConnection,rs.getString(1).substring(4));
+                Ship s = getShipFromDatabase(databaseConnection,rs.substring(4));
                 object = s;
+                break;
             } else{
-                Port p = getPortFromDatabase(databaseConnection,rs.getString(1).substring(4));
+                Port p = getPortFromDatabase(databaseConnection,rs.substring(5));
                 object = p;
+                break;
             }
         }
-        rs.close();                       // Close the ResultSet                 4
 
         return object;
     }

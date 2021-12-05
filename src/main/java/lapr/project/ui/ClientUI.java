@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 public class ClientUI {
     ClientController clientController = new ClientController();
-    String code = "12345";
+    String code = "11";
+    String code1 = "12345";
 
     public void runUI(DatabaseConnection databaseConnection) throws IOException {
         Scanner scanner = new Scanner(System.in);
@@ -23,6 +24,9 @@ public class ClientUI {
             switch (inputString) {
                 case "1":
                     clientController.searchPosition(databaseConnection,code);
+                    break;
+                case "2":
+                    clientController.searchPosition(databaseConnection,code1);
                     break;
                 case "E":
                     flag = false;
