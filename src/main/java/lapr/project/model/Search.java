@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static lapr.project.model.TemporalMessages.getDate;
+
 public class Search {
 
     private String s = "Input is Invalid!";
@@ -156,8 +158,8 @@ public class Search {
         return s2;
     }
 
-    public String nextMonday(DatabaseConnection databaseConnection, LocalDateTime date1) {
-        Ship ship = null;
+    public String nextMonday(DatabaseConnection databaseConnection, String date1) throws IOException {
+        List<Ship> ship = null;
         if(date1==null) return "Date is not Valid!";
         ShipDatabase shipDatabase = new ShipDatabase();
 
@@ -166,7 +168,12 @@ public class Search {
 
         if(ship==null) return "Ship was not Found!";
 
+        String print = "The ships available Next Monday: \n";
 
-        return "The Ship Avilable next Monday is : \n" + ship.toString() + "|\n" +s2;
+        for(Ship c : ship){
+            print = print +"\n" + c.toStringwPosition();
+        }
+
+        return print + "|\n" +s2;
     }
 }

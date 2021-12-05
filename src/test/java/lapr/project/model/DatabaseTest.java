@@ -6,8 +6,10 @@ import lapr.project.controller.TrafficManagerController;
 import lapr.project.data.ClientDatabase;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ImportPortDatabase;
+import lapr.project.data.ShipDatabase;
 import org.junit.jupiter.api.Test;
 
+import static lapr.project.model.TemporalMessages.getDate;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -19,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -259,4 +262,55 @@ public class DatabaseTest {
     }
 
 
+    /***
+     * Test Monday
+     */
+    @Test
+    public void testMonday() throws IOException {
+        Search search = new Search();
+        assertNotNull(search);
+
+        TrafficManagerController trafficManagerController = new TrafficManagerController();
+        assertNotNull(trafficManagerController);
+        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+
+
+        Scanner ou = new Scanner(trafficManagerController.shipAvailableMonday(databaseConnection, null));
+        assertEquals("Date is not Valid!", ou.nextLine());
+
+        Connection connection = mock(Connection.class);
+
+
+        ShipDatabase shipDatabase = mock(ShipDatabase.class);
+
+        String date = "31/12/2020 00:01";
+        Object object = null;
+        try {
+            connection.setAutoCommit(false);
+
+
+            when(shipDatabase.getNextMonday(databaseConnection,date)).thenReturn((List<Ship>) object);
+            assertEquals(object,shipDatabase.getNextMonday(databaseConnection,date));
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.SEVERE, null, ex);
+
+        }
+
+
+        try {
+            List<Ship> list = new ArrayList<>();
+            Ship ship = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
+            list.add(ship);
+            when(shipDatabase.getNextMonday(databaseConnection, date)).thenReturn(list);
+            assertEquals(shipDatabase.getNextMonday(databaseConnection, date), list);
+        }catch (NullPointerException ex){
+            Logger.getLogger(DatabaseTest.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+
+
+    }
 }

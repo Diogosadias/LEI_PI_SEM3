@@ -41,15 +41,15 @@ public class ShipDatabase {
 
 
         CallableStatement cstmt = connection.prepareCall("{ ? = call checkShipsOccupancyRate(?,?)}");
-        cstmt.registerOutParameter(1, Types.INTEGER);
-        cstmt.setInt(2, cargoID);
-        cstmt.setInt(3, Integer.parseInt(ship_id));
+        cstmt.registerOutParameter(1, Types.DOUBLE);
+        cstmt.setInt(3, cargoID);
+        cstmt.setInt(2, Integer.parseInt(ship_id));
         cstmt.executeUpdate();
         rate = cstmt.getDouble(1);
         return rate;
     }
 
-    public Double getOccupancyRateTime(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date, Double rate) {
+    public Double getOccupancyRateTime(DatabaseConnection databaseConnection, String ship_id, String date, Double rate) {
 
         try {
             rate = executeORManifestTime(databaseConnection,date,ship_id,rate);
@@ -64,20 +64,20 @@ public class ShipDatabase {
         return rate;
     }
 
-    private Double executeORManifestTime(DatabaseConnection databaseConnection, LocalDateTime date, String ship_id, Double rate) throws SQLException {
+    private Double executeORManifestTime(DatabaseConnection databaseConnection, String date, String ship_id, Double rate) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
 
         CallableStatement cstmt = connection.prepareCall("{? = call checkOccupancyRateMoment(?,?)}");
-        cstmt.registerOutParameter(1, Types.INTEGER);
+        cstmt.registerOutParameter(1, Types.DOUBLE);
         cstmt.setInt(2, Integer.parseInt(ship_id));
-        cstmt.setString(3, date.toString()); //Erro
+        cstmt.setString(3, date);
         cstmt.executeUpdate();
         rate = cstmt.getDouble(1);
         return rate;
     }
 
-    public Double getOCT(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date) {
+    public Double getOCT(DatabaseConnection databaseConnection, String ship_id, String date) {
         Connection connection = databaseConnection.getConnection();
         Double rate=null;
 
@@ -205,15 +205,17 @@ public class ShipDatabase {
         return list;
     }
 
-    public Ship getNextMonday(DatabaseConnection databaseConnection, LocalDateTime date1) {
-        Ship ship = null;
+    public List<Ship> getNextMonday(DatabaseConnection databaseConnection, String date1) {
+        List<Ship> ship = null;
         Connection connection = databaseConnection.getConnection();
 
 
         try {
             connection.setAutoCommit(false);
 
-            if (!executeNextMonday(databaseConnection, date1,ship)) {
+            ship =executeNextMonday(databaseConnection, date1,ship);
+
+            if (ship==null) {
                 throw databaseConnection.getLastError();
             }
             connection.commit();
@@ -233,56 +235,45 @@ public class ShipDatabase {
         return ship;
     }
 
-    private boolean executeNextMonday(DatabaseConnection databaseConnection, LocalDateTime date1, Ship ship) {
-        boolean returnValue = false;
+    private List<Ship> executeNextMonday(DatabaseConnection databaseConnection, String date1, List<Ship> ship) {
+
 
         try {
             ship = executeMonday(databaseConnection,date1);
 
-            //Save changes.
-            returnValue = true;
 
         } catch (SQLException ex) {
             Logger.getLogger(PortTree.class.getName())
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
-            returnValue = false;
+            ship = null;
         }
-        return returnValue;
+        return ship;
     }
 
-    private Ship executeMonday(DatabaseConnection databaseConnection, LocalDateTime date1) throws SQLException {
+    private List<Ship> executeMonday(DatabaseConnection databaseConnection, String date1) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-        Ship ship = null;
+        List<Ship> list = null;
         Integer mmsi;
-        String vesselName;
-        String callSign;
-        int vesselType ;
-        int length;
-        int width;
-        double draft;
-        String cargo;
-        String IMO;
+        Double lat;
+        Double lon;
 
 
         CallableStatement cstmt = connection.prepareCall("{? = call nextMonday(?)}"); //Redo this call
-        cstmt.setDate(2,Date.valueOf(date1.toLocalDate()));
-        ResultSet rs = cstmt.executeQuery();
+        cstmt.setString(2,date1);
+        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
+        cstmt.executeUpdate();
+        ResultSet rs = ((OracleCallableStatement)cstmt).getCursor(1);
 
         while (rs.next()){
             mmsi = rs.getInt(1);
-            vesselName = rs.getString(2);
-            callSign = rs.getString(6);
-            vesselType = rs.getInt(10) ;
-            length = rs.getInt(7);
-            width = rs.getInt(8);
-            draft = Double.parseDouble(null); //replace by access
-            cargo = null; //replace by access
-            IMO = rs.getString(3);
-            ship = new Ship(mmsi.toString(),vesselName,IMO,callSign,vesselType,length,width,draft,cargo);
+            lat = rs.getDouble(2);
+            lon = rs.getDouble(3);
+            Ship ship = new Ship(mmsi.toString(),lat,lon);
+            list.add(ship);
         }
 
-        return ship;
+        return list;
     }
 
     public List<Container> getLoad(DatabaseConnection databaseConnection, Integer id) {
@@ -353,7 +344,7 @@ public class ShipDatabase {
         return list;
     }
 
-    public Pair<Integer, Double> year(DatabaseConnection databaseConnection, String year) {
+    public Pair<Integer, Double> year(DatabaseConnection databaseConnection, String year,String ship_id) {
         Pair<Integer, Double> c = new Pair<>(null,null);
         Connection connection = databaseConnection.getConnection();
 
@@ -361,7 +352,7 @@ public class ShipDatabase {
         try {
             connection.setAutoCommit(false);
 
-            c=yearload(databaseConnection, year,c);
+            c=yearload(databaseConnection, year,c,ship_id);
 
             if (c==null) {
                 throw databaseConnection.getLastError();
@@ -383,10 +374,10 @@ public class ShipDatabase {
         return c;
     }
 
-    private Pair<Integer, Double> yearload(DatabaseConnection databaseConnection, String year, Pair<Integer, Double> c) {
+    private Pair<Integer, Double> yearload(DatabaseConnection databaseConnection, String year, Pair<Integer, Double> c,String ship_id) {
 
         try {
-            c = yearexecute(databaseConnection,year);
+            c = yearexecute(databaseConnection,year,ship_id);
 
             //Save changes.
 
@@ -399,14 +390,18 @@ public class ShipDatabase {
         return c;
     }
 
-    private Pair<Integer, Double> yearexecute(DatabaseConnection databaseConnection, String year) throws SQLException {
+    private Pair<Integer, Double> yearexecute(DatabaseConnection databaseConnection, String year,String ship_id) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
-        CallableStatement cstmt = connection.prepareCall("{? = call US_207(?)}"); //Redo this call
-        cstmt.setInt(2, Integer.parseInt(year));
-        cstmt.executeQuery();
-        Integer first = cstmt.getInt(1);
-        Double second = cstmt.getDouble(2);
+
+        CallableStatement cstmt = connection.prepareCall("{? = call US_207(?)}");
+        cstmt.setInt(2, Integer.parseInt(ship_id));
+        cstmt.registerOutParameter(1, Types.VARCHAR);
+        cstmt.executeUpdate();
+        String t = cstmt.getString(1);
+        String[] arrOfStr = t.split(",");
+        Integer first = Integer.parseInt(arrOfStr[0]);
+        Double second = Double.parseDouble(arrOfStr[1]);
 
         Pair<Integer, Double> c = new Pair<>(first,second);
         return c;

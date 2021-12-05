@@ -14,6 +14,12 @@ public class ShipTreeTest {
         assertTrue(shipTree.isEmpty());
     }
 
+    @Test
+    public void testQuick(){
+        Ship ship = new Ship("123456789",12.2,12.2);
+        String result = "The Ship with code " + "123456789" + " Located:\n" +  "Latitude =" + 12.2 + "\n" + "Longitude =" + 12.2;
+        assertEquals(result,ship.toStringwPosition());
+    }
     /***
      * Ensure verify Codes is working
      */

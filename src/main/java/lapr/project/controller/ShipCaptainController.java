@@ -32,10 +32,10 @@ public class ShipCaptainController {
         return  myObj;
     }
 
-    public File yearlymainfest(DatabaseConnection databaseConnection, String year) throws IOException {
+    public File yearlymainfest(DatabaseConnection databaseConnection, String year, String ship_id) throws IOException {
         File myObj = new File("YearInformation.txt");
         FileWriter myWriter = new FileWriter("YearInformation.txt");
-        myWriter.write(shipCaptain.yearly(databaseConnection, year));
+        myWriter.write(shipCaptain.yearly(databaseConnection, year,ship_id));
         myWriter.close();
 
 
@@ -47,7 +47,7 @@ public class ShipCaptainController {
     public File occupancyrateTime(DatabaseConnection databaseConnection,String ship_id, String date) throws IOException {
         File myObj = new File("OccupancyRateTime.txt");
         FileWriter myWriter = new FileWriter("OccupancyRateTime.txt");
-        myWriter.write(shipCaptain.occupancyRateTime(databaseConnection, ship_id,getDate(date)));
+        myWriter.write(shipCaptain.occupancyRateTime(databaseConnection, ship_id,date));
         myWriter.close();
 
 

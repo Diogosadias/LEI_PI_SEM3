@@ -19,6 +19,8 @@ public class TrafficManagerUI {
     private String date1="31/12/2020";
     private String date2= "31/12/2020 17:00";
     private int n=5;
+    private String date3= "05/12/2021 22:58";
+
 
     public TrafficManagerUI() throws IOException {
         //Creation Only
@@ -83,7 +85,7 @@ public class TrafficManagerUI {
                 trafficManagerController.closestPort(databaseConnection, code3, date);
                 break;
             case "9":
-                trafficManagerController.shipAvailableMonday(databaseConnection,date);
+                trafficManagerController.shipAvailableMonday(databaseConnection,date3);
                 break;
             case "E":
                 flag = false;
