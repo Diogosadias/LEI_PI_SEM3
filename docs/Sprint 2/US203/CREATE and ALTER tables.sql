@@ -32,7 +32,7 @@ container_id integer,
 payload float,
 tare float,
 gross float,
-code_iso integer,
+code_iso varchar(100),
 port_id integer,
 client_id integer
 );
@@ -54,7 +54,7 @@ z_coord integer
 );
 
 create table ISO_Code(
-code integer,
+code varchar(100),
 description varchar(100)
 );
 
@@ -181,7 +181,8 @@ description varchar(100)
 create table Captain(
 captain_id integer,
 name varchar(100),
-phone_number varchar(9) UNIQUE
+phone_number varchar(9) UNIQUE,
+email varchar(100)
 );
 
 create table Port(
@@ -254,6 +255,7 @@ alter table Fleet_Employee add constraint fk_employeeF_id foreign key(employee_i
 alter table Fleet_Employee add constraint fk_fleetE_id foreign key(fleet_id) references Fleet(fleet_id);
 alter table Manifest_Unload add constraint fk_manifestU_trip_id foreign key(trip_id ) references Trip(trip_id);
 alter table Manifest_Load add constraint fk_manifestL_trip_id foreign key(trip_id ) references Trip(trip_id);
+alter table Captain add constraint fk_captain_email foreign key(email) references Userperson(email); 
 
 --RESTRIÇÕES--
 
