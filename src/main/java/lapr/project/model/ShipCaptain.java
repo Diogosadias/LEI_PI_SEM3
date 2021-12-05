@@ -24,25 +24,25 @@ public class ShipCaptain {
     }
 
     public String occupancyRateManifest(DatabaseConnection databaseConnection, Integer cargoID, String ship_id) {
-        Double rate = null;
+        Integer rate = null;
         if(cargoID==null) return "Cargo Manifest was not Found!";
 
         ShipDatabase shipDatabase = new ShipDatabase();
 
-        rate = shipDatabase.getORM(databaseConnection,cargoID,ship_id);
+        rate = shipDatabase.getORM(databaseConnection,cargoID,ship_id,rate);
 
 
         if(rate==null) return "Rate was not Calculated!";
 
-        String rateS = String.valueOf(System.out.format("double : %.2f", rate));
 
-        return "| The Rate for the Cargo Manifest was = " + rateS + "|\n" +s2;
+
+        return "| The Rate for the Cargo Manifest was = " + rate + "% |\n" +s2;
 
 
     }
 
     public String occupancyRateTime(DatabaseConnection databaseConnection,String ship_id, LocalDateTime date) {
-        Double rate = null;
+        Integer rate = null;
         if(date==null) return "Cargo Manifest was not Found!";
 
         ShipDatabase shipDatabase = new ShipDatabase();
@@ -52,9 +52,8 @@ public class ShipCaptain {
 
         if(rate==null) return "Rate was not Calculated!";
 
-        String rateS = String.valueOf(System.out.format("double : %.2f", rate));
 
-        return "| The Rate for the Cargo Manifest at the Time was = " + rateS + "|\n" +s2;
+        return "| The Rate for the Cargo Manifest at the Time was = " + rate + "% |\n" +s2;
 
 
     }
@@ -73,7 +72,8 @@ public class ShipCaptain {
         containers = shipDatabase.getOffload(databaseConnection,id);
 
 
-        if(containers==null) return "There are no Containers to Offload!";
+        if(containers==null || containers.size()==0) return "There are no Containers to Offload!";
+
         String print = "The Containers to OffLoad next Port: \n";
 
         for(Container c : containers){
@@ -94,7 +94,8 @@ public class ShipCaptain {
         containers = shipDatabase.getLoad(databaseConnection,id);
 
 
-        if(containers==null) return "There are no Containers to Offload!";
+        if(containers==null || containers.size()==0) return "There are no Containers to Offload!";
+
         String print = "The Containers to be Loaded next Port: \n";
 
         for(Container c : containers){

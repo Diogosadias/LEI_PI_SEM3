@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import lapr.project.data.ClientDatabase;
 import lapr.project.data.DatabaseConnection;
+import oracle.ons.Cli;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,20 +19,22 @@ public class Client {
         Object object = null;
         try {
             connection.setAutoCommit(false);
-            if (!clientDatabase.searchPosition(databaseConnection, code, object)) {
+
+            object =clientDatabase.searchPosition(databaseConnection, code, object);
+            if (object==null) {
                 throw databaseConnection.getLastError();
             }
             connection.commit();
             System.out.println("Container Found!");
 
         } catch (
-                SQLException ex) {
-            Logger.getLogger(PortTree.class.getName())
+                SQLException | NullPointerException ex) {
+            Logger.getLogger(Client.class.getName())
                     .log(Level.SEVERE, null, ex);
             try {
                 connection.rollback();
             } catch (SQLException ex1) {
-                Logger.getLogger(PortTree.class.getName())
+                Logger.getLogger(Client.class.getName())
                         .log(Level.SEVERE, null, ex1);
             }
         }

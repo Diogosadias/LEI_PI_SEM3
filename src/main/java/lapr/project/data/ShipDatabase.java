@@ -5,90 +5,84 @@ import lapr.project.model.Container;
 import lapr.project.model.PortTree;
 import lapr.project.model.Ship;
 
-import java.beans.IntrospectionException;
-import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static lapr.project.model.TemporalMessages.getDate;
-
 public class ShipDatabase {
-    public boolean getOccupancyRateManifest(DatabaseConnection databaseConnection, Integer cargoID, String ship_id, Double rate) {
-        boolean returnValue = false;
+    public Integer getOccupancyRateManifest(DatabaseConnection databaseConnection, Integer cargoID, String ship_id, Integer rate) {
+
 
         try {
-            rate = executeORManifest(databaseConnection,cargoID,ship_id);
+            rate = executeORManifest(databaseConnection,cargoID,ship_id,rate);
 
             //Save changes.
-            returnValue = true;
 
         } catch (SQLException ex) {
             Logger.getLogger(PortTree.class.getName())
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
-            returnValue = false;
+            rate = null;
         }
-        return returnValue;
+
+
+        return rate;
     }
 
-    private Double executeORManifest(DatabaseConnection databaseConnection, Integer cargoID, String ship_id) throws SQLException {
+    private Integer executeORManifest(DatabaseConnection databaseConnection, Integer cargoID, String ship_id, Integer rate) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
 
         CallableStatement cstmt = connection.prepareCall("{ ? = call checkShipsOccupancyRate(?,?)}");
-        cstmt.registerOutParameter(1, Types.FLOAT);
+        cstmt.registerOutParameter(1, Types.INTEGER);
         cstmt.setInt(2, cargoID);
         cstmt.setInt(3, Integer.parseInt(ship_id));
         cstmt.executeUpdate();
-        Double rate = cstmt.getDouble(1);
+        rate = cstmt.getInt(1);
         return rate;
     }
 
-    public boolean getOccupancyRateTime(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date, Double rate) {
-        boolean returnValue = false;
+    public Integer getOccupancyRateTime(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date, Integer rate) {
 
         try {
-            rate = executeORManifestTime(databaseConnection,date,ship_id);
+            rate = executeORManifestTime(databaseConnection,date,ship_id,rate);
 
-            //Save changes.
-            returnValue = true;
 
         } catch (SQLException ex) {
-            Logger.getLogger(PortTree.class.getName())
+            Logger.getLogger(ShipDatabase.class.getName())
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
-            returnValue = false;
+            rate = null;
         }
-        return returnValue;
+        return rate;
     }
 
-    private Double executeORManifestTime(DatabaseConnection databaseConnection, LocalDateTime date, String ship_id) throws SQLException {
+    private Integer executeORManifestTime(DatabaseConnection databaseConnection, LocalDateTime date, String ship_id, Integer rate) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
 
         CallableStatement cstmt = connection.prepareCall("{? = call checkOccupancyRateMoment(?,?)}");
-        cstmt.registerOutParameter(1, Types.FLOAT);
+        cstmt.registerOutParameter(1, Types.INTEGER);
         cstmt.setInt(2, Integer.parseInt(ship_id));
-        cstmt.setDate(3, Date.valueOf(date.toLocalDate()));
+        cstmt.setString(3, date.toString()); //Erro
         cstmt.executeUpdate();
-        Double rate = cstmt.getDouble(1);
+        rate = cstmt.getInt(1);
         return rate;
     }
 
-    public Double getOCT(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date) {
+    public Integer getOCT(DatabaseConnection databaseConnection, String ship_id, LocalDateTime date) {
         Connection connection = databaseConnection.getConnection();
-        Double rate=null;
+        Integer rate=null;
 
         try {
             connection.setAutoCommit(false);
+            rate = getOccupancyRateTime(databaseConnection, ship_id,date,rate);
 
-            if (!getOccupancyRateTime(databaseConnection, ship_id,date,rate)) {
+            if (rate==null) {
                 throw databaseConnection.getLastError();
             }
             connection.commit();
@@ -96,12 +90,12 @@ public class ShipDatabase {
 
 
         }catch(SQLException ex){
-            Logger.getLogger(PortTree.class.getName())
+            Logger.getLogger(ShipDatabase.class.getName())
                     .log(Level.SEVERE, null, ex);
             try {
                 connection.rollback();
             } catch (SQLException ex1) {
-                Logger.getLogger(PortTree.class.getName())
+                Logger.getLogger(ShipDatabase.class.getName())
                         .log(Level.SEVERE, null, ex1);
             }
         }
@@ -109,18 +103,20 @@ public class ShipDatabase {
         return rate;
     }
 
-    public Double getORM(DatabaseConnection databaseConnection, Integer cargoID, String ship_id) {
+    public Integer getORM(DatabaseConnection databaseConnection, Integer cargoID, String ship_id, Integer rate) {
 
         Connection connection = databaseConnection.getConnection();
 
-        Double rate = null;
 
         try {
             connection.setAutoCommit(false);
 
-            if (!getOccupancyRateManifest(databaseConnection, cargoID,ship_id,rate)) {
+            rate = getOccupancyRateManifest(databaseConnection, cargoID,ship_id,rate);
+
+            if (rate==null) {
                 throw databaseConnection.getLastError();
             }
+
             connection.commit();
             System.out.println("Occupancy Rate Retrieved!");
 
@@ -145,52 +141,53 @@ public class ShipDatabase {
 
         try {
             connection.setAutoCommit(false);
+            list =executeOffLoad(databaseConnection, id,list);
 
-            if (!executeOffLoad(databaseConnection, id,list)) {
+            if (list==null) {
                 throw databaseConnection.getLastError();
             }
             connection.commit();
             System.out.println("Offload Completed!");
 
 
-        }catch(SQLException ex){
-            Logger.getLogger(PortTree.class.getName())
+        }catch(SQLException ex ){
+            Logger.getLogger(ShipDatabase.class.getName())
                     .log(Level.SEVERE, null, ex);
             try {
                 connection.rollback();
             } catch (SQLException ex1) {
-                Logger.getLogger(PortTree.class.getName())
+                Logger.getLogger(ShipDatabase.class.getName())
                         .log(Level.SEVERE, null, ex1);
             }
         }
         return list;
     }
 
-    private boolean executeOffLoad(DatabaseConnection databaseConnection, Integer id, List<Container> list) {
-        boolean returnValue = false;
+    private List<Container> executeOffLoad(DatabaseConnection databaseConnection, Integer id, List<Container> list) {
 
         try {
             list = executeOff(databaseConnection,id);
 
-            //Save changes.
-            returnValue = true;
 
         } catch (SQLException ex) {
             Logger.getLogger(PortTree.class.getName())
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
-            returnValue = false;
+            list = null;
         }
-        return returnValue;
+        return list;
     }
 
     private List<Container> executeOff(DatabaseConnection databaseConnection, Integer id) throws SQLException {
         Connection connection = databaseConnection.getConnection();
         List<Container> list = new ArrayList<>();
 
-        CallableStatement cstmt = connection.prepareCall("{? = call offload(?,?)}"); //Redo this call
+        CallableStatement cstmt = connection.prepareCall("{? = call CHECKCONTAINERSTOBEOFFLOADED(?)}"); //Redo this call
+        cstmt.registerOutParameter(1, Types.REF_CURSOR);
         cstmt.setInt(2, id);
-        ResultSet rs = cstmt.executeQuery();
+        cstmt.executeUpdate();
+        ResultSet rs = (ResultSet) cstmt.getRef(1);
+        if(rs==null) return list;
 
         while (rs.next()){
             Integer container_id = rs.getInt(1);
@@ -333,9 +330,12 @@ public class ShipDatabase {
         Connection connection = databaseConnection.getConnection();
         List<Container> list = new ArrayList<>();
 
-        CallableStatement cstmt = connection.prepareCall("{? = call load(?)}"); //Redo this call
+        CallableStatement cstmt = connection.prepareCall("{? = call CHECKCONTAINERSTOBELOADED(?)}"); //Redo this call
+        cstmt.registerOutParameter(1, Types.REF_CURSOR);
         cstmt.setInt(2, id);
-        ResultSet rs = cstmt.executeQuery();
+        cstmt.executeUpdate();
+        ResultSet rs = (ResultSet) cstmt.getRef(1);
+        if(rs==null) return list;
 
         while (rs.next()){
             Integer container_id = rs.getInt(1);
