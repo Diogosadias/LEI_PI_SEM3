@@ -53,6 +53,18 @@ insert into Container(container_id, payload, tare, gross, code_iso, client_id,po
 insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id) values(21, 243.2, 654.98, 987.89, '20HR', 1,11116);
 insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id) values(22, 321.2, 654.5, 876.56, '20HR', 1,11116);
 
+insert into Refrigerated_Container(temperature, container_id) values(7,11);
+insert into Refrigerated_Container(temperature, container_id) values(-5,12);
+insert into Refrigerated_Container(temperature, container_id) values(-5,13);
+insert into Refrigerated_Container(temperature, container_id) values(7,14);
+insert into Refrigerated_Container(temperature, container_id) values(7,15);
+insert into Refrigerated_Container(temperature, container_id) values(7,16);
+insert into Refrigerated_Container(temperature, container_id) values(-5,17);
+insert into Refrigerated_Container(temperature, container_id) values(7,18);
+insert into Refrigerated_Container(temperature, container_id) values(-5,19);
+insert into Refrigerated_Container(temperature, container_id) values(-5,20);
+insert into Refrigerated_Container(temperature, container_id) values(-5,21);
+insert into Refrigerated_Container(temperature, container_id) values(7,22);
 
 insert into Manifest_Load(manifest_load_id, base_date_time, container_gross_weight) values(70, '02/02/2019 08:00', 400.89);
 insert into Manifest_Load(manifest_load_id, base_date_time, container_gross_weight) values(71, '03/02/2019 10:00', 567.89);
