@@ -88,7 +88,7 @@ insert into Driver(driver_id, name) values(11, 'driver2');
 insert into Truck(truck_id, description, driver_id) values(30, 'truck1', 10);
 insert into Truck(truck_id, description, driver_id) values(31, 'truck2', 11);
 
-insert into Trip_Truck(trip_id, truck_id) values(58, 30);
+insert into Trip_Truck(trip_id, truck_id) values(55, 30);
 insert into Trip_Truck(trip_id, truck_id) values(52, 31);
 
 
@@ -157,9 +157,7 @@ insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, 
 
 insert into Trip_Ship(trip_id, ship_mmsi) values(50, 999999999);
 insert into Trip_Ship(trip_id, ship_mmsi) values(51, 999999999);
-insert into Trip_Ship(trip_id, ship_mmsi) values(53, 999999999);
+insert into Trip_Ship(trip_id, ship_mmsi) values(52, 999999999);
 
-insert into Trip_Ship(trip_id, ship_mmsi) values(54, 888888888);
+
 insert into Trip_Ship(trip_id, ship_mmsi) values(55, 888888888);
-
-
