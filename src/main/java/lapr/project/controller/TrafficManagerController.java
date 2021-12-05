@@ -76,7 +76,7 @@ public class TrafficManagerController {
     public File shipAvailableMonday(DatabaseConnection databaseConnection, String date1) throws IOException {
         File myObj = new File("Ship Next Monday.txt");
         FileWriter myWriter = new FileWriter("Ship Next Monday.txt");
-        myWriter.write(search.nextMonday(databaseConnection,getDate(date1)));
+        myWriter.write(search.nextMonday(databaseConnection,date1));
         myWriter.close();
 
 
