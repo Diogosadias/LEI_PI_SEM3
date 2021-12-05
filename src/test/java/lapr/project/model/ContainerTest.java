@@ -23,6 +23,13 @@ public class ContainerTest {
                 "\n\t" + 1.1 + " ºC - of Temperature"  ;
 
         assertEquals(t,c.toString());
+
+        c = new Container(1,1.1,1.1);
+        t = "Container - "+ 1 +
+                "\n\t" + 1.1 + "kg - of PayLoad" +
+                "\n\t" + 1.1 + " ºC - of Temperature"  ;
+
+        assertEquals(t,c.toStringwPosition());
     }
 
     /**

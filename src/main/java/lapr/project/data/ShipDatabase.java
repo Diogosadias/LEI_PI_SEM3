@@ -41,9 +41,9 @@ public class ShipDatabase {
 
 
         CallableStatement cstmt = connection.prepareCall("{ ? = call checkShipsOccupancyRate(?,?)}");
-        cstmt.registerOutParameter(1, Types.INTEGER);
-        cstmt.setInt(2, cargoID);
-        cstmt.setInt(3, Integer.parseInt(ship_id));
+        cstmt.registerOutParameter(1, Types.DOUBLE);
+        cstmt.setInt(3, cargoID);
+        cstmt.setInt(2, Integer.parseInt(ship_id));
         cstmt.executeUpdate();
         rate = cstmt.getDouble(1);
         return rate;
@@ -69,9 +69,9 @@ public class ShipDatabase {
 
 
         CallableStatement cstmt = connection.prepareCall("{? = call checkOccupancyRateMoment(?,?)}");
-        cstmt.registerOutParameter(1, Types.INTEGER);
+        cstmt.registerOutParameter(1, Types.DOUBLE);
         cstmt.setInt(2, Integer.parseInt(ship_id));
-        cstmt.setString(3, date.toString()); //Erro
+        cstmt.setString(3, date.toString());
         cstmt.executeUpdate();
         rate = cstmt.getDouble(1);
         return rate;
@@ -353,7 +353,7 @@ public class ShipDatabase {
         return list;
     }
 
-    public Pair<Integer, Double> year(DatabaseConnection databaseConnection, String year) {
+    public Pair<Integer, Double> year(DatabaseConnection databaseConnection, String year,String ship_id) {
         Pair<Integer, Double> c = new Pair<>(null,null);
         Connection connection = databaseConnection.getConnection();
 
@@ -361,7 +361,7 @@ public class ShipDatabase {
         try {
             connection.setAutoCommit(false);
 
-            c=yearload(databaseConnection, year,c);
+            c=yearload(databaseConnection, year,c,ship_id);
 
             if (c==null) {
                 throw databaseConnection.getLastError();
@@ -383,10 +383,10 @@ public class ShipDatabase {
         return c;
     }
 
-    private Pair<Integer, Double> yearload(DatabaseConnection databaseConnection, String year, Pair<Integer, Double> c) {
+    private Pair<Integer, Double> yearload(DatabaseConnection databaseConnection, String year, Pair<Integer, Double> c,String ship_id) {
 
         try {
-            c = yearexecute(databaseConnection,year);
+            c = yearexecute(databaseConnection,year,ship_id);
 
             //Save changes.
 
@@ -399,10 +399,10 @@ public class ShipDatabase {
         return c;
     }
 
-    private Pair<Integer, Double> yearexecute(DatabaseConnection databaseConnection, String year) throws SQLException {
+    private Pair<Integer, Double> yearexecute(DatabaseConnection databaseConnection, String year,String ship_id) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
-        CallableStatement cstmt = connection.prepareCall("{? = call US_207(?)}"); //Redo this call
+        CallableStatement cstmt = connection.prepareCall("{? = call US_207(?,?)}");
         cstmt.setInt(2, Integer.parseInt(year));
         cstmt.executeQuery();
         Integer first = cstmt.getInt(1);

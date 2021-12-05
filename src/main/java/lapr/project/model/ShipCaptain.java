@@ -108,14 +108,14 @@ public class ShipCaptain {
         return print + "|\n" +s2;
     }
 
-    public String yearly(DatabaseConnection databaseConnection, String year) {
+    public String yearly(DatabaseConnection databaseConnection, String year, String ship_id) {
         Pair<Integer,Double> c ;
 
         if(year==null) return "Year is not Valid!";
 
         ShipDatabase shipDatabase = new ShipDatabase();
 
-        c = shipDatabase.year(databaseConnection,year);
+        c = shipDatabase.year(databaseConnection,year,ship_id);
 
 
         if(c.get1st()==null) return "There are no Container Information for this Year!";
