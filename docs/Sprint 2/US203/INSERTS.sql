@@ -91,9 +91,9 @@ insert into Trip(trip_id, container_manifest_container_id, origin, destination) 
 insert into Trip(trip_id, container_manifest_container_id, origin, destination) values(61, 22, 'Portugal', 'Canada');
 
 insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(70, '02/02/2019 08:00', 50);
-insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(71, '02/02/2019 08:00', 51);
-insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(72, '02/02/2019 08:00', 52);
-insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(73, '02/02/2019 08:00', 53);
+insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(71, '02/02/2019 09:00', 51);
+insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(72, '02/02/2019 10:00', 52);
+insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(73, '02/02/2019 11:00', 53);
 
 insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(74, '02/03/2019 10:00', 54);
 insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(75, '02/03/2019 10:00', 55);
@@ -106,9 +106,8 @@ insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(80, 
 insert into Manifest_Load(manifest_load_id, base_date_time, trip_id) values(81, '05/03/2019 10:00', 61);
 
 insert into Manifest_Unload(manifest_unload_id, base_date_time, trip_id) values(70,'03/02/2019 23:00', 52);
-
 insert into Manifest_Unload(manifest_unload_id, base_date_time, trip_id) values(71,'03/03/2019 10:00', 55);
-insert into Manifest_Unload(manifest_unload_id, base_date_time, trip_id) values(72,'03/03/2019 10:00', 57);
+insert into Manifest_Unload(manifest_unload_id, base_date_time, trip_id) values(72,'04/03/2019 12:00', 57);
 
 insert into Driver(driver_id, name) values(10, 'driver1');
 insert into Driver(driver_id, name) values(11, 'driver2');
