@@ -163,6 +163,9 @@ insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsig
 
 insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('31/01/2019 17:19', -66.97001,12.9,13.1,355,300,'B', 999999999);
 insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('31/01/2019 23:19', -30.97001,30.9,15.1,370,300,'B', 999999999);
+insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('06/12/2021 23:19', -30.97001,30.9,15.1,370,300,'B', 999999999);
+insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('2021.12.06 22:58', -30.97001,30.9,15.1,370,300,'B', 999999999);
+insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('2021.12.06', -30.97001,30.9,15.1,370,300,'B', 999999999);
 
 insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('28/02/2019 17:19', -66.97001,12.9,13.1,255,20,'B', 888888888);
 insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('28/02/2019 23:19', -30.97001,30.9,15.1,270,20,'B', 888888888);
