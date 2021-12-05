@@ -17,7 +17,7 @@ public class ContainerTest {
     @Test
     public void contructorTest(){
         Container c = new Container(1,1.1,1,1,1,1.1);
-        String t = "Container - "+ 1.1 +
+        String t = "Container - "+ 1 +
                 "\n\t" + 1.1 + "kg - of PayLoad" +
                 "\n\t(" + 1 + "," + 1 + "," +1 +") - Position" +
                 "\n\t" + 1.1 + " ºC - of Temperature"  ;
