@@ -223,8 +223,8 @@ public class DatabaseTest {
 
 
             when(clientDatabase.searchPosition(databaseConnection, "12345", object)).thenReturn(
-                    true);
-            assertTrue(clientDatabase.searchPosition(databaseConnection, "12345", object));
+                    object);
+            assertEquals(object,clientDatabase.searchPosition(databaseConnection, "12345", object));
 
 
         } catch (SQLException ex) {
@@ -236,9 +236,9 @@ public class DatabaseTest {
             connection.setAutoCommit(false);
 
             when(clientDatabase.searchPosition(databaseConnection, "12345", object)).thenReturn(
-                    true);
-            boolean result = clientDatabase.searchPosition(databaseConnection, "12345", object);
-            assertTrue(result);
+                    object);
+            Object result = clientDatabase.searchPosition(databaseConnection, "12345", object);
+            assertEquals(object,result);
             Logger.getLogger(DatabaseTest.class.getName())
                     .log(Level.INFO, "Container Found!");
 
