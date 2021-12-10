@@ -48,6 +48,9 @@ public class TrafficManagerUI {
                 "\n7 - Pairs of Ships" +
                 "\n8 - Get Closest Port" +
                 "\n9 - Ship Availability" +
+                "\n10 - Build Freight" +
+                "\n11 - Color Map" +
+                "\n12 - Select N Closest Places" +
                 "\nE - Exit");
 
         String inputString = scanner.nextLine();
@@ -86,6 +89,15 @@ public class TrafficManagerUI {
                 break;
             case "9":
                 trafficManagerController.shipAvailableMonday(databaseConnection,date3);
+                break;
+            case "10":
+                //trafficManagerController.buildFreight();
+                break;
+            case "11":
+                //trafficManagerController.colorTheMap();
+                break;
+            case "12":
+                //trafficManagerController.selectNPlaces(place,n);
                 break;
             case "E":
                 flag = false;
