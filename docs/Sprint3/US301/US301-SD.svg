@@ -33,25 +33,25 @@
       ><path d="M-7 -7 L19 -7 L19 88 L-7 88 L-7 -7 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath10"
-      ><path d="M-235 -15 L470 -15 L470 30 L-235 30 L-235 -15 Z"
+      ><path d="M-98 -15 L196 -15 L196 30 L-98 30 L-98 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath11"
-      ><path d="M-226 -15 L452 -15 L452 30 L-226 30 L-226 -15 Z"
+      ><path d="M-212 -15 L424 -15 L424 30 L-212 30 L-212 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath12"
       ><path d="M-213 -15 L426 -15 L426 30 L-213 30 L-213 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath13"
-      ><path d="M-212 -15 L424 -15 L424 30 L-212 30 L-212 -15 Z"
+      ><path d="M-226 -15 L452 -15 L452 30 L-226 30 L-226 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath14"
-      ><path d="M-98 -15 L196 -15 L196 30 L-98 30 L-98 -15 Z"
+      ><path d="M-235 -15 L470 -15 L470 30 L-235 30 L-235 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath15"
       ><path d="M0 0 L385 0 L385 104 L0 104 L0 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath16"
-      ><path d="M243 30 L243 45 L134 45 L134 30 ZM0 0 L0 104 L385 104 L385 91 L352 91 L352 76 L385 76 L385 0 Z"
+      ><path d="M243 30 L243 45 L134 45 L134 30 ZM0 0 L0 104 L385 104 L385 91 L356 91 L356 76 L385 76 L385 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath17"
       ><path d="M275 30 L275 45 L105 45 L105 30 ZM0 0 L0 104 L385 104 L385 0 Z"
@@ -60,13 +60,13 @@
       ><path d="M0 0 L401 0 L401 104 L0 104 L0 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath19"
-      ><path d="M332 30 L332 45 L63 45 L63 30 ZM0 0 L0 104 L401 104 L401 0 Z"
+      ><path d="M326 30 L326 45 L67 45 L67 30 ZM0 0 L0 104 L401 104 L401 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath20"
       ><path d="M0 0 L405 0 L405 104 L0 104 L0 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath21"
-      ><path d="M275 30 L275 45 L121 45 L121 30 ZM27 0 L27 10 L0 10 L0 104 L106 104 L106 97 L291 97 L291 104 L405 104 L405 0 Z"
+      ><path d="M275 30 L275 45 L121 45 L121 30 ZM21 0 L21 10 L0 10 L0 104 L106 104 L106 97 L291 97 L291 104 L405 104 L405 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath22"
       ><path d="M291 30 L291 45 L106 45 L106 30 ZM0 0 L0 104 L98 104 L98 99 L299 99 L299 104 L405 104 L405 0 Z"
@@ -105,7 +105,7 @@
       ><path d="M-154 -15 L308 -15 L308 30 L-154 30 L-154 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath34"
-      ><path d="M-269 -15 L538 -15 L538 30 L-269 30 L-269 -15 Z"
+      ><path d="M-259 -15 L518 -15 L518 30 L-259 30 L-259 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath35"
       ><path d="M-170 -15 L340 -15 L340 30 L-170 30 L-170 -15 Z"
@@ -181,25 +181,25 @@
     ><g stroke-linecap="butt" font-size="11px" transform="translate(1269,437)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1" stroke-miterlimit="0"
     ><rect fill="none" x="0" width="8" height="77" y="0" clip-path="url(#clipPath9)"
     /></g
-    ><g font-size="11px" transform="translate(1156,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="98" xml:space="preserve" y="12" clip-path="url(#clipPath10)" stroke="none"
-      >: Graph</text
+    ><g font-size="11px" transform="translate(2,37)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><text x="10" xml:space="preserve" y="12" clip-path="url(#clipPath10)" stroke="none"
+      >Traffic Manager</text
     ></g
-    ><g font-size="11px" transform="translate(841,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><g font-size="11px" transform="translate(234,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
     ><text x="69" xml:space="preserve" y="12" clip-path="url(#clipPath11)" stroke="none"
-      >: DataBaseImport</text
+      >: ImportDataUI</text
     ></g
     ><g font-size="11px" transform="translate(539,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
     ><text x="52" xml:space="preserve" y="12" clip-path="url(#clipPath12)" stroke="none"
       >: ImportDataController</text
     ></g
-    ><g font-size="11px" transform="translate(234,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><g font-size="11px" transform="translate(841,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
     ><text x="69" xml:space="preserve" y="12" clip-path="url(#clipPath13)" stroke="none"
-      >: ImportDataUI</text
+      >: DataBaseImport</text
     ></g
-    ><g font-size="11px" transform="translate(2,37)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
-    ><text x="10" xml:space="preserve" y="12" clip-path="url(#clipPath14)" stroke="none"
-      >Traffic Manager</text
+    ><g font-size="11px" transform="translate(1156,2)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="black" stroke-opacity="1"
+    ><text x="98" xml:space="preserve" y="12" clip-path="url(#clipPath14)" stroke="none"
+      >: Graph</text
     ></g
     ><g stroke-linecap="butt" font-size="11px" transform="translate(5,54)" fill-opacity="1" fill="black" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke-linejoin="round" stroke="black" stroke-opacity="1"
     ><line y2="50" fill="none" x1="50" clip-path="url(#clipPath16)" x2="331" y1="50"
@@ -276,10 +276,10 @@
       /><text fill="black" x="10" xml:space="preserve" y="12" clip-path="url(#clipPath33)" stroke="none"
       >1.1.1: ports = getPortData()</text
     ></g
-    ><g font-size="11px" transform="translate(357,130)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
-    ><rect x="0" width="269" height="15" y="0" clip-path="url(#clipPath34)" stroke="none"
+    ><g font-size="11px" transform="translate(361,130)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
+    ><rect x="0" width="259" height="15" y="0" clip-path="url(#clipPath34)" stroke="none"
       /><text fill="black" x="9" xml:space="preserve" y="12" clip-path="url(#clipPath34)" stroke="none"
-      >1.1: importData(countries,porters,borders,seadists)</text
+      >1.1: importData(countries,ports,borders,seadists)</text
     ></g
     ><g font-size="11px" transform="translate(110,483)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
     ><rect x="0" width="170" height="15" y="0" clip-path="url(#clipPath35)" stroke="none"
