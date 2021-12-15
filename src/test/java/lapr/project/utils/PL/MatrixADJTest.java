@@ -566,6 +566,47 @@ public class MatrixADJTest {
         Graph l = new MatrixGraph(false);
         assertFalse(instance.equals(l));
 
+        ArrayList<String> al = new ArrayList<>();
+        String[][] el = new String[0][0];
+        MatrixGraph n = new MatrixGraph(true,al,el);
+        assertTrue(n.isDirected);
+
+        StringBuilder resultSB = new StringBuilder();
+
+        resultSB.append("Vertices:\n");
+
+        resultSB.append("\nMatrix:\n");
+        resultSB.append("  ");
+
+        resultSB.append("\n");
+
+        resultSB.append("\nEdges:\n");
+
+        resultSB.append("\n");
+        result= resultSB.toString();
+        assertEquals(n.toString(),result);
+
+        MatrixGraph n1 = new MatrixGraph(true);
+        n1.addVertex(1);
+        n1.addVertex(2);
+        n1.addEdge(1,2,3);
+
+        
+        result= "Vertices:\n" +
+                "1\n" +
+                "2\n" +
+                "\n" +
+                "Matrix:\n" +
+                "   |  0  |  1 \n" +
+                " 0 |     |  X  \n" +
+                " 1 |     |     \n" +
+                "\n" +
+                "Edges:\n" +
+                "From 0 to 1-> 1 -> 2\n" +
+                "Weight: 3\n\n";
+        assertEquals(n1.toString(),result);
+
+
     }
 
 }
