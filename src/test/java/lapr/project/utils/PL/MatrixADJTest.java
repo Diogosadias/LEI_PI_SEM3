@@ -3,7 +3,6 @@ package lapr.project.utils.PL;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -512,6 +511,27 @@ public class MatrixADJTest {
             assertEquals(co.get(i), ecu.getVDest());
             assertEquals(cw.get(i), ecu.getWeight());
         }
+    }
+
+    /**
+     * Tests to cover
+     */
+    @Test
+    public void testCover(){
+        try{
+            new Edge(null,null,null);
+        }catch (RuntimeException ex){
+            System.out.println("Edge vertices cannot be null!");
+        }
+
+        Edge e = new Edge(1,2,3);
+        assertEquals(3,e.getWeight());
+        e.setWeight(4);
+        assertEquals(4,e.getWeight());
+
+        String result =  "1 -> 2\nWeight: 4";
+        assertEquals(result,e.toString());
+
     }
 
 }
