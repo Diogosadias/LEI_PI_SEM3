@@ -121,6 +121,21 @@ public class GraphTest {
     @Test
     public void testBorders(){
 
+        List<City> cityList = new ArrayList<>();
+        List<Port> portList = new ArrayList<>();
+
+        City p =new City("Porto","Portugal");
+        cityList.add(p);
+        cityList.add(new City("Lisboa","Portugal"));
+
+        MatrixGraph matrixGraph = new MatrixGraph(true);
+        matrixGraph.addVertices(portList,  cityList);
+
+        matrixGraph.addVertex(new City("Madrid","Spain") );
+        assertEquals(matrixGraph.vertices().size(),3);
+        String[][] list = {{"Spain","Portugal"}};
+
+        assertTrue(matrixGraph.addBorders(list));
     }
 
     /**

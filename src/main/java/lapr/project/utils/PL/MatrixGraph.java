@@ -309,7 +309,15 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         boolean flag = true;
         if(portList==null || cityList==null) return false;
         flag = addVertices(cityList);
+        if(!flag) return false;
         flag = addVertices(portList);
         return flag;
+    }
+
+    public boolean addBorders(String[][] list) {
+            for(int i = 0;i<list.length;i++){
+
+            }
+            return true;
     }
 }
