@@ -1,6 +1,9 @@
 package lapr.project.model;
 
+import lapr.project.utils.PL.MatrixGraph;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class GraphTest {
 
@@ -85,6 +88,11 @@ public class GraphTest {
      */
     @Test
     public void testVertices(){
+        /*
+        MatrixGraph
+        addVertices(List<Port> portList, List<City> cityList);
+
+         */
 
     }
 
