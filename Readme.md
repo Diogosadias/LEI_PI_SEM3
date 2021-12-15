@@ -184,6 +184,45 @@ We need to check if 2D-Tree is Balanced:
 
 ####Test Description
 
+---
+
+##US301
+###Analysis
+![US301-SSD](docs/Sprint3/US301/US301-SSD.svg)
+![US301-MD](docs/Sprint3/US301/US301-MD.svg)
+###Design
+![US301-SD](docs/Sprint3/US301/US301-SD.svg)
+![US301-CD](docs/Sprint3/US301/US301-CD.svg)
+###Implementation
+
+####Test Description
+
+According to the AC we want to :
+* Implement a Graph with the Vertices of Cities/Capitals and Ports.
+    * This graph needs to use an adjacency matrix representation.
+* The Edges of the graph represent the connection between the Cities and Ports
+    * Each Capital is connected to the nearest Port of its Country
+    * Each Capital also connects with the Capital of the Countries it borders.
+    * Each Port connects to all Ports of the Same Country.
+    * Each Port connects with n-Number of Ports Closest to it. N Being defined in the program.
+    * All Edges are weighed and the weigh represents the distance between the to Places that are connected in KM's
+
+We need to Test:
+* If the graph has Ports and Capitals ate the Same time.
+* If the Capital is connected to the nearest Country Port
+    * if the Capital doesn't connect to a neighbour Port
+    * if the Capital can update the Port it connects when a new closest Port is added - ?
+* If the Capital is connected with all Capitals of Country it borders and if is not connected with a Country it has no border with
+* If a Port is connected with all the Ports of the Same Country 
+    * If, when inserted, it connectes with all the Ports of a country.
+* If has a connection with the n necessary ports
+* if the weigh is well-placed
+
+**Tests should be done to basic Structure and Replicated with the Objects needed!**
+    
+
+
+
 
 
 ---
