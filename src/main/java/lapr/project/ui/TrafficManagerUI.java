@@ -19,7 +19,7 @@ public class TrafficManagerUI {
     private String date1="31/12/2020";
     private String date2= "31/12/2020 17:00";
     private int n=5;
-    private String date3= "05/12/2021 22:58";
+    private String date3= "2021.12.05";
 
 
     public TrafficManagerUI() throws IOException {
@@ -48,6 +48,9 @@ public class TrafficManagerUI {
                 "\n7 - Pairs of Ships" +
                 "\n8 - Get Closest Port" +
                 "\n9 - Ship Availability" +
+                "\n10 - Build Freight" +
+                "\n11 - Color Map" +
+                "\n12 - Select N Closest Places" +
                 "\nE - Exit");
 
         String inputString = scanner.nextLine();
@@ -86,6 +89,15 @@ public class TrafficManagerUI {
                 break;
             case "9":
                 trafficManagerController.shipAvailableMonday(databaseConnection,date3);
+                break;
+            case "10":
+                //trafficManagerController.buildFreight();
+                break;
+            case "11":
+                //trafficManagerController.colorTheMap();
+                break;
+            case "12":
+                //trafficManagerController.selectNPlaces(place,n);
                 break;
             case "E":
                 flag = false;
