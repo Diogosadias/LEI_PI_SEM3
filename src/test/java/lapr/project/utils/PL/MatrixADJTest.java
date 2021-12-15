@@ -560,6 +560,8 @@ public class MatrixADJTest {
         assertTrue(instance.equals(g));
         g.addEdge(1,2,3);
         assertFalse(instance.equals(g));
+        instance.addEdge("2","3",4);
+        assertFalse(instance.equals(g));
         assertFalse(instance.equals(1));
         Graph l = new MatrixGraph(false);
         assertFalse(instance.equals(l));
