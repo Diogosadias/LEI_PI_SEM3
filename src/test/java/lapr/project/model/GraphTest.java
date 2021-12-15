@@ -79,4 +79,36 @@ public class GraphTest {
     public void checkDistances(){
 
     }
+
+    /**
+     * Check if all vertices are added
+     */
+    @Test
+    public void testVertices(){
+
+    }
+
+    /**
+     * Check if all border are added
+     */
+    @Test
+    public void testBorders(){
+
+    }
+
+    /**
+     * Check if all Capital Ports are added
+     */
+    @Test
+    public void testCapitalPort(){
+
+    }
+
+    /**
+     * Check if n Ports are added
+     */
+    @Test
+    public void testNPorts(){
+
+    }
 }

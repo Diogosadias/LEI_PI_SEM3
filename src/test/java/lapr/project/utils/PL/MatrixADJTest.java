@@ -547,6 +547,13 @@ public class MatrixADJTest {
         assertEquals("1",v);
         assertNull(instance.vertex(-1));
         assertNull(instance.vertex(1));
+        Edge e1 = new Edge(1,2,3);
+        assertTrue(e1.equals(e));
+        Edge e2 = new Edge(1,3,1);
+        assertFalse(e2.equals(e));
+        assertFalse(e.equals(null));
+        assertTrue(e.equals(e));
+
 
     }
 
