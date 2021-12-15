@@ -88,11 +88,13 @@ public class GraphTest {
      */
     @Test
     public void testVertices(){
-        /*
-        MatrixGraph
-        addVertices(List<Port> portList, List<City> cityList);
+        List<City> cityList ;
+        List<Port> portList;
 
-         */
+        MatrixGraph matrixGraph = new MatrixGraph(true);
+        //matrixGraph.addVertices(portList,  cityList);
+
+
 
     }
 

@@ -591,7 +591,7 @@ public class MatrixADJTest {
         n1.addVertex(2);
         n1.addEdge(1,2,3);
 
-        
+
         result= "Vertices:\n" +
                 "1\n" +
                 "2\n" +
