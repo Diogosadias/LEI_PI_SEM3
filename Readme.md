@@ -208,7 +208,7 @@ According to the AC we want to :
     * All Edges are weighed and the weigh represents the distance between the to Places that are connected in KM's
 
 We need to Test:
-* If the graph has Ports and Capitals ate the Same time.
+* If the graph has Ports and Capitals at the Same time.
 * If the Capital is connected to the nearest Country Port
     * if the Capital doesn't connect to a neighbour Port
     * if the Capital can update the Port it connects when a new closest Port is added - ?
