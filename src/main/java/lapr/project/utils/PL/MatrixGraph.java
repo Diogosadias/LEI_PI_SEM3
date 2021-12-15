@@ -3,6 +3,7 @@ package lapr.project.utils.PL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author DEI-ISEP
@@ -144,6 +145,14 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         numVerts++;
         resizeMatrix();
         return true;
+    }
+
+    public boolean addVertices(List<V> list){
+        boolean flag = true;
+        for (V v:list) {
+            if(!addVertex(v)) flag = false;
+        }
+        return flag;
     }
 
     /**
@@ -294,5 +303,13 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         sb.append("\n");
 
         return sb.toString();
+    }
+
+    public boolean addVertices(List<V> portList, List<V> cityList) {
+        boolean flag = true;
+        if(portList==null || cityList==null) return false;
+        flag = addVertices(cityList);
+        flag = addVertices(portList);
+        return flag;
     }
 }

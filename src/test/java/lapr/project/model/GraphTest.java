@@ -3,7 +3,11 @@ package lapr.project.model;
 import lapr.project.utils.PL.MatrixGraph;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GraphTest {
 
@@ -87,12 +91,25 @@ public class GraphTest {
      * Check if all vertices are added
      */
     @Test
-    public void testVertices(){
-        List<City> cityList ;
-        List<Port> portList;
+    public void testVertices() throws IOException {
+        List<City> cityList = new ArrayList<>();
+        List<Port> portList = new ArrayList<>();
 
         MatrixGraph matrixGraph = new MatrixGraph(true);
-        //matrixGraph.addVertices(portList,  cityList);
+        matrixGraph.addVertices(portList,  cityList);
+        assertTrue(matrixGraph.vertices().size()==0);
+
+        City p =new City("Porto","Portugal");
+        cityList.add(p);
+        cityList.add(new City("Lisboa","Portugal"));
+        portList.add(new Port("Europe","Portugal",12,"Porto",0.1,0.2));
+        matrixGraph.addVertices(portList,  cityList);
+        assertTrue(matrixGraph.vertices().size()==3);
+        assertEquals(matrixGraph.vertex(0),p);
+        assertFalse(matrixGraph.addVertices(null,  null));
+        assertFalse(matrixGraph.addVertices(portList,  null));
+        assertFalse(matrixGraph.addVertices(null,  cityList));
+
 
 
 
