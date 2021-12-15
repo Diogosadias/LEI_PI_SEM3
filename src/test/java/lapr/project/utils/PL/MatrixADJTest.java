@@ -523,6 +523,16 @@ public class MatrixADJTest {
         }catch (RuntimeException ex){
             System.out.println("Edge vertices cannot be null!");
         }
+        try{
+            new Edge(1,null,null);
+        }catch (RuntimeException ex){
+            System.out.println("Edge vertices cannot be null!");
+        }
+        try{
+            new Edge(null,1,null);
+        }catch (RuntimeException ex){
+            System.out.println("Edge vertices cannot be null!");
+        }
 
         Edge e = new Edge(1,2,3);
         assertEquals(3,e.getWeight());
@@ -531,6 +541,12 @@ public class MatrixADJTest {
 
         String result =  "1 -> 2\nWeight: 4";
         assertEquals(result,e.toString());
+
+        instance.addVertex("1");
+        String v = instance.vertex(0);
+        assertEquals("1",v);
+        assertNull(instance.vertex(-1));
+        assertNull(instance.vertex(1));
 
     }
 
