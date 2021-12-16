@@ -162,8 +162,46 @@ public class GraphTest {
      * Check if all Capital Ports are added
      */
     @Test
-    public void testCapitalPort(){
+    public void testCapitalPort() throws IOException {
 
+        List<City> cityList = new ArrayList<>();
+        List<Port> portList = new ArrayList<>();
+
+        City p =new City("Paris","França",new Point2D.Double(1,1));
+        cityList.add(p);
+        City l =new City("Lisboa","Portugal",new Point2D.Double(2,2));
+        cityList.add(l);
+
+        MatrixGraph matrixGraph = new MatrixGraph(false);
+        matrixGraph.addVertices(portList,  cityList);
+
+        City m =new City("Madrid","Spain",new Point2D.Double(0,0));
+        matrixGraph.addVertex(m );
+
+
+        TreeMap<String,List<String>> treeMap = new TreeMap<>();
+        List<String> list = new ArrayList<>();
+        list.add("Portugal");
+        list.add("França");
+        list.add("Andorra");
+        Port port = new Port("Europe","Portugal",12,"Porto",0.1,0.2);
+        matrixGraph.addVertex(port);
+        matrixGraph.addBorders(treeMap);
+
+
+        assertTrue(matrixGraph.capitalPort());
+        assertEquals(matrixGraph.edge(port,l).getWeight(),290.9955464123579);
+
+        MatrixGraph matrixGraph1 =matrixGraph.clone();
+        matrixGraph1.removeEdge(port,l);
+        assertNull(matrixGraph1.edge(port,l));
+        Port lisbPort = new Port("Europe","Portugal",15,"Lisboa",2.1,2.2);
+
+        matrixGraph1.addVertex(lisbPort);
+
+        assertTrue(matrixGraph1.capitalPort());
+        assertNull(matrixGraph1.edge(port,l));
+        assertEquals(matrixGraph1.edge(lisbPort,l).getWeight(),24.85120922437356);
 
     }
 

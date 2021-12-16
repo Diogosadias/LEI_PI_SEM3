@@ -1,6 +1,7 @@
 package lapr.project.utils.PL;
 
 import lapr.project.model.City;
+import lapr.project.model.Port;
 
 import java.util.*;
 
@@ -335,8 +336,14 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return true;
     }
 
-    private Double distance(City city, City border) {
-        return dist(city.getCoords().x,city.getCoords().y,border.getCoords().x,border.getCoords().y);
+    private Double distance(City city, Object border) {
+        if(border instanceof City){
+            return dist(city.getCoords().x,city.getCoords().y,((City) border).getCoords().x,((City) border).getCoords().y);
+        } else if (border instanceof Port){
+            return dist(city.getCoords().x,city.getCoords().y,((Port) border).getCoords().x,((Port) border).getCoords().y);
+
+        }
+        return null;
     }
 
     private Object containsCountry(Object s) {
@@ -349,4 +356,35 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
     }
 
 
+    public boolean capitalPort() {
+        for(V v : vertices){
+            if(v instanceof City){
+                List<Port> list = portContains(((City) v).getCountry());
+                if(list.size()!=0){
+                    Double mindist = distance((City) v,list.get(0));
+                    int index = 0;
+                    for(Port p : list){
+                        if(distance((City) v,p)<mindist){
+                            mindist = distance((City) v,p);
+                            index = list.indexOf(p);
+
+                        }
+                    }
+                    addEdge((V) list.get(index),v,(E) mindist);
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private List<Port> portContains(String country) {
+        List<Port> list = new ArrayList<>();
+        for(V v : vertices){
+            if(v instanceof Port){
+                if(((Port) v).getCountry().equals(country)) list.add((Port) v);
+            }
+        }
+        return list;
+    }
 }
