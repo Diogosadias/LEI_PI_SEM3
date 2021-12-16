@@ -123,7 +123,7 @@ public class GraphTest {
      * Check if all border are added
      */
     @Test
-    public void testBorders(){
+    public void testBorders() throws IOException {
 
         List<City> cityList = new ArrayList<>();
         List<Port> portList = new ArrayList<>();
@@ -145,12 +145,17 @@ public class GraphTest {
         list.add("Portugal");
         list.add("França");
         list.add("Andorra");
+        Port port = new Port("Europe","Portugal",12,"Porto",0.1,0.2);
+        matrixGraph.addVertex(port);
 
         treeMap.put("Spain",list);
         assertTrue(matrixGraph.addBorders(treeMap));
         assertEquals(matrixGraph.edge(l,m).getWeight(),314.4748051008686);
         assertEquals(matrixGraph.edge(m,l).getWeight(),314.4748051008686);
         assertEquals(matrixGraph.edge(p,m).getWeight(),157.24938127194397);
+        assertNull(matrixGraph.edge(p,l));
+        assertNull(matrixGraph.edge(l,l));
+        assertNull(matrixGraph.edge(port,l));
     }
 
     /**
