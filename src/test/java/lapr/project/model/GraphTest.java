@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import oracle.ucp.util.Pair;
 import lapr.project.utils.PL.MatrixGraph;
 import org.junit.jupiter.api.Test;
 
@@ -206,10 +207,71 @@ public class GraphTest {
     }
 
     /**
+     * Check if all Ports of Same countries Connections are added
+     */
+    @Test
+    public void testPortsConnection() throws IOException {
+
+        List<City> cityList = new ArrayList<>();
+        List<Port> portList = new ArrayList<>();
+
+        City p =new City("Paris","França",new Point2D.Double(1,1));
+        cityList.add(p);
+        City l =new City("Lisboa","Portugal",new Point2D.Double(2,2));
+        cityList.add(l);
+
+        MatrixGraph matrixGraph = new MatrixGraph(false);
+        matrixGraph.addVertices(portList,  cityList);
+
+        City m =new City("Madrid","Spain",new Point2D.Double(0,0));
+        matrixGraph.addVertex(m );
+
+
+        TreeMap<String,List<String>> treeMap = new TreeMap<>();
+        List<String> list = new ArrayList<>();
+        list.add("Portugal");
+        list.add("França");
+        list.add("Andorra");
+        Port port = new Port("Europe","Portugal",12,"Porto",0.1,0.2);
+        matrixGraph.addVertex(port);
+
+        Port lisbPort = new Port("Europe","Portugal",15,"Lisboa",2.1,2.2);
+
+        matrixGraph.addVertex(lisbPort);
+        matrixGraph.addBorders(treeMap);
+        matrixGraph.capitalPort();
+
+        assertEquals(matrixGraph.edge(lisbPort,l).getWeight(),24.85120922437356);
+
+        Port BarcelonaPort = new Port("Europe","Spain",12,"Barcelona",0.1,0.3);
+
+
+        TreeMap<String, List<Pair<String,Double>>> treeMap1 = new TreeMap<>();
+        List<Pair<String,Double>> listPort1 = new ArrayList<>();
+        Pair<String,Double> p1 = new Pair<String,Double>("Barcelona",2.0);
+        Pair<String,Double> p2 = new Pair<String,Double>("Lisboa",5.0);
+
+        listPort1.add(p1);
+        listPort1.add(p2);
+        treeMap1.put("Porto",listPort1);
+
+
+        assertTrue(matrixGraph.portsConnection(treeMap1));
+        assertEquals(matrixGraph.edge(port,lisbPort).getWeight(),5.0);
+        assertNull(matrixGraph.edge(BarcelonaPort,port));
+
+
+    }
+
+    /**
      * Check if n Ports are added
      */
     @Test
     public void testNPorts(){
+
+        //Check if Port has already more or n connections
+
+        //Add n connections
 
     }
 }

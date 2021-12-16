@@ -1,5 +1,6 @@
 package lapr.project.utils.PL;
 
+import oracle.ucp.util.Pair;
 import lapr.project.model.City;
 import lapr.project.model.Port;
 
@@ -386,5 +387,31 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
             }
         }
         return list;
+    }
+
+    public boolean portsConnection(TreeMap<String, List<Pair<String,Double>>> seadist) {
+        for(V v : vertices){
+            if(v instanceof Port){
+                List<Port> list = portContains(((Port) v).getCountry());
+                if(list.size()!=0){
+                    for(Port p : list){
+                        addEdge((V) v,(V) p,(E) getdist(seadist,v,p));
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private Double getdist(TreeMap<String, List<Pair<String, Double>>> seadist, V v, Port p) {
+        for(String s : seadist.keySet()){
+            if(s.equals(((Port) v).getLocation())){
+                for(int i  = 0; i<seadist.get(s).size();i++){
+                    if(seadist.get(s).get(i).get1st().equals(((Port) p).getLocation())) return seadist.get(s).get(i).get2nd();
+                }
+            }
+        }
+        return null;
     }
 }
