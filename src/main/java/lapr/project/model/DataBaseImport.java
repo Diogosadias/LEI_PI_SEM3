@@ -13,13 +13,13 @@ public class DataBaseImport {
     public String buildFreight(DatabaseConnection databaseConnection) {
 
         if(databaseConnection==null) return "Freight Build Was Not Successful!";
-        //get Ports List and Cities List
+        //get Ports List and Cities List from Database
 
-        // Get Borders
+        // Get Borders from Database Format -> TreeMap<String,List<String>>
 
-        //Get SeaDist
+        //Get SeaDist from Database Format -> TreeMap<String,List<Pair<String,Double>>
 
-        //Build Graph
+        //Build Graph with all information
         MatrixGraph matrixGraph = buildGraph();
 
 

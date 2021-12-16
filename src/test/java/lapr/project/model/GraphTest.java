@@ -205,7 +205,7 @@ public class GraphTest {
     @Test
     public void testCapitalPort() throws IOException {
 
-        //Change PortTree to find NearestPort
+        //Change PortTree to find NearestPort of PortTree from Ports of Country
 
         List<City> cityList = new ArrayList<>();
         List<Port> portList = new ArrayList<>();
@@ -311,7 +311,12 @@ public class GraphTest {
     @Test
     public void testNPorts(){
 
+        //Change PortTree to find NearestPort of PortTree from Ports of Country and remove this
+
+
         //Check if Port has already more or n connections
+
+
 
         //Add n connections
 
