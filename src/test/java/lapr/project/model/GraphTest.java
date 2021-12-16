@@ -3,9 +3,11 @@ package lapr.project.model;
 import lapr.project.utils.PL.MatrixGraph;
 import org.junit.jupiter.api.Test;
 
+import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -95,7 +97,7 @@ public class GraphTest {
         List<City> cityList = new ArrayList<>();
         List<Port> portList = new ArrayList<>();
 
-        MatrixGraph matrixGraph = new MatrixGraph(true);
+        MatrixGraph matrixGraph = new MatrixGraph(false);
         matrixGraph.addVertices(portList,  cityList);
         assertTrue(matrixGraph.vertices().size()==0);
 
@@ -110,6 +112,8 @@ public class GraphTest {
         assertFalse(matrixGraph.addVertices(portList,  null));
         assertFalse(matrixGraph.addVertices(null,  cityList));
 
+        City v =new City("Viseu","Portugal",new Point2D.Double(0.1,0.5));
+        assertTrue(matrixGraph.addVertex(v));
 
 
 
@@ -124,18 +128,29 @@ public class GraphTest {
         List<City> cityList = new ArrayList<>();
         List<Port> portList = new ArrayList<>();
 
-        City p =new City("Porto","Portugal");
+        City p =new City("Paris","França",new Point2D.Double(1,1));
         cityList.add(p);
-        cityList.add(new City("Lisboa","Portugal"));
+        City l =new City("Lisboa","Portugal",new Point2D.Double(2,2));
+        cityList.add(l);
 
-        MatrixGraph matrixGraph = new MatrixGraph(true);
+        MatrixGraph matrixGraph = new MatrixGraph(false);
         matrixGraph.addVertices(portList,  cityList);
 
-        matrixGraph.addVertex(new City("Madrid","Spain") );
+        City m =new City("Madrid","Spain",new Point2D.Double(0,0));
+        matrixGraph.addVertex(m );
         assertEquals(matrixGraph.vertices().size(),3);
-        String[][] list = {{"Spain","Portugal"}};
 
-        assertTrue(matrixGraph.addBorders(list));
+        TreeMap<String,List<String>> treeMap = new TreeMap<>();
+        List<String> list = new ArrayList<>();
+        list.add("Portugal");
+        list.add("França");
+        list.add("Andorra");
+
+        treeMap.put("Spain",list);
+        assertTrue(matrixGraph.addBorders(treeMap));
+        assertEquals(matrixGraph.edge(l,m).getWeight(),314.4748051008686);
+        assertEquals(matrixGraph.edge(m,l).getWeight(),314.4748051008686);
+        assertEquals(matrixGraph.edge(p,m).getWeight(),157.24938127194397);
     }
 
     /**
@@ -143,6 +158,7 @@ public class GraphTest {
      */
     @Test
     public void testCapitalPort(){
+        
 
     }
 

@@ -173,23 +173,20 @@ public class Ship implements Comparable<Ship> {
         if (d == null || a == null) {
             return false;
         }
-        if (dist(d.get1st(), d.get2nd(), a.get1st(), a.get2nd()) < 5) {
+        if (dist((Double) d.get1st(),(Double) d.get2nd(),(Double) a.get1st(),(Double) a.get2nd()) < 5) {
             return true;
         }
         return false;
     }
 
-    protected Double dist(Object x1, Object y1, Object x2, Object y2) {
+    public static Double dist(Double x1, Double y1, Double x2, Double y2) {
         Double constant = 6371.0;
 
-        y1 = Math.toRadians((Double) y1);
-        y2 = Math.toRadians((Double) y2);
-        x1 = Math.toRadians((Double) x1);
-        x2 = Math.toRadians((Double) x2);
-        Double dlat = (Double) x2 - (Double) x1;
+        Double latDistance = Math.toRadians(x2 - x1);
+        Double lonDistance = Math.toRadians(y2 - y1);
 
-        Double dlon = (Double) y2 - (Double) y1;
-        Double a = sin(dlat / 2) * sin(dlat / 2) + cos((Double) x1) - cos((Double) x2) + sin(dlon / 2) * sin(dlon / 2);
+
+        Double a = sin(latDistance / 2) * sin(latDistance / 2) + cos(toRadians(x1)) * cos(toRadians(x2)) * sin(lonDistance / 2) * sin(lonDistance / 2);
         Double a1 = 1.0 - a;
         if (a < 0) {
             return dist(Math.toDegrees((Double) x2), Math.toDegrees((Double) y2), Math.toDegrees((Double) x1), Math.toDegrees((Double) y1));

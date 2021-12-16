@@ -1,9 +1,10 @@
 package lapr.project.utils.PL;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import lapr.project.model.City;
+
+import java.util.*;
+
+import static lapr.project.model.Ship.dist;
 
 /**
  * @author DEI-ISEP
@@ -314,10 +315,38 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return flag;
     }
 
-    public boolean addBorders(String[][] list) {
-            for(int i = 0;i<list.length;i++){
+    public boolean addBorders(TreeMap<String,List<String>> list) {
 
+        //first check for each Country in List if there is a City/Capital in the graph
+        for(Object s : list.keySet()){
+            Object city = containsCountry(s);
+            if(city!=null){
+                //Then if there is check if there is a City for the Country it borders
+                for(String t : list.get(s)) {
+                    Object border = containsCountry(t);
+                    if (border != null) {
+                        //If the 2 conditions are true - calculate distancance betweeen cities
+                        if (!addEdge((V) city, (V) border,(E) distance((City) city,(City) border))) return false;
+                    }
+                }
             }
-            return true;
+        }
+
+        return true;
     }
+
+    private Double distance(City city, City border) {
+        return dist(city.getCoords().x,city.getCoords().y,border.getCoords().x,border.getCoords().y);
+    }
+
+    private Object containsCountry(Object s) {
+        for(V v : vertices){
+            if(v instanceof City){
+                if(((City) v).getCountry().equals(s)) return v;
+            }
+        }
+        return null;
+    }
+
+
 }

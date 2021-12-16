@@ -489,7 +489,7 @@ public class SummaryTest {
         movs.insert(shipmov4);
         movs.insert(shipmov5);
         ship.setMovements(movs);
-        double expectedResult = 7450.089918639114;
+        double expectedResult = 2207.983914073569;
         double result = ship.getDeltaDistance();
         //Assert
         assertEquals(expectedResult, result);
@@ -513,7 +513,7 @@ public class SummaryTest {
         movs.insert(shipmov4);
         movs.insert(shipmov5);
         ship.setMovements(movs);
-        double expectedResult = 17648.239898955795;
+        double expectedResult = 4082.9150550812483;
         double result = ship.getTravelledDistance();
         //Assert
         assertEquals(expectedResult, result);
