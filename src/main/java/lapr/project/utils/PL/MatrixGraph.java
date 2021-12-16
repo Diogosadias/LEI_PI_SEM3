@@ -5,6 +5,7 @@ import oracle.ucp.util.Pair;
 import lapr.project.model.City;
 import lapr.project.model.Port;
 
+import java.io.IOException;
 import java.util.*;
 
 import static lapr.project.model.Ship.dist;
@@ -358,12 +359,18 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
     }
 
 
-    public boolean capitalPort() {
+    public boolean capitalPort() throws IOException {
         for(V v : vertices){
             if(v instanceof City){
                 List<Port> list = portContains(((City) v).getCountry());
-                //PortTree<Port> portTree = new PortTree<>()
+                PortTree<Port> portTree = new PortTree<>();
                 if(list.size()!=0){
+                    for(Port p : list){
+                        portTree.insert(p,p.getCoords());
+                    }
+                    Port p = portTree.findNearesNeighbour(((City) v).getCoords().x,((City) v).getCoords().y);
+
+                    /*
                     Double mindist = distance((City) v,list.get(0));
                     int index = 0;
                     for(Port p : list){
@@ -373,7 +380,10 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
 
                         }
                     }
-                    addEdge((V) list.get(index),v,(E) mindist);
+
+                     */
+
+                    addEdge((V) p,v,(E) distance((City) v,p));
                 }
             }
         }
@@ -397,7 +407,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
                 List<Port> list = portContains(((Port) v).getCountry());
                 if(list.size()!=0){
                     for(Port p : list){
-                        addEdge((V) v,(V) p,(E) getdist(seadist,v,p));
+                        if(!v.equals(p)) addEdge((V) v,(V) p,(E) getdist(seadist,v,p));
                     }
                 }
             }
@@ -415,5 +425,21 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
             }
         }
         return null;
+    }
+
+    public boolean nportsConnect(int i, TreeMap<String, List<Pair<String,Double>>> seadist) throws IOException {
+        PortTree<Port> portTree = new PortTree<>();
+        for(V v : vertices){
+            if(v instanceof Port){
+                portTree.insert((Port) v,((Port) v).getCoords());
+            }
+        }
+        List<Port> list = (List<Port>) portTree.inOrder();
+        for(Port p : list){
+            portTree.remove(p);
+            Port port = portTree.findNearesNeighbour(p.getCoords().x,p.getCoords().y);
+            addEdge((V) p,(V) port,(E) getdist(seadist,(V) p,port));
+        }
+        return true;
     }
 }

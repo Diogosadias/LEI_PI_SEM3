@@ -315,7 +315,7 @@ public class GraphTest {
      * Check if n Ports are added
      */
     @Test
-    public void testNPorts(){
+    public void testNPorts() throws IOException {
 
         //Change PortTree to find NearestPort of PortTree from Ports of Country and remove this
 
@@ -326,6 +326,71 @@ public class GraphTest {
 
 
         //Add n connections
+
+        List<City> cityList = new ArrayList<>();
+        List<Port> portList = new ArrayList<>();
+
+        City p =new City("Paris","França",new Point2D.Double(1,1));
+        cityList.add(p);
+        City l =new City("Lisboa","Portugal",new Point2D.Double(2,2));
+        cityList.add(l);
+
+        MatrixGraph matrixGraph = new MatrixGraph(false);
+        matrixGraph.addVertices(portList,  cityList);
+
+        City m =new City("Madrid","Spain",new Point2D.Double(0,0));
+        matrixGraph.addVertex(m );
+
+
+        TreeMap<String,List<String>> treeMap = new TreeMap<>();
+        List<String> list = new ArrayList<>();
+        list.add("Portugal");
+        list.add("França");
+        list.add("Andorra");
+        Port port = new Port("Europe","Portugal",12,"Porto",0.1,0.2);
+        matrixGraph.addVertex(port);
+
+        Port lisbPort = new Port("Europe","Portugal",15,"Lisboa",2.1,2.2);
+
+        matrixGraph.addVertex(lisbPort);
+        matrixGraph.addBorders(treeMap);
+
+
+
+        Port barcelonaPort = new Port("Europe","Spain",12,"Barcelona",0.1,0.3);
+        matrixGraph.addVertex(barcelonaPort);
+
+
+        matrixGraph.capitalPort();
+        TreeMap<String, List<Pair<String,Double>>> treeMap1 = new TreeMap<>();
+        List<Pair<String,Double>> listPort1 = new ArrayList<>();
+        Pair<String,Double> p1 = new Pair<String,Double>("Barcelona",2.0);
+        Pair<String,Double> p2 = new Pair<String,Double>("Lisboa",5.0);
+
+        listPort1.add(p1);
+        listPort1.add(p2);
+        treeMap1.put("Porto",listPort1);
+
+
+        matrixGraph.portsConnection(treeMap1);
+        List<City> li = new ArrayList<>();
+        li.add(m);
+        assertEquals(matrixGraph.adjVertices(barcelonaPort),li);
+        assertEquals(matrixGraph.adjVertices(lisbPort).size(),2);
+
+        assertTrue(matrixGraph.nportsConnect(1,treeMap1));
+
+/*
+        assertEquals(matrixGraph.adjVertices(barcelonaPort).size(),2);
+        assertEquals(matrixGraph.adjVertices(lisbPort).size(),2);
+
+
+        assertTrue(matrixGraph.nportsConnect(2,treeMap1));
+        assertEquals(matrixGraph.adjVertices(BarcelonaPort).size(),2);
+        assertEquals(matrixGraph.adjVertices(lisbPort).size(),3);
+
+         */
+
 
     }
 }
