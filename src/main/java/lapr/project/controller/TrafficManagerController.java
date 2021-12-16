@@ -25,6 +25,7 @@ public class TrafficManagerController {
     public Search search = new Search();
     private PairsCalculator pc = new PairsCalculator(mmsiTree);
     public TopN topsum = new TopN(mmsiTree);
+    public DataBaseImport dataBaseImport = new DataBaseImport();
 
 
     /*
@@ -90,6 +91,16 @@ public class TrafficManagerController {
         File myObj = new File("ClosestPort.txt");
         FileWriter myWriter = new FileWriter("ClosestPort.txt");
         myWriter.write(search.getClosestPort(databaseConnection,code3, date,this));
+        myWriter.close();
+
+
+        return  myObj;
+    }
+
+    public File buildFreight(DatabaseConnection databaseConnection) throws IOException {
+        File myObj = new File("FreightNetwork.txt");
+        FileWriter myWriter = new FileWriter("FreightNetwork.txt");
+        myWriter.write(dataBaseImport.buildFreight(databaseConnection));
         myWriter.close();
 
 

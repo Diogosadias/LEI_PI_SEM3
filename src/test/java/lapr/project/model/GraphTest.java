@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import oracle.ucp.util.Pair;
 import lapr.project.utils.PL.MatrixGraph;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import java.awt.geom.Point2D;
@@ -13,6 +14,45 @@ import java.util.TreeMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GraphTest {
+    private String[] listAux = {"Lisboa","Paris","Madrid","London","Roma","Berlin"} ;
+    private String[] listAux2 = {"Portugal","France","Spain","UK","Italy","Germany"} ;
+    private String[] listPorts = {"Lisboa","Paris","Madrid","London","Roma","Berlin"};
+    MatrixGraph instance = new MatrixGraph(false);
+
+    @Before // setup()
+    public void before() throws IOException {
+
+        List list = new ArrayList();
+        for(int i = 0; i<listAux.length;i++){
+            City city = new City(listAux[i],listAux2[i],new Point2D.Double( i, i));
+            list.add(city);
+        }
+        List portsList = new ArrayList();
+        for(int i = 0; i<listPorts.length;i++){
+            Port port = new Port("Europe",listAux2[i],i,listAux[i], Double.valueOf(i), Double.valueOf(i));
+            portsList.add(port);
+        }
+        instance.addVertices(list,portsList);
+        TreeMap<String,String> treeMap = new TreeMap<>();
+        treeMap.put("Portugal","Spain");
+        treeMap.put("Spain","France");
+        treeMap.put("Italy","France");
+        treeMap.put("Germany","France");
+
+
+        instance.addBorders(treeMap);
+        instance.capitalPort();
+        TreeMap<String, List<Pair<String,Double>>> treeMap1 = new TreeMap<>();
+
+        List<Pair<String,Double>> listSea = new ArrayList<>();
+        listSea.add(new Pair<>("Madrid",1.1));
+        listSea.add(new Pair<>("Roma",1.1));
+        listSea.add(new Pair<>("Dublin",1.1));
+        treeMap1.put("Lisboa",listSea);
+
+
+        instance.portsConnection(treeMap1);
+    }
 
     /**
      * Test if Graph has 2 different types of Vertices - Classes
@@ -164,6 +204,8 @@ public class GraphTest {
      */
     @Test
     public void testCapitalPort() throws IOException {
+
+        //Change PortTree to find NearestPort
 
         List<City> cityList = new ArrayList<>();
         List<Port> portList = new ArrayList<>();

@@ -91,7 +91,7 @@ public class TrafficManagerUI {
                 trafficManagerController.shipAvailableMonday(databaseConnection,date3);
                 break;
             case "10":
-                //trafficManagerController.buildFreight();
+                trafficManagerController.buildFreight(databaseConnection);
                 break;
             case "11":
                 //trafficManagerController.colorTheMap();
