@@ -1,5 +1,6 @@
 package lapr.project.utils.PL;
 
+import lapr.project.model.PortTree;
 import oracle.ucp.util.Pair;
 import lapr.project.model.City;
 import lapr.project.model.Port;
@@ -361,6 +362,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         for(V v : vertices){
             if(v instanceof City){
                 List<Port> list = portContains(((City) v).getCountry());
+                //PortTree<Port> portTree = new PortTree<>()
                 if(list.size()!=0){
                     Double mindist = distance((City) v,list.get(0));
                     int index = 0;

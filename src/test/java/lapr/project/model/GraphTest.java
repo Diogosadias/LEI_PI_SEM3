@@ -207,6 +207,12 @@ public class GraphTest {
 
         //Change PortTree to find NearestPort of PortTree from Ports of Country
 
+        /*
+        Find Nearest Neigbour opera sobre uma kdTree - PortTree e por isso posso inserir todos os portos de um pais e depois encontrar este.
+         */
+
+
+
         List<City> cityList = new ArrayList<>();
         List<Port> portList = new ArrayList<>();
 
@@ -312,6 +318,7 @@ public class GraphTest {
     public void testNPorts(){
 
         //Change PortTree to find NearestPort of PortTree from Ports of Country and remove this
+
 
 
         //Check if Port has already more or n connections
