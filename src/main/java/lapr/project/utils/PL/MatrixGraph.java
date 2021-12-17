@@ -363,14 +363,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         for(V v : vertices){
             if(v instanceof City){
                 List<Port> list = portContains(((City) v).getCountry());
-                PortTree<Port> portTree = new PortTree<>();
                 if(list.size()!=0){
-                    for(Port p : list){
-                        portTree.insert(p,p.getCoords());
-                    }
-                    Port p = portTree.findNearesNeighbour(((City) v).getCoords().x,((City) v).getCoords().y);
-
-                    /*
                     Double mindist = distance((City) v,list.get(0));
                     int index = 0;
                     for(Port p : list){
@@ -380,10 +373,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
 
                         }
                     }
-
-                     */
-
-                    addEdge((V) p,v,(E) distance((City) v,p));
+                    addEdge((V) list.get(index),v,(E) mindist);
                 }
             }
         }
@@ -402,6 +392,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
     }
 
     public boolean portsConnection(TreeMap<String, List<Pair<String,Double>>> seadist) {
+
         for(V v : vertices){
             if(v instanceof Port){
                 List<Port> list = portContains(((Port) v).getCountry());
@@ -427,7 +418,8 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return null;
     }
 
-    public boolean nportsConnect(int i, TreeMap<String, List<Pair<String,Double>>> seadist) throws IOException {
+    public boolean nportsConnect(int i, TreeMap<String, List<Pair<String,Double>>> seadist) throws IOException { //Redo Use Floyd-Warshall algorithm
+
         PortTree<Port> portTree = new PortTree<>();
         for(V v : vertices){
             if(v instanceof Port){
