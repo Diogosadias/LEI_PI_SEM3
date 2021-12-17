@@ -41,7 +41,6 @@ public class DataBaseImport {
 
         //Build Graph with all information
         MatrixGraph matrixGraph = buildGraph(listPorts,listCity,borders,seadist,n);
-        this.matrixGraph =matrixGraph;
 
 
         return "Graph was built!";
@@ -59,6 +58,12 @@ public class DataBaseImport {
         matrixGraph.portsConnection(seadist);
         matrixGraph.nportsConnect(n,seadist);
 
+        this.matrixGraph =matrixGraph;
+
+        return matrixGraph;
+    }
+
+    public MatrixGraph getMatrixGraph(){
         return matrixGraph;
     }
 }

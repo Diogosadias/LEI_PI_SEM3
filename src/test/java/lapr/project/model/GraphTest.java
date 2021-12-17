@@ -333,5 +333,7 @@ public class GraphTest {
         assertTrue(instance.vertex(0) instanceof City);
         assertTrue(instance.vertex(7) instanceof Port);
 
+        assertEquals(instance,dataBaseImport.getMatrixGraph());
+
     }
 }
