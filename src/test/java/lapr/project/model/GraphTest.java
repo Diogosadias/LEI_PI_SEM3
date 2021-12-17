@@ -285,8 +285,8 @@ public class GraphTest {
         assertTrue(matrixGraph.nportsConnect(1,treeMap1));
 
 
-        assertEquals(matrixGraph.adjVertices(barcelonaPort).size(),2);
-        assertEquals(matrixGraph.adjVertices(lisbPort).size(),2);
+        assertEquals(matrixGraph.adjVertices(barcelonaPort).size(),3);
+        assertEquals(matrixGraph.adjVertices(lisbPort).size(),3);
 
 
         assertTrue(matrixGraph.nportsConnect(2,treeMap1));

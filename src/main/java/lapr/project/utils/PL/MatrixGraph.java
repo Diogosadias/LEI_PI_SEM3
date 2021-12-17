@@ -444,7 +444,6 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
                         Edge edge = minEdge(lista);//Calculate Minimu
 
                         //Add Edge to matrix and upcount of nVertices
-                        if(edgescount.get(portList.indexOf(edge.getVOrig())) < edgesmax.get(portList.indexOf(edge.getVOrig())) && edgescount.get(portList.indexOf(edge.getVDest())) < edgesmax.get(portList.indexOf(edge.getVDest())))
 
                         addEdge((V) edge.getVOrig(), (V) edge.getVDest(), (E) edge.getWeight());
                         int ec = portList.indexOf(edge.getVOrig());
