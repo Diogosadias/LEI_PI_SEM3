@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -18,42 +19,9 @@ public class GraphTest {
     private String[] listCont = {"Lisboa","Paris","Madrid","London","Roma","Berlin"} ;
     private String[] listAux2 = {"Portugal","France","Spain","UK","Italy","Germany"} ;
     private String[] listPorts = {"Lisboa","Paris","Madrid","London","Roma","Berlin"};
-    MatrixGraph instance = new MatrixGraph(false);
-
-    @Before // setup()
-    public void before() throws IOException {
-
-        List list = new ArrayList();
-        for(int i = 0; i<listAux.length;i++){
-            City city = new City(listAux[i],listAux2[i],listCont[i],new Point2D.Double( i, i));
-            list.add(city);
-        }
-        List portsList = new ArrayList();
-        for(int i = 0; i<listPorts.length;i++){
-            Port port = new Port("Europe",listAux2[i],i,listAux[i], Double.valueOf(i), Double.valueOf(i));
-            portsList.add(port);
-        }
-        instance.addVertices(list,portsList);
-        TreeMap<String,String> treeMap = new TreeMap<>();
-        treeMap.put("Portugal","Spain");
-        treeMap.put("Spain","France");
-        treeMap.put("Italy","France");
-        treeMap.put("Germany","France");
+    MatrixGraph instance;
 
 
-        instance.addBorders(treeMap);
-        instance.capitalPort();
-        TreeMap<String, List<Pair<String,Double>>> treeMap1 = new TreeMap<>();
-
-        List<Pair<String,Double>> listSea = new ArrayList<>();
-        listSea.add(new Pair<>("Madrid",1.1));
-        listSea.add(new Pair<>("Roma",1.1));
-        listSea.add(new Pair<>("Dublin",1.1));
-        treeMap1.put("Lisboa",listSea);
-
-
-        instance.portsConnection(treeMap1);
-    }
 
     /**
      * Test if Graph has 2 different types of Vertices - Classes
@@ -399,7 +367,42 @@ public class GraphTest {
      * Test Graph Build
      */
     @Test
-    public void testGraphBuild(){
+    public void testGraphBuild() throws IOException {
+        List<Port> listPorts = new ArrayList<>();
+        List<City> listCities = new ArrayList<>();
+        TreeMap<String,List<String>> borders = new TreeMap<>();
+        TreeMap<String,List<Pair<String,Double>>> seadist = new TreeMap<>();
+        for(int i = 0; i<listAux.length;i++){
+            listPorts.add(new Port("Europe",listAux2[i],i,listAux[i],Double.valueOf(i),Double.valueOf(i)));
+            listCities.add(new City(listAux[i],listCont[i],new Point2D.Double(i,i) ));
+        }
+        for(int i = 0; i<listAux.length-1;i++){
+            borders.put(listAux[i], Collections.singletonList(listAux[i + 1]));
+        }
+        List<String> list = borders.get(listAux[2]);
+        borders.put(listAux[2],list);
+        List<Pair<String,Double>> listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Berlin",20.0));
+        listAu.add(new Pair<String,Double>("London",20.0));
+        seadist.put("Lisboa",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Madrid",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Berlin",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("London",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Madrid",listAu);
+        City c = new City("Brazil","Rio de Janeiro",new Point2D.Double(20.0,20.0));
+        listCities.add(c);
+
+        DataBaseImport dataBaseImport = new DataBaseImport();
+        instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,0);
+
+        assertFalse(instance.isDirected());
+        assertTrue(instance.validVertex(c));
 
     }
 }

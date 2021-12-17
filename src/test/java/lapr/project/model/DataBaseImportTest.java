@@ -46,4 +46,22 @@ public class DataBaseImportTest {
 
         //Tests for multiple acess to database
     }
+
+    /**
+     * Test Errors in the database
+     */
+    @Test
+    public void testErrorsDatabase() throws IOException {
+        DataBaseImport dataBaseImport = new DataBaseImport();
+        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+        /*
+
+        ImportPortDatabase importPortDatabase = mock(ImportPortDatabase.class);
+        PortTree portTree = mock(PortTree.class);
+        when(importPortDatabase.getPortData(databaseConnection,portTree)).thenReturn(false);
+        String result = dataBaseImport.buildFreight(databaseConnection,1);
+        assertEquals(result,"Ports Couldn't be Retrieved");
+
+         */
+    }
 }

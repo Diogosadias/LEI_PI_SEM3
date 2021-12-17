@@ -47,7 +47,7 @@ public class DataBaseImport {
         return "Graph was built!";
     }
 
-    private MatrixGraph buildGraph(List<Port> listPorts, List<City> listCity, TreeMap<String, List<String>> borders, TreeMap<String, List<Pair<String, Double>>> seadist,int n) throws IOException {
+    public MatrixGraph buildGraph(List<Port> listPorts, List<City> listCity, TreeMap<String, List<String>> borders, TreeMap<String, List<Pair<String, Double>>> seadist,int n) throws IOException {
         MatrixGraph matrixGraph = new MatrixGraph(false); //Undirected Graph
 
         //Add Vertices

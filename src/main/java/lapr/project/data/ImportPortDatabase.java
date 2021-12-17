@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.logging.Level;
@@ -222,11 +223,98 @@ public class ImportPortDatabase {
     }
 
     public boolean getBorders(DatabaseConnection databaseConnection, TreeMap<String, List<String>> borders) {
-        return true;
+        boolean returnValue = false;
+
+        try {
+            borders = getBordersfromDatabase(databaseConnection,borders);
+
+            //Save changes.
+            returnValue = true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ImportPortDatabase.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+            returnValue = false;
+        }
+        return returnValue;
+    }
+
+    private TreeMap<String, List<String>> getBordersfromDatabase(DatabaseConnection databaseConnection, TreeMap<String, List<String>> borders) throws SQLException {
+        String sqlCommand = "select * from Border"; //Remake statement
+        return executeBordersStatement(databaseConnection,borders,sqlCommand);
+    }
+
+    private TreeMap<String, List<String>> executeBordersStatement(DatabaseConnection databaseConnection, TreeMap<String, List<String>> borders, String sqlCommand) throws SQLException {
+        String country1;
+        String country2;
+        Connection connection = databaseConnection.getConnection();
+
+        PreparedStatement getBorders = connection.prepareStatement(sqlCommand);
+        ResultSet rs = getBorders.executeQuery();
+
+        // Get the result table from the query
+        while (rs.next()) {
+            country1 = rs.getString(1);
+            country2 = rs.getString(2);
+            List<String> list = new ArrayList<>();
+            if(borders.containsKey(country1)) {
+                list = borders.get(country1);
+            }
+            list.add(country2);
+            borders.put(country1, list);
+        }
+        rs.close();
+
+        return borders;
     }
 
     public boolean getSeaDist(DatabaseConnection databaseConnection, TreeMap<String, List<Pair<String, Double>>> seadist) {
-        return true;
+        boolean returnValue = false;
 
+        try {
+            seadist = getSeaDistFromDatabase(databaseConnection,seadist);
+
+            //Save changes.
+            returnValue = true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ImportPortDatabase.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+            returnValue = false;
+        }
+        return returnValue;
+    }
+
+    private TreeMap<String, List<Pair<String, Double>>> getSeaDistFromDatabase(DatabaseConnection databaseConnection, TreeMap<String, List<Pair<String, Double>>> seadist) throws SQLException {
+        String sqlCommand = "select from_Port_name,to_Port_name,sea_distance from Sea_distance"; //Remake statement
+        return executeSeaDistStatement(databaseConnection,seadist,sqlCommand);
+    }
+
+    private TreeMap<String, List<Pair<String, Double>>> executeSeaDistStatement(DatabaseConnection databaseConnection, TreeMap<String, List<Pair<String, Double>>> seadist, String sqlCommand) throws SQLException {
+        String port1;
+        String port2;
+        Double dist;
+        Connection connection = databaseConnection.getConnection();
+
+        PreparedStatement getDist = connection.prepareStatement(sqlCommand);
+        ResultSet rs = getDist.executeQuery();
+
+        // Get the result table from the query
+        while (rs.next()) {
+            port1 = rs.getString(1);
+            port2 = rs.getString(2);
+            dist = rs.getDouble(3);
+            List<Pair<String, Double>> list = new ArrayList<>();
+            if(seadist.containsKey(port1)) {
+                list = seadist.get(port1);
+            }
+            list.add(new Pair<>(port2,dist));
+            seadist.put(port1, list);
+        }
+        rs.close();
+
+        return seadist;
     }
 }
