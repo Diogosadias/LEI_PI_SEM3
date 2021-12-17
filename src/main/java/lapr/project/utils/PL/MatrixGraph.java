@@ -436,6 +436,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         }
         List<Port> list = (List<Port>) portTree.inOrder();
         for(Port p : list){
+            //Alternative use findkNeigbour
             portTree.remove(p);
             Port port = portTree.findNearesNeighbour(p.getCoords().x,p.getCoords().y);
             addEdge((V) p,(V) port,(E) getdist(seadist,(V) p,port));

@@ -6,6 +6,7 @@ public class City {
     private String name;
     private String country;
     private Point2D.Double coords;
+    private String cont;
 
     public City(String name,String country){
         this.name = name;
@@ -15,6 +16,14 @@ public class City {
     public City(String name,String country,Point2D.Double coords){
         this.name = name;
         this.country=country;
+        this.cont = null;
+        this.coords=coords;
+    }
+
+    public City(String name,String country,String cont,Point2D.Double coords){
+        this.name = name;
+        this.country=country;
+        this.cont = cont;
         this.coords=coords;
     }
 
@@ -39,5 +48,14 @@ public class City {
 
     public void setCoords(Point2D.Double coords) {
         this.coords = coords;
+    }
+
+
+    public String getCont() {
+        return cont;
+    }
+
+    public void setCont(String cont) {
+        this.cont = cont;
     }
 }

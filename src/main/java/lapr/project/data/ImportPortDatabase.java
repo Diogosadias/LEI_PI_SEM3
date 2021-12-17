@@ -1,8 +1,10 @@
 package lapr.project.data;
 
 
+import lapr.project.model.City;
 import lapr.project.model.Port;
 import lapr.project.model.PortTree;
+import oracle.ucp.util.Pair;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
@@ -10,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -166,5 +170,63 @@ public class ImportPortDatabase {
         rs.close();                       // Close the ResultSet                 4
 
         return portTree;
+    }
+
+    public boolean getCities(DatabaseConnection databaseConnection, List<City> listCity) {
+        boolean returnValue = false;
+
+        try {
+            listCity = getCitiesFromDatabase(databaseConnection,listCity);
+
+            //Save changes.
+            returnValue = true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ImportPortDatabase.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+            returnValue = false;
+        }
+        return returnValue;
+    }
+
+    private List<City> getCitiesFromDatabase(DatabaseConnection databaseConnection, List<City> listCity) throws SQLException {
+        String sqlCommand = "select * from Country";
+        return executeCitiesStatement(databaseConnection,listCity,sqlCommand);
+    }
+
+    private List<City> executeCitiesStatement(DatabaseConnection databaseConnection, List<City> listCity, String sqlCommand) throws SQLException {
+        String cont;
+        String country;
+        String name;
+        Double lat;
+        Double lon;
+        Connection connection = databaseConnection.getConnection();
+
+        PreparedStatement getCities = connection.prepareStatement(sqlCommand);
+        ResultSet rs = getCities.executeQuery();
+
+        // Get the result table from the query
+        while (rs.next()) {
+            name = rs.getString(1);
+            cont = rs.getString(3);
+            country = rs.getString(4);
+            lat = rs.getDouble(6);
+            lon = rs.getDouble(7);
+            City city = new City(name,country,cont, new Point2D.Double(lat,lon));
+            listCity.add(city);
+        }
+        rs.close();                       
+
+        return listCity;
+    }
+
+    public boolean getBorders(DatabaseConnection databaseConnection, TreeMap<String, List<String>> borders) {
+        return true;
+    }
+
+    public boolean getSeaDist(DatabaseConnection databaseConnection, TreeMap<String, List<Pair<String, Double>>> seadist) {
+        return true;
+
     }
 }

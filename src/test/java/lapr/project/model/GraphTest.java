@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GraphTest {
     private String[] listAux = {"Lisboa","Paris","Madrid","London","Roma","Berlin"} ;
+    private String[] listCont = {"Lisboa","Paris","Madrid","London","Roma","Berlin"} ;
     private String[] listAux2 = {"Portugal","France","Spain","UK","Italy","Germany"} ;
     private String[] listPorts = {"Lisboa","Paris","Madrid","London","Roma","Berlin"};
     MatrixGraph instance = new MatrixGraph(false);
@@ -24,7 +25,7 @@ public class GraphTest {
 
         List list = new ArrayList();
         for(int i = 0; i<listAux.length;i++){
-            City city = new City(listAux[i],listAux2[i],new Point2D.Double( i, i));
+            City city = new City(listAux[i],listAux2[i],listCont[i],new Point2D.Double( i, i));
             list.add(city);
         }
         List portsList = new ArrayList();
@@ -391,6 +392,14 @@ public class GraphTest {
 
          */
 
+
+    }
+
+    /**
+     * Test Graph Build
+     */
+    @Test
+    public void testGraphBuild(){
 
     }
 }

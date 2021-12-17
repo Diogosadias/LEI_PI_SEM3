@@ -8,8 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import static lapr.project.model.TemporalMessages.getDate;
-
 public class TrafficManagerController {
 
     public void setMmsiTree(MMSTree mmsiTree) {
@@ -97,10 +95,10 @@ public class TrafficManagerController {
         return  myObj;
     }
 
-    public File buildFreight(DatabaseConnection databaseConnection) throws IOException {
+    public File buildFreight(DatabaseConnection databaseConnection, int n) throws IOException {
         File myObj = new File("FreightNetwork.txt");
         FileWriter myWriter = new FileWriter("FreightNetwork.txt");
-        myWriter.write(dataBaseImport.buildFreight(databaseConnection));
+        myWriter.write(dataBaseImport.buildFreight(databaseConnection,n));
         myWriter.close();
 
 

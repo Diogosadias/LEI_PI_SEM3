@@ -20,16 +20,21 @@ class CityTest {
         assertFalse(city.getName().equals("Porto"));
         assertEquals(city.getCountry(),"UK");
         assertEquals(city.getName(),"Londres");
-        City t = new City("Viseu","Portugal",new Point2D.Double(0.2,0.5));
+        City t = new City("Viseu","Portugal","Europe",new Point2D.Double(0.2,0.5));
 
         assertEquals(t.getCountry(),"Portugal");
         assertEquals(t.getName(),"Viseu");
+        assertEquals(t.getCont(),"Europe");
+        t.setCont("Jonas");
+        assertEquals(t.getCont(),"Jonas");
         assertEquals(t.getCoords().x,0.2);
         assertEquals(t.getCoords().y,0.5);
         t.setCoords(new Point2D.Double(0.5,0.2));
 
         assertEquals(t.getCoords().y,0.2);
         assertEquals(t.getCoords().x,0.5);
+
+
 
 
     }
