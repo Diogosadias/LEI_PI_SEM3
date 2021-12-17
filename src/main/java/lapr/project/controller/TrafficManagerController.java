@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.data.DatabaseConnection;
+import lapr.project.data.ImportPortDatabase;
 import lapr.project.model.*;
 
 import java.io.File;
@@ -23,7 +24,8 @@ public class TrafficManagerController {
     public Search search = new Search();
     private PairsCalculator pc = new PairsCalculator(mmsiTree);
     public TopN topsum = new TopN(mmsiTree);
-    public DataBaseImport dataBaseImport = new DataBaseImport();
+    private ImportPortDatabase importPortDatabase =  new ImportPortDatabase();
+    public DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
 
 
     /*

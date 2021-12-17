@@ -370,7 +370,6 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
                         if(distance((City) v,p)<mindist){
                             mindist = distance((City) v,p);
                             index = list.indexOf(p);
-
                         }
                     }
                     addEdge((V) list.get(index),v,(E) mindist);
@@ -418,21 +417,78 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return null;
     }
 
-    public boolean nportsConnect(int i, TreeMap<String, List<Pair<String,Double>>> seadist) throws IOException { //Redo Use Floyd-Warshall algorithm
+    public boolean nportsConnect(int i, TreeMap<String, List<Pair<String,Double>>> seadist) { 
 
-        PortTree<Port> portTree = new PortTree<>();
+        List<Port> portList = new ArrayList<>();
         for(V v : vertices){
             if(v instanceof Port){
-                portTree.insert((Port) v,((Port) v).getCoords());
+                portList.add((Port) v);
             }
         }
-        List<Port> list = (List<Port>) portTree.inOrder();
-        for(Port p : list){
-            //Alternative use findkNeigbour
-            portTree.remove(p);
-            Port port = portTree.findNearesNeighbour(p.getCoords().x,p.getCoords().y);
-            addEdge((V) p,(V) port,(E) getdist(seadist,(V) p,port));
+        MatrixGraph matrixAux = floydWarshall(portList,seadist);
+
+        if(matrixAux!=null) {
+            List<Integer> edgescount = new ArrayList<>();
+            List<Integer> edgesmax = new ArrayList<>();
+
+            for (Port p : portList) {
+                edgescount.add(outDegree((V) p));
+                edgesmax.add(outDegree((V) p) + i);
+            }
+
+            for (Port p : portList) {
+                while (edgescount.get(portList.indexOf(p)) < edgesmax.get(portList.indexOf(p))) {
+                    //Get List of Adjacency and get closest
+                    if(matrixAux.incomingEdges((V) p).size()>0) {
+                        List lista = (List) matrixAux.incomingEdges((V) p);
+                        Edge edge = minEdge(lista);//Calculate Minimu
+
+                        //Add Edge to matrix and upcount of nVertices
+                        if(edgescount.get(portList.indexOf(edge.getVOrig())) < edgesmax.get(portList.indexOf(edge.getVOrig())) && edgescount.get(portList.indexOf(edge.getVDest())) < edgesmax.get(portList.indexOf(edge.getVDest())))
+
+                        addEdge((V) edge.getVOrig(), (V) edge.getVDest(), (E) edge.getWeight());
+                        int ec = portList.indexOf(edge.getVOrig());
+                        edgescount.set(ec,edgescount.get(ec) + 1);
+                        ec = portList.indexOf(edge.getVDest());
+                        edgescount.set(ec,edgescount.get(ec) + 1);
+
+                        //Remove Edge from auxiliary Matrix
+                        matrixAux.removeEdge((V) edge.getVOrig(), (V) edge.getVDest());
+                    } else {
+                        break;
+                    }
+                }
+            }
         }
+
         return true;
+    }
+
+    private Edge minEdge(List<Edge> lista) {
+        Double mindist = (Double) lista.get(0).getWeight();//inicializa mininmo
+        int index = 0;
+        for(Edge e : lista){
+            if((Double) e.getWeight()<mindist) { //verifica dist minima
+                mindist = (Double) e.getWeight(); //guarda para comparação
+                index = lista.indexOf(e); //guarda indice para retornar menor
+            }
+        }
+        return lista.get(index);
+    }
+
+    private MatrixGraph floydWarshall(List<Port> portList,TreeMap<String, List<Pair<String,Double>>> seadist){
+        int numverts = portList.size();
+        if(numverts==0) return null;
+        @SuppressWarnings("unchecked")
+        E[][] matrix = (E[][]) new Object[numverts][numverts];
+
+        for(int i=0;i<numverts;i++){
+            for(int j=0;j<numverts;j++){
+                if(!edges().contains(edge((V) portList.get(i),(V) portList.get(j)))) matrix[i][j] = (E) getdist(seadist,(V) portList.get(i),portList.get(j)); //Não adiciona as arestas já existentes
+            }
+        }
+
+        return new MatrixGraph<V, E>(false, (ArrayList<V>) portList,matrix);
+
     }
 }

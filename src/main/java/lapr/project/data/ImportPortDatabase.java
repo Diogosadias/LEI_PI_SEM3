@@ -168,7 +168,7 @@ public class ImportPortDatabase {
                 e.printStackTrace();
             }
         }
-        rs.close();                       // Close the ResultSet                 4
+        rs.close();
 
         return portTree;
     }
@@ -209,11 +209,11 @@ public class ImportPortDatabase {
 
         // Get the result table from the query
         while (rs.next()) {
-            name = rs.getString(1);
-            cont = rs.getString(3);
-            country = rs.getString(4);
-            lat = rs.getDouble(6);
-            lon = rs.getDouble(7);
+            name = rs.getString(6);
+            cont = rs.getString(4);
+            country = rs.getString(1);
+            lat = rs.getDouble(7);
+            lon = rs.getDouble(8);
             City city = new City(name,country,cont, new Point2D.Double(lat,lon));
             listCity.add(city);
         }
@@ -288,7 +288,7 @@ public class ImportPortDatabase {
     }
 
     private TreeMap<String, List<Pair<String, Double>>> getSeaDistFromDatabase(DatabaseConnection databaseConnection, TreeMap<String, List<Pair<String, Double>>> seadist) throws SQLException {
-        String sqlCommand = "select from_Port_name,to_Port_name,sea_distance from Sea_distance"; //Remake statement
+        String sqlCommand = "select from_Port_name,to_Port_name,sea_distance from Sea_distance"; //?
         return executeSeaDistStatement(databaseConnection,seadist,sqlCommand);
     }
 

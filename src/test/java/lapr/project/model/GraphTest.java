@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import lapr.project.data.ImportPortDatabase;
 import oracle.ucp.util.Pair;
 import lapr.project.utils.PL.MatrixGraph;
 import org.junit.Before;
@@ -263,11 +264,17 @@ public class GraphTest {
         List<Pair<String,Double>> listPort1 = new ArrayList<>();
         Pair<String,Double> p1 = new Pair<String,Double>("Barcelona",2.0);
         Pair<String,Double> p2 = new Pair<String,Double>("Lisboa",5.0);
+        Pair<String,Double> p3 = new Pair<String,Double>("Porto",2.0);
+        Pair<String,Double> p4 = new Pair<String,Double>("Lisboa",10.0);
 
         listPort1.add(p1);
         listPort1.add(p2);
         treeMap1.put("Porto",listPort1);
+        List<Pair<String,Double>> listPort2 = new ArrayList<>();
 
+        listPort2.add(p3);
+        listPort2.add(p4);
+        treeMap1.put("Barcelona",listPort2);
 
         matrixGraph.portsConnection(treeMap1);
         List<City> li = new ArrayList<>();
@@ -277,16 +284,20 @@ public class GraphTest {
 
         assertTrue(matrixGraph.nportsConnect(1,treeMap1));
 
-/*
+
         assertEquals(matrixGraph.adjVertices(barcelonaPort).size(),2);
         assertEquals(matrixGraph.adjVertices(lisbPort).size(),2);
 
 
         assertTrue(matrixGraph.nportsConnect(2,treeMap1));
-        assertEquals(matrixGraph.adjVertices(BarcelonaPort).size(),2);
+        assertEquals(matrixGraph.adjVertices(barcelonaPort).size(),3);
         assertEquals(matrixGraph.adjVertices(lisbPort).size(),3);
 
+        /*
+
+        If we cannot add edges to vertices if that is going to increase number of vertices above n, we cant add vertices!
          */
+
 
 
     }
@@ -325,8 +336,9 @@ public class GraphTest {
         seadist.put("Madrid",listAu);
         City c = new City("Brazil","Rio de Janeiro",new Point2D.Double(20.0,20.0));
         listCities.add(c);
+        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
 
-        DataBaseImport dataBaseImport = new DataBaseImport();
+        DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
         instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,0);
 
         assertFalse(instance.isDirected());

@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.TreeMap;
 
 public class DataBaseImport {
-    ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+    ImportPortDatabase importPortDatabase ;
     private MatrixGraph matrixGraph ;
 
 
-    public DataBaseImport(){
-        //only Initiate
+    public DataBaseImport(ImportPortDatabase importPortDatabase){
+        this.importPortDatabase = importPortDatabase;
     }
 
     public String buildFreight(DatabaseConnection databaseConnection,int n) throws IOException {
@@ -40,9 +40,10 @@ public class DataBaseImport {
         if(!importPortDatabase.getSeaDist(databaseConnection,seadist)) return "Sea Distances Couldn't be Retrieved";
 
         //Build Graph with all information
-        MatrixGraph matrixGraph = buildGraph(listPorts,listCity,borders,seadist,n);
+        buildGraph(listPorts,listCity,borders,seadist,n);
 
 
+        if(matrixGraph.vertices().size()==0) return "Database has no data!";
         return "Graph was built!";
     }
 
