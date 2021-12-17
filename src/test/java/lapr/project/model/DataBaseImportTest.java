@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class DataBaseImportTest {
 
@@ -52,16 +52,18 @@ public class DataBaseImportTest {
      */
     @Test
     public void testErrorsDatabase() throws IOException {
-        DataBaseImport dataBaseImport = new DataBaseImport();
+        DataBaseImport dataBaseImport = mock(DataBaseImport.class);
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        /*
 
-        ImportPortDatabase importPortDatabase = mock(ImportPortDatabase.class);
+
+        /*
+        ImportPortDatabase importPortDatabase = dataBaseImport.importPortDatabase;
         PortTree portTree = mock(PortTree.class);
         when(importPortDatabase.getPortData(databaseConnection,portTree)).thenReturn(false);
-        String result = dataBaseImport.buildFreight(databaseConnection,1);
+        String  result = dataBaseImport.buildFreight(databaseConnection,0);
         assertEquals(result,"Ports Couldn't be Retrieved");
+        */
 
-         */
+
     }
 }
