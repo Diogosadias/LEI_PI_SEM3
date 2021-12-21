@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -489,7 +490,7 @@ public class SummaryTest {
         movs.insert(shipmov4);
         movs.insert(shipmov5);
         ship.setMovements(movs);
-        double expectedResult = 7450.089918639114;
+        double expectedResult = 2207.983914073569;
         double result = ship.getDeltaDistance();
         //Assert
         assertEquals(expectedResult, result);
@@ -513,9 +514,10 @@ public class SummaryTest {
         movs.insert(shipmov4);
         movs.insert(shipmov5);
         ship.setMovements(movs);
-        double expectedResult = 17648.239898955795;
+        DecimalFormat df = new DecimalFormat("00.##########");
+        double expectedResult = 4082.9150550812;
         double result = ship.getTravelledDistance();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(df.format(expectedResult), df.format(result));
     }
 }

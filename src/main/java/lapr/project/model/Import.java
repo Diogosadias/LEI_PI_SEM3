@@ -8,10 +8,7 @@ import static lapr.project.model.TemporalMessages.getDate;
 
 public class Import {
 
-    //in.hasNextline();
-    //String line = in.nexLine();    
-    //String[] iteams = line.split(",");
-    // ir ao main controleer fazer com que la leve o name file depois da ai posso dar hook up com as 3 trees e depois so tenho de fazer o codigo de import 
+
     private String SafeWord;
 
     public static List<ShipTree> readLine(String FileName, MMSTree MMSI, IMOTree IMO, CallSignTree CallSign) throws IOException {

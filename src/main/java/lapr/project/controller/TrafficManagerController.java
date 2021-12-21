@@ -1,14 +1,13 @@
 package lapr.project.controller;
 
 import lapr.project.data.DatabaseConnection;
+import lapr.project.data.ImportPortDatabase;
 import lapr.project.model.*;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-
-import static lapr.project.model.TemporalMessages.getDate;
 
 public class TrafficManagerController {
 
@@ -25,6 +24,8 @@ public class TrafficManagerController {
     public Search search = new Search();
     private PairsCalculator pc = new PairsCalculator(mmsiTree);
     public TopN topsum = new TopN(mmsiTree);
+    private ImportPortDatabase importPortDatabase =  new ImportPortDatabase();
+    public DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
 
 
     /*
@@ -90,6 +91,16 @@ public class TrafficManagerController {
         File myObj = new File("ClosestPort.txt");
         FileWriter myWriter = new FileWriter("ClosestPort.txt");
         myWriter.write(search.getClosestPort(databaseConnection,code3, date,this));
+        myWriter.close();
+
+
+        return  myObj;
+    }
+
+    public File buildFreight(DatabaseConnection databaseConnection, int n) throws IOException {
+        File myObj = new File("FreightNetwork.txt");
+        FileWriter myWriter = new FileWriter("FreightNetwork.txt");
+        myWriter.write(dataBaseImport.buildFreight(databaseConnection,n));
         myWriter.close();
 
 

@@ -15,6 +15,8 @@ public class KDTree<T> {
     private final Comparator<DoubleNode<T>> cmpX = (p1, p2) -> Double.compare(p1.getX(), p2.getX());
     private final Comparator<DoubleNode<T>> cmpY = (p1, p2) -> Double.compare(p1.getY(), p2.getY());
 
+
+
     /**
      * Nested static class for a binary search tree doublenode.
      */
@@ -209,4 +211,8 @@ public class KDTree<T> {
             }
             return closestNode.info;
         }
+    public <E extends Comparable<E>> void remove(E p) {
+        //Implement Remove
     }
+
+}

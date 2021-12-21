@@ -20,6 +20,7 @@ public class TrafficManagerUI {
     private String date2= "31/12/2020 17:00";
     private int n=5;
     private String date3= "2021.12.05";
+    private int nConnections = 5;
 
 
     public TrafficManagerUI() throws IOException {
@@ -91,7 +92,7 @@ public class TrafficManagerUI {
                 trafficManagerController.shipAvailableMonday(databaseConnection,date3);
                 break;
             case "10":
-                //trafficManagerController.buildFreight();
+                trafficManagerController.buildFreight(databaseConnection, nConnections);
                 break;
             case "11":
                 //trafficManagerController.colorTheMap();
