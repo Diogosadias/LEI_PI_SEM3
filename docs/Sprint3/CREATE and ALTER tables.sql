@@ -26,6 +26,8 @@ DROP TABLE Manifest_Load CASCADE CONSTRAINTS PURGE;
 DROP TABLE Container_Trip CASCADE CONSTRAINTS PURGE;
 DROP TABLE Country CASCADE CONSTRAINTS PURGE;
 DROP TABLE Border CASCADE CONSTRAINTS PURGE;
+DROP TABLE Sea_Distance CASCADE CONSTRAINTS PURGE;
+DROP TABLE Port_Sea_Distance CASCADE CONSTRAINTS PURGE;
 
 --CRIAR AS TABELAS--
 create table Container(
@@ -209,17 +211,33 @@ name varchar(100),
 alpha2_code varchar(100),
 alpha3_code varchar(100),
 continent varchar(100),
-pouplation float,
+population float,
 capital varchar(100),
 latitude float,
-longitude float,
-country_border varchar(255)
+longitude float
 );
 
 create table Border(
 Countryname varchar(100),
 country2 varchar(100)
 );
+
+create table Sea_Distance(
+id integer,
+from_Country varchar(100),
+from_Port_id integer,
+from_Port_name varchar(100),
+to_Country varchar(100),
+to_Port_id integer,
+to_Port_name varchar(100),
+sea_distance integer
+);
+
+create table Port_Sea_Distance(
+port_id integer,
+sea_distance_id integer
+);
+
 -- DEFINIR AS PRIMARY KEYS--
 alter table Captain add constraint pk_captain_id primary key (captain_id);
 alter table Ship_Type add constraint pk_id_type primary key(type_id);
@@ -240,6 +258,7 @@ alter table Employee add constraint pk_employee_id primary key(employee_id);
 alter table Manifest_Unload add constraint pk_manifest_unload_id primary key(manifest_unload_id);
 alter table Manifest_Load add constraint pk_manifest_load_id primary key(manifest_load_id);
 alter table Country add constraint pk_country_id primary key(name);
+alter table Sea_Distance add constraint pk_sea_distance primary key(id);
 
 --DEFINIR AS FOREIGN KEYS--
 alter table Container add constraint fk_code_iso foreign key(code_iso) references ISO_code(code);
@@ -271,6 +290,8 @@ alter table Container_Trip add constraint fk_manifest_load_id foreign key(manife
 alter table Container add constraint fk_container_port_id foreign key(port_id) references Port(port_id);
 alter table Port add constraint fk_port_country_id foreign key(country_name) references Country(name);
 alter table Border add constraint fk_border_country foreign key(Countryname) references Country(name);
+alter table Port_Sea_Distance add constraint fk_port_sea_port_id foreign key(port_id) references Port(port_id);
+alter table Port_Sea_Distance add constraint fk_port_sea_distance_id foreign key(sea_distance_id) references Sea_Distance(id);
 
 --RESTRIÇÕES--
 
