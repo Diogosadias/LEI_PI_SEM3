@@ -18,6 +18,7 @@ public class ClientUI {
             System.out.println("Dear Client!" +
                     "\nPlease Select the task from the following:" +
                     "\n1 - Get info about container Location" +
+                    "\n2 - Get info about container Location - Sprint3" +
                     "\nE - Exit");
 
             String inputString = scanner.nextLine();
@@ -26,7 +27,8 @@ public class ClientUI {
                     clientController.searchPosition(databaseConnection,code);
                     break;
                 case "2":
-                    clientController.searchPosition(databaseConnection,code1);
+                    //US312
+                    clientController.searchPosition2(databaseConnection,code1);
                     break;
                 case "E":
                     flag = false;

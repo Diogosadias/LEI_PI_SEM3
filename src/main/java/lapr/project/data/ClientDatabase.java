@@ -1,5 +1,6 @@
 package lapr.project.data;
 
+import lapr.project.model.Client;
 import lapr.project.model.Port;
 import lapr.project.model.PortTree;
 import lapr.project.model.Ship;
@@ -50,14 +51,18 @@ public class ClientDatabase {
         if(rs==null) return object;
 
         while (rs.length()!=0) {
-            String  testShip = rs.substring(0,4);
-            if(testShip=="SHIP"){
-                Ship s = getShipFromDatabase(databaseConnection,rs.substring(4));
+            String testShip = rs.substring(0, 4);
+            if (testShip == "SHIP") {
+                Ship s = getShipFromDatabase(databaseConnection, rs.substring(4));
                 object = s;
                 break;
-            } else{
-                Port p = getPortFromDatabase(databaseConnection,rs.substring(5));
+            } else if (testShip == "PORT") {
+                Port p = getPortFromDatabase(databaseConnection, rs.substring(5));
                 object = p;
+                break;
+            } else {
+                Client c = null;
+                object = c;
                 break;
             }
         }

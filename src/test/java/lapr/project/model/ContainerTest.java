@@ -1,8 +1,15 @@
 package lapr.project.model;
 
+import lapr.project.controller.ClientController;
+import lapr.project.data.ClientDatabase;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ShipDatabase;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -51,6 +58,22 @@ public class ContainerTest {
 
         databaseConnection = mock(DatabaseConnection.class);
         assertEquals("Cargo Manifest was not Found!",shipCaptain.occupancyRateTime(databaseConnection,null,null));
+
+    }
+
+    /**
+     * Tests to US312
+     */
+    @Test
+    public void testClientSprint3() throws IOException {
+        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+        ClientController clientController=new ClientController();
+        Connection connection = mock(Connection.class);
+
+
+        String in ="10";
+        Scanner ou = new Scanner(clientController.searchPosition2(databaseConnection,null));
+        assertEquals(in,ou.nextLine());
 
     }
 }

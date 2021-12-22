@@ -42,4 +42,33 @@ public class Client {
         return object.toString() ;
     }
 
+    public String search2(DatabaseConnection databaseConnection, String code) {
+        if (code == null) return  "10";
+
+        Connection connection = databaseConnection.getConnection();
+        Object object = null;
+        try {
+            connection.setAutoCommit(false);
+
+            object =clientDatabase.searchPosition(databaseConnection, code, object);
+            if (object==null) {
+                throw databaseConnection.getLastError();
+            }
+            connection.commit();
+            System.out.println("Container Found!");
+
+        } catch (
+                SQLException | NullPointerException ex) {
+            Logger.getLogger(Client.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(Client.class.getName())
+                        .log(Level.SEVERE, null, ex1);
+            }
+        }
+        if(object instanceof Client) return "11";
+        return object.toString() ;
+    }
 }
