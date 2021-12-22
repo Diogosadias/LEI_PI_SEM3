@@ -1,0 +1,1 @@
+long calculate_slots();

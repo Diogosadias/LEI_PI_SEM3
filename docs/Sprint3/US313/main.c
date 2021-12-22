@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "calculate_slots.h"
 
 #define MAX_ROWS 20 // positions of x from 0 to 20
 #define MAX_COLUMNS 20 // positions y from 0 to 20
 #define MAX_LAYERS 21 // positions z from -10 to 10
 #define FILE_NAME "Cargo_Manifest.txt"
+
+int num = MAX_ROWS * MAX_COLUMNS * MAX_LAYERS;
 
 int x = 0, y = 0, z = 0;
 
@@ -78,6 +81,13 @@ for (x = 0; x < MAX_ROWS; x++) {
             vec[x][y][z] = manifest_id;
 		    printf("Matriz [%d][%d][%d]:%d\n",x,y,z,vec[x][y][z]);
         }
+
         fclose(file);
+        
+        long retorno =0;
+        retorno = calculate_slots();
+		printf("---------------------------------------------\n");
+        printf("O long retornado da US314 é %ld\n", retorno);
+
     }
 }
