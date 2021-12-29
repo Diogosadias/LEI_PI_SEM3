@@ -33,7 +33,8 @@ tare float,
 gross float,
 code_iso varchar(100),
 client_id integer,
-port_id integer
+port_id integer,
+warehouse_id integer
 );
 
 create table Client(
@@ -87,7 +88,8 @@ warehouse_id integer,
 name varchar(100),
 continente varchar(100),
 country varchar(100),
-location varchar(100)
+location varchar(100),
+capacity integer
 );
 
 create table Warehouse_Employee(
@@ -189,7 +191,8 @@ continent varchar(100),
 country varchar(100),
 location varchar(100),
 latitude float,
-longitude float
+longitude float,
+capacity integer
 );
 
 create table Port_Employee(
@@ -250,6 +253,8 @@ alter table Container_Trip add constraint fk_container_trip_trip_id foreign key(
 alter table Container_Trip add constraint fk_manifest_unload_id foreign key(manifest_unload)references Manifest_Unload(manifest_unload_id);
 alter table Container_Trip add constraint fk_manifest_load_id foreign key(manifest_load)references Manifest_Load(manifest_load_id); 
 alter table Container add constraint fk_container_port_id foreign key(port_id) references Port(port_id);
+alter table Container add constraint fk_container_warehouse_id foreign key(warehouse_id) references Warehouse(warehouse_id);
+
 
 --RESTRIÇÕES--
 
