@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "calculate_slots.h"
+#include "there_is_container.h"
 
 #define MAX_ROWS 20 // positions of x from 0 to 20
 #define MAX_COLUMNS 20 // positions y from 0 to 20
@@ -89,5 +90,16 @@ for (x = 0; x < MAX_ROWS; x++) {
 		printf("---------------------------------------------\n");
         printf("O long retornado da US314 é %ld\n", retorno);
 
+        // UC's 315
+        int exist;
+        exist = there_is_container(1, 1, 0);
+        if (exist == 0){
+            printf("In the position selected there isn't any container registered.\n");
+        } else if (exist == 1){
+            printf("In the position selected there is a container registered.\n");
+        }
+
+        
+    
     }
 }
