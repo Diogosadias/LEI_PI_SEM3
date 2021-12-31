@@ -224,25 +224,25 @@ insert into Border(Countryname, country2)values('Romania','Serbia');
 insert into Border(Countryname, country2)values('Romania','Ukraine');
 insert into Border(Countryname, country2)values('Russia','Ukraine');
 
-insert into Port(port_id, name, continent, country_name, location, latitude, longitude) values(11111, 'port1', 'Europe', 'Norway','CanadaPort', -18,-82.1);
-insert into Port(port_id, name, continent, country_name, location, latitude, longitude) values(11112, 'port2', 'Europe', 'Finland','BrazilPort', -19,-85.1111);
-insert into Port(port_id, name, continent, country_name, location, latitude, longitude) values(11113, 'port3', 'Europe', 'Iceland','PortugalPort', 45.183333,-9.7);
-insert into Port(port_id, name, continent, country_name, location, latitude, longitude) values(11114, 'port4', 'America', 'Mexico','AustraliaPort', 25.23,135.45);
-insert into Port(port_id, name, continent, country_name, location, latitude, longitude) values(11115, 'port5', 'America', 'Canada','NewZealandPort', 54.89,48.11);
-insert into Port(port_id, name, continent, country_name, location, latitude, longitude) values(11116, 'port6', 'America', 'United States','FijiPort', -17.7133,178.065);
+insert into Port(port_id, name, continent, country_name, location, latitude, longitude, capacity) values(11111, 'port1', 'Europe', 'Norway','CanadaPort', -18,-82.1, 1500);
+insert into Port(port_id, name, continent, country_name, location, latitude, longitude, capacity) values(11112, 'port2', 'Europe', 'Finland','BrazilPort', -19,-85.1111, 1200);
+insert into Port(port_id, name, continent, country_name, location, latitude, longitude, capacity) values(11113, 'port3', 'Europe', 'Iceland','PortugalPort', 45.183333,-9.7, 1450);
+insert into Port(port_id, name, continent, country_name, location, latitude, longitude, capacity) values(11114, 'port4', 'America', 'Mexico','AustraliaPort', 25.23,135.45, 2000);
+insert into Port(port_id, name, continent, country_name, location, latitude, longitude, capacity) values(11115, 'port5', 'America', 'Canada','NewZealandPort', 54.89,48.11, 1800);
+insert into Port(port_id, name, continent, country_name, location, latitude, longitude, capacity) values(11116, 'port6', 'America', 'United States','FijiPort', -17.7133,178.065, 1500);
 
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id) values(11, 33.2, 45.0, 55.0, '20GP', 1,11111);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id) values(12, 333.2, 455.0, 555.0, '20GP', 1,11111);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id) values(13, 33.2, 135.0, 255.0, '20T8', 1,11112);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id) values(14, 433.2, 455.0, 300.0, '20GP', 1,11112);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id) values(15, 100, 500, 400, '20T7', 1,11113);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id) values(16, 200, 100, 400, '20T6', 1,11113);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id) values(17, 333.2, 455.0, 765.0, '20T7', 1,11114);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id) values(18, 333.2, 455.0, 555.0, '20T8', 1,11114);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id) values(19, 900.9, 45.0, 55.0, '20TN', 1,11115);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id) values(20, 876.2, 378.67, 321.8, '20TD', 1,11115);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id) values(21, 243.2, 654.98, 987.89, '20HR', 1,11116);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id) values(22, 321.2, 654.5, 876.56, '20HR', 1,11116);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(11, 33.2, 45.0, 55.0, '20GP', 1,11111,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(12, 333.2, 455.0, 555.0, '20GP', 1,11111,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(13, 33.2, 135.0, 255.0, '20T8', 1,11112,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(14, 433.2, 455.0, 300.0, '20GP', 1,11112,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(15, 100, 500, 400, '20T7', 1,11113,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(16, 200, 100, 400, '20T6', 1,11113,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(17, 333.2, 455.0, 765.0, '20T7', 1,11114,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(18, 333.2, 455.0, 555.0, '20T8', 1,11114,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(19, 900.9, 45.0, 55.0, '20TN', 1,11115,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(20, 876.2, 378.67, 321.8, '20TD', 1,11115,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(21, 243.2, 654.98, 987.89, '20HR', 1,11116,NULL);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(22, 321.2, 654.5, 876.56, '20HR', 1,11116,NULL);
 
 insert into Refrigerated_Container(temperature, container_id) values(7,11);
 insert into Refrigerated_Container(temperature, container_id) values(-5,12);
@@ -295,10 +295,10 @@ insert into Trip_Truck(trip_id, truck_id) values(55, 30);
 insert into Trip_Truck(trip_id, truck_id) values(52, 31);
 
 
-insert into Warehouse(warehouse_id, name, continente, country, location) values(80, 'warehouse1', 'America', 'Canada','CanadaWarehouse');
-insert into Warehouse(warehouse_id, name, continente, country, location) values(81, 'warehouse2', 'America', 'Brazil','BrazilWarehouse');
-insert into Warehouse(warehouse_id, name, continente, country, location) values(82, 'warehouse3', 'Europe', 'Portugal','PortugalWarehouse');
-insert into Warehouse(warehouse_id, name, continente, country, location) values(83, 'warehouse4', 'Oceania', 'Australia','AustraliaWarehouse');
+insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(80, 'warehouse1', 'America', 'Canada','CanadaWarehouse', 800);
+insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(81, 'warehouse2', 'America', 'Brazil','BrazilWarehouse', 750);
+insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(82, 'warehouse3', 'Europe', 'Portugal','PortugalWarehouse', 1000);
+insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(83, 'warehouse4', 'Oceania', 'Australia','AustraliaWarehouse', 900);
 
 insert into Role(role_id, name) values(1, 'Staff');
 insert into Role(role_id, name) values(2, 'Manager');
