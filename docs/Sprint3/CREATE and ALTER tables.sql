@@ -28,6 +28,7 @@ DROP TABLE Country CASCADE CONSTRAINTS PURGE;
 DROP TABLE Border CASCADE CONSTRAINTS PURGE;
 DROP TABLE Sea_Distance CASCADE CONSTRAINTS PURGE;
 DROP TABLE Port_Sea_Distance CASCADE CONSTRAINTS PURGE;
+DROP TABLE  Audit_Trail CASCADE CONSTRAINTS PURGE;
 
 --CRIAR AS TABELAS--
 create table Container(
@@ -241,6 +242,14 @@ port_id integer,
 sea_distance_id integer
 );
 
+create table Audit_Trail(
+audit_trail_id integer,
+container_id integer,
+user_email varchar(100),
+date_time_registered varchar(100),
+type_of_operation varchar(100)
+);
+
 -- DEFINIR AS PRIMARY KEYS--
 alter table Captain add constraint pk_captain_id primary key (captain_id);
 alter table Ship_Type add constraint pk_id_type primary key(type_id);
@@ -262,6 +271,8 @@ alter table Manifest_Unload add constraint pk_manifest_unload_id primary key(man
 alter table Manifest_Load add constraint pk_manifest_load_id primary key(manifest_load_id);
 alter table Country add constraint pk_country_id primary key(name);
 alter table Sea_Distance add constraint pk_sea_distance primary key(id);
+alter table Container_Trip add constraint pk_container_trip_container_trip_id primary key(container_id, trip_id);
+alter table Audit_Trail add constraint pk_audit_trail_id primary key(audit_trail_id);
 
 --DEFINIR AS FOREIGN KEYS--
 alter table Container add constraint fk_code_iso foreign key(code_iso) references ISO_code(code);
@@ -296,7 +307,9 @@ alter table Port add constraint fk_port_country_id foreign key(country_name) ref
 alter table Border add constraint fk_border_country foreign key(Countryname) references Country(name);
 alter table Port_Sea_Distance add constraint fk_port_sea_port_id foreign key(port_id) references Port(port_id);
 alter table Port_Sea_Distance add constraint fk_port_sea_distance_id foreign key(sea_distance_id) references Sea_Distance(id);
-
+alter table Audit_Trail add constraint fk_audit_trail_container_id foreign key(container_id) references Container(container_id);
+alter table Audit_Trail add constraint fk_audit_trail_load_id foreign key(load_id) references Manifest_Load(manifest_load_id);
+alter table Audit_Trail add constraint fk_audit_trail_unload_id foreign key(unload_id) references Manifest_Unload(manifest_unload_id);
 --RESTRIÇÕES--
 
 ALTER TABLE Ship
