@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static lapr.project.model.TemporalMessages.getDate;
+import lapr.project.utils.PL.MatrixGraph;
 
 public class Search {
 
@@ -176,4 +177,10 @@ public class Search {
 
         return print + "|\n" +s2;
     }
+
+//
+////retornar os n locais mais próximos por continente, criando uma sub-matriz para cada continente
+//    public String selectNPlaces(int n, MatrixGraph matrixGraph, TrafficManagerController main) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 }
