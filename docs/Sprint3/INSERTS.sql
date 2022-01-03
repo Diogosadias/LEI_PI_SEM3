@@ -283,7 +283,9 @@ insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x
 insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(18,51,71,null, 1, 0, 1);
 insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(16,51,71,null, 6, 5, 10);
 
-
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(22,51,71,null, 6, 5, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(13,55,71,null, 6, 5, 10);
+delete from Container_Trip where container_id = 13 and trip_id = 55; 
 
 insert into Driver(driver_id, name) values(10, 'driver1');
 insert into Driver(driver_id, name) values(11, 'driver2');

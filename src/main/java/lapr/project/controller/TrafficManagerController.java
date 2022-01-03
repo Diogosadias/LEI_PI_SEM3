@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import lapr.project.utils.PL.MatrixGraph;
 
 public class TrafficManagerController {
 
@@ -26,6 +27,7 @@ public class TrafficManagerController {
     public TopN topsum = new TopN(mmsiTree);
     private ImportPortDatabase importPortDatabase =  new ImportPortDatabase();
     public DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
+   
 
 
     /*
@@ -106,4 +108,9 @@ public class TrafficManagerController {
 
         return  myObj;
     }
+
+//    public void selectNPlaces(int n) {
+//        System.out.println(search.selectNPlaces(n, dataBaseImport.getMatrixGraph(),this));
+//    }
+    
 }

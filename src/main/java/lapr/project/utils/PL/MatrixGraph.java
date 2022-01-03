@@ -490,4 +490,21 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return new MatrixGraph<V, E>(false, (ArrayList<V>) portList,matrix);
 
     }
+//        //devolve o graph só do continente passado por parametro
+//    public MatrixGraph getMatrixGraphPerContinent(String continent){
+//        
+//
+//        
+//        MatrixGraph<V,E> m = null; //criar nova matriz vazia
+//        for (V vert:vertices() ){
+//         
+////            ir ao vertice e ver se o port/city tem como continente a string passada por parametro, se estiver adiciona á nova matriz
+//    }
+//        return m;
+//}
+
+////retorna a média dos caminhos entre um vertice e todos os outros vertices invocando o shortestPath
+//public double getAverageOfShortestPathLength(V vOrig){
+//    //invoca o shortestPath entre dois vertices sendo o vOrig o vértice passado por parametro e o Vdest todos os outros, fazendo no fim a média
+//}
 }
