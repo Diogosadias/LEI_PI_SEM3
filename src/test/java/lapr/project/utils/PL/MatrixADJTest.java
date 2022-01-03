@@ -1,11 +1,13 @@
 package lapr.project.utils.PL;
 
 
+import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -608,5 +610,15 @@ public class MatrixADJTest {
 
 
     }
-
+     @Test
+    public void testNClosestPlaces() throws IOException{
+        String s ="Not enough places in this continent!";
+     try{
+            instance.nClosestPlaces(5000);
+        } catch (IOException ex){
+            System.out.println(s);
+        }
+ 
+}
+    
 }
