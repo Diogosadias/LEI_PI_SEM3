@@ -543,7 +543,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return list;
     }
 
-    private Double getPathAverage(V v) {
+    public Double getPathAverage(V v) {
         Double median= 0.0;
         for(Edge e : incomingEdges(v)){
             median = median + (Double) e.getWeight();
