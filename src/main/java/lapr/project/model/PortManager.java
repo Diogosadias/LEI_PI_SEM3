@@ -5,9 +5,13 @@ import lapr.project.data.DatabaseConnection;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class PortManager {
@@ -93,5 +97,33 @@ public class PortManager {
 
     public PortTree<Port> getPortTree() {
         return portTree;
+    }
+
+    public String mapResources(DatabaseConnection databaseConnection) {
+
+        Connection connection = databaseConnection.getConnection();
+        Object object = null;
+        try {
+            connection.setAutoCommit(false);
+
+            //Get From Database
+            if (object==null) {
+                throw databaseConnection.getLastError();
+            }
+            connection.commit();
+            System.out.println("Container Found!");
+
+        } catch (
+                SQLException | NullPointerException ex) {
+            Logger.getLogger(PortManager.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(PortManager.class.getName())
+                        .log(Level.SEVERE, null, ex1);
+            }
+        }
+        return object.toString() ;
     }
 }

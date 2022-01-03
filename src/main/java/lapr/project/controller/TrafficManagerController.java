@@ -109,8 +109,14 @@ public class TrafficManagerController {
         return  myObj;
     }
 
-//    public void selectNPlaces(int n) {
-//        System.out.println(search.selectNPlaces(n, dataBaseImport.getMatrixGraph(),this));
-//    }
+    public File selectNPlaces(int n) throws IOException {
+        File myObj = new File("NPlaces.txt");
+        FileWriter myWriter = new FileWriter("NPlaces.txt");
+        myWriter.write(search.selectNPlaces(n, dataBaseImport.getMatrixGraph(),this));
+        myWriter.close();
+
+
+        return  myObj;
+    }
     
 }

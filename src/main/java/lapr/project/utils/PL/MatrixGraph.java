@@ -490,6 +490,41 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return new MatrixGraph<V, E>(false, (ArrayList<V>) portList,matrix);
 
     }
+
+    public List<String> getContinents() {
+        List<String> list = new ArrayList<>();
+        for (V v : vertices) {
+            if(v instanceof City) {
+                if(!list.contains(((City) v).getCont())) list.add(((City) v).getCont());
+            }
+            if(v instanceof Port) {
+                if(!list.contains(((Port) v).getCont())) list.add(((Port) v).getCont());
+            }
+        }
+        return list;
+    }
+
+    public void operatechanges(String s) {
+        for(V v : vertices){
+            if(v instanceof City) {
+                if(!s.equals(((City) v).getCont())) removeVertex(v);
+            }
+            if(v instanceof Port) {
+                if(!s.equals(((Port) v).getCont())) removeVertex(v);            }
+        }
+    }
+
+    public List<V> nClosestPlaces(int n) throws IOException {
+        List<V> list = new ArrayList<>();
+        if(n>vertices.size()) throw new IOException("Not enough places in this continent!");
+
+        for( int i = 0; i<n ; i++){
+
+        }
+
+
+        return list;
+    }
 //        //devolve o graph só do continente passado por parametro
 //    public MatrixGraph getMatrixGraphPerContinent(String continent){
 //        
@@ -506,5 +541,5 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
 ////retorna a média dos caminhos entre um vertice e todos os outros vertices invocando o shortestPath
 //public double getAverageOfShortestPathLength(V vOrig){
 //    //invoca o shortestPath entre dois vertices sendo o vOrig o vértice passado por parametro e o Vdest todos os outros, fazendo no fim a média
-//}
+
 }

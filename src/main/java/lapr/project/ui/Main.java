@@ -59,7 +59,8 @@ class Main {
                 "\n2 - Port Manager" +
                 "\n3 - Ship Captain" +
                 "\n4 - Client" +
-                "\n5 - Other" +
+                "\n5 - Port Staff" +
+                "\n6 - Other" +
                 "\nE - Exit");
 
         String inputString = scanner.nextLine();
@@ -80,6 +81,10 @@ class Main {
                 clientUI.runUI(databaseConnection);
                 break;
             case "5":
+                PortStaffUI portStaffUI = new PortStaffUI();
+                portStaffUI.runUI();
+                break;
+            case "6":
                 break;
             case "E":
                 flag = false;
