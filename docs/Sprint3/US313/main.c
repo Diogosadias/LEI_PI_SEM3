@@ -3,10 +3,11 @@
 #include <string.h>
 #include "calculate_slots.h"
 #include "there_is_container.h"
+#include "slots_occupied.h"
 
 #define MAX_ROWS 20 // positions of x from 0 to 20
 #define MAX_COLUMNS 20 // positions y from 0 to 20
-#define MAX_LAYERS 21 // positions z from -10 to 10
+#define MAX_LAYERS 21 // positions z from -1s0 to 10
 #define FILE_NAME "Cargo_Manifest.txt"
 
 int num = MAX_ROWS * MAX_COLUMNS * MAX_LAYERS;
@@ -16,6 +17,11 @@ int x = 0, y = 0, z = 0;
 int vec[MAX_ROWS][MAX_COLUMNS][MAX_LAYERS];
 
 int *ptrVec = &vec[0][0][0];
+
+int positionsMax = 9;
+int positions[] = {1, 1, 0, 3, 3, 1, 4, 4, 2};
+int* ptrPositions = positions;
+int res = 0;
 
 int main() {
 
@@ -36,56 +42,57 @@ for (x = 0; x < MAX_ROWS; x++) {
 /*
  * Ler o ficheiro
  */
-    file = fopen(FILE_NAME, "r"); //read
+file = fopen(FILE_NAME, "r"); //read
 
-    if (file == NULL) {
-        printf("Error: opening cargo manifest file\n");
-        exit(1);
+if (file == NULL) {
+    printf("Error: opening cargo manifest file\n");
+    exit(1);
 
-    } else {
+} else {
 
-        char line[400];
+    char line[400];
 
-        while (fgets(line, sizeof(line), file) != NULL) {
+    while (fgets(line, sizeof(line), file) != NULL) {
 
-            char *element = strtok(line, ",");
-            manifest_id = atoi(element);
-            element = strtok(NULL, ",");
-            x = atoi(element);
+        char *element = strtok(line, ",");
+         manifest_id = atoi(element);
+        element = strtok(NULL, ",");
+        x = atoi(element);
 
-            if(x >= MAX_ROWS){
-				printf("Error: x can only be between 0 and %d\n",MAX_ROWS-1);
-				exit(1);
-			}
+        if(x >= MAX_ROWS){
+			printf("Error: x can only be between 0 and %d\n",MAX_ROWS-1);
+			exit(1);
+		}
 
-            element = strtok(NULL, ",");
-            y = atoi(element);
+        element = strtok(NULL, ",");
+        y = atoi(element);
 
-              if(y >= MAX_COLUMNS){
-				printf("Error: y can only be between 0 and %d\n",MAX_COLUMNS-1);
-				exit(1);
-			}
+        if(y >= MAX_COLUMNS){
+			printf("Error: y can only be between 0 and %d\n",MAX_COLUMNS-1);
+			exit(1);
+		}
 
-            element = strtok(NULL, ",");
-            z = atoi(element) + (MAX_LAYERS/2); 
-            /*converter para um número entre 0 e 20, visto que é impossível utilizar valores negativos, por exemplo:
-            * em vec[x][y][10], o contentor esta na posição z = 0 
-            * em vec[x][y][0], o contentor esta na posição z = -10
-            * em vec[x][y][20], o contentor esta na posição z = 10
-            */
+        element = strtok(NULL, ",");
+        z = atoi(element) + (MAX_LAYERS/2); 
+        /*converter para um número entre 0 e 20, visto que é impossível utilizar valores negativos, por exemplo:
+        * em vec[x][y][10], o contentor esta na posição z = 0 
+        * em vec[x][y][0], o contentor esta na posição z = -10
+        * em vec[x][y][20], o contentor esta na posição z = 10
+        */
             
-            if(z < 0 || z > MAX_LAYERS-1){
-				printf("Error:z can only be between %d and %d\n",0-(MAX_LAYERS/2),(MAX_LAYERS/2));
-				exit(1);
-			}
+        if(z < 0 || z > MAX_LAYERS-1){
+			printf("Error:z can only be between %d and %d\n",0-(MAX_LAYERS/2),(MAX_LAYERS/2));
+			exit(1);
+		}
 
-            vec[x][y][z] = manifest_id;
-		    printf("Matriz [%d][%d][%d]:%d\n",x,y,z,vec[x][y][z]);
+        vec[x][y][z] = manifest_id;
+		printf("Matriz [%d][%d][%d]:%d\n",x,y,z,vec[x][y][z]);
         }
 
         fclose(file);
         
-        long retorno =0;
+        // UC's 314
+        long retorno = 0;
         retorno = calculate_slots();
 		printf("---------------------------------------------\n");
         printf("O long retornado da US314 é %ld\n", retorno);
@@ -99,7 +106,8 @@ for (x = 0; x < MAX_ROWS; x++) {
             printf("In the position selected there is a container registered.\n");
         }
 
-        
+        res = slots_occupied(ptrPositions);
+        printf("Slots ocuppied: %d\n", res);
     
     }
 }

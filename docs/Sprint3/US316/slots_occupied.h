@@ -1,0 +1,1 @@
+int slots_occupied();
