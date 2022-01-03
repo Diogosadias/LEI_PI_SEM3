@@ -68,4 +68,13 @@ public class PortManagerController {
 
     }
 
+    public File mapResources(DatabaseConnection databaseConnection) throws IOException {
+        File myObj = new File("MapResources.txt");
+        FileWriter myWriter = new FileWriter("MapResources.txt");
+        myWriter.write(portManager.mapResources(databaseConnection));
+        myWriter.close();
+
+
+        return  myObj;
+    }
 }

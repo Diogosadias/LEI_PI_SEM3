@@ -490,4 +490,81 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return new MatrixGraph<V, E>(false, (ArrayList<V>) portList,matrix);
 
     }
+
+    public List<String> getContinents() {
+        List<String> list = new ArrayList<>();
+        for (V v : vertices) {
+            if(v instanceof City) {
+                if(!list.contains(((City) v).getCont())) list.add(((City) v).getCont());
+            }
+            if(v instanceof Port) {
+                if(!list.contains(((Port) v).getCont())) list.add(((Port) v).getCont());
+            }
+        }
+        return list;
+    }
+
+    public void operatechanges(String s) {
+        for(V v : vertices){
+            if(v instanceof City) {
+                if(!s.equals(((City) v).getCont())) removeVertex(v);
+            }
+            if(v instanceof Port) {
+                if(!s.equals(((Port) v).getCont())) removeVertex(v);            }
+        }
+    }
+
+    public LinkedList<Pair<V,Double>> nClosestPlaces(int n) throws IOException {
+        LinkedList<Pair<V,Double>> list = new LinkedList<>();
+        if(n>vertices.size()) throw new IOException("Not enough places in this continent!");
+
+        //Fill Firstly
+        for( int i = 0; i<n ; i++){
+            for(V v : vertices){
+                list.add(new Pair<V,Double>(v,getPathAverage(v)));
+            }
+        }
+
+
+
+        //Check All
+        for(V v : vertices){
+            Double value = getPathAverage(v);
+            for(Pair<V, Double> p : list){
+                int index = list.indexOf(p);
+                if(value<p.get2nd() && !p.get1st().equals(v)) {
+                    list.remove(n-1);
+                    list.add(index,new Pair<>(v,value));
+                }
+            }
+        }
+
+
+        return list;
+    }
+
+    private Double getPathAverage(V v) {
+        Double median= 0.0;
+        for(Edge e : incomingEdges(v)){
+            median = median + (Double) e.getWeight();
+        }
+        return median/incomingEdges(v).size();
+    }
+//        //devolve o graph só do continente passado por parametro
+//    public MatrixGraph getMatrixGraphPerContinent(String continent){
+//        
+//
+//        
+//        MatrixGraph<V,E> m = null; //criar nova matriz vazia
+//        for (V vert:vertices() ){
+//         
+////            ir ao vertice e ver se o port/city tem como continente a string passada por parametro, se estiver adiciona á nova matriz
+//    }
+//        return m;
+//}
+
+////retorna a média dos caminhos entre um vertice e todos os outros vertices invocando o shortestPath
+//public double getAverageOfShortestPathLength(V vOrig){
+//    //invoca o shortestPath entre dois vertices sendo o vOrig o vértice passado por parametro e o Vdest todos os outros, fazendo no fim a média
+
 }
