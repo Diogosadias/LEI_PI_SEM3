@@ -5,10 +5,14 @@ import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ImportPortDatabase;
 import lapr.project.data.ShipDatabase;
 
+import oracle.ucp.util.Pair;
+
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -185,7 +189,7 @@ public class Search {
     public String selectNPlaces(int n, MatrixGraph matrixGraph, TrafficManagerController main) {
         if(n<1 ) return "Invalid N Value!";
 
-        List<Object> list = null;
+        LinkedList<Pair<Object,Double>> list = null;
 
         String print = null;
         List <String> continentList = matrixGraph.getContinents();
@@ -210,9 +214,17 @@ public class Search {
         return print;
     }
 
-    private String printL(List<Object> list) {
+    private String printL(LinkedList<Pair<Object, Double>> list) {
         String print = null;
-        for(Object v : list){
+        for(Pair v : list){
+            if( v.get1st() instanceof City){
+                print = print + "\n" +
+                        ((City) v.get1st()).getName() + ", " + ((City) v.get1st()).getCountry() + " - average distance  - " + v.get2nd().toString() ;
+            }
+            if( v.get1st() instanceof Port){
+                print = print + "\n" +
+                        ((Port) v.get1st()).getLocation() + ", " + ((Port) v.get1st()).getCountry() + " - average distance  - " + v.get2nd().toString() ;
+            }
 
         }
         return print;
