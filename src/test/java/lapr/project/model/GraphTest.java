@@ -378,5 +378,14 @@ public class GraphTest {
         assertEquals(157.24938127194397,instance.getPathAverage(instance.vertices().get(0)));
         assertEquals(157.23740665500844,instance.getPathAverage(instance.vertices().get(1)));
 
+        assertEquals(instance.getContinents().size(),2);
+        assertEquals(instance.getContinents().get(1),"Europe");
+
+        instance.operatechanges("Europe");
+        assertFalse(instance.validVertex(c));
+
+
+
+
     }
 }

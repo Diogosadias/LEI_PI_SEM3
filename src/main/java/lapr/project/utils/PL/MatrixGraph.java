@@ -505,7 +505,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
     }
 
     public void operatechanges(String s) {
-        for(V v : vertices){
+        for(V v : vertices()){
             if(v instanceof City) {
                 if(!s.equals(((City) v).getCont())) removeVertex(v);
             }
