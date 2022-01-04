@@ -186,47 +186,47 @@ public class Search {
 
 
 //retornar os n locais mais próximos por continente, criando uma sub-matriz para cada continente
-    public String selectNPlaces(int n, MatrixGraph matrixGraph, TrafficManagerController main) {
-        if(n<1 ) return "Invalid N Value!";
-
-        LinkedList<Pair<Object,Double>> list = null;
-
-        String print = null;
-        List <String> continentList = matrixGraph.getContinents();
-        for(String s : continentList){
-            MatrixGraph matrixGraphCont = matrixGraph.clone();
-            matrixGraphCont.operatechanges(s);
-
-            try {
-                list = matrixGraphCont.nClosestPlaces(n);
-            } catch (IOException ex){
-                print = print + "Not enough places in this continent!";
-                break;
-            }
-
-            print = print + "\n" +
-                    "For the Continent : " + s + "\n" +
-                    printL(list) + "\n" +
-                    "-----------------";
-
-        }
-
-        return print;
-    }
-
-    private String printL(LinkedList<Pair<Object, Double>> list) {
-        String print = null;
-        for(Pair v : list){
-            if( v.get1st() instanceof City){
-                print = print + "\n" +
-                        ((City) v.get1st()).getName() + ", " + ((City) v.get1st()).getCountry() + " - average distance  - " + v.get2nd().toString() ;
-            }
-            if( v.get1st() instanceof Port){
-                print = print + "\n" +
-                        ((Port) v.get1st()).getLocation() + ", " + ((Port) v.get1st()).getCountry() + " - average distance  - " + v.get2nd().toString() ;
-            }
-
-        }
-        return print;
-    }
+//    public String selectNPlaces(int n, MatrixGraph matrixGraph, TrafficManagerController main) {
+//        if(n<1 ) return "Invalid N Value!";
+//
+//        LinkedList<Pair<Object,Double>> list = null;
+//
+//        String print = null;
+//        List <String> continentList = matrixGraph.getContinents();
+//        for(String s : continentList){
+//            MatrixGraph matrixGraphCont = matrixGraph.clone();
+//            matrixGraphCont.operatechanges(s);
+//
+//            try {
+//                list = matrixGraphCont.nClosestPlaces(n);
+//            } catch (IOException ex){
+//                print = print + "Not enough places in this continent!";
+//                break;
+//            }
+//
+//            print = print + "\n" +
+//                    "For the Continent : " + s + "\n" +
+//                    printL(list) + "\n" +
+//                    "-----------------";
+//
+//        }
+//
+//        return print;
+//    }
+//
+//    private String printL(LinkedList<Pair<Object, Double>> list) {
+//        String print = null;
+//        for(Pair v : list){
+//            if( v.get1st() instanceof City){
+//                print = print + "\n" +
+//                        ((City) v.get1st()).getName() + ", " + ((City) v.get1st()).getCountry() + " - average distance  - " + v.get2nd().toString() ;
+//            }
+//            if( v.get1st() instanceof Port){
+//                print = print + "\n" +
+//                        ((Port) v.get1st()).getLocation() + ", " + ((Port) v.get1st()).getCountry() + " - average distance  - " + v.get2nd().toString() ;
+//            }
+//
+//        }
+//        return print;
+//    }
 }
