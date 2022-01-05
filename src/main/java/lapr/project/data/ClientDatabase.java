@@ -85,22 +85,22 @@ public class ClientDatabase {
 
         getClientsPreparedStatement.setString(1, location);
 
-        ResultSet rs = getClientsPreparedStatement.executeQuery();
-        while (rs.next()) {
-            Integer port_id = rs.getInt(1);
-            cont = rs.getString(3);
-            country = rs.getString(4);
-            location = rs.getString(5);
-            lat = rs.getDouble(6);
-            lon = rs.getDouble(7);
-            try {
-                port = new Port(cont,country,port_id,location,lat,lon);
-            } catch (IOException e) {
-                e.printStackTrace();
+        try (ResultSet rs = getClientsPreparedStatement.executeQuery()) {
+            while (rs.next()) {
+                Integer port_id = rs.getInt(1);
+                cont = rs.getString(3);
+                country = rs.getString(4);
+                location = rs.getString(5);
+                lat = rs.getDouble(6);
+                lon = rs.getDouble(7);
+                try {
+                    port = new Port(cont,country,port_id,location,lat,lon);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                
             }
-
         }
-        rs.close();
 
         return port;
     }
@@ -124,21 +124,21 @@ public class ClientDatabase {
 
         getClientsPreparedStatement.setString(1, shipName);
 
-        ResultSet rs = getClientsPreparedStatement.executeQuery();
-        while (rs.next()) {
-            mmsi = rs.getInt(1);
-            IMO = rs.getString(3);
-            String vesselName = shipName;
-            callSign = rs.getString(6);
-            vesselType = rs.getInt(10) ;
-            length = rs.getInt(7);
-            width = rs.getInt(8);
-            draft = Double.parseDouble(null); //replace by access
-            cargo = null; //replace by access
-            ship = new Ship(mmsi.toString(),vesselName,IMO,callSign,vesselType,length,width,draft,cargo);
-
+        try (ResultSet rs = getClientsPreparedStatement.executeQuery()) {
+            while (rs.next()) {
+                mmsi = rs.getInt(1);
+                IMO = rs.getString(3);
+                String vesselName = shipName;
+                callSign = rs.getString(6);
+                vesselType = rs.getInt(10) ;
+                length = rs.getInt(7);
+                width = rs.getInt(8);
+                draft = Double.parseDouble(null); //replace by access
+                cargo = null; //replace by access
+                ship = new Ship(mmsi.toString(),vesselName,IMO,callSign,vesselType,length,width,draft,cargo);
+            }
+            // Close the ResultSet                 4
         }
-        rs.close();                       // Close the ResultSet                 4
 
         return ship;
     }
