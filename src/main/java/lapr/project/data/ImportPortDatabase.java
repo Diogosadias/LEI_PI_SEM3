@@ -48,7 +48,6 @@ public class ImportPortDatabase {
     }
 
     private void insertPortOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
                 "insert into Port(port_id, continent, country, location, latitude, longitude) values (?, ?, ?, ?, ?, ?)";
 
@@ -58,7 +57,6 @@ public class ImportPortDatabase {
 
     private void updatePortOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
 
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
                 "update Port set port_id=?, continent=?, country=?, location=?, latitude=?, longitude=?";
 
