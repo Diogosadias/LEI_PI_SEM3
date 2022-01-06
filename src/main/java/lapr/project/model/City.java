@@ -58,4 +58,11 @@ public class City {
     public void setCont(String cont) {
         this.cont = cont;
     }
+
+    public String toString(){
+        return "City [Name - "+name+ " ]" +
+                "\n\t" + cont +
+                "\n\t" + country +
+                "\n[ " + coords.x + " ; " + coords.y + " ]";
+    }
 }

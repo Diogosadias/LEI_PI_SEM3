@@ -109,6 +109,16 @@ public class TrafficManagerController {
         return  myObj;
     }
 
+    public File colorTheMap() throws IOException {
+        File myObj = new File("MapRepresentation.txt");
+        try (FileWriter myWriter = new FileWriter("MapRepresentation.txt")) {
+            myWriter.write(dataBaseImport.colorMap(dataBaseImport.getMatrixGraph()));
+        }
+
+
+        return  myObj;
+    }
+
 //    public File selectNPlaces(int n) throws IOException {
 //        File myObj = new File("NPlaces.txt");
 //        FileWriter myWriter = new FileWriter("NPlaces.txt");

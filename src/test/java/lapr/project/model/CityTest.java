@@ -34,8 +34,12 @@ class CityTest {
         assertEquals(t.getCoords().y,0.2);
         assertEquals(t.getCoords().x,0.5);
 
+        String result = "City [Name - "+"Viseu"+ " ]" +
+                "\n\t" + "Jonas" +
+                "\n\t" + "Portugal" +
+                "\n[ " + "0.5" + " ; " + "0.2" + " ]";
 
-
+        assertEquals(t.toString(),result);
 
     }
 
