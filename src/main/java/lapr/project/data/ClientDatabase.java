@@ -5,7 +5,6 @@ import lapr.project.model.Port;
 import lapr.project.model.PortTree;
 import lapr.project.model.Ship;
 
-import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
@@ -87,14 +86,14 @@ public class ClientDatabase {
 
         try (ResultSet rs = getClientsPreparedStatement.executeQuery()) {
             while (rs.next()) {
-                Integer port_id = rs.getInt(1);
+                Integer portId = rs.getInt(1);
                 cont = rs.getString(3);
                 country = rs.getString(4);
                 location = rs.getString(5);
                 lat = rs.getDouble(6);
                 lon = rs.getDouble(7);
                 try {
-                    port = new Port(cont,country,port_id,location,lat,lon);
+                    port = new Port(cont,country,portId,location,lat,lon);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -107,7 +106,7 @@ public class ClientDatabase {
 
     private Ship getShipFromDatabase(DatabaseConnection databaseConnection, String shipName) throws SQLException {
         Integer mmsi;
-        String IMO;
+        String imo;
         String callSign;
         int vesselType ;
         int length;
@@ -127,7 +126,7 @@ public class ClientDatabase {
         try (ResultSet rs = getClientsPreparedStatement.executeQuery()) {
             while (rs.next()) {
                 mmsi = rs.getInt(1);
-                IMO = rs.getString(3);
+                imo = rs.getString(3);
                 String vesselName = shipName;
                 callSign = rs.getString(6);
                 vesselType = rs.getInt(10) ;
@@ -135,7 +134,7 @@ public class ClientDatabase {
                 width = rs.getInt(8);
                 draft = Double.parseDouble(null); //replace by access
                 cargo = null; //replace by access
-                ship = new Ship(mmsi.toString(),vesselName,IMO,callSign,vesselType,length,width,draft,cargo);
+                ship = new Ship(mmsi.toString(),vesselName,imo,callSign,vesselType,length,width,draft,cargo);
             }
             // Close the ResultSet                 4
         }

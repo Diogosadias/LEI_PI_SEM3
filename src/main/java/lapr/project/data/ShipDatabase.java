@@ -9,18 +9,17 @@ import lapr.project.model.Ship;
 
 import java.awt.*;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ShipDatabase {
-    public Double getOccupancyRateManifest(DatabaseConnection databaseConnection, Integer cargoID, String ship_id, Double rate) {
+    public Double getOccupancyRateManifest(DatabaseConnection databaseConnection, Integer cargoID, String shipId, Double rate) {
 
 
         try {
-            rate = executeORManifest(databaseConnection,cargoID,ship_id,rate);
+            rate = executeORManifest(databaseConnection,cargoID,shipId,rate);
 
             //Save changes.
 
@@ -35,7 +34,7 @@ public class ShipDatabase {
         return rate;
     }
 
-    private Double executeORManifest(DatabaseConnection databaseConnection, Integer cargoID, String ship_id, Double rate) throws SQLException {
+    private Double executeORManifest(DatabaseConnection databaseConnection, Integer cargoID, String shipId, Double rate) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
@@ -43,16 +42,16 @@ public class ShipDatabase {
         CallableStatement cstmt = connection.prepareCall("{ ? = call checkShipsOccupancyRate(?,?)}");
         cstmt.registerOutParameter(1, Types.DOUBLE);
         cstmt.setInt(3, cargoID);
-        cstmt.setInt(2, Integer.parseInt(ship_id));
+        cstmt.setInt(2, Integer.parseInt(shipId));
         cstmt.executeUpdate();
         rate = cstmt.getDouble(1);
         return rate;
     }
 
-    public Double getOccupancyRateTime(DatabaseConnection databaseConnection, String ship_id, String date, Double rate) {
+    public Double getOccupancyRateTime(DatabaseConnection databaseConnection, String shipId, String date, Double rate) {
 
         try {
-            rate = executeORManifestTime(databaseConnection,date,ship_id,rate);
+            rate = executeORManifestTime(databaseConnection,date,shipId,rate);
 
 
         } catch (SQLException ex) {
@@ -64,26 +63,26 @@ public class ShipDatabase {
         return rate;
     }
 
-    private Double executeORManifestTime(DatabaseConnection databaseConnection, String date, String ship_id, Double rate) throws SQLException {
+    private Double executeORManifestTime(DatabaseConnection databaseConnection, String date, String shipId, Double rate) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
 
         CallableStatement cstmt = connection.prepareCall("{? = call checkOccupancyRateMoment(?,?)}");
         cstmt.registerOutParameter(1, Types.DOUBLE);
-        cstmt.setInt(2, Integer.parseInt(ship_id));
+        cstmt.setInt(2, Integer.parseInt(shipId));
         cstmt.setString(3, date);
         cstmt.executeUpdate();
         rate = cstmt.getDouble(1);
         return rate;
     }
 
-    public Double getOCT(DatabaseConnection databaseConnection, String ship_id, String date) {
+    public Double getOCT(DatabaseConnection databaseConnection, String shipId, String date) {
         Connection connection = databaseConnection.getConnection();
         Double rate=null;
 
         try {
             connection.setAutoCommit(false);
-            rate = getOccupancyRateTime(databaseConnection, ship_id,date,rate);
+            rate = getOccupancyRateTime(databaseConnection, shipId,date,rate);
 
             if (rate==null) {
                 throw databaseConnection.getLastError();
@@ -106,7 +105,7 @@ public class ShipDatabase {
         return rate;
     }
 
-    public Double getORM(DatabaseConnection databaseConnection, Integer cargoID, String ship_id, Double rate) {
+    public Double getORM(DatabaseConnection databaseConnection, Integer cargoID, String shipId, Double rate) {
 
         Connection connection = databaseConnection.getConnection();
 
@@ -114,7 +113,7 @@ public class ShipDatabase {
         try {
             connection.setAutoCommit(false);
 
-            rate = getOccupancyRateManifest(databaseConnection, cargoID,ship_id,rate);
+            rate = getOccupancyRateManifest(databaseConnection, cargoID,shipId,rate);
 
             if (rate==null) {
                 throw databaseConnection.getLastError();
@@ -193,13 +192,13 @@ public class ShipDatabase {
         if(rs==null) return list;
 
         while (rs.next()){
-            Integer container_id = rs.getInt(1);
+            Integer containerId = rs.getInt(1);
             Double payload = rs.getDouble(2);
             Integer x = rs.getInt(3);
             Integer y = rs.getInt(4);
             Integer z = rs.getInt(5);
             Double temp = rs.getDouble(6);
-            Container c = new Container(container_id,payload,x,y,z,temp);
+            Container c = new Container(containerId,payload,x,y,z,temp);
             list.add(c);
         }
         return list;
@@ -335,16 +334,16 @@ public class ShipDatabase {
         if(rs==null) return list;
 
         while (rs.next()){
-            Integer container_id = rs.getInt(1);
+            Integer containerId = rs.getInt(1);
             Double payload = rs.getDouble(2);
             Double temp = rs.getDouble(3);
-            Container c = new Container(container_id,payload,temp);
+            Container c = new Container(containerId,payload,temp);
             list.add(c);
         }
         return list;
     }
 
-    public Pair<Integer, Double> year(DatabaseConnection databaseConnection, String year,String ship_id) {
+    public Pair<Integer, Double> year(DatabaseConnection databaseConnection, String year,String shipId) {
         Pair<Integer, Double> c = new Pair<>(null,null);
         Connection connection = databaseConnection.getConnection();
 
@@ -352,7 +351,7 @@ public class ShipDatabase {
         try {
             connection.setAutoCommit(false);
 
-            c=yearload(databaseConnection, year,c,ship_id);
+            c=yearload(databaseConnection, year,c,shipId);
 
             if (c==null) {
                 throw databaseConnection.getLastError();
@@ -374,10 +373,10 @@ public class ShipDatabase {
         return c;
     }
 
-    private Pair<Integer, Double> yearload(DatabaseConnection databaseConnection, String year, Pair<Integer, Double> c,String ship_id) {
+    private Pair<Integer, Double> yearload(DatabaseConnection databaseConnection, String year, Pair<Integer, Double> c,String shipId) {
 
         try {
-            c = yearexecute(databaseConnection,year,ship_id);
+            c = yearexecute(databaseConnection,year,shipId);
 
             //Save changes.
 
@@ -390,20 +389,19 @@ public class ShipDatabase {
         return c;
     }
 
-    private Pair<Integer, Double> yearexecute(DatabaseConnection databaseConnection, String year,String ship_id) throws SQLException {
+    private Pair<Integer, Double> yearexecute(DatabaseConnection databaseConnection, String year,String shipId) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
 
         CallableStatement cstmt = connection.prepareCall("{? = call US_207(?)}");
-        cstmt.setInt(2, Integer.parseInt(ship_id));
+        cstmt.setInt(2, Integer.parseInt(shipId));
         cstmt.registerOutParameter(1, Types.VARCHAR);
         cstmt.executeUpdate();
         String t = cstmt.getString(1);
         String[] arrOfStr = t.split(",");
         Integer first = Integer.parseInt(arrOfStr[0]);
         Double second = Double.parseDouble(arrOfStr[1]);
-
-        Pair<Integer, Double> c = new Pair<>(first,second);
-        return c;
+        
+        return  new Pair<>(first,second);
     }
 }

@@ -10,13 +10,13 @@ import java.io.IOException;
 
 public class ShipCaptainController {
     private ShipCaptain shipCaptain = new ShipCaptain(12345);
-    private Integer trip_code =50;
+    private Integer tripCode =50;
 
 
     public File offloaded(DatabaseConnection databaseConnection) throws IOException {
         File myObj = new File("Offload.txt");
         try (FileWriter myWriter = new FileWriter("Offload.txt")) {
-            myWriter.write(shipCaptain.offload(databaseConnection, trip_code));
+            myWriter.write(shipCaptain.offload(databaseConnection, tripCode));
         }
 
         return  myObj;
@@ -25,16 +25,16 @@ public class ShipCaptainController {
     public File loaded(DatabaseConnection databaseConnection) throws IOException {
         File myObj = new File("Load.txt");
         try (FileWriter myWriter = new FileWriter("Load.txt")) {
-            myWriter.write(shipCaptain.load(databaseConnection, trip_code));
+            myWriter.write(shipCaptain.load(databaseConnection, tripCode));
         }
 
         return  myObj;
     }
 
-    public File yearlymainfest(DatabaseConnection databaseConnection, String year, String ship_id) throws IOException {
+    public File yearlymainfest(DatabaseConnection databaseConnection, String year, String shipId) throws IOException {
         File myObj = new File("YearInformation.txt");
         try (FileWriter myWriter = new FileWriter("YearInformation.txt")) {
-            myWriter.write(shipCaptain.yearly(databaseConnection, year,ship_id));
+            myWriter.write(shipCaptain.yearly(databaseConnection, year,shipId));
         }
 
 
@@ -43,20 +43,20 @@ public class ShipCaptainController {
 
 
 
-    public File occupancyrateTime(DatabaseConnection databaseConnection,String ship_id, String date) throws IOException {
+    public File occupancyrateTime(DatabaseConnection databaseConnection,String ShipId, String date) throws IOException {
         File myObj = new File("OccupancyRateTime.txt");
         try (FileWriter myWriter = new FileWriter("OccupancyRateTime.txt")) {
-            myWriter.write(shipCaptain.occupancyRateTime(databaseConnection, ship_id,date));
+            myWriter.write(shipCaptain.occupancyRateTime(databaseConnection, ShipId,date));
         }
 
 
         return  myObj;
     }
 
-    public File occupancyratemanifest(DatabaseConnection databaseConnection, Integer cargoID, String ship_id) throws IOException {
+    public File occupancyratemanifest(DatabaseConnection databaseConnection, Integer cargoID, String ShipId) throws IOException {
         File myObj = new File("OccupancyRate - " + cargoID + ".txt");
         try (FileWriter myWriter = new FileWriter("OccupancyRate - " + cargoID + ".txt")) {
-            myWriter.write(shipCaptain.occupancyRateManifest(databaseConnection, cargoID,ship_id));
+            myWriter.write(shipCaptain.occupancyRateManifest(databaseConnection, cargoID,ShipId));
         }
 
 

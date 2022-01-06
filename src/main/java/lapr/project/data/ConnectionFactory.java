@@ -27,7 +27,7 @@ public class ConnectionFactory {
     /**
      * This is the size of the connection pool.
      */
-    private final Integer connectionPoolCount = 1;
+    private final static Integer connectionPoolCount = 1;
 
     private final List<DatabaseConnection> databaseConnectionList =
             new ArrayList<>();
