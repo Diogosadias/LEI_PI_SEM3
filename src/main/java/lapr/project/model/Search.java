@@ -152,6 +152,7 @@ public class Search {
 
         double a[] = new double[2];
 
+
         if (main.csTree.isCS(code3)) {
             if (main.csTree.find(code3)) {
                 a = main.csTree.getShip(code3).getCoordsbyBaseDateTime(date1);

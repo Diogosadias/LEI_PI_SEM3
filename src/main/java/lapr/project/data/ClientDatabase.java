@@ -52,11 +52,11 @@ public class ClientDatabase {
 
         while (rs.length()!=0) {
             String testShip = rs.substring(0, 4);
-            if (testShip == "SHIP") {
+            if (testShip.equals("SHIP")) {
                 Ship s = getShipFromDatabase(databaseConnection, rs.substring(4));
                 object = s;
                 break;
-            } else if (testShip == "PORT") {
+            } else if (testShip.equals("PORT")) {
                 Port p = getPortFromDatabase(databaseConnection, rs.substring(5));
                 object = p;
                 break;
