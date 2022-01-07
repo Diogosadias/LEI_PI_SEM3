@@ -11,40 +11,32 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ClientDatabase {
-    public Object searchPosition(DatabaseConnection databaseConnection, String code, Object object) {
+    public Object searchPosition(DatabaseConnection databaseConnection,String clientId, String code, Object object) {
 
         try {
-            object = getPosition(databaseConnection, code);
+            object = executeClientStatment(databaseConnection,clientId, code);
 
 
         } catch (SQLException ex) {
-            Logger.getLogger(PortTree.class.getName())
+            if(ex.getMessage().startsWith("ORA-20001: ERROR CODE 10")) object = "10";
+            if(ex.getMessage().startsWith("ORA-20001: ERROR CODE 11")) object = "11";
+            Logger.getLogger(ClientDatabase.class.getName())
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
-            object = null;
         }
         return object;
     }
 
-    private Object getPosition(DatabaseConnection databaseConnection, String code) throws SQLException {
-        if (isContainerOnDatabase(databaseConnection, code)) {
-            return getContainerPos(databaseConnection, code);
-        } else {
-            return null;
-        }
-    }
 
-    private Object getContainerPos(DatabaseConnection databaseConnection, String code) throws SQLException {
-        return executeClientStatment(databaseConnection,code);
-    }
 
-    private Object executeClientStatment(DatabaseConnection databaseConnection, String containercode) throws SQLException {
+    private Object executeClientStatment(DatabaseConnection databaseConnection,String clientId, String containercode) throws SQLException {
         Object object =null;
         Connection connection = databaseConnection.getConnection();
 
-        CallableStatement cstmt = connection.prepareCall("{? = call currentSituationOfAContainer(?)}"); //Redo this call
+        CallableStatement cstmt = connection.prepareCall("{? = call getCurrentSituationOfContainer(?,?)}");
         cstmt.registerOutParameter(1, Types.VARCHAR);
-        cstmt.setInt(2, Integer.parseInt(containercode));
+        cstmt.setInt(2, Integer.parseInt(clientId));
+        cstmt.setInt(3, Integer.parseInt(containercode));
         cstmt.executeUpdate();
         String rs = cstmt.getString(1);
         if(rs==null) return object;
@@ -52,7 +44,7 @@ public class ClientDatabase {
         while (rs.length()!=0) {
             String testShip = rs.substring(0, 4);
             if (testShip.equals("SHIP")) {
-                Ship s = getShipFromDatabase(databaseConnection, rs.substring(4));
+                Ship s = getShipFromDatabase(databaseConnection, rs.substring(5));
                 object = s;
                 break;
             } else if (testShip.equals("PORT")) {
@@ -132,7 +124,7 @@ public class ClientDatabase {
                 vesselType = rs.getInt(10) ;
                 length = rs.getInt(7);
                 width = rs.getInt(8);
-                draft = Double.parseDouble(null); //replace by access
+                draft = 0.0; //replace by access
                 cargo = null; //replace by access
                 ship = new Ship(mmsi.toString(),vesselName,imo,callSign,vesselType,length,width,draft,cargo);
             }
@@ -142,31 +134,6 @@ public class ClientDatabase {
         return ship;
     }
 
-    private boolean isContainerOnDatabase(DatabaseConnection databaseConnection, String code) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
 
-        boolean isContainer = false;
 
-        String sqlCommand = "Select * From container where container_id =  ?";
-
-        PreparedStatement getClientsPreparedStatement =
-                connection.prepareStatement(sqlCommand);
-
-        getClientsPreparedStatement.setInt(1, Integer.parseInt(code));
-
-        try (ResultSet clientsResultSet = getClientsPreparedStatement.executeQuery()) {
-
-            if (clientsResultSet.next()) {
-                // if client already exists in the database
-                isContainer = true;
-            } else {
-
-                // if client does not exist in the database
-                isContainer = false;
-            }
-        } catch (SQLException ex){
-            isContainer = false;
-        }
-        return isContainer;
-    }
 }

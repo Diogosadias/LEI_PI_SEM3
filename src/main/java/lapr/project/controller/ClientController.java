@@ -15,23 +15,15 @@ public class ClientController {
         //Creator Only
     }
 
-    public File searchPosition(DatabaseConnection databaseConnection, String code) throws IOException {
+    public File searchPosition(DatabaseConnection databaseConnection,String clientId, String code) throws IOException {
         File myObj = new File("ContainerStatus - " + code + ".txt");
          try (FileWriter myWriter = new FileWriter("ContainerStatus - " + code + ".txt")) {
-             myWriter.write(client.search(databaseConnection, code));
+             myWriter.write(client.search(databaseConnection,clientId, code));
          }
 
 
         return  myObj;
     }
 
-    public File searchPosition2(DatabaseConnection databaseConnection, String code1) throws IOException {
-        File myObj = new File("ContainerStatus - " + code1 + ".txt");
-         try (FileWriter myWriter = new FileWriter("ContainerStatus - " + code1 + ".txt")) {
-             myWriter.write(client.search2(databaseConnection, code1));
-         }
 
-
-        return  myObj;
-    }
 }

@@ -211,7 +211,7 @@ public class DatabaseTest {
 
 
         Scanner in = new Scanner(new File("src/test/resources/Client1"));
-        Scanner ou = new Scanner(clientController.searchPosition(databaseConnection, null));
+        Scanner ou = new Scanner(clientController.searchPosition(databaseConnection,null, null));
         assertEquals(in.nextLine(), ou.nextLine());
 
         Connection connection = mock(Connection.class);
@@ -225,9 +225,9 @@ public class DatabaseTest {
             connection.setAutoCommit(false);
 
 
-            when(clientDatabase.searchPosition(databaseConnection, "12345", object)).thenReturn(
+            when(clientDatabase.searchPosition(databaseConnection,null, "12345", object)).thenReturn(
                     object);
-            assertEquals(object,clientDatabase.searchPosition(databaseConnection, "12345", object));
+            assertEquals(object,clientDatabase.searchPosition(databaseConnection,null, "12345", object));
 
 
         } catch (SQLException ex) {
@@ -238,9 +238,9 @@ public class DatabaseTest {
         try {
             connection.setAutoCommit(false);
 
-            when(clientDatabase.searchPosition(databaseConnection, "12345", object)).thenReturn(
+            when(clientDatabase.searchPosition(databaseConnection,null, "12345", object)).thenReturn(
                     object);
-            Object result = clientDatabase.searchPosition(databaseConnection, "12345", object);
+            Object result = clientDatabase.searchPosition(databaseConnection,null, "12345", object);
             assertEquals(object,result);
             Logger.getLogger(DatabaseTest.class.getName())
                     .log(Level.INFO, "Container Found!");
@@ -253,8 +253,8 @@ public class DatabaseTest {
 
         try {
             Ship ship = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70, 166, 25, 9.5, "NA");
-            when(client.search(databaseConnection, "12345")).thenReturn(ship.toString());
-            assertEquals(client.search(databaseConnection, "12345"), ship.toString());
+            when(client.search(databaseConnection,null, "12345")).thenReturn(ship.toString());
+            assertEquals(client.search(databaseConnection,null, "12345"), ship.toString());
         }catch (NullPointerException ex){
             Logger.getLogger(DatabaseTest.class.getName())
                     .log(Level.SEVERE, null, ex);
