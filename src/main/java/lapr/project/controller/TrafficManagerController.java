@@ -119,14 +119,17 @@ public class TrafficManagerController {
         return  myObj;
     }
 
-//    public File selectNPlaces(int n) throws IOException {
-//        File myObj = new File("NPlaces.txt");
-//        FileWriter myWriter = new FileWriter("NPlaces.txt");
-//        myWriter.write(search.selectNPlaces(n, dataBaseImport.getMatrixGraph(),this));
-//        myWriter.close();
-//
-//
-//        return  myObj;
-//    }
+
+    public File selectNPlaces(int n) throws IOException {
+        File myObj = new File("NPlaces.txt");
+        FileWriter myWriter = new FileWriter("NPlaces.txt");
+        myWriter.write(search.selectNPlaces(n, dataBaseImport.getMatrixGraph()));
+        myWriter.close();
+
+
+        return  myObj;
+    }
+
+
     
 }

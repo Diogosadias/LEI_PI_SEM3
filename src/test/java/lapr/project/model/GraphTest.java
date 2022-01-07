@@ -332,6 +332,10 @@ public class GraphTest {
         assertTrue(instance.vertex(7) instanceof Port);
 
         assertEquals(instance,dataBaseImport.getMatrixGraph());
+        MatrixGraph i = instance.clone();
+        i.removeVertex(c);
+        dataBaseImport.setMatrixGraph(i);
+        assertEquals(dataBaseImport.getMatrixGraph(),i);
 
     }
 
@@ -375,8 +379,6 @@ public class GraphTest {
         DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
         instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,0);
 
-        assertEquals(157.24938127194397,instance.getPathAverage(instance.vertices().get(0)));
-        assertEquals(157.23740665500844,instance.getPathAverage(instance.vertices().get(1)));
 
         assertEquals(instance.getContinents().size(),2);
         assertEquals(instance.getContinents().get(1),"Europe");

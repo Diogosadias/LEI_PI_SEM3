@@ -514,57 +514,34 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         }
     }
 
-    public LinkedList<Pair<V,Double>> nClosestPlaces(int n) throws IOException {
-        LinkedList<Pair<V,Double>> list = new LinkedList<>();
-        if(n>vertices.size()) throw new IOException("Not enough places in this continent!");
 
-        //Fill Firstly
-        for( int i = 0; i<n ; i++){
-            for(V v : vertices){
-                list.add(new Pair<V,Double>(v,getPathAverage(v)));
+
+
+
+    public Double[][] floydMatrix() {
+        Double[][] matrix = new Double[vertices.size()][vertices.size()];
+
+        for(int i=0;i<vertices.size();i++){
+            for(int j=0;j<vertices.size();j++){
+                Edge<V,E> edge = edge(i,j);
+                if(edge!=null) matrix[i][j] = (Double) edge.getWeight();
             }
         }
 
+        for (int k =0; k < vertices.size(); k++){
+            for (int j =0; j < vertices.size(); j++) {
+                if (j != k && matrix[j][k] != null)
+                    for (int i = 0; i < vertices.size(); i++){
+                        if (i != k && i != j && matrix[k][i]!=null ){
+                            Double suma = matrix[j][k] +matrix[k][i];
+                            if(matrix[j][i]==null || suma< matrix[j][i]){
+                                matrix[j][i]=suma;
+                            }
+                        }
 
-
-        //Check All
-        for(V v : vertices){
-            Double value = getPathAverage(v);
-            for(Pair<V, Double> p : list){
-                int index = list.indexOf(p);
-                if(value<p.get2nd() && !p.get1st().equals(v)) {
-                    list.remove(n-1);
-                    list.add(index,new Pair<>(v,value));
-                }
+                    }
             }
         }
-
-
-        return list;
+        return matrix;
     }
-
-    public Double getPathAverage(V v) {
-        Double median= 0.0;
-        for(Edge e : incomingEdges(v)){
-            median = median + (Double) e.getWeight();
-        }
-        return median/incomingEdges(v).size();
-    }
-//        //devolve o graph só do continente passado por parametro
-//    public MatrixGraph getMatrixGraphPerContinent(String continent){
-//        
-//
-//        
-//        MatrixGraph<V,E> m = null; //criar nova matriz vazia
-//        for (V vert:vertices() ){
-//         
-////            ir ao vertice e ver se o port/city tem como continente a string passada por parametro, se estiver adiciona á nova matriz
-//    }
-//        return m;
-//}
-
-////retorna a média dos caminhos entre um vertice e todos os outros vertices invocando o shortestPath
-//public double getAverageOfShortestPathLength(V vOrig){
-//    //invoca o shortestPath entre dois vertices sendo o vOrig o vértice passado por parametro e o Vdest todos os outros, fazendo no fim a média
-
 }

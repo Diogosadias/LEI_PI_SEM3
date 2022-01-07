@@ -98,7 +98,7 @@ public class TrafficManagerUI {
                 trafficManagerController.colorTheMap();
                 break;
             case "12":
-//                trafficManagerController.selectNPlaces(n);
+                trafficManagerController.selectNPlaces(n);
                 break;
             case "E":
                 flag = false;

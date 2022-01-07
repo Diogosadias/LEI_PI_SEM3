@@ -16,7 +16,7 @@ public class City {
     public City(String name,String country,Point2D.Double coords){
         this.name = name;
         this.country=country;
-        this.cont = null;
+        this.cont = "null";
         this.coords=coords;
     }
 
