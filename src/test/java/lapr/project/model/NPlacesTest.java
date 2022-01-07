@@ -148,5 +148,9 @@ public class NPlacesTest {
         Scanner ou = new Scanner(trafficManagerController.selectNPlaces(1));
         assertEquals(in.nextLine(),ou.nextLine());
 
+
+        in = new Scanner("Invalid N Value!");
+        ou = new Scanner(trafficManagerController.selectNPlaces(0));
+        assertEquals(in.nextLine(),ou.nextLine());
     }
 }

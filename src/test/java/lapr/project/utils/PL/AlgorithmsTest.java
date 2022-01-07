@@ -158,5 +158,5 @@ final Graph<String,Integer> completeMap = new MatrixGraph<>(false);
         Algorithms.shortestPaths(incompleteMap, "Braga", Integer::compare, Integer::sum, 0, paths, dists);
     }
 
-    
+
 }
