@@ -211,7 +211,7 @@ public class Search {
             list = nClosestPlaces(matrixGraphCont,floydMatrix,n);
 
 
-            if(list.isEmpty()){
+            if(list.isEmpty() || list.get(0).get2nd()==0.0){
                 print = print + "\n" +
                         "For the Continent : " + s + "\n" +
                         "There are no Connections to Calculate" + "\n" +
@@ -244,9 +244,10 @@ public class Search {
                 Double value = getShortAverage(floydMatrix,i);
                 for(Pair<Object, Double> p : list){
                     int index = list.indexOf(p);
-                    if(value<p.get2nd() && !p.get1st().equals(matrixGraph.vertex(i))) {
+                    if(value!=0.0 && value<p.get2nd() && !p.get1st().equals(matrixGraph.vertex(i))) {
                         list.remove(n-1);
                         list.add(index,new Pair<>(matrixGraph.vertex(i),value));
+                        break;
                     }
                 }
         }
@@ -265,6 +266,7 @@ public class Search {
                 notNull++;
             }
         }
+        if(notNull==0) return 0.0;
         return value/ notNull;
     }
 
