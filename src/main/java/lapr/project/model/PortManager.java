@@ -40,7 +40,7 @@ public class PortManager {
             try {
                 port = new Port(properties[0], properties[1], Integer.parseInt(properties[2]), properties[3], Double.parseDouble(properties[4]), Double.parseDouble(properties[5]));
             } catch (IOException e) {
-                e.printStackTrace();
+               return "Failure!";
             }
 
             list.add(port.getCoords().x);
@@ -54,7 +54,7 @@ public class PortManager {
             try {
                 port = new Port(properties[0],properties[1],Integer.parseInt(properties[2]),properties[3],Double.parseDouble(properties[4]),Double.parseDouble(properties[5]));
             } catch (IOException e) {
-                e.printStackTrace();
+                return "Failure!";
             }
 
             list.add(port.getCoords().x);
@@ -75,7 +75,7 @@ public class PortManager {
                 portTree.insert(port);
                 listPort.remove(port);
             } catch (IOException e) {
-                e.printStackTrace();
+                return "Failure!";
             }
         }
 
@@ -84,7 +84,7 @@ public class PortManager {
                 try {
                     portTree.insert(portAux);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    return "Failure!";
                 }
             }
         }

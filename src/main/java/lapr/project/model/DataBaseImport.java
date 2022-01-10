@@ -68,5 +68,14 @@ public class DataBaseImport {
     public MatrixGraph getMatrixGraph(){
         return matrixGraph;
     }
-    
+
+    public String colorMap(MatrixGraph matrixGraph) {
+
+        //Create list of Countries and Their Collors
+
+        return null;
+    }
+
+    public void setMatrixGraph(MatrixGraph instance) { matrixGraph =instance;
+    }
 }

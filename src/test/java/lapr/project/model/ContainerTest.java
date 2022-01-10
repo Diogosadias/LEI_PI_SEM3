@@ -61,19 +61,5 @@ public class ContainerTest {
 
     }
 
-    /**
-     * Tests to US312
-     */
-    @Test
-    public void testClientSprint3() throws IOException {
-        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        ClientController clientController=new ClientController();
-        Connection connection = mock(Connection.class);
 
-
-        String in ="10";
-        Scanner ou = new Scanner(clientController.searchPosition2(databaseConnection,null));
-        assertEquals(in,ou.nextLine());
-
-    }
 }

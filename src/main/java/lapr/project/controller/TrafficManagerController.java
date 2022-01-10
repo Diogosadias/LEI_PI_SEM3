@@ -78,9 +78,9 @@ public class TrafficManagerController {
 
     public File shipAvailableMonday(DatabaseConnection databaseConnection, String date1) throws IOException {
         File myObj = new File("Ship Next Monday.txt");
-        FileWriter myWriter = new FileWriter("Ship Next Monday.txt");
-        myWriter.write(search.nextMonday(databaseConnection,date1));
-        myWriter.close();
+        try (FileWriter myWriter = new FileWriter("Ship Next Monday.txt")) {
+            myWriter.write(search.nextMonday(databaseConnection,date1));
+        }
 
 
         return  myObj;
@@ -91,9 +91,9 @@ public class TrafficManagerController {
 
     public File closestPort(DatabaseConnection databaseConnection, String code3, String date) throws IOException {
         File myObj = new File("ClosestPort.txt");
-        FileWriter myWriter = new FileWriter("ClosestPort.txt");
-        myWriter.write(search.getClosestPort(databaseConnection,code3, date,this));
-        myWriter.close();
+        try (FileWriter myWriter = new FileWriter("ClosestPort.txt")) {
+            myWriter.write(search.getClosestPort(databaseConnection,code3, date,this));
+        }
 
 
         return  myObj;
@@ -101,22 +101,35 @@ public class TrafficManagerController {
 
     public File buildFreight(DatabaseConnection databaseConnection, int n) throws IOException {
         File myObj = new File("FreightNetwork.txt");
-        FileWriter myWriter = new FileWriter("FreightNetwork.txt");
-        myWriter.write(dataBaseImport.buildFreight(databaseConnection,n));
+        try (FileWriter myWriter = new FileWriter("FreightNetwork.txt")) {
+            myWriter.write(dataBaseImport.buildFreight(databaseConnection,n));
+        }
+
+
+        return  myObj;
+    }
+
+    public File colorTheMap() throws IOException {
+        File myObj = new File("MapRepresentation.txt");
+        try (FileWriter myWriter = new FileWriter("MapRepresentation.txt")) {
+            myWriter.write(dataBaseImport.colorMap(dataBaseImport.getMatrixGraph()));
+        }
+
+
+        return  myObj;
+    }
+
+
+    public File selectNPlaces(int n) throws IOException {
+        File myObj = new File("NPlaces.txt");
+        FileWriter myWriter = new FileWriter("NPlaces.txt");
+        myWriter.write(search.selectNPlaces(n, dataBaseImport.getMatrixGraph()));
         myWriter.close();
 
 
         return  myObj;
     }
 
-//    public File selectNPlaces(int n) throws IOException {
-//        File myObj = new File("NPlaces.txt");
-//        FileWriter myWriter = new FileWriter("NPlaces.txt");
-//        myWriter.write(search.selectNPlaces(n, dataBaseImport.getMatrixGraph(),this));
-//        myWriter.close();
-//
-//
-//        return  myObj;
-//    }
+
     
 }
