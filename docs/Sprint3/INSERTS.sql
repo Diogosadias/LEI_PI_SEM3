@@ -231,6 +231,13 @@ insert into Port(port_id, name, continent, country_name, location, latitude, lon
 insert into Port(port_id, name, continent, country_name, location, latitude, longitude, capacity) values(11115, 'port5', 'America', 'Canada','NewZealandPort', 54.89,48.11, 1800);
 insert into Port(port_id, name, continent, country_name, location, latitude, longitude, capacity) values(11116, 'port6', 'America', 'United States','FijiPort', -17.7133,178.065, 1500);
 
+insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(80, 'warehouse1', 'America', 'Canada','CanadaWarehouse', 800);
+insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(81, 'warehouse2', 'America', 'Brazil','BrazilWarehouse', 750);
+insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(82, 'warehouse3', 'Europe', 'Portugal','PortugalWarehouse', 1000);
+insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(83, 'warehouse4', 'Oceania', 'Australia','AustraliaWarehouse', 900);
+
+insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(1, 'warehouseTeste', 'America', 'USA','USAWarehouse', 5);
+
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(11, 33.2, 45.0, 55.0, '20GP', 1,11111,NULL);
 insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(12, 333.2, 455.0, 555.0, '20GP', 1,11111,NULL);
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(13, 33.2, 135.0, 255.0, '20T8', 1,11112,NULL);
@@ -249,8 +256,8 @@ insert into Container(container_id, payload, tare, gross, code_iso,client_id,por
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(803, 33.2, 45.0, 55.0, '20GP', 1,null,NULL);
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(804, 33.2, 45.0, 55.0, '20GP', 1,null,NULL);
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(805, 33.2, 45.0, 55.0, '20GP', 1,null,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(700, 33.2, 45.0, 55.0, '20GP', 1,null,1);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(701, 33.2, 45.0, 55.0, '20GP', 1,null,1);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(700, 33.2, 45.0, 55.0, '20GP', 1,null,80);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(701, 33.2, 45.0, 55.0, '20GP', 1,null,80);
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(702, 33.2, 45.0, 55.0, '20GP', 1,null,null);
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(703, 33.2, 45.0, 55.0, '20GP', 1,null,null);
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(704, 33.2, 45.0, 55.0, '20GP', 1,null,null);
@@ -318,14 +325,6 @@ insert into Truck(truck_id, description, driver_id) values(31, 'truck2', 11);
 
 insert into Trip_Truck(trip_id, truck_id) values(55, 30);
 insert into Trip_Truck(trip_id, truck_id) values(52, 31);
-
-
-insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(80, 'warehouse1', 'America', 'Canada','CanadaWarehouse', 800);
-insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(81, 'warehouse2', 'America', 'Brazil','BrazilWarehouse', 750);
-insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(82, 'warehouse3', 'Europe', 'Portugal','PortugalWarehouse', 1000);
-insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(83, 'warehouse4', 'Oceania', 'Australia','AustraliaWarehouse', 900);
-
-insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(1, 'warehouseTeste', 'America', 'USA','USAWarehouse', 5);
 
 insert into Role(role_id, name) values(1, 'Staff');
 insert into Role(role_id, name) values(2, 'Manager');

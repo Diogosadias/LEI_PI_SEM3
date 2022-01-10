@@ -308,8 +308,7 @@ alter table Border add constraint fk_border_country foreign key(Countryname) ref
 alter table Port_Sea_Distance add constraint fk_port_sea_port_id foreign key(port_id) references Port(port_id);
 alter table Port_Sea_Distance add constraint fk_port_sea_distance_id foreign key(sea_distance_id) references Sea_Distance(id);
 alter table Audit_Trail add constraint fk_audit_trail_container_id foreign key(container_id) references Container(container_id);
-alter table Audit_Trail add constraint fk_audit_trail_load_id foreign key(load_id) references Manifest_Load(manifest_load_id);
-alter table Audit_Trail add constraint fk_audit_trail_unload_id foreign key(unload_id) references Manifest_Unload(manifest_unload_id);
+
 --RESTRIÇÕES--
 
 ALTER TABLE Ship
