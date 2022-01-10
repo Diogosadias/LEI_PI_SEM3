@@ -33,9 +33,9 @@ DROP TABLE  Audit_Trail CASCADE CONSTRAINTS PURGE;
 --CRIAR AS TABELAS--
 create table Container(
 container_id integer,
-payload float,
-tare float,
-gross float,
+payload float NOT NULL,
+tare float NOT NULL,
+gross float NOT NULL,
 code_iso varchar(100),
 client_id integer,
 port_id integer,
@@ -44,10 +44,10 @@ warehouse_id integer
 
 create table Client(
 client_id integer,
-email varchar(100),
-nif integer UNIQUE,
-address varchar(100),
-phone_number varchar(9) UNIQUE
+email varchar(100) NOT NULL,
+nif integer UNIQUE NOT NULL,
+address varchar(100) NOT NULL,
+phone_number varchar(9) UNIQUE NOT NULL
 );
 
 create table Container_Trip(
@@ -55,9 +55,9 @@ container_id integer,
 trip_id integer,
 manifest_load integer,
 manifest_unload integer,
-x_coord integer,
-y_coord integer,
-z_coord integer
+x_coord integer NOT NULL,
+y_coord integer NOT NULL,
+z_coord integer NOT NULL
 );
  
 create table ISO_Code(
@@ -66,16 +66,16 @@ description varchar(100)
 );
 
 create table Refrigerated_Container(
-temperature float,
+temperature float NOT NULL,
 container_id integer
 );
 
 
 create table Trip(
 trip_id integer,
-origin varchar(100),
-destination varchar(100),
-base_date_time_origin varchar(255)
+origin varchar(100) NOT NULL,
+destination varchar(100) NOT NULL,
+base_date_time_origin varchar(255) NOT NULL
 );
 
 create table Trip_Truck(
@@ -91,10 +91,10 @@ ship_mmsi integer
 create table Warehouse(
 warehouse_id integer,
 name varchar(100),
-continente varchar(100),
-country varchar(100),
-location varchar(100),
-capacity integer
+continente varchar(100) NOT NULL,
+country varchar(100) NOT NULL,
+location varchar(100) NOT NULL,
+capacity integer NOT NULL
 );
 
 create table Warehouse_Employee(
@@ -110,19 +110,19 @@ driver_id integer
 
 create table Driver(
 driver_id integer,
-name varchar(100)
+name varchar(100) NOT NULL
 );
 
 create table Ship(
 mmsi integer,
 name varchar(100),
-imo_number varchar(100) UNIQUE,
+imo_number varchar(100) UNIQUE NOT NULL,
 generator_amount float,
 power_output float,
 callSign varchar(100) UNIQUE,
 lenght integer,
 width integer,
-capacity float,
+capacity float NOT NULL,
 --fk
 ship_type_id integer,
 fleet_id integer,
@@ -131,8 +131,8 @@ captain_id integer
 
 create table Ship_Status(
 base_date_time varchar(100),
-latitude float,
-longitude float,
+latitude float NOT NULL,
+longitude float NOT NULL,
 sog float,
 cog float,
 heading integer,
@@ -142,12 +142,12 @@ ship_mmsi integer
 
 create table Manifest_Unload(
 manifest_unload_id integer,
-base_date_time varchar(100)
+base_date_time varchar(100) NOT NULL
 );
 
 create table Manifest_Load(
 manifest_load_id integer,
-base_date_time varchar(100),
+base_date_time varchar(100) NOT NULL,
 container_gross_weight float
 );
 
@@ -166,10 +166,10 @@ create table Employee(
 employee_id integer,
 manager_id integer,
 role_id integer,
-email varchar(100),
-name varchar(100),
-phone_number varchar(9) UNIQUE,
-address varchar(100)
+email varchar(100) NOT NULL,
+name varchar(100) NOT NULL,
+phone_number varchar(9) UNIQUE NOT NULL,
+address varchar(100) NOT NULL
 );
 
 create table Role(
@@ -184,20 +184,20 @@ description varchar(100)
 
 create table Captain(
 captain_id integer,
-name varchar(100),
-phone_number varchar(9) UNIQUE,
-email varchar(100)
+name varchar(100) NOT NULL,
+phone_number varchar(9) UNIQUE NOT NULL,
+email varchar(100) NOT NULL
 );
 
 create table Port(
 port_id integer,
 name varchar(100),
-continent varchar(100),
-country_name varchar(100),
-location varchar(100),
-latitude float,
-longitude float,
-capacity integer
+continent varchar(100) NOT NULL,
+country_name varchar(100) NOT NULL,
+location varchar(100) NOT NULL,
+latitude float NOT NULL,
+longitude float NOT NULL,
+capacity integer NOT NULL
 );
 
 create table Port_Employee(
@@ -214,11 +214,11 @@ create table Country(
 name varchar(100),
 alpha2_code varchar(100),
 alpha3_code varchar(100),
-continent varchar(100),
-population float,
-capital varchar(100),
-latitude float,
-longitude float
+continent varchar(100) NOT NULL,
+population float NOT NULL,
+capital varchar(100) NOT NULL,
+latitude float NOT NULL,
+longitude float NOT NULL
 );
 
 create table Border(
