@@ -1,0 +1,2 @@
+--é suposto dar erro porque o número de contentores nessa viagem é 6 e a capacidade do navio é 5
+insert into Trip_Ship(trip_id, ship_mmsi) values(60, 111111111);
