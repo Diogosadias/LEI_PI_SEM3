@@ -332,6 +332,62 @@ public class GraphTest {
         assertTrue(instance.vertex(7) instanceof Port);
 
         assertEquals(instance,dataBaseImport.getMatrixGraph());
+        MatrixGraph i = instance.clone();
+        i.removeVertex(c);
+        dataBaseImport.setMatrixGraph(i);
+        assertEquals(dataBaseImport.getMatrixGraph(),i);
+
+    }
+
+    /**
+     * Test GetPathAverage
+     */
+    @Test
+    public void testAverage() throws IOException {
+
+        List<Port> listPorts = new ArrayList<>();
+        List<City> listCities = new ArrayList<>();
+        TreeMap<String,List<String>> borders = new TreeMap<>();
+        TreeMap<String,List<Pair<String,Double>>> seadist = new TreeMap<>();
+        for(int i = 0; i<listAux.length;i++){
+            listPorts.add(new Port("Europe",listAux2[i],i,listAux[i],Double.valueOf(i),Double.valueOf(i)));
+            listCities.add(new City(listAux[i],listCont[i],new Point2D.Double(i,i) ));
+        }
+        for(int i = 0; i<listAux.length-1;i++){
+            borders.put(listAux[i], Collections.singletonList(listAux[i + 1]));
+        }
+        List<String> list = borders.get(listAux[2]);
+        borders.put(listAux[2],list);
+        List<Pair<String,Double>> listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Berlin",20.0));
+        listAu.add(new Pair<String,Double>("London",20.0));
+        seadist.put("Lisboa",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Madrid",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Berlin",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("London",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Madrid",listAu);
+        City c = new City("Brazil","Rio de Janeiro",new Point2D.Double(20.0,20.0));
+        listCities.add(c);
+        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+
+        DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
+        instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,0);
+
+
+        assertEquals(instance.getContinents().size(),2);
+        assertEquals(instance.getContinents().get(1),"Europe");
+
+        instance.operatechanges("Europe");
+        assertFalse(instance.validVertex(c));
+
+
+
 
     }
 }

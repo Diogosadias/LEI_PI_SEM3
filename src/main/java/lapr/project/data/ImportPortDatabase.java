@@ -48,9 +48,8 @@ public class ImportPortDatabase {
     }
 
     private void insertPortOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
-                "insert into Port(port_id, continent, country, location, latitude, longitude) values (?, ?, ?, ?, ?, ?)";
+                "insert into Port(port_id, continent, country_name, location, latitude, longitude) values (?, ?, ?, ?, ?, ?)";
 
         executePortStatementOnDatabase(databaseConnection, port,
                 sqlCommand);
@@ -58,9 +57,8 @@ public class ImportPortDatabase {
 
     private void updatePortOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
 
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
-                "update Port set port_id=?, continent=?, country=?, location=?, latitude=?, longitude=?";
+                "update Port set port_id=?, continent=?, country_name=?, location=?, latitude=?, longitude=?";
 
         executePortStatementOnDatabase(databaseConnection, port,
                 sqlCommand);
@@ -146,29 +144,29 @@ public class ImportPortDatabase {
         Connection connection = databaseConnection.getConnection();
 
         PreparedStatement getPorts = connection.prepareStatement(sqlCommand);
-        ResultSet rs = getPorts.executeQuery();
-
         // Get the result table from the query
-        while (rs.next()) {
-            code = rs.getInt(1);
-            cont = rs.getString(3);
-            country = rs.getString(4);
-            location = rs.getString(5);
-            lat = rs.getDouble(6);
-            lon = rs.getDouble(7);
-            Port port =null;
-            try {
-                port = new Port(cont,country,code,location,lat,lon);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                portTree.insert(port, new Point2D.Double(lat,lon));
-            } catch (IOException e) {
-                e.printStackTrace();
+        try (ResultSet rs = getPorts.executeQuery()) {
+            // Get the result table from the query
+            while (rs.next()) {
+                code = rs.getInt(1);
+                cont = rs.getString(3);
+                country = rs.getString(4);
+                location = rs.getString(5);
+                lat = rs.getDouble(6);
+                lon = rs.getDouble(7);
+                Port port =null;
+                try {
+                    port = new Port(cont,country,code,location,lat,lon);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    portTree.insert(port, new Point2D.Double(lat,lon));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        rs.close();
 
         return portTree;
     }
@@ -205,19 +203,19 @@ public class ImportPortDatabase {
         Connection connection = databaseConnection.getConnection();
 
         PreparedStatement getCities = connection.prepareStatement(sqlCommand);
-        ResultSet rs = getCities.executeQuery();
-
         // Get the result table from the query
-        while (rs.next()) {
-            name = rs.getString(6);
-            cont = rs.getString(4);
-            country = rs.getString(1);
-            lat = rs.getDouble(7);
-            lon = rs.getDouble(8);
-            City city = new City(name,country,cont, new Point2D.Double(lat,lon));
-            listCity.add(city);
+        try (ResultSet rs = getCities.executeQuery()) {
+            // Get the result table from the query
+            while (rs.next()) {
+                name = rs.getString(6);
+                cont = rs.getString(4);
+                country = rs.getString(1);
+                lat = rs.getDouble(7);
+                lon = rs.getDouble(8);
+                City city = new City(name,country,cont, new Point2D.Double(lat,lon));
+                listCity.add(city);
+            }
         }
-        rs.close();                       
 
         return listCity;
     }
@@ -251,20 +249,20 @@ public class ImportPortDatabase {
         Connection connection = databaseConnection.getConnection();
 
         PreparedStatement getBorders = connection.prepareStatement(sqlCommand);
-        ResultSet rs = getBorders.executeQuery();
-
         // Get the result table from the query
-        while (rs.next()) {
-            country1 = rs.getString(1);
-            country2 = rs.getString(2);
-            List<String> list = new ArrayList<>();
-            if(borders.containsKey(country1)) {
-                list = borders.get(country1);
+        try (ResultSet rs = getBorders.executeQuery()) {
+            // Get the result table from the query
+            while (rs.next()) {
+                country1 = rs.getString(1);
+                country2 = rs.getString(2);
+                List<String> list = new ArrayList<>();
+                if(borders.containsKey(country1)) {
+                    list = borders.get(country1);
+                }
+                list.add(country2);
+                borders.put(country1, list);
             }
-            list.add(country2);
-            borders.put(country1, list);
         }
-        rs.close();
 
         return borders;
     }
@@ -299,21 +297,21 @@ public class ImportPortDatabase {
         Connection connection = databaseConnection.getConnection();
 
         PreparedStatement getDist = connection.prepareStatement(sqlCommand);
-        ResultSet rs = getDist.executeQuery();
-
         // Get the result table from the query
-        while (rs.next()) {
-            port1 = rs.getString(1);
-            port2 = rs.getString(2);
-            dist = rs.getDouble(3);
-            List<Pair<String, Double>> list = new ArrayList<>();
-            if(seadist.containsKey(port1)) {
-                list = seadist.get(port1);
+        try (ResultSet rs = getDist.executeQuery()) {
+            // Get the result table from the query
+            while (rs.next()) {
+                port1 = rs.getString(1);
+                port2 = rs.getString(2);
+                dist = rs.getDouble(3);
+                List<Pair<String, Double>> list = new ArrayList<>();
+                if(seadist.containsKey(port1)) {
+                    list = seadist.get(port1);
+                }
+                list.add(new Pair<>(port2,dist));
+                seadist.put(port1, list);
             }
-            list.add(new Pair<>(port2,dist));
-            seadist.put(port1, list);
         }
-        rs.close();
 
         return seadist;
     }

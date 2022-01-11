@@ -24,9 +24,9 @@ public class PortManagerController {
 
     public File importPort(Object o) throws IOException {
         File myObj = new File("importResult.txt");
-        FileWriter myWriter = new FileWriter("importResult.txt");
-        myWriter.write(portManager.importPort(o));
-        myWriter.close();
+        try (FileWriter myWriter = new FileWriter("importResult.txt")) {
+            myWriter.write(portManager.importPort(o));
+        }
         
 
         return  myObj;
@@ -70,9 +70,9 @@ public class PortManagerController {
 
     public File mapResources(DatabaseConnection databaseConnection) throws IOException {
         File myObj = new File("MapResources.txt");
-        FileWriter myWriter = new FileWriter("MapResources.txt");
-        myWriter.write(portManager.mapResources(databaseConnection));
-        myWriter.close();
+        try (FileWriter myWriter = new FileWriter("MapResources.txt")) {
+            myWriter.write(portManager.mapResources(databaseConnection));
+        }
 
 
         return  myObj;

@@ -308,9 +308,9 @@ public class SearchTest {
         assertEquals(search.summary("1234588",main),result);
 
     }
-     @Test
-    public void testSelectNPlaces() {
- String result = "Invalid N Value!";
- assertEquals(search.selectNPlaces(0,null,main),result);
-}
+//     @Test
+//    public void testSelectNPlaces() {
+// String result = "Invalid N Value!";
+// assertEquals(search.selectNPlaces(0,null,main),result);
+//}
 }

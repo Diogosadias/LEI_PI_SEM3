@@ -1,0 +1,5 @@
+--ir inserindo até dar erro
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(703,52,null,10, 10, 10, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(704,52,null,10, 10, 10, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(705,52,null,10, 10, 10, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(706,52,null,10, 10, 10, 10);

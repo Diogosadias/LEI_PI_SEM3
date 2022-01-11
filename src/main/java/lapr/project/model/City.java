@@ -16,7 +16,7 @@ public class City {
     public City(String name,String country,Point2D.Double coords){
         this.name = name;
         this.country=country;
-        this.cont = null;
+        this.cont = "null";
         this.coords=coords;
     }
 
@@ -57,5 +57,12 @@ public class City {
 
     public void setCont(String cont) {
         this.cont = cont;
+    }
+
+    public String toString(){
+        return "City [Name - "+name+ " ]" +
+                "\n\t" + cont +
+                "\n\t" + country +
+                "\n[ " + coords.x + " ; " + coords.y + " ]";
     }
 }

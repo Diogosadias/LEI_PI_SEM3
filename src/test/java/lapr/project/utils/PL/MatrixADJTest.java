@@ -610,15 +610,6 @@ public class MatrixADJTest {
 
 
     }
-     @Test
-    public void testNClosestPlaces() throws IOException{
-        String s ="Not enough places in this continent!";
-     try{
-            instance.nClosestPlaces(5000);
-        } catch (IOException ex){
-            System.out.println(s);
-        }
- 
-}
+
     
 }

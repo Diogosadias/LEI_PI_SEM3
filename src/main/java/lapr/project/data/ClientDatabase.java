@@ -5,58 +5,49 @@ import lapr.project.model.Port;
 import lapr.project.model.PortTree;
 import lapr.project.model.Ship;
 
-import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ClientDatabase {
-    public Object searchPosition(DatabaseConnection databaseConnection, String code, Object object) {
+    public Object searchPosition(DatabaseConnection databaseConnection,String clientId, String code, Object object) {
 
         try {
-            object = getPosition(databaseConnection, code);
+            object = executeClientStatment(databaseConnection,clientId, code);
 
 
         } catch (SQLException ex) {
-            Logger.getLogger(PortTree.class.getName())
+            if(ex.getMessage().startsWith("ORA-20001: ERROR CODE 10")) object = "10";
+            if(ex.getMessage().startsWith("ORA-20001: ERROR CODE 11")) object = "11";
+            Logger.getLogger(ClientDatabase.class.getName())
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
-            object = null;
         }
         return object;
     }
 
-    private Object getPosition(DatabaseConnection databaseConnection, String code) throws SQLException {
-        if (isContainerOnDatabase(databaseConnection, code)) {
-            return getContainerPos(databaseConnection, code);
-        } else {
-            return null;
-        }
-    }
 
-    private Object getContainerPos(DatabaseConnection databaseConnection, String code) throws SQLException {
-        return executeClientStatment(databaseConnection,code);
-    }
 
-    private Object executeClientStatment(DatabaseConnection databaseConnection, String containercode) throws SQLException {
+    private Object executeClientStatment(DatabaseConnection databaseConnection,String clientId, String containercode) throws SQLException {
         Object object =null;
         Connection connection = databaseConnection.getConnection();
 
-        CallableStatement cstmt = connection.prepareCall("{? = call currentSituationOfAContainer(?)}"); //Redo this call
+        CallableStatement cstmt = connection.prepareCall("{? = call getCurrentSituationOfContainer(?,?)}");
         cstmt.registerOutParameter(1, Types.VARCHAR);
-        cstmt.setInt(2, Integer.parseInt(containercode));
+        cstmt.setInt(2, Integer.parseInt(clientId));
+        cstmt.setInt(3, Integer.parseInt(containercode));
         cstmt.executeUpdate();
         String rs = cstmt.getString(1);
         if(rs==null) return object;
 
         while (rs.length()!=0) {
             String testShip = rs.substring(0, 4);
-            if (testShip == "SHIP") {
-                Ship s = getShipFromDatabase(databaseConnection, rs.substring(4));
+            if (testShip.equals("SHIP")) {
+                Ship s = getShipFromDatabase(databaseConnection, rs.substring(5));
                 object = s;
                 break;
-            } else if (testShip == "PORT") {
+            } else if (testShip.equals("PORT")) {
                 Port p = getPortFromDatabase(databaseConnection, rs.substring(5));
                 object = p;
                 break;
@@ -85,29 +76,29 @@ public class ClientDatabase {
 
         getClientsPreparedStatement.setString(1, location);
 
-        ResultSet rs = getClientsPreparedStatement.executeQuery();
-        while (rs.next()) {
-            Integer port_id = rs.getInt(1);
-            cont = rs.getString(3);
-            country = rs.getString(4);
-            location = rs.getString(5);
-            lat = rs.getDouble(6);
-            lon = rs.getDouble(7);
-            try {
-                port = new Port(cont,country,port_id,location,lat,lon);
-            } catch (IOException e) {
-                e.printStackTrace();
+        try (ResultSet rs = getClientsPreparedStatement.executeQuery()) {
+            while (rs.next()) {
+                Integer portId = rs.getInt(1);
+                cont = rs.getString(3);
+                country = rs.getString(4);
+                location = rs.getString(5);
+                lat = rs.getDouble(6);
+                lon = rs.getDouble(7);
+                try {
+                    port = new Port(cont,country,portId,location,lat,lon);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                
             }
-
         }
-        rs.close();
 
         return port;
     }
 
     private Ship getShipFromDatabase(DatabaseConnection databaseConnection, String shipName) throws SQLException {
         Integer mmsi;
-        String IMO;
+        String imo;
         String callSign;
         int vesselType ;
         int length;
@@ -124,50 +115,25 @@ public class ClientDatabase {
 
         getClientsPreparedStatement.setString(1, shipName);
 
-        ResultSet rs = getClientsPreparedStatement.executeQuery();
-        while (rs.next()) {
-            mmsi = rs.getInt(1);
-            IMO = rs.getString(3);
-            String vesselName = shipName;
-            callSign = rs.getString(6);
-            vesselType = rs.getInt(10) ;
-            length = rs.getInt(7);
-            width = rs.getInt(8);
-            draft = Double.parseDouble(null); //replace by access
-            cargo = null; //replace by access
-            ship = new Ship(mmsi.toString(),vesselName,IMO,callSign,vesselType,length,width,draft,cargo);
-
+        try (ResultSet rs = getClientsPreparedStatement.executeQuery()) {
+            while (rs.next()) {
+                mmsi = rs.getInt(1);
+                imo = rs.getString(3);
+                String vesselName = shipName;
+                callSign = rs.getString(6);
+                vesselType = rs.getInt(10) ;
+                length = rs.getInt(7);
+                width = rs.getInt(8);
+                draft = 0.0; //replace by access
+                cargo = null; //replace by access
+                ship = new Ship(mmsi.toString(),vesselName,imo,callSign,vesselType,length,width,draft,cargo);
+            }
+            // Close the ResultSet                 4
         }
-        rs.close();                       // Close the ResultSet                 4
 
         return ship;
     }
 
-    private boolean isContainerOnDatabase(DatabaseConnection databaseConnection, String code) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
 
-        boolean isContainer = false;
 
-        String sqlCommand = "Select * From container where container_id =  ?";
-
-        PreparedStatement getClientsPreparedStatement =
-                connection.prepareStatement(sqlCommand);
-
-        getClientsPreparedStatement.setInt(1, Integer.parseInt(code));
-
-        try (ResultSet clientsResultSet = getClientsPreparedStatement.executeQuery()) {
-
-            if (clientsResultSet.next()) {
-                // if client already exists in the database
-                isContainer = true;
-            } else {
-
-                // if client does not exist in the database
-                isContainer = false;
-            }
-        } catch (SQLException ex){
-            isContainer = false;
-        }
-        return isContainer;
-    }
 }

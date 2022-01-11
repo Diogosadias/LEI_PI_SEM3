@@ -95,10 +95,10 @@ public class TrafficManagerUI {
                 trafficManagerController.buildFreight(databaseConnection, nConnections);
                 break;
             case "11":
-                //trafficManagerController.colorTheMap();
+                trafficManagerController.colorTheMap();
                 break;
             case "12":
-//                trafficManagerController.selectNPlaces(n);
+                trafficManagerController.selectNPlaces(n);
                 break;
             case "E":
                 flag = false;
