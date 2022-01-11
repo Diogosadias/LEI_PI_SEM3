@@ -43,4 +43,12 @@ WHEN OTHERS THEN
 END;
 /
 
+--Manifest 55 tem 2 Containers no Ship 999999999--
 SELECT checkShipsOccupancyRate(999999999, 55) FROM DUAL;
+--Manifest 55 tem 1 Container no Ship 999999999--
+SELECT checkShipsOccupancyRate(999999999, 56) FROM DUAL;
+--Manifest 57 tem 3 Containers no Ship 999999999--
+SELECT checkShipsOccupancyRate(999999999, 57) FROM DUAL;
+--Manifest 58 tem 3 Containers no Ship 999999999--
+SELECT checkShipsOccupancyRate(999999999, 58) FROM DUAL;
+--Navio 999999999 100% preenchido dado que a sua capacity é de 10 containers--

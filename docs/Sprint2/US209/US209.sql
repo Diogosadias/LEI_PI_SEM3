@@ -34,4 +34,7 @@ WHEN OTHERS THEN
 END;
 /
 
+--Navio 999999999 estava 100% ocupado no dia 31 de Janeiro de 2019--
 SELECT checkOccupancyRateMoment(999999999,'31/01/2019 17:19') FROM DUAL;
+--Navio 999999999 estava 0% ocupado no dia 31 de Janeiro de 2020--
+SELECT checkOccupancyRateMoment(999999999,'31/01/2020 17:19') FROM DUAL;

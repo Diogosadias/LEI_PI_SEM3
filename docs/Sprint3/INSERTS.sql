@@ -298,7 +298,13 @@ insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x
 insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(12,50,70,null, 1, 5, 10);
 insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(13,50,70,55, 5, 2, 1);
 insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(14,50,70,null, 5, 5, 10);
-
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(15,50,70,56, 5, 5, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(16,50,70,57, 5, 5, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(17,50,70,57, 5, 5, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(18,50,70,57, 5, 5, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(19,50,70,58, 5, 5, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(20,50,70,58, 5, 5, 10);
+insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(21,50,70,58, 5, 5, 10);
 
 insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(15,51,71,null, 10, 10, 10);
 insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(17,51,71,null, 1, 5, 10);
@@ -375,12 +381,12 @@ insert into Ship_Type(type_id, description) values(1, 'Brigue');
 insert into Ship_Type(type_id, description) values(2, 'Fragata');
 insert into Ship_Type(type_id, description) values(3, 'Nau');
 
-insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(999999999,'ship1','IMO2345699',78.90,50,'X4SQ2', 166,25,9.5, 1, 40, 90);
+insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(999999999,'ship1','IMO2345699',78.90,50,'X4SQ2', 166,25,10, 1, 40, 90);
 insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(888888888,'ship2','IMO2347790',80.90,70,'Y4SW2', 176,35,10.5, 2, 41, 91);
 insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(111111111,'shipTeste','IMO2345698',78.90,50,'X2SQ2', 166,25,5, 1, 40, 90);
 
 insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('31/01/2019 17:19', -66.97001,12.9,13.1,355,300,'B', 999999999);
-insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('31/01/2019 23:19', -30.97001,30.9,15.1,370,300,'B', 999999999);
+--insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('31/01/2019 23:19', -30.97001,30.9,15.1,370,300,'B', 999999999);
 insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('06/12/2021 23:19', -30.97001,30.9,15.1,370,300,'B', 999999999);
 insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('2021.12.06 22:58', -30.97001,30.9,15.1,370,300,'B', 999999999);
 insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('2021.12.06', -30.97001,30.9,15.1,370,300,'B', 999999999);
