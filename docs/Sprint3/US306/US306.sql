@@ -6,14 +6,17 @@ IS
    occupancy FLOAT;
 
 BEGIN
+    --Loop que vai correr todos os warehouses--
     FOR warehouse_rec IN(SELECT warehouse_id FROM Warehouse) 
     LOOP
-    
+        
+        --Vai buscar a contagem de containers em cada warehouse--
         SELECT COUNT(container_id)
         INTO container_count
         FROM Container
         WHERE warehouse_id = warehouse_rec.warehouse_id;
         
+        --Vai buscar a capacity de cada warehouse--
         SELECT capacity
         INTO warehouse_capacity 
         FROM Warehouse 
@@ -22,6 +25,7 @@ BEGIN
         occupancy := (container_count/warehouse_capacity)*100;
         dbms_output.put_line('The occupancy rate of the warehouse ' || warehouse_rec.warehouse_id || ' is: ' || occupancy || '%');
         
+        --Para cada warehouse vai buscar os containers que vão sair nos próximos 30 dias--
         FOR CUR_VAR IN(
         SELECT container_id 
         FROM Container 

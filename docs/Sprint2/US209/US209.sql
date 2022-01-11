@@ -7,9 +7,9 @@ IS
    rate NUMBER;
    rateResult FLOAT;
 
-
+    --Cursor que guarda o conjunto de manifests associados a navios que circularam no momento pedido-- 
    CURSOR c1 is
-   SELECT manifest_unload_id FROM Manifest_Unload WHERE manifest_unload_id IN (SELECT manifest_unload FROM Container_Trip WHERE container_id IN (SELECT container_id FROM Trip WHERE trip_id
+   SELECT manifest_unload_id FROM Manifest_Unload WHERE manifest_unload_id IN (SELECT manifest_unload FROM Container_Trip WHERE trip_id IN (SELECT trip_id FROM Trip WHERE trip_id
    IN (SELECT trip_id FROM Trip_Ship WHERE ship_mmsi IN (SELECT mmsi FROM Ship WHERE mmsi IN (SELECT ship_mmsi FROM Ship_Status WHERE base_date_time = p_moment)))));
 
 BEGIN
@@ -18,6 +18,7 @@ BEGIN
    LOOP
    fetch c1 into l_manifest;
     exit when c1%NOTFOUND;
+    --Verificar a occupancy rate de cada manifest no navio na data pedida e faz a soma total--
     rate:=checkShipsOccupancyRate(p_ship_id,l_manifest);
     rateResult := rateResult + rate;
 
