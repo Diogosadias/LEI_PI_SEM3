@@ -31,6 +31,9 @@ public class ShipCaptainUI {
                     "\n3 - Yearly Manifest Information" +
                     "\n4 - Occupancy Rate" +
                     "\n5 - Occupancy Rate at Given Time" +
+                    "\n6 - Search for Vessel Types" +
+                    "\n7 - Determine Center of Mass" +
+                    "\n8 - Get Sink Measure" +
                     "\nE - Exit");
 
             String inputString = scanner.nextLine();
@@ -49,6 +52,15 @@ public class ShipCaptainUI {
                     break;
                 case "5":
                     shipCaptainController.occupancyrateTime(databaseConnection,ship_id,date);
+                    break;
+                case "6":
+                    //shipCaptainController.searchVesselTypes(databaseConnection,ship_id,date);
+                    break;
+                case "7":
+                    //shipCaptainController.determineMassCenter(databaseConnection,ship_id,date);
+                    break;
+                case "8":
+                    //shipCaptainController.sinkMeasure(databaseConnection,ship_id,date);
                     break;
                 case "E":
                     flag = false;

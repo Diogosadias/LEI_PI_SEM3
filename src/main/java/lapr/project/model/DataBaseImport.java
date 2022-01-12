@@ -45,7 +45,7 @@ public class DataBaseImport {
 
         if(matrixGraph.vertices().size()==0) return "Database has no data!";
 
-        return matrixGraph.toString() + "\n\nGraph was Built";
+        return matrixGraph.toString() +"\n" + matrixGraph.numEdges()  + "\n\nGraph was Built";
     }
 
     public MatrixGraph buildGraph(List<Port> listPorts, List<City> listCity, TreeMap<String, List<String>> borders, TreeMap<String, List<Pair<String, Double>>> seadist,int n) throws IOException {

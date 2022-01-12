@@ -23,6 +23,8 @@ public class PortManagerUI {
                     "\nPlease Select the task from the following:" +
                     "\n1 - Import Ports" +
                     "\n2 - Map Occupation Resources" +
+                    "\n3 - Generate Report to Check Resources" +
+                    "\n4 - Develop Data Model" +
                     "\nE - Exit");
 
             String inputString = scanner.nextLine();
@@ -36,6 +38,12 @@ public class PortManagerUI {
                     break;
                 case "2":
                     portManagerController.mapResources(databaseConnection);
+                    break;
+                case "3":
+                    //portManagerController.generateReport(databaseConnection);
+                    break;
+                case "4":
+                    //portManagerController.developModel(databaseConnection);
                     break;
                 case "E":
                     flag = false;

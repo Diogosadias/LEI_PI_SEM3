@@ -60,7 +60,7 @@ class Main {
                 "\n3 - Ship Captain" +
                 "\n4 - Client" +
                 "\n5 - Port Staff" +
-                "\n6 - Other" +
+                "\n6 - Fleet Manager" +
                 "\nE - Exit");
 
         String inputString = scanner.nextLine();
@@ -85,6 +85,8 @@ class Main {
                 portStaffUI.runUI();
                 break;
             case "6":
+                FleetManagerUI fleetManagerUI = new FleetManagerUI();
+                fleetManagerUI.runUI();
                 break;
             case "E":
                 flag = false;

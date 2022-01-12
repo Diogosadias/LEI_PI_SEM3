@@ -52,6 +52,9 @@ public class TrafficManagerUI {
                 "\n10 - Build Freight" +
                 "\n11 - Color Map" +
                 "\n12 - Select N Closest Places" +
+                "\n13 - Get N Critical Ports" +
+                "\n14 - Get Shortest Path Between 2 Places" +
+                "\n15 - Get Most Efficient Circuit" +
                 "\nE - Exit");
 
         String inputString = scanner.nextLine();
@@ -99,6 +102,18 @@ public class TrafficManagerUI {
                 break;
             case "12":
                 trafficManagerController.selectNPlaces(n);
+                break;
+            case "13":
+                //trafficManagerController.criticalPorts(n);
+                break;
+            case "14":
+                //trafficManagerController.getPaths(land,land2); //only land
+                //trafficManagerController.getPaths(port,port2);  //only sea
+                //trafficManagerController.getPaths(land,port); //only land
+                //trafficManagerController.getPaths(land,port2); //both
+                break;
+            case "15":
+                //trafficManagerController.findCircuit(land);
                 break;
             case "E":
                 flag = false;
