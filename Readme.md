@@ -219,9 +219,24 @@ We need to Test:
 * if the weigh is well-placed
 
 **Tests should be done to basic Structure and Replicated with the Objects needed!**
-    
 
 
+
+
+##US402 <a name="us402"></a>
+###Analysis
+![US402-SSD](docs/Sprint4/US402/US402-SSD.svg)
+![US402-MD](docs/Sprint4/US402/US402-MD.svg)
+###Design
+![US402-SD](docs/Sprint4/US402/US402-SD.svg)
+![US402-CD](docs/Sprint4/US402/US402-CD.svg)
+###Implementation
+
+* It's necessary to verify if locals are in the graph.
+* It's necessary to get the shortest path of graph - FloydWarshall
+* After getting the shortest path - Verify if path goes only through ports (maritime), only through cities (land) or both.
+
+####Test Description
 
 
 
