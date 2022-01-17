@@ -262,7 +262,36 @@ To verify which ports have great centrality, I need to verify certain conditions
 
 ####Test Description
 
+---
 
+##US403 <a name="us403"></a>
+###Analysis
+![US403-SSD](docs/Sprint4/US403/US403-SSD.svg)
+![US403-MD](docs/Sprint4/US403/US403-MD.svg)
+###Design
+![US403-SD](docs/Sprint4/US403/US403-SD.svg)
+![US403-CD](docs/Sprint4/US403/US403-CD.svg)
+###Implementation
+
+From a given location i want to obtain the most efficient circuit that visits the most locations only once and has the shortest path. For this i will have to create the java representation of one of the studied circuit algorithms.
+The characteristics of this graph are :
+* Weighed and Undirected
+
+
+The best way to detect this kind of Cycle can be a changed ColorDFS algorithm. This way we will detect all circuits of the graph. 
+In order to compare the different circuits to choose the best we can :
+* From a graph list all circuits that start in a vertex. ColorDFS - Changed
+* Compare the results by the parameters given :
+    * Number of locations, besides first-last
+    * the shortest distance
+
+####Test Description
+
+* Firstly, we need to check if all the circuits (following conditions) possible are being created
+* Secondly, we need to test if the comparison is being made correctly - test both conditions
+
+
+---
 ##US418 <a name="us418"></a>
 ###Analysis
 ![US418-SSD](docs/Sprint4/US418/US418-SSD.svg)
