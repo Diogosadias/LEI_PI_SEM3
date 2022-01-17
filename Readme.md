@@ -290,6 +290,21 @@ In order to compare the different circuits to choose the best we can :
 * Firstly, we need to check if all the circuits (following conditions) possible are being created
 * Secondly, we need to test if the comparison is being made correctly - test both conditions
 
+---
+##US417 <a name="us417"></a>
+###Analysis
+![US417-SSD](docs/Sprint4/US417/US417-SSD.svg)
+![US417-MD](docs/Sprint4/US417/US417-DM.svg)
+###Design
+![US417-SD](docs/Sprint4/US417/US417-SD.svg)
+![US417-CD](docs/Sprint4/US417/US417-CD.svg)
+###Implementation
+
+I want to print information about at least 3 different vessels depending on the type of cargo given.
+Analyse the types of vessels in the database and find the better suited according to the info provided:
+
+
+####Test Description
 
 ---
 ##US418 <a name="us418"></a>
