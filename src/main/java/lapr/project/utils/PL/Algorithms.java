@@ -156,16 +156,7 @@ public class Algorithms {
      * @param pathKeys minimum path vertices keys
      * @param path stack with the minimum path (correct order)
      */
-   /**
-     * Extracts from pathKeys the minimum path between voInf and vdInf
-     * The path is constructed from the end to the beginning
-     *
-     * @param g        Graph instance
-     * @param vOrig    information of the Vertex origin
-     * @param vDest    information of the Vertex destination
-     * @param pathKeys minimum path vertices keys
-     * @param path     stack with the minimum path (correct order)
-     */
+
     private static <V, E> void getPath(Graph<V, E> g, V vOrig, V vDest, V [] pathKeys, LinkedList<V> path) {
         if (vOrig.equals(vDest)) {
             path.push(vOrig);

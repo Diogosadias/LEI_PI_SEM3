@@ -1,6 +1,5 @@
 package lapr.project.utils.PL;
 
-import lapr.project.model.PortTree;
 import oracle.ucp.util.Pair;
 import lapr.project.model.City;
 import lapr.project.model.Port;
@@ -543,5 +542,31 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
             }
         }
         return matrix;
+    }
+
+
+    public List<Port> getGreaterList(Double[][] doubles, int i) {
+        List<Port> list = new ArrayList<>();
+        int counter = 0;
+        for(Object v : vertices()){
+            if(v instanceof Port){
+                list.add((Port) v);
+                counter++;
+                if(counter>=i) break;
+            }
+        }
+
+
+        return list;
+    }
+
+    public MatrixGraph applyDijkstra() {
+        MatrixGraph matrixGraph = new MatrixGraph(false);
+
+        for(Object v : vertices()){
+            //calculate shortest paths
+        }
+
+        return matrixGraph;
     }
 }

@@ -390,4 +390,119 @@ public class GraphTest {
 
 
     }
+
+    /**
+     * Test if algorithm creates shortest path graph
+     */
+    @Test
+    public void testshortestPathGraph() throws IOException {
+        List<Port> listPorts = new ArrayList<>();
+        List<City> listCities = new ArrayList<>();
+        TreeMap<String,List<String>> borders = new TreeMap<>();
+        TreeMap<String,List<Pair<String,Double>>> seadist = new TreeMap<>();
+        for(int i = 0; i<listAux.length;i++){
+            listPorts.add(new Port("Europe",listAux2[i],i,listAux[i],Double.valueOf(i),Double.valueOf(i)));
+            listCities.add(new City(listAux[i],listCont[i],new Point2D.Double(i,i) ));
+        }
+        for(int i = 0; i<listAux.length-1;i++){
+            borders.put(listAux[i], Collections.singletonList(listAux[i + 1]));
+        }
+        List<String> list = borders.get(listAux[2]);
+        borders.put(listAux[2],list);
+        List<Pair<String,Double>> listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Berlin",20.0));
+        listAu.add(new Pair<String,Double>("London",20.0));
+        seadist.put("Lisboa",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Madrid",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Berlin",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("London",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Madrid",listAu);
+        City c = new City("Brazil","Rio de Janeiro",new Point2D.Double(20.0,20.0));
+        listCities.add(c);
+        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+
+        DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
+        instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,0);
+
+        MatrixGraph result = instance.applyDijkstra();
+        /*
+
+        assertEquals(instance.edge(instance.vertex(0),instance.vertex(1)).getWeight(),result.edge(instance.vertex(0),instance.vertex(1)));
+        //obtain shortest path
+        assertEquals(result.edge(instance.vertex(0),instance.vertex(4)).getWeight(),628.7581422210283);
+        //where before hadn't a path
+        assertNull(instance.edge(instance.vertex(0),instance.vertex(4)));
+
+         */
+
+
+
+    }
+
+    /**
+     * Test if vertices with greater centrality are obtained
+     */
+    @Test
+    public void testGreaterCentrality() throws IOException {
+        List<Port> listPorts = new ArrayList<>();
+        List<City> listCities = new ArrayList<>();
+        TreeMap<String,List<String>> borders = new TreeMap<>();
+        TreeMap<String,List<Pair<String,Double>>> seadist = new TreeMap<>();
+        for(int i = 0; i<listAux.length;i++){
+            listPorts.add(new Port("Europe",listAux2[i],i,listAux[i],Double.valueOf(i),Double.valueOf(i)));
+            listCities.add(new City(listAux[i],listCont[i],new Point2D.Double(i,i) ));
+        }
+        Port portCenter = new Port("Europe","Ola",45678,"Belas",25.0,35.0);
+        listPorts.add(portCenter);
+        for(int i = 0; i<listAux.length-1;i++){
+            borders.put(listAux[i], Collections.singletonList(listAux[i + 1]));
+        }
+        List<String> list = borders.get(listAux[2]);
+        borders.put(listAux[2],list);
+        List<Pair<String,Double>> listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Berlin",20.0));
+        listAu.add(new Pair<String,Double>("London",20.0));
+        seadist.put("Lisboa",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Madrid",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Berlin",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("London",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Madrid",listAu);
+        City c = new City("Brazil","Rio de Janeiro",new Point2D.Double(20.0,20.0));
+        listCities.add(c);
+        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+
+        DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
+        instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,5);
+
+        //Refazer
+        /*
+        Double [][] doubles = instance.floydMatrix();
+
+        List<Object> listShortest = instance.getGreaterList(doubles,2);
+
+        List<Object> expected = new ArrayList<>();
+        expected.add(portCenter);
+
+        assertEquals(expected,listShortest);
+
+        assertEquals(listShortest.get(0).getClass(),Port.class);
+
+         */
+
+
+    }
+
+
 }

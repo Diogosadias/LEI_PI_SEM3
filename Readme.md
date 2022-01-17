@@ -303,6 +303,7 @@ In order to compare the different circuits to choose the best we can :
 I want to print information about at least 3 different vessels depending on the type of cargo given.
 Analyse the types of vessels in the database and find the better suited according to the info provided:
 
+I want to create a document statement the information.
 
 ####Test Description
 
