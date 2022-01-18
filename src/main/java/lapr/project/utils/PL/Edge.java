@@ -64,6 +64,9 @@ public class Edge<V, E> {
 
 
     public static <E> double apply(E e, E e1) {
+        if(e==null & e1==null) return 0.0;
+        if(e==null) return (Double) e1;
+        if(e1==null) return (Double) e;
         return (Double) e + (Double) e1;
     }
 }

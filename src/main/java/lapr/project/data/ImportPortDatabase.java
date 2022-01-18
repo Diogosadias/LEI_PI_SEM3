@@ -49,7 +49,7 @@ public class ImportPortDatabase {
 
     private void insertPortOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
         String sqlCommand =
-                "insert into Port(port_id, continent, country_name, location, latitude, longitude) values (?, ?, ?, ?, ?, ?)";
+                "insert into Port(port_id, name, continent, country_name, location, latitude, longitude, capacity) values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         executePortStatementOnDatabase(databaseConnection, port,
                 sqlCommand);
@@ -58,7 +58,7 @@ public class ImportPortDatabase {
     private void updatePortOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
 
         String sqlCommand =
-                "update Port set port_id=?, continent=?, country_name=?, location=?, latitude=?, longitude=?";
+                "update Port set port_id=?, name=?, continent=?, country_name=?, location=?, latitude=?, longitude=?, capacity=?";
 
         executePortStatementOnDatabase(databaseConnection, port,
                 sqlCommand);
@@ -101,11 +101,13 @@ public class ImportPortDatabase {
                 connection.prepareStatement(
                         sqlCommand);
         savePortPreparedStatement.setInt(1,port.getCode());
-        savePortPreparedStatement.setString(2,port.getCont());
-        savePortPreparedStatement.setString(3,port.getCountry());
-        savePortPreparedStatement.setString(4,port.getLocation());
-        savePortPreparedStatement.setFloat(5, (float) port.getCoords().x);
-        savePortPreparedStatement.setFloat(6, (float) port.getCoords().y);
+        savePortPreparedStatement.setString(2,port.getLocation());
+        savePortPreparedStatement.setString(3,port.getCont());
+        savePortPreparedStatement.setString(4,port.getCountry());
+        savePortPreparedStatement.setString(5,port.getLocation());
+        savePortPreparedStatement.setFloat(6, (float) port.getCoords().x);
+        savePortPreparedStatement.setFloat(7, (float) port.getCoords().y);
+        savePortPreparedStatement.setInt(8,port.getCode());
         savePortPreparedStatement.executeUpdate();
     }
 
