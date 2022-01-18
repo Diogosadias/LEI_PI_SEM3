@@ -131,5 +131,13 @@ public class TrafficManagerController {
     }
 
 
-    
+    public File criticalPorts(int n) throws IOException {
+        File myObj = new File("GreaterCentrality.txt");
+        FileWriter myWriter = new FileWriter("GreaterCentrality.txt");
+        myWriter.write(search.greaterCentrality(n, dataBaseImport.getMatrixGraph()));
+        myWriter.close();
+
+
+        return  myObj;
+    }
 }

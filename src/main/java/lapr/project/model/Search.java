@@ -5,23 +5,17 @@ import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ImportPortDatabase;
 import lapr.project.data.ShipDatabase;
 
+import lapr.project.utils.PL.Algorithms;
+import lapr.project.utils.PL.Graph;
 import oracle.ucp.util.Pair;
 
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
-import java.util.function.Predicate;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static java.lang.Double.NaN;
-import static lapr.project.model.TemporalMessages.getDate;
 
 import lapr.project.utils.PL.Edge;
 import lapr.project.utils.PL.MatrixGraph;
@@ -286,5 +280,71 @@ public class Search {
         return print;
     }
 
+
+    public String greaterCentrality(int n, MatrixGraph matrixGraph) {
+        ArrayList<LinkedList<Object>> list = new ArrayList<>();
+        ArrayList<Port> ports = new ArrayList<>();
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+        applyDijktra(list,matrixGraph);
+
+
+        countTimes(list,ports,numbers);
+
+        return printCentral(ports,numbers,n);
+
+    }
+
+    private String printCentral(ArrayList<Port> ports, ArrayList<Integer> numbers, int n) {
+        String print ="";
+        for(int i = 0; i<n;i++){
+            int index = 0;
+            int max = 0;
+            for(Object v : ports){
+                if(numbers.get(ports.indexOf(v))>max){
+                    max = numbers.get(ports.indexOf(v));
+                    index = ports.indexOf(v);
+                }
+            }
+            print = print + ports.get(index).toString() + "\n" + "This port is Critical and is traversed in " + max + " paths.\n-----\n";
+            ports.remove(index);
+            numbers.remove(index);
+        }
+        return print;
+    }
+
+    private void countTimes(ArrayList<LinkedList<Object>> list, ArrayList<Port> ports, ArrayList<Integer> numbers) {
+        for(LinkedList l : list){
+            if( l!=null) {
+                for (Object v : l) {
+                    if (v instanceof Port) {
+                        if (ports.contains(v)) {
+                            numbers.set(ports.indexOf(v), numbers.get(ports.indexOf(v)) + 1);
+                        } else {
+                            ports.add((Port) v);
+                            numbers.add(1);
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    public void applyDijktra(ArrayList<LinkedList<Object>> list, MatrixGraph matrixGraph) {
+        for(Object v : matrixGraph.vertices()){
+            //Dijktra
+            ArrayList<LinkedList<Object>> paths = new ArrayList<>();
+            ArrayList<Double> dist = new ArrayList<>();
+
+
+            Algorithms.shortestPaths((Graph<Object, Double>) matrixGraph,  v,Edge::compare,Edge::apply,0.0,paths,dist);
+
+            //add shortest path to list
+            list.addAll(paths);
+
+        }
+    }
 
 }

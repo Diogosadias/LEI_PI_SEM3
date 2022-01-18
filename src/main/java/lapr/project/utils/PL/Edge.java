@@ -54,4 +54,16 @@ public class Edge<V, E> {
     public int hashCode() {
         return Objects.hash(vOrig, vDest);
     }
+
+
+
+    public static <E> int compare(E e, E e1) {
+        return Double.compare((Double) e,(Double) e1);
+    }
+
+
+
+    public static <E> double apply(E e, E e1) {
+        return (Double) e + (Double) e1;
+    }
 }

@@ -34,7 +34,7 @@ public class Algorithms {
             visited[vkey] = true;
             for (Edge<V, E> edge : g.outgoingEdges(vOrig)) {
                 int vkeyAdj = g.key(edge.getVDest());
-                if (visited[vkeyAdj]) {
+                if (!visited[vkeyAdj]) {
                     E s = sum.apply(dist[vkey], edge.getWeight());
                     if (dist[vkeyAdj] == null || ce.compare(dist[vkeyAdj], s) > 0) {
                         dist[vkeyAdj] = s;

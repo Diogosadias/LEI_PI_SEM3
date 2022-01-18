@@ -8,10 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -392,7 +389,7 @@ public class GraphTest {
     }
 
     /**
-     * Test if algorithm creates shortest path graph
+     * Test if algorithm creates List of Shortest Path - 1 vertex
      */
     @Test
     public void testshortestPathGraph() throws IOException {
@@ -427,19 +424,25 @@ public class GraphTest {
         listCities.add(c);
         ImportPortDatabase importPortDatabase = new ImportPortDatabase();
 
+        Search search = new Search();
         DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
         instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,0);
 
-        MatrixGraph result = instance.applyDijkstra();
-        /*
+        ArrayList<LinkedList<Object>> lista = new ArrayList<>();
 
-        assertEquals(instance.edge(instance.vertex(0),instance.vertex(1)).getWeight(),result.edge(instance.vertex(0),instance.vertex(1)));
-        //obtain shortest path
-        assertEquals(result.edge(instance.vertex(0),instance.vertex(4)).getWeight(),628.7581422210283);
+
+        search.applyDijktra(lista,instance);
+
+
+        assertEquals(instance.vertex(0),lista.get(0).get(0));
+        //obtain shortest path second value
+        assertEquals(lista.get(3).get(3),instance.vertex(3));
         //where before hadn't a path
         assertNull(instance.edge(instance.vertex(0),instance.vertex(4)));
 
-         */
+
+
+
 
 
 
@@ -483,24 +486,95 @@ public class GraphTest {
         listCities.add(c);
         ImportPortDatabase importPortDatabase = new ImportPortDatabase();
 
+        Search search = new Search();
         DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
         instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,5);
 
-        //Refazer
+
+
+
+        String result = search.greaterCentrality(2,instance);
+        String expected = "Port [code - 0 ]\n" +
+                "\tEurope\n" +
+                "\tPortugal\n" +
+                "\tLisboa\n" +
+                "[ 0.0 ; 0.0 ]\n" +
+                "This port is Critical and is traversed in 9 paths.\n" +
+                "-----\n" +
+                "Port [code - 3 ]\n" +
+                "\tEurope\n" +
+                "\tUK\n" +
+                "\tLondon\n" +
+                "[ 3.0 ; 3.0 ]\n" +
+                "This port is Critical and is traversed in 9 paths.\n" +
+                "-----\n";
+
+        assertEquals(result,expected);
+
+
+
+
+    }
+
+    /**
+     * Test if all circuits are being created
+     */
+    @Test
+    public void testCircuits() throws IOException {
+        List<Port> listPorts = new ArrayList<>();
+        List<City> listCities = new ArrayList<>();
+        TreeMap<String,List<String>> borders = new TreeMap<>();
+        TreeMap<String,List<Pair<String,Double>>> seadist = new TreeMap<>();
+        for(int i = 0; i<listAux.length;i++){
+            listPorts.add(new Port("Europe",listAux2[i],i,listAux[i],Double.valueOf(i),Double.valueOf(i)));
+            listCities.add(new City(listAux[i],listCont[i],new Point2D.Double(i,i) ));
+        }
+        Port portCenter = new Port("Europe","Ola",45678,"Belas",25.0,35.0);
+        listPorts.add(portCenter);
+        for(int i = 0; i<listAux.length-1;i++){
+            borders.put(listAux[i], Collections.singletonList(listAux[i + 1]));
+        }
+        List<String> list = borders.get(listAux[2]);
+        borders.put(listAux[2],list);
+        List<Pair<String,Double>> listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Berlin",20.0));
+        listAu.add(new Pair<String,Double>("London",20.0));
+        seadist.put("Lisboa",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("Madrid",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Berlin",listAu);
+
+        listAu = new ArrayList<>();
+        listAu.add(new Pair<String, Double>("London",20.0));
+        listAu.add(new Pair<String,Double>("France",20.0));
+        seadist.put("Madrid",listAu);
+        City c = new City("Brazil","Rio de Janeiro",new Point2D.Double(20.0,20.0));
+        listCities.add(c);
+        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+
+        DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
+        instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,5);
         /*
-        Double [][] doubles = instance.floydMatrix();
 
-        List<Object> listShortest = instance.getGreaterList(doubles,2);
+        List<List<Object>> circuits = instance.searchCircuits(instance.vertex(0));
 
-        List<Object> expected = new ArrayList<>();
-        expected.add(portCenter);
+        List<Object> listRes = new ArrayList<>();
 
-        assertEquals(expected,listShortest);
+        assertEquals(circuits.get(0),listRes);
 
-        assertEquals(listShortest.get(0).getClass(),Port.class);
+        assertEquals(circuits.size(),3);
 
          */
 
+    }
+
+    /**
+     * Test comparisson of Circuits
+     */
+    @Test
+    public void testComparison(){
 
     }
 

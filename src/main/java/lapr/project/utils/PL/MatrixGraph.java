@@ -6,8 +6,10 @@ import lapr.project.model.Port;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.function.BinaryOperator;
 
 import static lapr.project.model.Ship.dist;
+import static lapr.project.utils.PL.Algorithms.shortestPaths;
 
 /**
  * @author DEI-ISEP
@@ -545,28 +547,24 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
     }
 
 
-    public List<Port> getGreaterList(Double[][] doubles, int i) {
-        List<Port> list = new ArrayList<>();
-        int counter = 0;
-        for(Object v : vertices()){
-            if(v instanceof Port){
-                list.add((Port) v);
-                counter++;
-                if(counter>=i) break;
-            }
-        }
+
+
+
+
+    public List<List<Object>> searchCircuits(Object vertex) {
+        int[] array = new int[vertices().size()];
+
+        List<List<Object>> list =  colorDFS(vertex, array); //must return list of circuits
 
 
         return list;
     }
 
-    public MatrixGraph applyDijkstra() {
-        MatrixGraph matrixGraph = new MatrixGraph(false);
-
-        for(Object v : vertices()){
-            //calculate shortest paths
-        }
-
-        return matrixGraph;
+    private List<List<Object>> colorDFS(Object vertex, int[] array) {
+       return null;
     }
+
+
+
+
 }

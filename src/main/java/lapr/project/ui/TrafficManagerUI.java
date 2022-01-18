@@ -104,7 +104,7 @@ public class TrafficManagerUI {
                 trafficManagerController.selectNPlaces(n);
                 break;
             case "13":
-                //trafficManagerController.criticalPorts(n);
+                trafficManagerController.criticalPorts(n);
                 break;
             case "14":
                 //trafficManagerController.getPaths(land,land2); //only land
