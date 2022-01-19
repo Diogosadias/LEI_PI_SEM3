@@ -1,0 +1,35 @@
+Port [code - 23428 ]
+	Europe
+	Portugal
+	Funchal
+[ 32.65 ; -16.916666 ]
+This port is Critical and is traversed in 8173 paths.
+-----
+Port [code - 22226 ]
+	America
+	Canada
+	Halifax
+[ 44.65 ; -63.566666 ]
+This port is Critical and is traversed in 7295 paths.
+-----
+Port [code - 18433 ]
+	Europe
+	Portugal
+	Horta
+[ 38.533333 ; -28.616667 ]
+This port is Critical and is traversed in 7237 paths.
+-----
+Port [code - 17386 ]
+	Europe
+	Spain
+	Barcelona
+[ 41.333332 ; 2.1666667 ]
+This port is Critical and is traversed in 5155 paths.
+-----
+Port [code - 224858 ]
+	Europe
+	Germany
+	Hamburg
+[ 53.55 ; 9.983334 ]
+This port is Critical and is traversed in 5147 paths.
+-----
