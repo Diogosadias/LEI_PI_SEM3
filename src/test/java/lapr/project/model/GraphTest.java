@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import lapr.project.data.ImportPortDatabase;
+import lapr.project.utils.PL.Algorithms;
 import oracle.ucp.util.Pair;
 import lapr.project.utils.PL.MatrixGraph;
 import org.junit.Before;
@@ -523,60 +524,114 @@ public class GraphTest {
      */
     @Test
     public void testCircuits() throws IOException {
-        List<Port> listPorts = new ArrayList<>();
-        List<City> listCities = new ArrayList<>();
-        TreeMap<String,List<String>> borders = new TreeMap<>();
-        TreeMap<String,List<Pair<String,Double>>> seadist = new TreeMap<>();
-        for(int i = 0; i<listAux.length;i++){
-            listPorts.add(new Port("Europe",listAux2[i],i,listAux[i],Double.valueOf(i),Double.valueOf(i)));
-            listCities.add(new City(listAux[i],listCont[i],new Point2D.Double(i,i) ));
-        }
-        Port portCenter = new Port("Europe","Ola",45678,"Belas",25.0,35.0);
-        listPorts.add(portCenter);
-        for(int i = 0; i<listAux.length-1;i++){
-            borders.put(listAux[i], Collections.singletonList(listAux[i + 1]));
-        }
-        List<String> list = borders.get(listAux[2]);
-        borders.put(listAux[2],list);
-        List<Pair<String,Double>> listAu = new ArrayList<>();
-        listAu.add(new Pair<String, Double>("Berlin",20.0));
-        listAu.add(new Pair<String,Double>("London",20.0));
-        seadist.put("Lisboa",listAu);
+        MatrixGraph mg = new MatrixGraph(false);
+        Port porto = new Port("Europe","Portugal",12345,"Porto",10.2,10.2);
+        Port lisboa = new Port("Europe","Portugal",11111,"Lisboa",10.2,10.2);
+        Port faro = new Port("Europe","Portugal",12311,"Faro",10.2,10.2);
+        Port leiria = new Port("Europe","Portugal",12115,"Leiria",10.2,10.2);
+        Port setubal = new Port("Europe","Portugal",11145,"Setubal",10.2,10.2);
+        Port aveiro = new Port("Europe","Portugal",12895,"Aveiro",10.2,10.2);
 
-        listAu = new ArrayList<>();
-        listAu.add(new Pair<String, Double>("Madrid",20.0));
-        listAu.add(new Pair<String,Double>("France",20.0));
-        seadist.put("Berlin",listAu);
+        mg.addVertex(porto);
+        mg.addVertex(leiria);
+        mg.addVertex(lisboa);
+        mg.addVertex(faro);
+        mg.addVertex(setubal);
+        mg.addVertex(aveiro);
+        mg.addEdge(porto,lisboa,1.0);
+        mg.addEdge(porto,aveiro,2.0);
+        mg.addEdge(porto,leiria,2.0);
+        mg.addEdge(lisboa,faro,20.0);
+        mg.addEdge(faro,aveiro,6.0);
+        mg.addEdge(aveiro,setubal,1.0);
+        mg.addEdge(setubal,leiria,1.0);
 
-        listAu = new ArrayList<>();
-        listAu.add(new Pair<String, Double>("London",20.0));
-        listAu.add(new Pair<String,Double>("France",20.0));
-        seadist.put("Madrid",listAu);
-        City c = new City("Brazil","Rio de Janeiro",new Point2D.Double(20.0,20.0));
-        listCities.add(c);
-        ImportPortDatabase importPortDatabase = new ImportPortDatabase();
+        Search search = new Search();
 
-        DataBaseImport dataBaseImport = new DataBaseImport(importPortDatabase);
-        instance = dataBaseImport.buildGraph(listPorts,listCities,borders,seadist,5);
-        /*
+        String exp = "The Most Efficient Circuit of the Graph is:\n" +
+                "Porto -> |1.0| -> Lisboa\n" +
+                "Lisboa -> |20.0| -> Faro\n" +
+                "Faro -> |6.0| -> Aveiro\n" +
+                "Aveiro -> |1.0| -> Setubal\n" +
+                "Setubal -> |1.0| -> Leiria\n" +
+                "Leiria -> |2.0| -> Porto\n" +
+                "\n" +
+                "The total distance traveled is 31.0.\n" +
+                "The Circuit goes through 6 locations.";
+        assertEquals(exp,search.findCiruit(mg));
 
-        List<List<Object>> circuits = instance.searchCircuits(instance.vertex(0));
-
-        List<Object> listRes = new ArrayList<>();
-
-        assertEquals(circuits.get(0),listRes);
-
-        assertEquals(circuits.size(),3);
-
-         */
 
     }
 
+
     /**
-     * Test comparisson of Circuits
+     * Test Get Closest
      */
     @Test
-    public void testComparison(){
+    public void testGestAdj(){
+
+        MatrixGraph g = new MatrixGraph(false);
+        for(int i = 0; i<8;i++){
+            g.addVertex(i);
+        }
+        g.addEdge(0,1,1.0);
+        g.addEdge(0,2,2.0);
+        g.addEdge(0,3,3.0);
+        g.addEdge(0,4,4.0);
+        g.addEdge(0,5,5.0);
+        g.addEdge(0,7,7.0);
+
+
+        ArrayList<Object> result = Algorithms.getClosestAdj(0,g,(ArrayList<Object>) g.adjVertices(0));
+        ArrayList<Object> expected = new ArrayList<>();
+        expected.add(1);
+        expected.add(2);
+        expected.add(3);
+        expected.add(4);
+        expected.add(5);
+        expected.add(7);
+
+        assertEquals(result,expected);
+        expected.remove(0);
+        assertFalse(result.equals(expected));
+
+
+
+        expected.clear();
+        expected.add(1);
+        expected.add(2);
+        expected.add(4);
+        expected.add(3);
+        expected.add(5);
+        expected.add(6);
+        expected.add(1);
+
+        MatrixGraph mg = new MatrixGraph(false);
+        for(int i = 1; i<7;i++){
+            mg.addVertex(i);
+        }
+        mg.addEdge(1,2,1.0);
+        mg.addEdge(1,3,2.0);
+        mg.addEdge(1,6,2.0);
+        mg.addEdge(2,4,20.0);
+        mg.addEdge(4,3,6.0);
+        mg.addEdge(3,5,1.0);
+        mg.addEdge(5,6,1.0);
+
+
+
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(1);
+        int[] color = new int[mg.vertices().size()];
+        color[0]=1;
+        Algorithms.findCircuit(1,mg,list,color);
+        result=list;
+        assertEquals(result,expected);
+
+        Search search = new Search();
+
+        String exp = "There is No Circuit!";
+        assertEquals(exp,search.findCiruit(mg));
 
     }
 

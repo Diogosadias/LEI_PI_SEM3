@@ -2,10 +2,12 @@ package lapr.project.ui;
 
 import lapr.project.controller.*;
 
+import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.Scanner;
 
 import lapr.project.data.DatabaseConnection;
+import lapr.project.model.City;
 import lapr.project.model.Port;
 import lapr.project.model.PortTree;
 
@@ -21,6 +23,7 @@ public class TrafficManagerUI {
     private int n=5;
     private String date3= "2021.12.05";
     private int nConnections = 5;
+    private City land = new City("Nicosia","Cyprus","Europe",new Point2D.Double(35.16666667,33.366667));
 
 
     public TrafficManagerUI() throws IOException {
@@ -113,7 +116,7 @@ public class TrafficManagerUI {
                 //trafficManagerController.getPaths(land,port2); //both
                 break;
             case "15":
-                //trafficManagerController.findCircuit(land);
+                trafficManagerController.findCircuit();
                 break;
             case "E":
                 flag = false;

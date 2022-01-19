@@ -140,4 +140,14 @@ public class TrafficManagerController {
 
         return  myObj;
     }
+
+    public File findCircuit() throws IOException {
+        File myObj = new File("Circuit.txt");
+        FileWriter myWriter = new FileWriter("Circuit.txt");
+        myWriter.write(search.findCiruit(dataBaseImport.getMatrixGraph()));
+        myWriter.close();
+
+
+        return  myObj;
+    }
 }

@@ -1,9 +1,14 @@
 package lapr.project.utils.PL;
 
+import lapr.project.model.City;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.function.BinaryOperator;
+
+import static java.lang.Double.MAX_VALUE;
+import static java.lang.Double.MIN_VALUE;
 
 /**
  *
@@ -205,5 +210,68 @@ public class Algorithms {
     }
 
 
+    public static void findCircuit(Object land, MatrixGraph matrixGraph, ArrayList<Object> list, int[] color) {
+        ArrayList<Object> adjList = (ArrayList<Object>) matrixGraph.adjVertices(land);
+        boolean allVisited = check(adjList,color,matrixGraph);
+        adjList = getClosestAdj(land,matrixGraph,adjList); //get Closest
 
+
+        if(!allVisited) {
+            //Cicle Foward
+            for (int i = 0; i < adjList.size(); i++) {
+                Object v = adjList.get(i);
+                if (color[matrixGraph.key(v)] == 0) {
+                    list.add(v);
+                    color[matrixGraph.key(v)] = 1;
+                    findCircuit(v, matrixGraph, list, color);
+                    return;
+                } else if (color[matrixGraph.key(v)] == 1) {
+
+                }
+
+            }
+        } else if(adjList.contains(list.get(0))){
+            list.add(list.get(0));
+            return;
+        } else{
+            list.remove(list.size()-1);
+            return;
+        }
+    }
+
+    public static ArrayList<Object> getClosestAdj(Object land, MatrixGraph matrixGraph, ArrayList<Object> adjList) {
+        ArrayList<Object> list = new ArrayList<>();
+
+        //get Min add
+        for(int j = 0; j<adjList.size();j++) {
+            Double min = MAX_VALUE;
+            int index = 0;
+            for (int i = 0; i < adjList.size(); i++) {
+                if (adjList.get(i) == null ) {
+
+                } else {
+                    Edge e = matrixGraph.edge(land, adjList.get(i));
+
+                    Double lol = (Double) e.getWeight();
+                    if (lol < min) {
+                        min = (Double) matrixGraph.edge(land, adjList.get(i)).getWeight();
+                        index = i;
+                    }
+                }
+            }
+            list.add(adjList.get(index));
+            adjList.set(index, null);
+        }
+
+
+
+        return list;
+    }
+
+    private static boolean check(ArrayList<Object> adjList, int[] color, MatrixGraph matrixGraph) {
+        for(Object v : adjList){
+            if(color[matrixGraph.key(v)]==0) return false;
+        }
+        return true;
+    }
 }

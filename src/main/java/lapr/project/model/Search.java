@@ -11,6 +11,7 @@ import oracle.ucp.util.Pair;
 
 
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
@@ -347,4 +348,75 @@ public class Search {
         }
     }
 
+    public String findCiruit(MatrixGraph matrixGraph) {
+        ArrayList<Object> circuit = new ArrayList<>();
+
+        for(Object v : matrixGraph.vertices()) {
+            ArrayList<Object> list = new ArrayList<>();
+            int[] color = new int[matrixGraph.vertices().size()];
+            color[matrixGraph.key(v)] = 1;
+            list.add(v);
+
+
+            Algorithms.findCircuit(v, matrixGraph, list, color);
+            if(circuit.isEmpty()) circuit=list;
+            else{
+                if(circuit.size()<list.size()) circuit=list;
+                else if(circuit.size()==list.size()) circuit = checkGreater(circuit,list,matrixGraph);
+            }
+        }
+
+
+        return printCircuit(circuit,matrixGraph);
+    }
+
+    /**
+     * Returns the circuit with min dist
+     * @param circuit
+     * @param list
+     * @param matrixGraph
+     * @return
+     */
+    private ArrayList<Object> checkGreater(ArrayList<Object> circuit, ArrayList<Object> list, MatrixGraph matrixGraph) {
+        Double circuitD = 0.0;
+        Double listD = 0.0;
+
+        for(int i = 0;i<circuit.size()-1;i++){
+            circuitD = circuitD + (Double) matrixGraph.edge(circuit.get(i),circuit.get(i+1)).getWeight();
+            listD = listD + (Double) matrixGraph.edge(list.get(i),list.get(i+1)).getWeight();
+        }
+        if(circuitD>listD) return list;
+        else return circuit;
+    }
+
+    private String printCircuit(ArrayList<Object> list,MatrixGraph matrixGraph) {
+        String print = "The Most Efficient Circuit of the Graph is:\n";
+
+        if(list.get(0) instanceof Port){
+            print = print + ((Port) list.get(0)).getLocation();
+        } else if(list.get(0) instanceof City){
+            print = print + ((City) list.get(0)).getName();
+        } else{
+            return "There is No Circuit!";
+        }
+        double dist = 0.0;
+
+        for(int i = 0; i<list.size()-1;i++){
+            Double weigh = (Double) matrixGraph.edge(list.get(i),list.get(i+1)).getWeight();
+            if(list.get(i+1) instanceof Port){
+                print = print +" -> |" + weigh +"| -> " + ((Port) list.get(i+1)).getLocation() + "\n";
+
+            } else if(list.get(i+1) instanceof City) {
+                print = print +" -> |" + weigh +"| -> " + ((City) list.get(i+1)).getName() + "\n";
+            }
+            if(i!=list.size()-2 & list.get(i+1) instanceof Port) {
+                print = print + ((Port) list.get(i+1)).getLocation();
+            } else if(i!=list.size()-2 & list.get(i+1) instanceof City){
+                print = print + ((City) list.get(i+1)).getName();
+
+            }
+            dist = dist + weigh;
+        }
+        return print+"\n" + "The total distance traveled is " + dist + ".\nThe Circuit goes through " + String.valueOf(list.size()-1) +" locations.";
+    }
 }

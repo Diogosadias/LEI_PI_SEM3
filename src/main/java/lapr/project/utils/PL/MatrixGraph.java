@@ -398,7 +398,10 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
                 List<Port> list = portContains(((Port) v).getCountry());
                 if(list.size()!=0){
                     for(Port p : list){
-                        if(!v.equals(p)) addEdge((V) v,(V) p,(E) getdist(seadist,v,p));
+                        if(!v.equals(p)){
+                            if(getdist(seadist,v,p)!=null)
+                            addEdge((V) v,(V) p,(E) getdist(seadist,v,p));
+                        }
                     }
                 }
             }
@@ -548,21 +551,6 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
 
 
 
-
-
-
-    public List<List<Object>> searchCircuits(Object vertex) {
-        int[] array = new int[vertices().size()];
-
-        List<List<Object>> list =  colorDFS(vertex, array); //must return list of circuits
-
-
-        return list;
-    }
-
-    private List<List<Object>> colorDFS(Object vertex, int[] array) {
-       return null;
-    }
 
 
 
