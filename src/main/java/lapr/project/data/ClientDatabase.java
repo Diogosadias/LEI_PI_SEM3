@@ -20,9 +20,12 @@ public class ClientDatabase {
         } catch (SQLException ex) {
             if(ex.getMessage().startsWith("ORA-20001: ERROR CODE 10")) object = "10";
             if(ex.getMessage().startsWith("ORA-20001: ERROR CODE 11")) object = "11";
+            /*
             Logger.getLogger(ClientDatabase.class.getName())
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
+
+             */
         }
         return object;
     }

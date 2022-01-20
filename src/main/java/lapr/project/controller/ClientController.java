@@ -16,8 +16,8 @@ public class ClientController {
     }
 
     public File searchPosition(DatabaseConnection databaseConnection,String clientId, String code) throws IOException {
-        File myObj = new File("ContainerStatus - " + code + ".txt");
-         try (FileWriter myWriter = new FileWriter("ContainerStatus - " + code + ".txt")) {
+        File myObj = new File("ContainerStatus - " +clientId+"-"+ code + ".txt");
+         try (FileWriter myWriter = new FileWriter("ContainerStatus - " +clientId+"-"+ code + ".txt")) {
              myWriter.write(client.search(databaseConnection,clientId, code));
          }
 
