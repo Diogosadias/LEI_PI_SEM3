@@ -317,4 +317,25 @@ public class ImportPortDatabase {
 
         return seadist;
     }
+
+
+    public String generateReport(DatabaseConnection databaseConnection) {
+        ArrayList<String> data = null;
+
+        data = getReport(databaseConnection,data);
+
+
+        if(data==null) return "We can't generate Report!";
+        String print="The Report:\n";
+
+        for(String a : data){
+            //do something
+        }
+
+        return  print;
+    }
+
+    private ArrayList<String> getReport(DatabaseConnection databaseConnection, ArrayList<String> data) {
+        return null;
+    }
 }

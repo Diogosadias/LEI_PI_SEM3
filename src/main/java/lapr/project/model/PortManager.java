@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import lapr.project.data.DatabaseConnection;
+import lapr.project.data.ImportPortDatabase;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +20,7 @@ public class PortManager {
     private PortTree portTree = new PortTree();;
     private String username;
     private String password;
+    private ImportPortDatabase importPortDatabase=new ImportPortDatabase();
 
 
     public PortManager(){
@@ -125,5 +127,10 @@ public class PortManager {
             }
         }
         return object.toString() ;
+    }
+
+    public String generateReport(DatabaseConnection databaseConnection) {
+
+        return importPortDatabase.generateReport(databaseConnection);
     }
 }

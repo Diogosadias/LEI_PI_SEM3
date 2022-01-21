@@ -40,7 +40,7 @@ public class PortManagerUI {
                     portManagerController.mapResources(databaseConnection);
                     break;
                 case "3":
-                    //portManagerController.generateReport(databaseConnection);
+                    portManagerController.generateReport(databaseConnection);
                     break;
                 case "4":
                     //portManagerController.developModel(databaseConnection);

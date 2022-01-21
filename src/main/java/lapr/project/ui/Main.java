@@ -88,6 +88,10 @@ class Main {
                 FleetManagerUI fleetManagerUI = new FleetManagerUI();
                 fleetManagerUI.runUI(databaseConnection);
                 break;
+            case "7":
+                ShipEEUI shipEE = new ShipEEUI();
+                shipEE.runUI();
+                break;
             case "E":
                 flag = false;
                 break;

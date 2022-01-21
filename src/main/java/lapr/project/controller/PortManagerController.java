@@ -77,4 +77,14 @@ public class PortManagerController {
 
         return  myObj;
     }
+
+    public File generateReport(DatabaseConnection databaseConnection) throws IOException {
+        File myObj = new File("Report.txt");
+        FileWriter myWriter = new FileWriter("Report.txt");
+        myWriter.write(portManager.generateReport(databaseConnection));
+        myWriter.close();
+
+
+        return  myObj;
+    }
 }
