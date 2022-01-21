@@ -86,7 +86,7 @@ class Main {
                 break;
             case "6":
                 FleetManagerUI fleetManagerUI = new FleetManagerUI();
-                fleetManagerUI.runUI();
+                fleetManagerUI.runUI(databaseConnection);
                 break;
             case "E":
                 flag = false;

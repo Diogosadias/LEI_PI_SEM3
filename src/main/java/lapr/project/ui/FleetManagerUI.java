@@ -2,15 +2,22 @@ package lapr.project.ui;
 
 import lapr.project.controller.FleetMAnagerController;
 import lapr.project.controller.TrafficManagerController;
+import lapr.project.data.DatabaseConnection;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FleetManagerUI {
 
+    private String shipId = "";
+    private Integer year = 2020;
+    private String initialdate = "01-01-2019";
+    private String finaldate = "05-05-2020";
+
     public FleetManagerUI(){
         //Creation Only
     }
-    public void runUI() {
+    public void runUI(DatabaseConnection databaseConnection) throws IOException {
         FleetMAnagerController fleetManagerController = new FleetMAnagerController();
 
 
@@ -29,13 +36,13 @@ public class FleetManagerUI {
             String inputString = scanner.nextLine();
             switch (inputString) {
                 case "1":
-                    //fleetManagerController.numberdays();
+                    fleetManagerController.numberdays(shipId,year,databaseConnection);
                     break;
                 case "2":
-                    //fleetManagerController.ocupacionPeriod();
+                    fleetManagerController.ocupacionPeriod(shipId,initialdate,finaldate,databaseConnection);
                     break;
                 case "3":
-                    //fleetManagerController.aboveThreshold();
+                    fleetManagerController.aboveThreshold(databaseConnection);
                     break;
                 default:
                     flag = false;

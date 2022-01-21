@@ -107,6 +107,7 @@ public class TrafficManagerUI {
                 trafficManagerController.selectNPlaces(n);
                 break;
             case "13":
+                trafficManagerController.buildFreight(databaseConnection, nConnections);
                 trafficManagerController.criticalPorts(n);
                 break;
             case "14":
@@ -116,6 +117,7 @@ public class TrafficManagerUI {
                 //trafficManagerController.getPaths(land,port2); //both
                 break;
             case "15":
+                trafficManagerController.buildFreight(databaseConnection, nConnections);
                 trafficManagerController.findCircuit();
                 break;
             case "E":
