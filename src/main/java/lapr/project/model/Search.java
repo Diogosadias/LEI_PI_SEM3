@@ -419,4 +419,68 @@ public class Search {
         }
         return print+"\n" + "The total distance traveled is " + dist + ".\nThe Circuit goes through " + String.valueOf(list.size()-1) +" locations.";
     }
+    
+    //locais e distancias
+    public String getMaritimePath(Object port1, Object port2, MatrixGraph matrixGraph) {
+
+        if (port1 instanceof Port && port2 instanceof Port) {
+            if (matrixGraph.validVertex(port1) && matrixGraph.validVertex(port2)) {
+                LinkedList<Object> shortPath = new LinkedList<>();
+
+                double dist;
+                if ((Algorithms.shortestPath((Graph<Object, Double>) matrixGraph, port1, port2, Edge::compare, Edge::apply, 0.0, shortPath)) == null) {
+                    return "Between the ports " + port1 + " and " + port2 + " there isn't a possible path!\n";
+
+                }
+                dist = Algorithms.shortestPath((Graph<Object, Double>) matrixGraph, port1, port2, Edge::compare, Edge::apply, 0.0, shortPath);
+                return "The shortest path between the departure port " + port1 + " and the arrival port " + port2 + " is: " + dist + ".\n";
+
+            } else {
+                return "At least one of the ports " + port1 + " or " + port2 + " was not in the graph!\n";
+            }
+        } else {
+            return "The departure port" + port1 + " or the arrival port " + port2 + " are not a port!\n";
+        }
+
+    }
+
+    public String getLandPath(Object land1, Object land2, MatrixGraph matrixGraph) {
+
+        if ((land1 instanceof Port && land2 instanceof City) || (land1 instanceof City && land2 instanceof Port) || (land1 instanceof City && land2 instanceof City)) {
+            if (matrixGraph.validVertex(land1) && matrixGraph.validVertex(land2)) {
+                LinkedList<Object> shortPath = new LinkedList<>();
+
+                double dist;
+                if ((Algorithms.shortestPath((Graph<Object, Double>) matrixGraph, land1, land2, Edge::compare, Edge::apply, 0.0, shortPath)) == null) {
+                    return "Between the places " + land1 + " and " + land2 + " there isn't a possible path!\n";
+
+                }
+                dist = Algorithms.shortestPath((Graph<Object, Double>) matrixGraph, land1, land2, Edge::compare, Edge::apply, 0.0, shortPath);
+                return "The shortest path between the departure place " + land1 + " and the arrival place " + land2 + " is: " + dist + ".\n";
+
+            } else {
+                return "At least one of the places " + land1 + " or " + land2 + " was not in the graph!\n";
+            }
+        } else {
+            return "The departure place" + land1 + " or the arrival place " + land2 + " didn't meet the requirements\n";
+        }
+    }
+
+    public String getLandOrSeaPath(Object place1, Object place2, MatrixGraph matrixGraph) {
+
+        if (matrixGraph.validVertex(place1) && matrixGraph.validVertex(place2)) {
+            LinkedList<Object> shortPath = new LinkedList<>();
+
+            double dist;
+            if ((Algorithms.shortestPath((Graph<Object, Double>) matrixGraph, place1, place2, Edge::compare, Edge::apply, 0.0, shortPath)) == null) {
+                return "Between the places " + place1 + " and " + place2 + " there isn't a possible path!\n";
+
+            }
+            dist = Algorithms.shortestPath((Graph<Object, Double>) matrixGraph, place1, place2, Edge::compare, Edge::apply, 0.0, shortPath);
+            return "The shortest path between the departure place " + place1 + " and the arrival place " + place2 + " is: " + dist + ".\n";
+
+        } else {
+            return "At least one of the places " + place1 + " or " + place2 + " was not in the graph!\n";
+        }
+    }
 }

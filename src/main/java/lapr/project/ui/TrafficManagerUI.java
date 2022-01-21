@@ -23,7 +23,10 @@ public class TrafficManagerUI {
     private int n=5;
     private String date3= "2021.12.05";
     private int nConnections = 5;
-    private City land = new City("Nicosia","Cyprus","Europe",new Point2D.Double(35.16666667,33.366667));
+    private Port port1 = new Port("America", "United States", 14635, "Los Angeles", 33.716667, -118.26667);
+    private Port port2 = new Port("America", "Mexico", 14277, "Manzanillo", 19.05, -104.333336);
+    private City city1 = new City("Lisbon", "Portugal", "Europe", new Point2D.Double(38.71666667, -9.133333));
+    private City city2 = new City("Rome", "Italy", "Europe", new Point2D.Double(41.9, 12.483333));
 
 
     public TrafficManagerUI() throws IOException {
@@ -110,10 +113,9 @@ public class TrafficManagerUI {
                 trafficManagerController.criticalPorts(n);
                 break;
             case "14":
-                //trafficManagerController.getPaths(land,land2); //only land
-                //trafficManagerController.getPaths(port,port2);  //only sea
-                //trafficManagerController.getPaths(land,port); //only land
-                //trafficManagerController.getPaths(land,port2); //both
+               trafficManagerController.getLandPath(city1, city2); //only land
+               trafficManagerController.getMaritimePath(port1, port2);  //only sea
+               trafficManagerController.getLandOrSeaPath(city1, port1); //both
                 break;
             case "15":
                 trafficManagerController.findCircuit();
