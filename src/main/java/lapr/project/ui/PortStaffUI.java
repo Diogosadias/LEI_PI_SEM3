@@ -4,10 +4,7 @@ import java.io.IOException;
 
 public class PortStaffUI {
 
-    public native void runC();
-    static {
-        System.loadLibrary("main");
-    }
+
 
 
     public PortStaffUI() throws IOException {
@@ -15,8 +12,9 @@ public class PortStaffUI {
     }
 
     public void runUI() throws IOException {
+        //Read txt from C previous Run
 
-        new PortStaffUI().runC();
+
 
     }
 }
