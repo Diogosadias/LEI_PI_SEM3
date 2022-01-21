@@ -150,4 +150,33 @@ public class TrafficManagerController {
 
         return  myObj;
     }
+        public File getMaritimePath(Object port1, Object port2) throws IOException {
+
+        File myObj = new File("MaritimePath.txt");
+        FileWriter myWriter = new FileWriter("MaritimePath.txt");
+        myWriter.write(search.getMaritimePath(port1, port2, dataBaseImport.getMatrixGraph()));
+        myWriter.close();
+
+        return myObj;
+    }
+
+    public File getLandPath(Object land1, Object land2) throws IOException {
+
+        File myObj = new File("LandPath.txt");
+        FileWriter myWriter = new FileWriter("LandPath.txt");
+        myWriter.write(search.getLandPath(land1, land2, dataBaseImport.getMatrixGraph()));
+        myWriter.close();
+
+        return myObj;
+    }
+
+    public File getLandOrSeaPath(Object place1, Object place2) throws IOException {
+
+        File myObj = new File("LandOrSeaPath.txt");
+        FileWriter myWriter = new FileWriter("LandOrSeaPath.txt");
+        myWriter.write(search.getLandOrSeaPath(place1, place2, dataBaseImport.getMatrixGraph()));
+        myWriter.close();
+
+        return myObj;
+    }
 }
