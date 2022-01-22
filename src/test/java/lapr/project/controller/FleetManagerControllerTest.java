@@ -20,15 +20,12 @@ public class FleetManagerControllerTest {
     @Test
     public void testFleet() throws IOException {
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        Scanner scanner = new Scanner(fleetMAnagerController.numberdays(null,0,databaseConnection));
+
+
+
+        Scanner scanner = new Scanner(fleetMAnagerController.ocupacionPeriod(null,"0","0",databaseConnection));
         String in = scanner.nextLine();
-        String result = "Ship Id is not Valid!";
-        assertEquals(result,in);
-
-
-        scanner = new Scanner(fleetMAnagerController.ocupacionPeriod(null,"0","0",databaseConnection));
-        in = scanner.nextLine();
-        result = "Ship Id is not Valid!";
+        String  result = "Ship Id is not Valid!";
         assertEquals(result,in);
 
 

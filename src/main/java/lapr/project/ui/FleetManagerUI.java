@@ -36,7 +36,7 @@ public class FleetManagerUI {
             String inputString = scanner.nextLine();
             switch (inputString) {
                 case "1":
-                    fleetManagerController.numberdays(shipId,year,databaseConnection);
+                    fleetManagerController.numberdays(databaseConnection);
                     break;
                 case "2":
                     fleetManagerController.ocupacionPeriod(shipId,initialdate,finaldate,databaseConnection);
