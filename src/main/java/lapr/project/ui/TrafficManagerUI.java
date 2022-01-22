@@ -116,8 +116,8 @@ public class TrafficManagerUI {
             case "14":
                 trafficManagerController.buildFreight(databaseConnection, nConnections);
                 trafficManagerController.getLandPath(city1, city2); //only land
-               trafficManagerController.getMaritimePath(port1, port2);  //only sea
-               trafficManagerController.getLandOrSeaPath(city1, port1); //both
+                trafficManagerController.getMaritimePath(port1, port2);  //only sea
+                trafficManagerController.getLandOrSeaPath(city1, port1); //both
                 break;
             case "15":
                 trafficManagerController.buildFreight(databaseConnection, nConnections);
