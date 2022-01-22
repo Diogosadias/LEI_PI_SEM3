@@ -12,10 +12,10 @@ public class FleetMAnagerController {
 
     private FleetManagerDatabase fleetManagerDatabase = new FleetManagerDatabase();
 
-    public File numberdays(String shipId, Integer year, DatabaseConnection databaseConnection) throws IOException {
-        File myObj = new File("DaysIdle-"+shipId+".txt");
-        FileWriter myWriter = new FileWriter("DaysIdle-"+shipId+".txt");
-        myWriter.write(fleetManagerDatabase.daysIdle(shipId,year,databaseConnection));
+    public File numberdays(DatabaseConnection databaseConnection) throws IOException {
+        File myObj = new File("DaysIdle.txt");
+        FileWriter myWriter = new FileWriter("DaysIdle.txt");
+        myWriter.write(fleetManagerDatabase.daysIdle(databaseConnection));
         myWriter.close();
 
 

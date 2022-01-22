@@ -1,33 +1,32 @@
 package lapr.project.data;
 
 import oracle.ucp.util.Pair;
-import lapr.project.model.Client;
-import lapr.project.model.Port;
-import lapr.project.model.PortTree;
-import lapr.project.model.Ship;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FleetManagerDatabase {
-    public String daysIdle(String shipId, Integer year, DatabaseConnection databaseConnection) {
-        Integer days = 0;
-        if(shipId==null) return "Ship Id is not Valid!";
+    public String daysIdle(DatabaseConnection databaseConnection) {
+        ArrayList<Pair<String,Integer>> lista = new ArrayList<>();
 
-        days = getDaysIdle(shipId,year,databaseConnection,days);
+        lista = getDaysIdle(databaseConnection,lista);
 
 
-        if(days==0) return "Ship doesn't have recorded Idle Days!";
+        if(lista.size()==0) return "There is no Information to Report!";
 
-        return  "The Ship has been Idle " + days + " days this year\n";
+        String print = "The information about Ships and their Idle Days!\n";
+        for(Pair a : lista){
+            print = print + "Code - " + a.get1st() + " | Days - " + a.get2nd() +"\n";
+        }
+
+        return  print;
     }
 
-    private Integer getDaysIdle(String shipId, Integer year, DatabaseConnection databaseConnection, Integer days) {
+    private ArrayList<Pair<String, Integer>> getDaysIdle(DatabaseConnection databaseConnection, ArrayList<Pair<String, Integer>> lista) {
         try {
-            getDays(shipId,year,databaseConnection,days);
+            getDays(databaseConnection,lista);
 
 
         } catch (SQLException ex) {
@@ -35,23 +34,21 @@ public class FleetManagerDatabase {
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
         }
-        return days;
+        return lista;
     }
 
-    private void getDays(String shipId, Integer year, DatabaseConnection databaseConnection, Integer days) throws SQLException {
+    private void getDays(DatabaseConnection databaseConnection, ArrayList<Pair<String, Integer>> lista) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
-        CallableStatement cstmt = connection.prepareCall("{? = call Function(?,?)}"); //redo
-        cstmt.registerOutParameter(1, Types.INTEGER);
-        cstmt.setString(2, shipId);
-        cstmt.setInt(3, year);
+        CallableStatement cstmt = connection.prepareCall("{? = call fnc_get_idle_ships()}");
+        cstmt.registerOutParameter(1, Types.REF_CURSOR);
         cstmt.executeUpdate();
-        Integer rs = cstmt.getInt(1);
-        if(rs==null){
-            days=0;
-        }else{
-            days=rs;
+        ResultSet rs = cstmt.getResultSet();
+        while (rs.next()){
+            String mmsi = rs.getString(1);
+            Integer day =rs.getInt(2);
+            lista.add(new Pair<>(mmsi,day));
         }
         return;
     }

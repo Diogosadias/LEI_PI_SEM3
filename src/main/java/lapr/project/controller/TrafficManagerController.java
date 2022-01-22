@@ -152,6 +152,11 @@ public class TrafficManagerController {
     }
         public File getMaritimePath(Object port1, Object port2) throws IOException {
 
+        port1 = dataBaseImport.getMatrixGraph().vertex(79);
+        port2 = dataBaseImport.getMatrixGraph().vertex(70);
+
+
+
         File myObj = new File("MaritimePath.txt");
         FileWriter myWriter = new FileWriter("MaritimePath.txt");
         myWriter.write(search.getMaritimePath(port1, port2, dataBaseImport.getMatrixGraph()));
@@ -161,6 +166,8 @@ public class TrafficManagerController {
     }
 
     public File getLandPath(Object land1, Object land2) throws IOException {
+        land1 = dataBaseImport.getMatrixGraph().vertex(3);
+        land2 = dataBaseImport.getMatrixGraph().vertex(9);
 
         File myObj = new File("LandPath.txt");
         FileWriter myWriter = new FileWriter("LandPath.txt");
@@ -171,6 +178,10 @@ public class TrafficManagerController {
     }
 
     public File getLandOrSeaPath(Object place1, Object place2) throws IOException {
+        place1 = dataBaseImport.getMatrixGraph().vertex(3);
+        place2 = dataBaseImport.getMatrixGraph().vertex(79);
+
+
 
         File myObj = new File("LandOrSeaPath.txt");
         FileWriter myWriter = new FileWriter("LandOrSeaPath.txt");
