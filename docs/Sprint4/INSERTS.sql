@@ -238,32 +238,6 @@ insert into Warehouse(warehouse_id, name, continente, country, location, capacit
 
 insert into Warehouse(warehouse_id, name, continente, country, location, capacity) values(1, 'warehouseTeste', 'America', 'USA','USAWarehouse', 5);
 
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(11, 33.2, 45.0, 55.0, '20GP', 1,11111,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(12, 333.2, 455.0, 555.0, '20GP', 1,11111,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(13, 33.2, 135.0, 255.0, '20T8', 1,11112,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(14, 433.2, 455.0, 300.0, '20GP', 1,11112,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(15, 100, 500, 400, '20T7', 1,11113,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(16, 200, 100, 400, '20T6', 1,11113,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(17, 333.2, 455.0, 765.0, '20T7', 1,11114,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(18, 333.2, 455.0, 555.0, '20T8', 1,11114,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(19, 900.9, 45.0, 55.0, '20TN', 1,11115,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(20, 876.2, 378.67, 321.8, '20TD', 1,11115,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(21, 243.2, 654.98, 987.89, '20HR', 1,11116,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id) values(22, 321.2, 654.5, 876.56, '20HR', 1,11116,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(800, 33.2, 45.0, 55.0, '20GP', 1,null,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(801, 33.2, 45.0, 55.0, '20GP', 1,null,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(802, 33.2, 45.0, 55.0, '20GP', 1,null,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(803, 33.2, 45.0, 55.0, '20GP', 1,null,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(804, 33.2, 45.0, 55.0, '20GP', 1,null,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(805, 33.2, 45.0, 55.0, '20GP', 1,null,NULL);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(700, 33.2, 45.0, 55.0, '20GP', 1,null,80);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(701, 33.2, 45.0, 55.0, '20GP', 1,null,80);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(702, 33.2, 45.0, 55.0, '20GP', 1,null,null);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(703, 33.2, 45.0, 55.0, '20GP', 1,null,null);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(704, 33.2, 45.0, 55.0, '20GP', 1,null,null);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(705, 33.2, 45.0, 55.0, '20GP', 1,null,null);
-insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id) values(706, 33.2, 45.0, 55.0, '20GP', 1,null,null);
-
 insert into Refrigerated_Container(temperature, container_id) values(7,11);
 insert into Refrigerated_Container(temperature, container_id) values(-5,12);
 insert into Refrigerated_Container(temperature, container_id) values(-5,13);
@@ -277,51 +251,36 @@ insert into Refrigerated_Container(temperature, container_id) values(-5,20);
 insert into Refrigerated_Container(temperature, container_id) values(-5,21);
 insert into Refrigerated_Container(temperature, container_id) values(7,22);
 
-insert into Manifest_Load(manifest_load_id, base_date_time, container_gross_weight) values(70, '02/02/2019 08:00', 400.89);
-insert into Manifest_Load(manifest_load_id, base_date_time, container_gross_weight) values(71, '03/02/2019 10:00', 567.89);
-insert into Manifest_Load(manifest_load_id, base_date_time, container_gross_weight) values(72, '04/02/2019 00:00', 234.89);
-insert into Manifest_Load(manifest_load_id, base_date_time, container_gross_weight) values(73, '05/02/2019 16:00', 100.5);
+--load
+insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(70, '01/01/2022 08:00', 400.89 , 'load', 50);
+insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(71, '03/01/2022 10:00', 567.89, 'load', 51);
+insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(72, '03/12/2021 00:00', 234.89, 'load', 52);
+insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(73, '05/12/2021 16:00', 100.5, 'load', 55);
+--unload
+insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(55,'02/01/2022 23:00', 400.89 , 'unload', 60);
+insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(56,'04/01/2022 23:00', , 400.89 , 'unload', 61);
+insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(57,'04/12/2021 10:00', 400.89 , 'unload', 62);
+insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(58,'06/12/2021 10:00', 400.89 , 'unload', 63);
 
-insert into Manifest_Unload(manifest_unload_id, base_date_time) values(55,'02/02/2019 23:00');
-insert into Manifest_Unload(manifest_unload_id, base_date_time) values(56,'03/02/2019 23:00');
-insert into Manifest_Unload(manifest_unload_id, base_date_time) values(57,'04/03/2019 10:00');
-insert into Manifest_Unload(manifest_unload_id, base_date_time) values(58,'05/03/2019 10:00');
-insert into Manifest_Unload(manifest_unload_id, base_date_time) values(10,'02/02/2019 23:00');
+insert into Captain(captain_id, name, phone_number, email) values(90, 'captain1', '976543321', 'captain@email.com');
+insert into Captain(captain_id, name, phone_number, email) values(91, 'captain2', '970503321', 'captain@email.com');
 
-insert into Trip(trip_id, origin, destination, base_date_time_origin) values(50, 'Port1', 'Port2', '02/02/2019 08:00');
-insert into Trip(trip_id, origin, destination, base_date_time_origin) values(51, 'Port2', 'Port3', '03/02/2019 10:00');
-insert into Trip(trip_id, origin, destination, base_date_time_origin) values(52,  'Port3', 'Port4', '03/02/2020 10:00');
-insert into Trip(trip_id, origin, destination, base_date_time_origin) values(55, 'Port6', 'Port5', '10/05/2020 10:00');
-insert into Trip(trip_id, origin, destination, base_date_time_origin) values(60, 'Port1', 'Port2', '02/01/2022 08:00');
+insert into Ship_Type(type_id, description) values(1, 'Brigue');
+insert into Ship_Type(type_id, description) values(2, 'Fragata');
+insert into Ship_Type(type_id, description) values(3, 'Nau');
 
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(11,50,70,55, 1, 1, 1);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(12,50,70,null, 1, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(13,50,70,55, 5, 2, 1);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(14,50,70,null, 5, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(15,50,70,56, 5, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(16,50,70,57, 5, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(17,50,70,57, 5, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(18,50,70,57, 5, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(19,50,70,58, 5, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(20,50,70,58, 5, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(21,50,70,58, 5, 5, 10);
+insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(999999999,'ship1','IMO2345699',78.90,50,'X4SQ2', 166,25,10, 1, 40, 90);
+insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(888888888,'ship2','IMO2347790',80.90,70,'Y4SW2', 176,35,10.5, 2, 41, 91);
+insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(111111111,'shipTeste','IMO2345698',78.90,50,'X2SQ2', 166,25,5, 1, 40, 90);
 
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(15,51,71,null, 10, 10, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(17,51,71,null, 1, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(18,51,71,null, 1, 0, 1);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(16,51,71,null, 6, 5, 10);
+insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('31/01/2019 17:19', -66.97001,12.9,13.1,355,300,'B', 999999999);
+--insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('31/01/2019 23:19', -30.97001,30.9,15.1,370,300,'B', 999999999);
+insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('06/12/2021 23:19', -30.97001,30.9,15.1,370,300,'B', 999999999);
+insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('2021.12.06 22:58', -30.97001,30.9,15.1,370,300,'B', 999999999);
+insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('2021.12.06', -30.97001,30.9,15.1,370,300,'B', 999999999);
 
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(22,51,71,null, 6, 5, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(13,55,71,null, 6, 5, 10);
-delete from Container_Trip where container_id = 13 and trip_id = 55; 
-
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(800,60,null,null, 10, 10, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(801,60,null,null, 10, 10, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(802,60,null,null, 10, 10, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(803,60,null,null, 10, 10, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(804,60,null,null, 10, 10, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(805,60,null,null, 10, 10, 10);
-insert into Container_Trip(container_id, trip_id,manifest_load,manifest_unload,x_coord,y_coord,z_coord) values(702,52,null,10, 10, 10, 10);
+insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('28/02/2019 17:19', -66.97001,12.9,13.1,255,20,'B', 888888888);
+insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('28/02/2019 23:19', -30.97001,30.9,15.1,270,20,'B', 888888888);
 
 insert into Driver(driver_id, name) values(10, 'driver1');
 insert into Driver(driver_id, name) values(11, 'driver2');
@@ -329,8 +288,68 @@ insert into Driver(driver_id, name) values(11, 'driver2');
 insert into Truck(truck_id, description, driver_id) values(30, 'truck1', 10);
 insert into Truck(truck_id, description, driver_id) values(31, 'truck2', 11);
 
-insert into Trip_Truck(trip_id, truck_id) values(55, 30);
-insert into Trip_Truck(trip_id, truck_id) values(52, 31);
+insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(50, 'Port1', 'Port2', '01/01/2022 08:00', '02/01/2022 23:00', null, 111111111);
+insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(51, 'Port2', 'Port3', '03/01/2022 10:00', '04/01/2022 23:00', null, 111111111);
+insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(52,  'Port3', 'Port4', '03/12/2021 00:00', '04/12/2021 10:00', 30, null);
+insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(55, 'Port6', 'Port5', '10/05/2020 10:00', '05/12/2021 16:00', '06/12/2021 10:00', 31, null);
+--insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(60, 'Port1', 'Port2', '02/01/2022 08:00');
+--insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(61, 'Port6', 'Port7', '02/01/2022 08:00');
+--insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(62, 'Port8', 'Port7', '02/01/2022 08:00');
+--insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(63, 'Port8', 'Port9', '02/01/2022 08:00');
+
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(11, 33.2, 45.0, 55.0, '20GP', 1,11111,NULL, 70);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id, manifest_id) values(12, 333.2, 455.0, 555.0, '20GP', 1,11111,NULL, 71);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(13, 33.2, 135.0, 255.0, '20T8', 1,11112,NULL, 72);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(14, 433.2, 455.0, 300.0, '20GP', 1,11112,NULL, 73);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(15, 100, 500, 400, '20T7', 1,11113,NULL, 70);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id, manifest_id) values(16, 200, 100, 400, '20T6', 1,11113,NULL, 70);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id, manifest_id) values(17, 333.2, 455.0, 765.0, '20T7', 1,11114,NULL, 71);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(18, 333.2, 455.0, 555.0, '20T8', 1,11114,NULL, 73);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id, manifest_id) values(19, 900.9, 45.0, 55.0, '20TN', 1,11115,NULL, 72);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id, manifest_id) values(20, 876.2, 378.67, 321.8, '20TD', 1,11115,NULL, 72);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id, manifest_id) values(21, 243.2, 654.98, 987.89, '20HR', 1,11116,NULL, 70);
+insert into Container(container_id, payload, tare, gross, code_iso, client_id,port_id,warehouse_id, manifest_id) values(22, 321.2, 654.5, 876.56, '20HR', 1,11116,NULL, 71);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(800, 33.2, 45.0, 55.0, '20GP', 1,null,NULL, 72);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(801, 33.2, 45.0, 55.0, '20GP', 1,null,NULL, 55);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(802, 33.2, 45.0, 55.0, '20GP', 1,null,NULL, 56);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(803, 33.2, 45.0, 55.0, '20GP', 1,null,NULL, 57);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(804, 33.2, 45.0, 55.0, '20GP', 1,null,NULL, 58);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(805, 33.2, 45.0, 55.0, '20GP', 1,null,NULL, 58);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(700, 33.2, 45.0, 55.0, '20GP', 1,null,80, 55);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(701, 33.2, 45.0, 55.0, '20GP', 1,null,80, 57);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(702, 33.2, 45.0, 55.0, '20GP', 1,null,null, 72);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(703, 33.2, 45.0, 55.0, '20GP', 1,null,null, 55);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(704, 33.2, 45.0, 55.0, '20GP', 1,null,null, 70);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(705, 33.2, 45.0, 55.0, '20GP', 1,null,null, 55);
+insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(706, 33.2, 45.0, 55.0, '20GP', 1,null,null, 70);
+
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(11,50,1, 1, 1);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(12,50,1, 5, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(13,50,5, 2, 1);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(14,50,5, 5, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(15,50,5, 5, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(16,50,5, 5, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(17,50,5, 5, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(18,50,5, 5, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(19,50,5, 5, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(20,50,5, 5, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(21,50,5, 5, 10);
+
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(15,51,1,10, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(17,51,1, 5, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(18,51,1, 0, 1);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(16,51,6, 5, 10);
+
+
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(800,60,10, 10, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(801,60,10, 10, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(802,60,10, 10, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(803,60,10, 10, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(804,60,10, 10, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(805,60,10, 10, 10);
+insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(702,52,10, 10, 10);
+
+
 
 insert into Role(role_id, name) values(1, 'Staff');
 insert into Role(role_id, name) values(2, 'Manager');
@@ -374,32 +393,6 @@ insert into Fleet_Employee(fleet_id, employee_id) values(40, 65);
 insert into Fleet_Employee(fleet_id, employee_id) values(41, 65);
 insert into Fleet_Employee(fleet_id, employee_id) values(42, 65);
 
-insert into Captain(captain_id, name, phone_number, email) values(90, 'captain1', '976543321', 'captain@email.com');
-insert into Captain(captain_id, name, phone_number, email) values(91, 'captain2', '970503321', 'captain@email.com');
-
-insert into Ship_Type(type_id, description) values(1, 'Brigue');
-insert into Ship_Type(type_id, description) values(2, 'Fragata');
-insert into Ship_Type(type_id, description) values(3, 'Nau');
-
-insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(999999999,'ship1','IMO2345699',78.90,50,'X4SQ2', 166,25,10, 1, 40, 90);
-insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(888888888,'ship2','IMO2347790',80.90,70,'Y4SW2', 176,35,10.5, 2, 41, 91);
-insert into Ship(mmsi, name, imo_number, generator_amount, power_output, callsign, lenght, width, capacity, ship_type_id, fleet_id, captain_id) values(111111111,'shipTeste','IMO2345698',78.90,50,'X2SQ2', 166,25,5, 1, 40, 90);
-
-insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('31/01/2019 17:19', -66.97001,12.9,13.1,355,300,'B', 999999999);
---insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('31/01/2019 23:19', -30.97001,30.9,15.1,370,300,'B', 999999999);
-insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('06/12/2021 23:19', -30.97001,30.9,15.1,370,300,'B', 999999999);
-insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('2021.12.06 22:58', -30.97001,30.9,15.1,370,300,'B', 999999999);
-insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('2021.12.06', -30.97001,30.9,15.1,370,300,'B', 999999999);
-
-insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('28/02/2019 17:19', -66.97001,12.9,13.1,255,20,'B', 888888888);
-insert into Ship_Status(base_date_time, latitude, longitude, sog, cog, heading, transceiver_class, ship_mmsi) values('28/02/2019 23:19', -30.97001,30.9,15.1,270,20,'B', 888888888);
-
-insert into Trip_Ship(trip_id, ship_mmsi) values(50, 999999999);
-insert into Trip_Ship(trip_id, ship_mmsi) values(51, 999999999);
-insert into Trip_Ship(trip_id, ship_mmsi) values(52, 999999999);
-
-
-insert into Trip_Ship(trip_id, ship_mmsi) values(55, 888888888);
 
 
 --import data from excel 
