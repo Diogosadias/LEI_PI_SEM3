@@ -51,8 +51,6 @@ phone_number varchar(9) UNIQUE NOT NULL
 create table Container_Trip(
 container_id integer,
 trip_id integer,
-manifest_load integer,
-manifest_unload integer,
 x_coord integer NOT NULL,
 y_coord integer NOT NULL,
 z_coord integer NOT NULL
