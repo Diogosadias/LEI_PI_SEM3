@@ -1,24 +1,13 @@
-######Container_id_10######
+container_id: 10
 x_coord: 1
 y_coord: 1
 z_coord: 11
 Energy needed for the container: 2887200000.00
 
-######Container_id_15######
-x_coord: 2
-y_coord: 2
-z_coord: 12
-Energy needed for the container: 0.00
-
-######Container_id_20######
+container_id: 20
 x_coord: 3
 y_coord: 3
 z_coord: 13
 Energy needed for the container: 9009792000.00
 
-######Container_id_30######
-x_coord: 4
-y_coord: 4
-z_coord: 14
-Energy needed for the container: 0.00
-
+The energy units produced by the generatores is 810000000.00 J and is not enough to provide energy to the containers that need 11896992000.00 J.

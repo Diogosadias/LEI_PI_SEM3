@@ -34,34 +34,41 @@ int review_energy_needed(CargoManifest *ptr_manifests, int current_energy_units,
         z_coord = ptr_manifests->z;
 
         container_energy = calculate_energy(ptr_manifests, x_coord, y_coord, z_coord);
-
-        printf("%0.02f\n", container_energy);
-        //create_file(ptr_manifests, container_energy);
+        //guardar num ficheiro
+        if (container_energy != 0 ){
         container_id = ptr_manifests->containerID;
-        fprintf(fptr, "######Container_id_%d######\n", container_id);
+        fprintf(fptr, "container_id: %d\n", container_id);
         fprintf(fptr, "x_coord: %d\n", x_coord);
         fprintf(fptr, "y_coord: %d\n", y_coord);
         fprintf(fptr, "z_coord: %d\n", z_coord);
         fprintf(fptr, "Energy needed for the container: %0.2f\n", container_energy);
         fprintf(fptr, "\n");
-       
+        }
+        //printf("%0.02f\n", container_energy);
 
         total_energy = total_energy + container_energy;
 
         ptr_manifests++;
     }
-    fclose(fptr);
+    
 
+    //calculo da energia produzida pelo gerador durante uma hora
     energy_given = 75000 * 3600 * current_energy_units;
 
     if (energy_given < total_energy)
     {
+        fprintf(fptr, "The energy units produced by the generatores is %0.02f J and is not enough to provide energy to the containers that need %0.02f J.\n", energy_given, total_energy);
+        fclose(fptr);
         return 0;
     }
     else if (energy_given >= total_energy)
     {
+        fprintf(fptr, "The energy units produced by the generatores is %0.02f J and is enough to provide energy to the containers that need %0.02f J.\n", energy_given, total_energy);
+        fclose(fptr);
         return 1;
     }
+
+    fclose(fptr);    
     return -1;
 }
 

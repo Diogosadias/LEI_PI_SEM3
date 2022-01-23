@@ -13,14 +13,13 @@ double calculate_energy(CargoManifest *ptr_manifests, int x_coord, int y_coord, 
 	int paredes_retangulares=4;                            
     double temperatura_ambiente = 20.0;
     double tempo = 3600.0;
-    char * str ;
-    int i;
+	
     retorno = is_refrigerated(ptr_manifests,x_coord,y_coord,z_coord);
     if (retorno == -1 || retorno == 0){
     return ((double) retorno);
 
     }
-  for (i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++) {
 
 					if ((((ptr_manifests + i)->x) == x_coord) && (((ptr_manifests + i)->y) == y_coord) && (((ptr_manifests + i)->z) == z_coord) ){
 	
