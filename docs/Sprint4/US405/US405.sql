@@ -1,9 +1,10 @@
-CREATE OR REPLACE PROCEDURE checkAverageOccupancy(p_ship_id IN NUMBER,p_initial_date IN DATE,p_final_date IN DATE)
+CREATE OR REPLACE FUNCTION fncCheckAverageOccupancy(p_ship_id IN NUMBER,p_initial_date IN DATE,p_final_date IN DATE) RETURN VARCHAR2
 IS
 
     container_count NUMBER;
     ship_capacity NUMBER;
     manifestAverage FLOAT;
+    funcResult VARCHAR2(30000);
     no_container_exception EXCEPTION;
 
     --Cursor que guarda o conjunto de manifests associados ao navio pedido--
@@ -14,6 +15,8 @@ IS
             WHERE mmsi = p_ship_id));
 
 BEGIN
+
+    funcResult := '';
 
     --Guarda a capacity do navio pedido-- 
     SELECT capacity  
@@ -34,10 +37,12 @@ BEGIN
         END IF;
 
         manifestAverage := (container_count/ship_capacity)*100;
-        dbms_output.put_line('The occupancy rate of the manifest ' || r_manifest.manifest_id || ' on the ship '|| p_ship_id ||'on the given time period
-            is: ' || manifestAverage || '%');
+        funcResult := funcResult + 'The occupancy rate of the manifest ' || r_manifest.manifest_id || ' on the ship '|| p_ship_id ||'on the given time period
+            is: ' || manifestAverage || '%';
 
     END LOOP;
+    
+    RETURN funcResult;
 
 
 EXCEPTION
