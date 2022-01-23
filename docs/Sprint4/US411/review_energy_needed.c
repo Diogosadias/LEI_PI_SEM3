@@ -71,31 +71,3 @@ int review_energy_needed(CargoManifest *ptr_manifests, int current_energy_units,
     fclose(fptr);    
     return -1;
 }
-
-
-
-/*
-void create_file(CargoManifest *ptr_manifests, double container_energy)
-{
-    FILE *fptr;
-    int container_id = ptr_manifests->containerID;
-    int x_coord = ptr_manifests->x;
-    int y_coord = ptr_manifests->y;
-    int z_coord = ptr_manifests->z;
-    // use appropriate location if you are using MacOS or Linux
-    fptr = fopen("Energy_Results.txt", "w+");
-
-    if (fptr == NULL)
-    {
-        printf("Error!");
-        exit(1);
-    }
-    fprintf(fptr, "######Container_id_%d######\n", container_id);
-    fprintf(fptr, "x_coord: %d\n", x_coord);
-    fprintf(fptr, "y_coord: %d\n", y_coord);
-    fprintf(fptr, "z_coord: %d\n", z_coord);
-    fprintf(fptr, "Energy needed for the container: %0.2f\n", container_energy);
-    fprintf(fptr, "\n");
-    fclose(fptr);
-}
-*/
