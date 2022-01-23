@@ -21,8 +21,8 @@ double calculate_energy(CargoManifest *ptr_manifests, int x_coord, int y_coord, 
     }
   for (int i = 0; i < size - 1; i++) {
 
-					if ((((ptr_manifests + i)->x) = x_coord) && (((ptr_manifests + i)->y) = y_coord) && (((ptr_manifests + i)->z) = z_coord) ){
-	
+					if ((((ptr_manifests + i)->x) == x_coord) && (((ptr_manifests + i)->y) == y_coord) && (((ptr_manifests + i)->z) == z_coord) ){
+		
 					condutividade_termica = ((ptr_manifests + i)->thermalConductivity);
 					espessura = ((ptr_manifests + i)->thickness);
 					largura = ((ptr_manifests + i)->containerWidth);
