@@ -1,5 +1,7 @@
 package lapr.project.data;
 
+import oracle.jdbc.OracleCallableStatement;
+import oracle.jdbc.OracleTypes;
 import oracle.ucp.util.Pair;
 
 import java.sql.*;
@@ -43,9 +45,10 @@ public class FleetManagerDatabase {
         Connection connection = databaseConnection.getConnection();
 
         CallableStatement cstmt = connection.prepareCall("{? = call fnc_get_idle_ships()}");
-        cstmt.registerOutParameter(1, Types.REF_CURSOR);
+        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
         cstmt.executeUpdate();
-        ResultSet rs = cstmt.getResultSet();
+        ResultSet rs = ((OracleCallableStatement)cstmt).getCursor(1);
+        if(rs==null) return;
         while (rs.next()){
             String mmsi = rs.getString(1);
             Integer day =rs.getInt(2);

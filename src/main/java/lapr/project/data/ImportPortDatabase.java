@@ -4,6 +4,8 @@ package lapr.project.data;
 import lapr.project.model.City;
 import lapr.project.model.Port;
 import lapr.project.model.PortTree;
+import oracle.jdbc.OracleCallableStatement;
+import oracle.jdbc.OracleTypes;
 import oracle.ucp.util.Pair;
 
 import java.awt.geom.Point2D;
@@ -326,9 +328,8 @@ public class ImportPortDatabase {
         String print="The Report:\n";
 
         for(ArrayList a : data){
-            for(Object s :a){
-                print = print + "qualquercoisa";
-            }
+            print = print + "MANIFEST_ID - " + a.get(0) + " - TYPE " + a.get(1) +"\nCONTAINER_ID - " + a.get(2) + " - Position (" + a.get(3) + "," + a.get(4) + "," + a.get(5) + ")\nTRIP_ID - " + a.get(6) + " - Time and Hour " + a.get(7) + "\n\n";
+
         }
 
         return  print;
@@ -350,11 +351,12 @@ public class ImportPortDatabase {
     private void getReportDatabase(String portID, DatabaseConnection databaseConnection, ArrayList<ArrayList<String>> data) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
-        CallableStatement cstmt = connection.prepareCall("{? = call redo(?)}");
-        cstmt.registerOutParameter(1, Types.REF_CURSOR);
-        cstmt.setString(2, portID);
+        CallableStatement cstmt = connection.prepareCall("{? = call GenerateLoadingAndUnloadingMap (?)}");
+        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
+        cstmt.setInt(2, Integer.parseInt(portID));
         cstmt.executeUpdate();
-        ResultSet rs = cstmt.getResultSet();
+        ResultSet rs = ((OracleCallableStatement)cstmt).getCursor(1);
+        if(rs==null) return;
         while (rs.next()){
             Integer int1 = rs.getInt(1);
             String string2 = rs.getString(2);
@@ -362,6 +364,9 @@ public class ImportPortDatabase {
             Integer int4 = rs.getInt(4);
             String string5 = rs.getString(5);
             Integer int6 = rs.getInt(6);
+            Integer int7 = rs.getInt(7);
+            String string8 = rs.getString(8);
+
             ArrayList<String> list = new ArrayList<>();
             list.add(String.valueOf(int1));
             list.add(string2);
@@ -369,6 +374,8 @@ public class ImportPortDatabase {
             list.add(String.valueOf(int4));
             list.add(string5);
             list.add(String.valueOf(int6));
+            list.add(String.valueOf(int7));
+            list.add(string8);
             data.add(list);
         }
         return;
