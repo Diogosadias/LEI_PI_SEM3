@@ -15,14 +15,11 @@ DROP TABLE Port    CASCADE CONSTRAINTS PURGE;
 DROP TABLE Port_Employee    CASCADE CONSTRAINTS PURGE;
 DROP TABLE Container CASCADE CONSTRAINTS PURGE;
 DROP TABLE Trip CASCADE CONSTRAINTS PURGE;
-DROP TABLE Trip_Truck CASCADE CONSTRAINTS PURGE;
-DROP TABLE Trip_Ship CASCADE CONSTRAINTS PURGE;
 DROP TABLE Userperson CASCADE CONSTRAINTS PURGE;
 DROP TABLE Employee CASCADE CONSTRAINTS PURGE;
 DROP TABLE Role CASCADE CONSTRAINTS PURGE;
 DROP TABLE Client CASCADE CONSTRAINTS PURGE;
-DROP TABLE Manifest_Unload CASCADE CONSTRAINTS PURGE;
-DROP TABLE Manifest_Load CASCADE CONSTRAINTS PURGE;
+DROP TABLE Cargo_Manifest CASCADE CONSTRAINTS PURGE;
 DROP TABLE Container_Trip CASCADE CONSTRAINTS PURGE;
 DROP TABLE Country CASCADE CONSTRAINTS PURGE;
 DROP TABLE Border CASCADE CONSTRAINTS PURGE;
@@ -39,7 +36,8 @@ gross float NOT NULL,
 code_iso varchar(100),
 client_id integer,
 port_id integer,
-warehouse_id integer
+warehouse_id integer,
+manifest_id integer
 );
 
 create table Client(
@@ -75,17 +73,10 @@ create table Trip(
 trip_id integer,
 origin varchar(100) NOT NULL,
 destination varchar(100) NOT NULL,
-base_date_time_origin varchar(255) NOT NULL
-);
-
-create table Trip_Truck(
-trip_id integer,
-truck_id integer
-);
-
-create table Trip_Ship(
-trip_id integer,
-ship_mmsi integer
+base_date_time_origin varchar(255) NOT NULL,
+base_date_time_end varchar(255) NOT NULL,
+truck_id integer,
+mmsi integer
 );
 
 create table Warehouse(
@@ -140,15 +131,12 @@ transceiver_class varchar(100),
 ship_mmsi integer
 );
 
-create table Manifest_Unload(
-manifest_unload_id integer,
-base_date_time varchar(100) NOT NULL
-);
-
-create table Manifest_Load(
-manifest_load_id integer,
+create table Cargo_Manifest(
+manifest_id integer,
 base_date_time varchar(100) NOT NULL,
-container_gross_weight float
+container_gross_weight float,
+type varchar(100),
+trip_id integer
 );
 
 
@@ -267,8 +255,7 @@ alter table Client add constraint pk_client_id primary key(client_id);
 alter table Userperson add constraint pk_email primary key(email);
 alter table Role add constraint pk_role_id primary key(role_id);
 alter table Employee add constraint pk_employee_id primary key(employee_id);
-alter table Manifest_Unload add constraint pk_manifest_unload_id primary key(manifest_unload_id);
-alter table Manifest_Load add constraint pk_manifest_load_id primary key(manifest_load_id);
+alter table Cargo_Manifest add constraint pk_manifest_id primary key(manifest_id);
 alter table Country add constraint pk_country_id primary key(name);
 alter table Sea_Distance add constraint pk_sea_distance primary key(id);
 alter table Container_Trip add constraint pk_container_trip_container_trip_id primary key(container_id, trip_id);
@@ -278,13 +265,9 @@ alter table Audit_Trail add constraint pk_audit_trail_id primary key(audit_trail
 alter table Container add constraint fk_code_iso foreign key(code_iso) references ISO_code(code);
 alter table Refrigerated_Container add constraint fk_container_id foreign key(container_id) references Container(container_id);
 alter table Truck add constraint fk_driver_id foreign key(driver_id) references Driver(driver_id);
-alter table Trip_Truck add constraint fk_truck_id foreign key(truck_id) references Truck(truck_id);
-alter table Trip_Truck add constraint fk_tripT_id foreign key(trip_id) references Trip(trip_id);
 alter table Ship add constraint fk_ship_type_id foreign key(ship_type_id) references Ship_Type(type_id);
 alter table Ship add constraint fk_fleet_id foreign key(fleet_id) references Fleet(fleet_id);
 alter table Ship add constraint fk_captain_id foreign key(captain_id) references Captain(captain_id);
-alter table Trip_Ship add constraint fk_shipT_mmsi foreign key(ship_mmsi) references Ship(mmsi);
-alter table Trip_Ship add constraint fk_tripS_id foreign key(trip_id) references Trip(trip_id);
 alter table Ship_Status add constraint fk_shipS_mmsi foreign key(ship_mmsi) references Ship(mmsi);
 alter table Client add constraint fk_email foreign key(email) references Userperson(email);
 alter table Container add constraint fk_client_id foreign key(client_id) references Client(client_id);
@@ -299,15 +282,17 @@ alter table Fleet_Employee add constraint fk_fleetE_id foreign key(fleet_id) ref
 alter table Captain add constraint fk_captain_email foreign key(email) references Userperson(email); 
 alter table Container_Trip add  constraint fk_container_trip_id foreign key(container_id) references Container(container_id);
 alter table Container_Trip add constraint fk_container_trip_trip_id foreign key(trip_id) references Trip(trip_id);
-alter table Container_Trip add constraint fk_manifest_unload_id foreign key(manifest_unload)references Manifest_Unload(manifest_unload_id);
-alter table Container_Trip add constraint fk_manifest_load_id foreign key(manifest_load)references Manifest_Load(manifest_load_id); 
 alter table Container add constraint fk_container_port_id foreign key(port_id) references Port(port_id);
 alter table Container add constraint fk_container_warehouse_id foreign key(warehouse_id) references Warehouse(warehouse_id);
+alter table Container add constraint fk_container_manifest_id foreign key(manifest_id) references Cargo_Manifest(manifest_id);
 alter table Port add constraint fk_port_country_id foreign key(country_name) references Country(name);
 alter table Border add constraint fk_border_country foreign key(Countryname) references Country(name);
 alter table Port_Sea_Distance add constraint fk_port_sea_port_id foreign key(port_id) references Port(port_id);
 alter table Port_Sea_Distance add constraint fk_port_sea_distance_id foreign key(sea_distance_id) references Sea_Distance(id);
 alter table Audit_Trail add constraint fk_audit_trail_container_id foreign key(container_id) references Container(container_id);
+alter table Cargo_Manifest add constraint fk_manifest_trip_id foreign key(trip_id) references Trip(trip_id);
+alter table Trip add constraint fk_trip_mmsi foreign key(mmsi) references Ship(mmsi);
+alter table Trip add constraint fk_trip_truck_id foreign key(truck_id) references Truck(truck_id);
 
 --RESTRIÇÕES--
 
