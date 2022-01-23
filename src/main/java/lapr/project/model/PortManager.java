@@ -129,8 +129,8 @@ public class PortManager {
         return object.toString() ;
     }
 
-    public String generateReport(DatabaseConnection databaseConnection) {
+    public String generateReport(String portID, DatabaseConnection databaseConnection) {
 
-        return importPortDatabase.generateReport(databaseConnection);
+        return importPortDatabase.generateReport(portID,databaseConnection);
     }
 }

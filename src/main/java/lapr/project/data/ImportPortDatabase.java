@@ -8,10 +8,7 @@ import oracle.ucp.util.Pair;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -319,23 +316,61 @@ public class ImportPortDatabase {
     }
 
 
-    public String generateReport(DatabaseConnection databaseConnection) {
-        ArrayList<String> data = null;
+    public String generateReport(String portID, DatabaseConnection databaseConnection) {
+        ArrayList<ArrayList<String>> data = new ArrayList<>();
 
-        data = getReport(databaseConnection,data);
+        data = getReport(portID,databaseConnection,data);
 
 
         if(data==null) return "We can't generate Report!";
         String print="The Report:\n";
 
-        for(String a : data){
-            //do something
+        for(ArrayList a : data){
+            for(Object s :a){
+                print = print + "qualquercoisa";
+            }
         }
 
         return  print;
     }
 
-    private ArrayList<String> getReport(DatabaseConnection databaseConnection, ArrayList<String> data) {
-        return null;
+    private ArrayList<ArrayList<String>> getReport(String portID, DatabaseConnection databaseConnection, ArrayList<ArrayList<String>> data) {
+        try {
+            getReportDatabase(portID,databaseConnection,data);
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ImportPortDatabase.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+        }
+        return data;
+    }
+
+    private void getReportDatabase(String portID, DatabaseConnection databaseConnection, ArrayList<ArrayList<String>> data) throws SQLException {
+        Connection connection = databaseConnection.getConnection();
+
+        CallableStatement cstmt = connection.prepareCall("{? = call redo(?)}");
+        cstmt.registerOutParameter(1, Types.REF_CURSOR);
+        cstmt.setString(2, portID);
+        cstmt.executeUpdate();
+        ResultSet rs = cstmt.getResultSet();
+        while (rs.next()){
+            Integer int1 = rs.getInt(1);
+            String string2 = rs.getString(2);
+            Integer int3 = rs.getInt(3);
+            Integer int4 = rs.getInt(4);
+            String string5 = rs.getString(5);
+            Integer int6 = rs.getInt(6);
+            ArrayList<String> list = new ArrayList<>();
+            list.add(String.valueOf(int1));
+            list.add(string2);
+            list.add(String.valueOf(int3));
+            list.add(String.valueOf(int4));
+            list.add(string5);
+            list.add(String.valueOf(int6));
+            data.add(list);
+        }
+        return;
     }
 }

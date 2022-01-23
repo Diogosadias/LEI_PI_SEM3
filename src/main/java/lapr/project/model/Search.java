@@ -287,6 +287,10 @@ public class Search {
         ArrayList<Port> ports = new ArrayList<>();
         ArrayList<Integer> numbers = new ArrayList<>();
 
+
+        if(n<1) return "Not enough numbers!";
+        if(matrixGraph==null) return "Matrix is null";
+
         applyDijktra(list,matrixGraph);
 
 
@@ -351,6 +355,7 @@ public class Search {
     public String findCiruit(MatrixGraph matrixGraph) {
         ArrayList<Object> circuit = new ArrayList<>();
 
+        if(matrixGraph==null) return "Matrix is null";
         for(Object v : matrixGraph.vertices()) {
             ArrayList<Object> list = new ArrayList<>();
             int[] color = new int[matrixGraph.vertices().size()];

@@ -1,3 +1,4 @@
+
 create or replace FUNCTION GenerateLoadingAndUnloadingMap (p_port_id IN INTEGER)
 return SYS_REFCURSOR
 AS
@@ -5,33 +6,24 @@ AS
 
  ERRO EXCEPTION;
 
---varibles
+--variables
 
-only_needed_trips trip.trip_id%TYPE;
+only_needed_trips number;
 count_containers INTEGER;
 transporter_id INTEGER;
     
 
-CURSOR c1 is
-select trip_id
-from trip
-where ((destination = (select location from Port where port_id = p_port_id)and (base_date_time_end between trunc(sysdate) and trunc(sysdate+7))) --week in advance is the period between those dates
-       or(origin = (select location from Port where port_id = p_port_id)and (base_date_time_origin between trunc(sysdate) and trunc(sysdate+7)))); --searching only trips that start/end on the port that the manager controls and in the needed period of time
-
 BEGIN
 
- OPEN c1;
-   LOOP
-   fetch c1 into only_needed_trips;
-       exit when c1%NOTFOUND;
-           END LOOP;
-
-CLOSE c1;
 
 OPEN my_cursor FOR
-select Cargo_Manifest.manifest_id, type , container.container_id, Cargo_Manifest.trip_id, base_date_time, transporter_id
-from Cargo_Manifest INNER JOIN container ON cargo_manifest.manifest_id = container.manifest_id INNER JOIN Trip ON cargo_Manifest.trip_id = trip.trip_id 
-where Cargo_Manifest.trip_id in only_needed_trips and ((transporter_id = trip.mmsi and trip.mmsi is not null) or (transporter_id = trip.truck_id and trip.truck_id is not null));
+
+select Cargo_Manifest.manifest_id, Cargo_Manifest.type , container.container_id, container_trip.x_coord, container_trip.y_coord ,container_trip.z_coord , Cargo_Manifest.trip_id, Cargo_Manifest.base_date_time
+from Cargo_Manifest INNER JOIN container ON cargo_manifest.manifest_id = container.manifest_id INNER JOIN container_trip ON container.container_id = container_trip.container_id,
+(select trip_id from trip 
+where ((destination = (select name from Port where port_id = p_port_id) and(to_date(base_date_time_end,'dd/mm/yyyy hh24:mi') between trunc(sysdate) and trunc(sysdate+7)))
+or (origin = (select name from Port where port_id = p_port_id)and (to_date(base_date_time_origin,'dd/mm/yyyy hh24:mi') between trunc(sysdate) and trunc(sysdate+7)))))C
+ where Cargo_Manifest.trip_id in C.trip_id;
 
 
   RETURN my_cursor;

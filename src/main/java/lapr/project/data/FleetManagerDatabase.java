@@ -14,6 +14,7 @@ public class FleetManagerDatabase {
         lista = getDaysIdle(databaseConnection,lista);
 
 
+
         if(lista.size()==0) return "There is no Information to Report!";
 
         String print = "The information about Ships and their Idle Days!\n";

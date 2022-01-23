@@ -190,4 +190,7 @@ public class TrafficManagerController {
 
         return myObj;
     }
+
+    public void setMatrix(Object o) {
+    }
 }
