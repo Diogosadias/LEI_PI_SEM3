@@ -20,15 +20,46 @@ CargoManifest *ptr_manifests;
 
 int main()
 {
-
+    //US 409
     read_file();
+
+    //EXEMPLO DE UMA DAS STRUCTS - caso seja necessário outra linha qualquer, apenas mudar o número a seguir a ptr_manifests
+    printf("\n\033[1mContainer:\033[0m\nContainer ID: %d\nX:%d Y:%d Z:%d\nContainer Temperature: %0.02f\nWidth: %0.02f Height: %0.02f Length: %0.02f\nGross Weight: %0.02f Thickness: %0.02f\nRefrigerated: %d\nMaterials: %s\nConductivity: %0.02f\n\n", 
+        (ptr_manifests+2)->containerID, (ptr_manifests+2)->x, (ptr_manifests+2)->y, (ptr_manifests+2)->z, 
+        (ptr_manifests+2)->containerTemperature, (ptr_manifests+2)->containerWidth, (ptr_manifests+2)->containerHeight,
+        (ptr_manifests+2)->containerLength, (ptr_manifests+2)->grossWeight, (ptr_manifests+2)->thickness,
+        (ptr_manifests+2)->isItRefrigerated, (ptr_manifests+2)->materials, (ptr_manifests+2)->thermalConductivity);
+
+    //US 410
+    double retorno;
+    retorno = calculate_energy(ptr_manifests, 3, 3, 13);
+
+    if (retorno == NOT_REFRIGERATED) {
+        printf("O contentor de ID %d não é refrigerado.\n\n", ptr_manifests->containerID);
+    } else if (retorno == NOT_EXISTS) {
+        printf("O contentor não existe.\n\n");
+    } else {
+        printf("A Energia do container de ID %d é %0.02f J\n\n", ptr_manifests->containerID, retorno);
+    }
+
+    
+    //US 4111
+    int current_energy_generation_units = 3;
+    int is_not;
+
+    is_not = review_energy_needed(ptr_manifests, current_energy_generation_units, size);
+    if (is_not == 0) {
+        printf("Current energy units are not enough to provide energy to the containers.\n");
+    } else if (is_not == 1) {
+        printf("Current energy units are enough to provide energy to the containers.\n");
+    }
+
 
     //Depois de todas as funções feitas, dar free à memória
     free(ptr_manifests);
 }
 
-void read_file()
-{
+void read_file() {
 
     int containerID;
     int x;
@@ -224,40 +255,5 @@ void read_file()
         }
 
         fclose(file);
-        //printf(" Container_id = %d\n X = %d\n Y = %d\n Z = %d\n\n",ptr_manifests->containerID,ptr_manifests->x,ptr_manifests->y,ptr_manifests->z);
-
-        // US 410
-        double retorno;
-        retorno = calculate_energy(ptr_manifests, 3, 3, 13);
-
-        if (retorno == NOT_REFRIGERATED)
-        {
-            printf("O contentor com id %d não é refrigerado.\n\n", ptr_manifests->containerID);
-        }
-        else if (retorno == NOT_EXISTS)
-        {
-            printf("O contentor não existe.\n\n");
-        }
-        else
-        {
-            printf(" A Energia do container_id %d é %0.02f J\n\n", ptr_manifests->containerID, retorno);
-        }
-        printf (" A Energia do container_id %d é %0.02f J\n\n",ptr_manifests->containerID, retorno);
-
-        // US 4111
-
-        int current_energy_generation_units = 3;
-
-        int is_not;
-        printf("\n");
-        is_not = review_energy_needed(ptr_manifests, current_energy_generation_units, size);
-        if (is_not == 0)
-        {
-            printf("Current energy units are not enough to provide energy to the containers.\n");
-        }
-        else if (is_not == 1)
-        {
-            printf("Current energy units are enough to provide energy to the containers.\n");
-        }
     }
 }
