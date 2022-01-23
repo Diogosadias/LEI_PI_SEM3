@@ -61,6 +61,7 @@ class Main {
                 "\n4 - Client" +
                 "\n5 - Port Staff" +
                 "\n6 - Fleet Manager" +
+                "\n7 - Ship Chief Electrical Engineer" +
                 "\nE - Exit");
 
         String inputString = scanner.nextLine();

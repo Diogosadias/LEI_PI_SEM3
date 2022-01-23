@@ -19,13 +19,18 @@ public class ShipEEUI {
         while(flag){
             System.out.println("Dear Ship Chief Electrical Engineer!" +
                     "\nPlease Select the task from the following:" +
-                    "\n1 - Report Energy Needed" +
+                    "\n1 - Energy Container" +
+                    "\n2 - Report Energy Needed" +
                     "\nE - Exit");
 
             String inputString = scanner.nextLine();
             switch (inputString) {
                 case "1":
                     shipEEController.file(filename);
+                    //ARQCP function
+                    break;
+                case "2":
+                    shipEEController.file2(filename);
                     //ARQCP function
                     break;
                 case "E":

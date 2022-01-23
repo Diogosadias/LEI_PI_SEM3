@@ -146,7 +146,7 @@ public class ClientDatabase {
         String print = "";
 
         while (in.hasNext()){ //Redo
-            print=print+in.nextLine();
+            print =print + in.nextLine();
         }
 
         return print;
@@ -157,9 +157,21 @@ public class ClientDatabase {
         Scanner in = new Scanner(new File(filename));
         String print = "";
 
-        while (in.hasNext()){ //Redo
-            print=print+in.nextLine();
+        for(int i = 0 ; i<11;i++){
+            print = print + "\n"+in.nextLine();
         }
+
+        return print;
+    }
+
+    public String readReport2(String filename) throws FileNotFoundException {
+        Scanner in = new Scanner(new File(filename));
+        String print = "";
+
+        for(int i = 0 ; i<12;i++){
+            print = print + "\n"+in.nextLine();
+        }
+        print = in.nextLine();
 
         return print;
     }
