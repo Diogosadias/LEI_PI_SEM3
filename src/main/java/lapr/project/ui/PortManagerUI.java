@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class PortManagerUI {
     PortManagerController portManagerController = new PortManagerController();
     String filename = "Data/data-ships&ports/bports.csv";
+    String portID = "11112";
 
     public PortManagerUI(){
         //Creation Only
@@ -40,7 +41,7 @@ public class PortManagerUI {
                     portManagerController.mapResources(databaseConnection);
                     break;
                 case "3":
-                    portManagerController.generateReport(databaseConnection);
+                    portManagerController.generateReport(portID,databaseConnection);
                     break;
                 case "4":
                     //portManagerController.developModel(databaseConnection);

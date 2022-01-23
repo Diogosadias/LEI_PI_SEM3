@@ -5,8 +5,11 @@ import lapr.project.model.Port;
 import lapr.project.model.PortTree;
 import lapr.project.model.Ship;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -138,5 +141,26 @@ public class ClientDatabase {
     }
 
 
+    public String read(String filename) throws FileNotFoundException {
+        Scanner in = new Scanner(new File(filename));
+        String print = "";
 
+        while (in.hasNext()){ //Redo
+            print=print+in.nextLine();
+        }
+
+        return print;
+
+    }
+
+    public String readReport(String filename) throws FileNotFoundException {
+        Scanner in = new Scanner(new File(filename));
+        String print = "";
+
+        while (in.hasNext()){ //Redo
+            print=print+in.nextLine();
+        }
+
+        return print;
+    }
 }
