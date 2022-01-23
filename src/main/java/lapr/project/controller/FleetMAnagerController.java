@@ -41,4 +41,6 @@ public class FleetMAnagerController {
 
         return  myObj;
     }
+
+    public FleetManagerDatabase getFMD(){return fleetManagerDatabase;}
 }

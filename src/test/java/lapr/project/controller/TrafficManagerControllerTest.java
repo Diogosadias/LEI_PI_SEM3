@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.data.DatabaseConnection;
 import lapr.project.model.MMSTree;
 import lapr.project.model.PairsCalculator;
 import lapr.project.model.Ship;
@@ -8,8 +9,11 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Scanner;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class TrafficManagerControllerTest {
     private String code1="211331640";
@@ -138,5 +142,27 @@ class TrafficManagerControllerTest {
         PairsCalculator pc = new PairsCalculator(tree);
         String test = pc.pairs();
         assertEquals(test,pc.pairs());
+    }
+
+    @Test
+    public void filescreation() throws IOException {
+        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+
+
+
+        trafficManagerController.setMatrix(null);
+        Scanner scanner = new Scanner(trafficManagerController.findCircuit());
+        String in = scanner.nextLine();
+        String  result = "Matrix is null";
+        assertEquals(result,in);
+        trafficManagerController.setMatrix(null);
+        scanner = new Scanner(trafficManagerController.criticalPorts(1));
+        in = scanner.nextLine();
+        result = "Matrix is null";
+        assertEquals(result,in);
+        scanner = new Scanner(trafficManagerController.criticalPorts(0));
+        in = scanner.nextLine();
+        result = "Not enough numbers!";
+        assertEquals(result,in);
     }
 }
