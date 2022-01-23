@@ -13,7 +13,6 @@ double calculate_energy(CargoManifest *ptr_manifests, int x_coord, int y_coord, 
 	int paredes_retangulares=4;                            
     double temperatura_ambiente = 20.0;
     double tempo = 3600.0;
-    char * str ;
     
     retorno = is_refrigerated(ptr_manifests,x_coord,y_coord,z_coord);
     if (retorno == -1 || retorno == 0){

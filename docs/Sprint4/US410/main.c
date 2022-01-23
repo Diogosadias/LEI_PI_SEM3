@@ -10,6 +10,8 @@
 #define MAX_COLUMNS 20 // positions y from 0 to 20
 #define MAX_LAYERS 21 // positions z from -10 to 10
 #define FILE_NAME "CargoManifests.txt"
+#define NOT_REFRIGERATED 0.000000
+#define NOT_EXISTS -1.000000
 
 int size = 4;
 long energyGeneration;
@@ -20,7 +22,6 @@ int main() {
     read_file();
 
     // VERIFICAÇÕES PARA O READ FILE
-    printf("Cargo Manifest number %d, temperature: %0.2fºC, espessura: %f.\n", ptr_manifests->containerID, ptr_manifests->containerTemperature, ptr_manifests->thickness);
     //printf("Cargo Manifest number %d, materials: %s.\n", (ptr_manifests+1)->containerID, (ptr_manifests+1)->materials);
     //printf("Cargo Manifest number %d, materials: %s.\n", (ptr_manifests+2)->containerID, (ptr_manifests+2)->materials);
     
@@ -209,10 +210,17 @@ void read_file() {
             (ptr_manifests + i)->thermalConductivity = thermalConductivity;
         }
         fclose(file);
-        printf(" Container_id = %d\n X = %d\n Y = %d\n Z = %d\n\n",ptr_manifests->containerID,ptr_manifests->x,ptr_manifests->y,ptr_manifests->z);
         double retorno;
         retorno = calculate_energy(ptr_manifests,3,3,13);
-
-        printf (" Energia =%f\n\n", retorno);
+		if (retorno ==NOT_REFRIGERATED){
+			printf("O contentor com id %d não é refrigerado.\n\n",ptr_manifests->containerID);
+			} 
+			else if (retorno ==NOT_EXISTS){
+			printf("O contentor não existe.\n\n");
+			}
+			else{
+        printf (" A Energia do container_id %d é %0.02f J\n\n",ptr_manifests->containerID, retorno);
     }
 }
+}
+
