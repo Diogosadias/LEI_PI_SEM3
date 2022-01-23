@@ -211,7 +211,7 @@ void read_file() {
         }
         fclose(file);
         double retorno;
-        retorno = calculate_energy(ptr_manifests,3,3,13);
+        retorno = calculate_energy(ptr_manifests,1,1,11);
 		if (retorno ==NOT_REFRIGERATED){
 			printf("O contentor com id %d não é refrigerado.\n\n",ptr_manifests->containerID);
 			} 
