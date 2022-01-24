@@ -10,7 +10,7 @@ IS
     --Cursor que guarda o conjunto de manifests associados ao navio pedido--
    CURSOR c_manifest IS
    SELECT manifest_id FROM Container
-    WHERE container_id = (SELECT container_id FROM Container_Trip
+    WHERE container_id IN (SELECT container_id FROM Container_Trip
         WHERE trip_id IN (SELECT trip_id FROM Trip 
             WHERE mmsi = p_ship_id));
 
@@ -29,7 +29,7 @@ BEGIN
     LOOP
         --Vai buscar a contagem de containers de cada manifest associado ao navio pedido que tenham sido criados dentro do período pedido--
         SELECT COUNT(container_id) INTO container_count FROM Container c WHERE c.manifest_id = r_manifest.manifest_id
-            AND r_manifest.manifest_id = (SELECT manifest_id FROM Cargo_Manifest WHERE TO_DATE(base_date_time,'DD/MM/YYYY HH24:MM')
+            AND r_manifest.manifest_id IN (SELECT manifest_id FROM Cargo_Manifest WHERE TO_DATE(base_date_time,'DD/MM/YYYY HH24:MM')
                 BETWEEN p_initial_date AND p_final_date);
                 
         IF(container_count=0) THEN
