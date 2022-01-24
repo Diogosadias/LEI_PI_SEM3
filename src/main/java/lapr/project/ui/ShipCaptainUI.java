@@ -13,6 +13,10 @@ public class ShipCaptainUI {
     private String date= "31/01/2019 17:19";
     private String year = "2019";
     private String captain_id = "90";
+    private String vessel1 ="IMO9103685";
+    private String vessel2 ="IMO9655169";
+    private String vessel3 ="IMO9776171";
+    
 
 
 
@@ -49,6 +53,9 @@ public class ShipCaptainUI {
                     break;
                 case "5":
                     shipCaptainController.occupancyrateTime(databaseConnection,ship_id,date);
+                    break;
+                case "6":
+                    shipCaptainController.calculate(vessel1);
                     break;
                 case "E":
                     flag = false;

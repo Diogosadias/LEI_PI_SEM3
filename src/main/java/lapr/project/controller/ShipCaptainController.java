@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 public class ShipCaptainController {
-    private ShipCaptain shipCaptain = new ShipCaptain(12345);
+    public ShipCaptain shipCaptain = new ShipCaptain(12345);
     private Integer tripCode =50;
 
 
@@ -57,6 +57,16 @@ public class ShipCaptainController {
         File myObj = new File("OccupancyRate - " + cargoID + ".txt");
         try (FileWriter myWriter = new FileWriter("OccupancyRate - " + cargoID + ".txt")) {
             myWriter.write(shipCaptain.occupancyRateManifest(databaseConnection, cargoID,ShipId));
+        }
+
+
+        return  myObj;
+    }
+
+    public File calculate(String vessel) throws IOException {
+            File myObj = new File("Calculate.txt");
+        try (FileWriter myWriter = new FileWriter("Calculate.txt")) {
+            myWriter.write(shipCaptain.calculate(vessel));
         }
 
 
