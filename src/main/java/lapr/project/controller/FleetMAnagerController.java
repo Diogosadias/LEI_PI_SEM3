@@ -23,8 +23,8 @@ public class FleetMAnagerController {
     }
 
     public File ocupacionPeriod(String shipId, String initialdate, String finaldate, DatabaseConnection databaseConnection) throws IOException {
-        File myObj = new File("OcopancyRate-"+shipId+" - From "+initialdate+" to "+finaldate+".txt");
-        FileWriter myWriter = new FileWriter("OcopancyRate-"+shipId+" - From "+initialdate+" to "+finaldate+".txt");
+        File myObj = new File("OcopancyRate-"+shipId+".txt");
+        FileWriter myWriter = new FileWriter("OcopancyRate-"+shipId+".txt");
         myWriter.write(fleetManagerDatabase.ocupacionPeriod(shipId,initialdate,finaldate,databaseConnection));
         myWriter.close();
 

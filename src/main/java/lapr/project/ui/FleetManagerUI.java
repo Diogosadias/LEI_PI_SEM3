@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class FleetManagerUI {
 
-    private String shipId = "";
+    private String shipId = "999999999";
     private Integer year = 2020;
-    private String initialdate = "01-01-2019";
-    private String finaldate = "05-05-2020";
+    private String initialdate = "01/01/2022 08:00";
+    private String finaldate = "10/01/2022 08:00";
 
     public FleetManagerUI(){
         //Creation Only

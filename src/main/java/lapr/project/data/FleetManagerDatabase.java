@@ -5,6 +5,8 @@ import oracle.jdbc.OracleTypes;
 import oracle.ucp.util.Pair;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,7 +60,7 @@ public class FleetManagerDatabase {
     }
 
     public String ocupacionPeriod(String shipId, String initialdate, String finaldate, DatabaseConnection databaseConnection) {
-        ArrayList<Pair<Integer,Double>> data = null;
+        ArrayList<Pair<String, String>> data = null;
         if(shipId==null) return "Ship Id is not Valid!";
 
         data = getOcupacionPeriod(shipId,initialdate,finaldate,databaseConnection,data);
@@ -74,36 +76,39 @@ public class FleetManagerDatabase {
         return  print;
     }
 
-    private ArrayList<Pair<Integer, Double>> getOcupacionPeriod(String shipId, String initialdate, String finaldate, DatabaseConnection databaseConnection, ArrayList<Pair<Integer, Double>> data) {
+    private ArrayList<Pair<String, String>> getOcupacionPeriod(String shipId, String initialdate, String finaldate, DatabaseConnection databaseConnection, ArrayList<Pair<String, String>> data) {
         try {
             getORP(shipId,initialdate,finaldate,databaseConnection,data);
 
 
-        } catch (SQLException ex) {
+        } catch (SQLException | ParseException ex) {
             Logger.getLogger(FleetManagerDatabase.class.getName())
                     .log(Level.SEVERE, null, ex);
-            databaseConnection.registerError(ex);
+            databaseConnection.registerError((SQLException) ex);
         }
         return data;
     }
 
-    private void getORP(String shipId, String initialdate, String finaldate, DatabaseConnection databaseConnection, ArrayList<Pair<Integer, Double>> data) throws SQLException {
+    private void getORP(String shipId, String initialdate, String finaldate, DatabaseConnection databaseConnection, ArrayList<Pair<String, String>> data) throws SQLException, ParseException {
         Connection connection = databaseConnection.getConnection();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+        java.util.Date datei = sdf.parse(initialdate);
+        java.util.Date datef = sdf.parse(finaldate);
 
-        CallableStatement cstmt = connection.prepareCall("{? = call Function(?,?,?)}"); //redo
-        cstmt.registerOutParameter(1, Types.REF_CURSOR);
+        CallableStatement cstmt = connection.prepareCall("{? = call fncCheckAverageOccupancy (?,?,?)}");
+        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
         cstmt.setString(2, shipId);
-        cstmt.setString(3, initialdate);
-        cstmt.setString(4, finaldate);
+        cstmt.setDate(3, new Date(datei.getTime()));
+        cstmt.setDate(4, new Date(datef.getTime()));
         cstmt.executeUpdate();
-        ResultSet rs = cstmt.getResultSet();
+        ResultSet rs = ((OracleCallableStatement)cstmt).getCursor(1);
         if(rs==null){
             data=null;
         }else{
-            while (rs.next()){
-                Integer cmcode = rs.getInt(1);
-                Double or = rs.getDouble(2);
-                Pair<Integer,Double> p =new Pair<>(cmcode,or);
+            while (rs.next()) {
+                String cmcode = rs.getString(1);
+                String or = rs.getString(2);
+                Pair<String,String> p =new Pair<>(cmcode,or);
                 data.add(p);
             }
 
@@ -144,9 +149,9 @@ public class FleetManagerDatabase {
         Connection connection = databaseConnection.getConnection();
 
         CallableStatement cstmt = connection.prepareCall("{? = call Function()}"); //redo
-        cstmt.registerOutParameter(1, Types.REF_CURSOR);
+        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
         cstmt.executeUpdate();
-        ResultSet rs = cstmt.getResultSet();
+        ResultSet rs = ((OracleCallableStatement)cstmt).getCursor(1);
         if(rs==null){
             data=null;
         }else{
