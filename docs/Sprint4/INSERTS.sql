@@ -10605,7 +10605,7 @@ insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, 
 insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(203,'27/01/2022 19:00', 85.2 , 'unload', 104);
 
 insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(204, '28/01/2022 10:00', 100.1, 'load', 101);
-insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(205, '24/01/2022 23:00', 100.1, 'load', 103);
+insert into Cargo_Manifest(manifest_id, base_date_time, container_gross_weight, type, trip_id) values(205, '29/01/2022 23:00', 100.1, 'load', 103);
 
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(301, 33.2, 45.0, 55.0, '20GP', 1,null,null, 201);
 insert into Container(container_id, payload, tare, gross, code_iso,client_id,port_id,warehouse_id, manifest_id) values(302, 33.2, 45.0, 55.0, '20GP', 1,null,null, 201);
@@ -10666,6 +10666,12 @@ insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values
 insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(323,103,5, 3, 3);
 insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(324,103,3, 8, 4);
 insert into Container_Trip(container_id, trip_id,x_coord,y_coord,z_coord) values(325,103,3, 6, 1);
+
+insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(101, 'port2', 'port1', '28/01/2022 10:00', '29/01/2022 23:00', null, 888888888);
+insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(102, 'port1', 'port2', '27/01/2022 12:00', '08/02/2022 23:00', null, 888888888);
+insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(103, 'port3', 'port2', '20/01/2022 13:00', '28/01/2022 08:00', null, 999999999);
+insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(104, 'port2', 'port3', '29/01/2022 23:00', '30/01/2022 23:00', null, 999999999);
+insert into Trip(trip_id, origin, destination, base_date_time_origin, base_date_time_end, truck_id, mmsi) values(105, 'port4', 'port2', '19/01/2022 12:00', '27/01/2022 19:00', null, 999999999);
 
 
 

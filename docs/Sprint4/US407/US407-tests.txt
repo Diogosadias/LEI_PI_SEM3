@@ -1,0 +1,4 @@
+select GenerateLoadingAndUnloadingMap(11111) from dual; --tem de dar 2 instâncias
+select GenerateLoadingAndUnloadingMap(11112) from dual; --tem de dar 4 instâncias
+select GenerateLoadingAndUnloadingMap(11113) from dual; --tem de dar 1 instância
+select GenerateLoadingAndUnloadingMap(11114) from dual; --tem de dar vazio
