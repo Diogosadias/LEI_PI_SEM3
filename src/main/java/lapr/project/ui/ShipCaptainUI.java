@@ -34,7 +34,8 @@ public class ShipCaptainUI {
                     "\n2 - Loaded" +
                     "\n3 - Yearly Manifest Information" +
                     "\n4 - Occupancy Rate" +
-                    "\n5 - Occupancy Rate at Given Time" +
+                    "\n5 - Occupancy Rate at Given Time"+
+                    "\n6 - Calculate Vessel Sink"+
                     "\nE - Exit");
 
             String inputString = scanner.nextLine();
