@@ -1,6 +1,5 @@
 package lapr.project.utils.PL;
 
-import lapr.project.model.City;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -8,7 +7,6 @@ import java.util.LinkedList;
 import java.util.function.BinaryOperator;
 
 import static java.lang.Double.MAX_VALUE;
-import static java.lang.Double.MIN_VALUE;
 
 /**
  *
@@ -224,19 +222,25 @@ public class Algorithms {
                     list.add(v);
                     color[matrixGraph.key(v)] = 1;
                     findCircuit(v, matrixGraph, list, color);
-                    return;
+                    if(list.get(0).equals(list.get(list.size()-1))) return;
                 } else if (color[matrixGraph.key(v)] == 1) {
 
                 }
 
             }
-        } else if(adjList.contains(list.get(0))){
-            list.add(list.get(0));
-            return;
+            findCircuit(land, matrixGraph, list, color);
+
         } else{
-            list.remove(list.size()-1);
-            return;
+            if(adjList.contains(list.get(0))){
+                list.add(list.get(0));
+                return;
+            } else{
+                list.remove(list.size()-1);
+                return;
+            }
         }
+
+
     }
 
     public static ArrayList<Object> getClosestAdj(Object land, MatrixGraph matrixGraph, ArrayList<Object> adjList) {
